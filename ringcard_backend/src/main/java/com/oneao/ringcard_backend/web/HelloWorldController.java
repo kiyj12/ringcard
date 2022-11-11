@@ -7,16 +7,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequiredArgsConstructor
-public class jwtTestController {
+import java.util.Arrays;
+import java.util.List;
 
-    private final UserService userService;
+@RestController
+public class HelloWorldController {
 
-    @GetMapping("/jwtTest")
-    public String getCurrentUser(@AuthenticationPrincipal PrincipalDetails loginUser) {
-        User user = userService.findByUsername(loginUser.getUsername()).get();
-        return "<h1> it's me </h1>";
+    @GetMapping("hello")
+    public List<String> hello() {
+        return Arrays.asList("안녕하세요", "Hello");
     }
 }
