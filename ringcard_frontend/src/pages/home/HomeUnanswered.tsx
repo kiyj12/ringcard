@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../../styles/home.scss";
+import "../../styles/layout.scss";
 import { ThemeProvider } from "react-bootstrap";
 
 const HomeUnanswered = () => {
