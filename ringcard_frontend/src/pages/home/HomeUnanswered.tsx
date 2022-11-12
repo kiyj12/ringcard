@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../../styles/home.scss";
 import { ThemeProvider } from "react-bootstrap";
 
 const HomeUnanswered = () => {
 	const [questionList, setQuestionList] = useState<any[]>([]);
 
-	const getData = async () => {
-		await axios
+	// const getData = async () => {
+	// 	await axios
+	// 		.get("/home/unanswered")
+	// 		.then((res) => {
+	// 			console.log(res.data);
+
+	//       const questions = res.data;
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
+
+	useEffect(() => {
+		axios
 			.get("/home/unanswered")
 			.then((res) => {
 				console.log(res.data);
@@ -15,14 +29,10 @@ const HomeUnanswered = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-	};
-
-	useEffect(() => {
-		getData();
-	});
+	}, []);
 
 	return (
-		<div>
+		<div className="container">
 			{questionList.map((question, idx) => (
 				<div key={idx}>
 					<h2>{question.questionContents}</h2>
