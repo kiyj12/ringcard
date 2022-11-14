@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../../styles/layout/layout.scss";
-import "../../styles/layout/header.scss";
+import "../../styles/layout/layout.css";
 import { ThemeProvider } from "react-bootstrap";
 import Header from "../../components/Header";
+import Navigation from "../../components/Navigation";
 
-const HomeUnanswered = () => {
+function HomeUnanswered() {
 	const [questionList, setQuestionList] = useState<any[]>([]);
 
 	// const getData = async () => {
@@ -36,13 +36,16 @@ const HomeUnanswered = () => {
 	return (
 		<div className="container">
 			<Header></Header>
-			{questionList.map((question, idx) => (
-				<div key={idx}>
-					<h2>{question.questionContents}</h2>
-				</div>
-			))}
+			<Navigation></Navigation>
+			<div>
+				{questionList.map((question, idx) => (
+					<div key={idx}>
+						<h2>{question.questionContents}</h2>
+					</div>
+				))}
+			</div>
 		</div>
 	);
-};
+}
 
 export default HomeUnanswered;
