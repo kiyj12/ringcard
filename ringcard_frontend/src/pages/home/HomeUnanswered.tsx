@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../../styles/layout/layout.scss";
-import "../../styles/layout/header.scss";
+import "../../styles/layout/layout.css";
+import "../../styles/layout/header.css";
 import { ThemeProvider } from "react-bootstrap";
 import Header from "../../components/Header";
 
