@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../../styles/layout.scss";
+import "../../styles/layout/layout.scss";
+import "../../styles/layout/header.scss";
 import { ThemeProvider } from "react-bootstrap";
+import Header from "../../components/Header";
 
 const HomeUnanswered = () => {
 	const [questionList, setQuestionList] = useState<any[]>([]);
@@ -33,6 +35,7 @@ const HomeUnanswered = () => {
 
 	return (
 		<div className="container">
+			<Header></Header>
 			{questionList.map((question, idx) => (
 				<div key={idx}>
 					<h2>{question.questionContents}</h2>
