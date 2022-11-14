@@ -36,6 +36,10 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         System.out.println("인증이나 권한이 필요한 주소가 요청됨.");
 
         Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            chain.doFilter(request, response);
+            return;
+        }
         String jwtToken = null;
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(JwtProperties.COOKIE_NAME)) {
