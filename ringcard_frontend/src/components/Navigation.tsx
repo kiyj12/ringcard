@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navigation = () => {
   //image를 import하는 대신 require(path)를 통해 변수에 저장해준다.
 
-  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
   
   return (
     <nav className="nav">
@@ -13,7 +13,6 @@ const Navigation = () => {
         <Link to="/board">게시판</Link>
       </div>
 
-      {!isLoggedIn? (
         <div className="nav-login">
           <Link to="/login" className="logIn-button">
             로그인
@@ -28,7 +27,7 @@ const Navigation = () => {
           </div>
           <button className="logOut-button">로그아웃</button>
         </>
-      )}
+      
     </nav>
   );
 };

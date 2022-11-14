@@ -1,0 +1,22 @@
+* {
+  -ms-overflow-style: none /* IE and Edge */
+  // scrollbar-width: none /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+
+body {
+  background-color: rgb(91, 91, 91);
+}
+
+.container {
+  max-width: 560px;
+  height: 100vh;
+  margin: 0 auto;
+  // background-color: rgb(255, 249, 230);
+  background-image: url('../../../public/background-img/background.png');
+  background-size: cover;
+  overflow-y: auto;
+}

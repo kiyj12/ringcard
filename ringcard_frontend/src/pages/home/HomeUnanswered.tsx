@@ -1,32 +1,48 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../../styles/layout/layout.scss";
+import "../../styles/layout/header.scss";
 import { ThemeProvider } from "react-bootstrap";
+import Header from "../../components/Header";
 
 const HomeUnanswered = () => {
-  let [questionList, setQuestionList] = useState([]);
+	const [questionList, setQuestionList] = useState<any[]>([]);
 
-  const getData = async () => {
-    await axios
-      .get("/home/unanswered")
-      .then((res) => {
-        console.log(getData);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+	// const getData = async () => {
+	// 	await axios
+	// 		.get("/home/unanswered")
+	// 		.then((res) => {
+	// 			console.log(res.data);
 
-  useEffect(() => {
-    getData();
-  });
+	//       const questions = res.data;
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
-  return (
-    <div>
-      haha
-      <div></div>
-    </div>
-  );
+	useEffect(() => {
+		axios
+			.get("/home/unanswered")
+			.then((res) => {
+				console.log(res.data);
+				setQuestionList(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
+	return (
+		<div className="container">
+			<Header></Header>
+			{questionList.map((question, idx) => (
+				<div key={idx}>
+					<h2>{question.questionContents}</h2>
+				</div>
+			))}
+		</div>
+	);
 };
 
 export default HomeUnanswered;

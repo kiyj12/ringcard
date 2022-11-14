@@ -4,6 +4,7 @@ import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.domain.question.QuestionRepository;
 import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +19,6 @@ public class QuestionService {
     public Question save(Question question) {
         return questionRepository.save(question);
     }
-
-
 
     public Optional<Question> findById(Long id, Long userId) {
         return questionRepository.findById(id, userId);
@@ -80,6 +79,7 @@ public class QuestionService {
     public void emptyTrashcan(Long userId) {
         questionRepository.emptyTrashcan(userId);
     }
+
 
     
     public void clearStore() {
