@@ -3,22 +3,13 @@ import axios from "axios";
 import "../../styles/layout/layout.css";
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
+import QuestionList from "../../components/QuestionList";
+
+
 
 function HomeUnanswered() {
+
 	const [questionList, setQuestionList] = useState<any[]>([]);
-
-	// const getData = async () => {
-	// 	await axios
-	// 		.get("/home/unanswered")
-	// 		.then((res) => {
-	// 			console.log(res.data);
-
-	//       const questions = res.data;
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
 
 	useEffect(() => {
 		axios
@@ -36,13 +27,9 @@ function HomeUnanswered() {
 		<div className="container">
 			<Header></Header>
 			<Navigation></Navigation>
-			<div>
-				{questionList.map((question, idx) => (
-					<div key={idx}>
-						<h2>{question.questionContents}</h2>
-					</div>
-				))}
-			</div>
+			<div></div>
+			<QuestionList questionList={questionList}></QuestionList>
+			
 		</div>
 	);
 }

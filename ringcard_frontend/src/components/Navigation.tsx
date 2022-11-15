@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "../styles/navigation.css";
 
 const Navigation = () => {
-	//image를 import하는 대신 require(path)를 통해 변수에 저장해준다.
-
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
 	return (
