@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../styles/navigation.css";
 
@@ -12,40 +13,108 @@ const Navigation = () => {
 			<div className="nav-bar">
 				<div className="nav-tab">
 					<div className="nav-unanswered">
-						<Link
-							to="/board"
-							style={{ color: "inherit", textDecoration: "none" }}
+						<NavLink
+							to="/home/unanswered"
+							style={{ textDecoration: "none" }}
+							className={({ isActive }) =>
+								isActive ? "activeNav" : "inactiveNav"
+							}
 						>
-							<img alt="" src="/buttons/home-unanswered-tab-button.svg" />
-							<div className="home-tab-text">미응답</div>
-						</Link>
+							{({ isActive }) =>
+								isActive ? (
+									<React.Fragment>
+										<img
+											alt=""
+											src="/buttons/home-unanswered-tab-active-button.svg"
+										/>
+										<div className="home-tab-text">미응답</div>
+									</React.Fragment>
+								) : (
+									<React.Fragment>
+										<img alt="" src="/buttons/home-unanswered-tab-button.svg" />
+										<div className="home-tab-text">미응답</div>
+									</React.Fragment>
+								)
+							}
+						</NavLink>
 					</div>
 					<div className="nav-answered">
-						<Link
-							to="/board"
-							style={{ color: "inherit", textDecoration: "none" }}
+						<NavLink
+							to="/home/answered"
+							style={{ textDecoration: "none" }}
+							className={({ isActive }) =>
+								isActive ? "activeNav" : "inactiveNav"
+							}
 						>
-							<img alt="" src="/buttons/home-answered-tab-button.svg" />
-							<div className="home-tab-text">응답됨</div>
-						</Link>
+							{({ isActive }) =>
+								isActive ? (
+									<React.Fragment>
+										<img
+											alt=""
+											src="/buttons/home-answered-tab-active-button.svg"
+										/>
+										<div className="home-tab-text">응답됨</div>
+									</React.Fragment>
+								) : (
+									<React.Fragment>
+										<img alt="" src="/buttons/home-answered-tab-button.svg" />
+										<div className="home-tab-text">응답됨</div>
+									</React.Fragment>
+								)
+							}
+						</NavLink>
 					</div>
 					<div className="nav-collection">
-						<Link
-							to="/board"
-							style={{ color: "inherit", textDecoration: "none" }}
+						<NavLink
+							to="/home/collection"
+							style={{ textDecoration: "none" }}
+							className={({ isActive }) =>
+								isActive ? "activeNav" : "inactiveNav"
+							}
 						>
-							<img alt="" src="/buttons/home-collection-tab-button.svg" />
-							<div className="home-tab-text">보관함</div>
-						</Link>
+							{({ isActive }) =>
+								isActive ? (
+									<React.Fragment>
+										<img
+											alt=""
+											src="/buttons/home-collection-tab-active-button.svg"
+										/>
+										<div className="home-tab-text">보관함</div>
+									</React.Fragment>
+								) : (
+									<React.Fragment>
+										<img alt="" src="/buttons/home-collection-tab-button.svg" />
+										<div className="home-tab-text">보관함</div>
+									</React.Fragment>
+								)
+							}
+						</NavLink>
 					</div>
 					<div className="nav-trashcan">
-						<Link
-							to="/board"
-							style={{ color: "inherit", textDecoration: "none" }}
+						<NavLink
+							to="/home/trashcan"
+							style={{ textDecoration: "none" }}
+							className={({ isActive }) =>
+								isActive ? "activeNav" : "inactiveNav"
+							}
 						>
-							<img alt="" src="/buttons/home-trashcan-tab-button.svg" />
-							<div className="home-tab-text">휴지통</div>
-						</Link>
+							{({ isActive }) =>
+								isActive ? (
+									<React.Fragment>
+										<img
+											alt=""
+											src="/buttons/home-trashcan-tab-active-button.svg"
+										/>
+										<div className="home-tab-text">휴지통</div>
+									</React.Fragment>
+								) : (
+									<React.Fragment>
+										<img alt="" src="/buttons/home-trashcan-tab-button.svg" />
+										<div className="home-tab-text">휴지통</div>
+									</React.Fragment>
+								)
+							}
+						</NavLink>
 					</div>
 				</div>
 			</div>

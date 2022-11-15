@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
-import { ThemeProvider } from "react-bootstrap";
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 
