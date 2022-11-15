@@ -7,6 +7,7 @@ import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -5,6 +5,7 @@ import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.domain.user.UserUpdateDto;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,13 +24,13 @@ public class EditUserInfoController {
     private final UserService userService;
 
     @GetMapping("/edit")
-    public String editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<User> editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
 
         User user = loginUser.getUser();
-        Long userId = user.getId();
-        model.addAttribute("user", user);
-        model.addAttribute("userId", userId);
-        return "mypage/editUserInfoForm";
+//        Long userId = user.getId();
+//        model.addAttribute("user", user);
+//        model.addAttribute("userId", userId);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/edit")
