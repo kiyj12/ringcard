@@ -17,7 +17,7 @@ const AppRouter = () => {
             path="/questoin/:questionId/unanswered/user"
             element={<QuestionUnanswered />}
           />
-          <Route path="/mypage/info/edit" element={<UserInfo />} />
+          <Route path="/mypage/info" element={<UserInfo />} />
         </Routes>
       </BrowserRouter>
     </>

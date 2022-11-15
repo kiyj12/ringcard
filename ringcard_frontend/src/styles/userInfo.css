@@ -1,4 +1,6 @@
-.name {
+/* userinfotag에는 왼쪽만 공간 놓고, 상하좌우 margin은 모두 input쪽에 넣는다. */
+
+.userinfo-tag {
   height: 17px;
   opacity: 0.87;
   font-family: NanumBarunGothic;
@@ -10,15 +12,86 @@
   letter-spacing: normal;
   text-align: left;
   color: #fff;
+  margin-left: 1%;
 }
 
-.hellos {
-  width: 390px;
-  height: 47px;
-  margin: 95%;
-  padding: 15px 19px 14px 10px;
+.userinfo-box{
+  /*전체 감싸기.*/
+  width: 100%;
+}
+.userinfo-box-in{
+  /* 왼, 오 빈칸 남기고. padding에서 한 3+3=6% 뺀 94%  */
+  width: 94%; 
+  /* auto로 중간으로 맞추기 */
+  margin: 0 auto;
+}
+.userinfo-input{
+  /* padding 값 2개 뺀 거.*/
+  width: 94%;
+  height: 29px;
+  margin: 13px 0 13px 0;
+  padding: 15px 3% 14px 3%;
   border-radius: 9px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
   border: none;
   background-color: rgba(255, 255, 255, 0.35);
+  font-size: 20px;
+}
+
+
+.userinfo-button{
+  width: 100%; 
+  height: 57px;
+  margin: 13px 0 13px 0;
+  padding: 15px 19px 14px 15px;
+  border-radius: 9px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
+  border: none;
+  background-color: #514b8b;
+}
+
+.userinfo-button-tag{
+  width: 50%;
+  height: 22px;
+  opacity: 0.77;
+  font-family: NanumBarunGothic;
+  font-size: 19px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+}
+
+.userinfo-delete-box{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.userinfo-delete{
+  width: 100%;
+  height: 15px;
+  margin: 20% 0 4.3px 0;
+  font-family: NanumBarunGothic;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+
+.userinfo-delete-tag{
+  color: #fff;
+  text-decoration: none;
+  /* text-align: center;
+  margin-left: auto;
+  margin-right: auto; */
 }
 

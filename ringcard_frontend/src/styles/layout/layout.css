@@ -1,5 +1,6 @@
 * {
   -ms-overflow-style: none /* IE and Edge */
+  /* scrollbar-width: none Firefox */
 }
 
 *::-webkit-scrollbar {
@@ -14,6 +15,7 @@ body {
   max-width: 480px;
   height: 100vh;
   margin: 0 auto;
+  /* background-color: rgb(255, 249, 230); */
   background-image: url('../../../public/background-img/background.png');
   background-size: cover;
   overflow-y: auto;
