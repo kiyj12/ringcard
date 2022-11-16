@@ -37,6 +37,19 @@ function FooterUnansweredQuestion(props: FooterProps) {
 			});
 	};
 
+	const handleCollectionClick = async () => {
+		const questionId = String(question.id);
+		await axios
+			.get("/question/" + questionId + "/inCollection")
+			.then((res) => {
+				console.log(res.data);
+				window.history.go(0);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	return (
 		<>
 			<div className="note-footer">
@@ -56,7 +69,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 							/>
 						)}
 					</button>
-					<button>
+					<button onClick={handleCollectionClick}>
 						{question.inCollection === false ? (
 							<img
 								className="note-collection"
