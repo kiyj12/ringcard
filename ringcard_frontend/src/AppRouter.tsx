@@ -4,8 +4,9 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomeUnanswered from "./pages/home/HomeUnanswered";
 import UserInfo from "./pages/mypage/UserInfo";
-import UserInfoEdit from "./pages/mypage/UserInfoEdit";
+import EditUserInfo from "./pages/mypage/EditUserInfo";
 import QuestionUnanswered from "./pages/question/QuestionUnanswered";
+import Login from "./pages/login/Login";
 
 const AppRouter = () => {
   return (
@@ -19,7 +20,8 @@ const AppRouter = () => {
             element={<QuestionUnanswered />}
           />
           <Route path="/mypage/info" element={<UserInfo />} />
-          <Route path="/mypage/info/edit" element={<UserInfoEdit />} />
+          <Route path="/mypage/info/edit" element={<EditUserInfo />} />
+          <Route path="/loginForm" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>
