@@ -16,15 +16,25 @@
 
 .header-blank {
   margin-top: 0;
+
 }
 
 .top-banner {
+
   height: 73px;
   margin-top: auto;
   padding: 0 27px;
   display: flex;
   justify-content: space-between;
-  /* background-color: burlywood; */
+}
+
+.home-btn {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  
+
 }
 
 .profile-pic {
@@ -38,3 +48,8 @@
   border-radius: 100%;
 }
 
+.menu-btn {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
