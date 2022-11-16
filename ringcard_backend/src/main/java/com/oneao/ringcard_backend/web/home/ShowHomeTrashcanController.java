@@ -4,6 +4,7 @@ import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ public class ShowHomeTrashcanController {
     private final QuestionService questionService;
 
     @GetMapping("home/trashcan")
-    public String showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<List<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         // list 합치기
         //CF: https://hianna.tistory.com/560 2.Collections.addAll()
 //        List<Question> questions = new ArrayList<>();         // list 합치기        Collections.addAll(mergedList, list1.toArray(new String[0]));        Collections.addAll(mergedList, list2.toArray(new String[0]));
@@ -26,6 +27,6 @@ public class ShowHomeTrashcanController {
         Long userId = loginUser.getUser().getId();
         List<Question> questions = questionService.findAllInTrash(userId);        // list 합치기        Collections.addAll(mergedList, list1.toArray(new String[0]));        Collections.addAll(mergedList, list2.toArray(new String[0]));
         model.addAttribute("questions", questions);
-        return "home/trashcan";
+        return ResponseEntity.ok(questions);
     }
 }
