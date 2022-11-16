@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import { IQuestion } from "./types";
 import "../styles/question.css";
-import FooterUnansweredQuestion from "./FooterUnansweredQuestion";
-import FooterAnsweredQuestion from "./FooterAnsweredQuestion";
+import FooterUnansweredQuestion from "./QuestionNoteFooter";
+// import FooterAnsweredQuestion from "./FooterAnsweredQuestion";
 // import QuestionFooter from "./FooterUnansweredQuestion";
 
 export interface Props {
 	questionList: IQuestion[];
-	homeTabName: string;
 }
 
 function QuestionList(props: Props) {
@@ -30,11 +29,7 @@ function QuestionList(props: Props) {
 							<div>{question.questionContents}</div>
 						</div>
 						<hr className="note-hr" />
-						{props.homeTabName === "HomeUnanswered" ? (
-							<FooterUnansweredQuestion question={question} />
-						) : (
-							<FooterAnsweredQuestion question={question} />
-						)}
+						<FooterUnansweredQuestion question={question} />
 					</div>
 				))}
 			</div>

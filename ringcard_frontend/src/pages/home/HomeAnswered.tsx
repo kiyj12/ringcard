@@ -25,10 +25,7 @@ function HomeAnswered() {
 			<Header></Header>
 			<Navigation></Navigation>
 			<div></div>
-			<QuestionList
-				questionList={questionList}
-				homeTabName="HomeAnswered"
-			></QuestionList>
+			<QuestionList questionList={questionList} />
 		</div>
 	);
 }

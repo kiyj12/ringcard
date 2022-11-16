@@ -5,9 +5,7 @@ import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import QuestionList from "../../components/QuestionList";
 
-
 function HomeUnanswered() {
-
 	const [questionList, setQuestionList] = useState<any[]>([]);
 
 	useEffect(() => {
@@ -27,8 +25,7 @@ function HomeUnanswered() {
 			<Header></Header>
 			<Navigation></Navigation>
 			<div></div>
-			<QuestionList questionList={questionList} homeTabName="HomeUnanswered"></QuestionList>
-			
+			<QuestionList questionList={questionList} />
 		</div>
 	);
 }

@@ -46,11 +46,32 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					</button>
 				</div>
 				<div className="note-footer-rightside-btns-container">
-					<img
-						className="note-send-answer"
-						src="/buttons/send-answer-btn.svg"
-						alt=""
-					/>
+					{question.answered === false ? (
+						<button>
+							<img
+								className="note-send-answer"
+								src="/buttons/send-answer-btn.svg"
+								alt=""
+							/>
+						</button>
+					) : (
+						<React.Fragment>
+							<button>
+								<img
+									className="note-edit-answer"
+									src="/buttons/edit-answer-btn.svg"
+									alt=""
+								/>
+							</button>
+							<button>
+								<img
+									className="note-delete-answer"
+									src="/buttons/delete-answer-btn.svg"
+									alt=""
+								/>
+							</button>
+						</React.Fragment>
+					)}
 				</div>
 			</div>
 		</>

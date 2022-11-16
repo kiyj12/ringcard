@@ -64,7 +64,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
 }
 
 .note-trashcan {
@@ -80,6 +79,13 @@ button {
 
 .note-footer-rightside-btns-container {
   padding-top: 8px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 17px;
+}
+
+.note-edit-answer {
+  margin-right: 5px;
 }
 
 .note-send-answer {
