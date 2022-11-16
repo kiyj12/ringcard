@@ -64,7 +64,7 @@
   text-overflow: ellipsis; 
   -webkit-box-orient: vertical;
   overflow: hidden;
-  
+
   text-align: center;
   font-family: NanumBarunGothic;
   font-size: 14px;
@@ -87,18 +87,20 @@
   height: 50px;
   display: flex;
   justify-content: space-between;
+
+  padding-top: 3px;
 }
 
 .note-footer-leftside-btns-container {
   width: 68px;
   /* padding-top: 10px; */
-  padding-left: 2px;
+  padding-left: 1px;
   padding-bottom: 7.5px;
   display: flex;
   justify-content: space-around;
 }
 
-button {
+.note-footer button {
   background-color: rgba(0, 0, 0, 0);
   border: solid 0 black;
   display: flex;
@@ -106,14 +108,14 @@ button {
   justify-content: center;
 }
 
-.note-trashcan {
-  width: 21px;
-  height: 24px;
+.note-trashcan-btn {
+  width: 19px;
+  height: 21px;
 }
 
-.note-collection {
-  width: 19px;
-  height: 24px;
+.note-collection-btn {
+  width: 16px;
+  height: 22px;
 }
 
 
@@ -124,10 +126,16 @@ button {
   padding-bottom: 17px;
 }
 
-.note-edit-answer {
-  margin-right: 5px;
+.note-send-answer-btn {
+  width: 25px;
 }
 
-.note-send-answer {
-  width: 28px;
+.note-edit-answer-btn {
+  width: 18px;
+  margin-right: 7px;
+}
+
+.note-delete-answer-btn {
+  width: 18px;
+  margin-right: 3px;
 }

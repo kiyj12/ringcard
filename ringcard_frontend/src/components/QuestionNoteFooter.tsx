@@ -111,7 +111,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					{question.inTrash === false ? (
 						<button onClick={handleTrashcanClick}>
 							<img
-								className="note-trashcan"
+								className="note-trashcan-btn"
 								src="/buttons/note-trashcan-btn.svg"
 								alt=""
 							/>
@@ -119,7 +119,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					) : (
 						<button onClick={handleRestoreClick}>
 							<img
-								className="note-trashcan"
+								className="note-trashcan-btn"
 								src="/buttons/restore-from-trashcan-button.svg"
 								alt=""
 							/>
@@ -129,13 +129,13 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					<button onClick={handleCollectionClick}>
 						{question.inCollection === false ? (
 							<img
-								className="note-collection"
+								className="note-collection-btn"
 								src="/buttons/note-collection-btn.svg"
 								alt=""
 							/>
 						) : (
 							<img
-								className="note-collection"
+								className="note-collection-btn"
 								src="/buttons/note-collection-active-btn.svg"
 								alt=""
 							/>
@@ -146,7 +146,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					{question.answered === false ? (
 						<button onClick={handleSendAnswerClick}>
 							<img
-								className="note-send-answer"
+								className="note-send-answer-btn"
 								src="/buttons/send-answer-btn.svg"
 								alt=""
 							/>
@@ -155,14 +155,14 @@ function FooterUnansweredQuestion(props: FooterProps) {
 						<React.Fragment>
 							<button onClick={handleEditAnswerClick}>
 								<img
-									className="note-edit-answer"
+									className="note-edit-answer-btn"
 									src="/buttons/edit-answer-btn.svg"
 									alt=""
 								/>
 							</button>
 							<button onClick={handleDeleteAnswerClick}>
 								<img
-									className="note-delete-answer"
+									className="note-delete-answer-btn"
 									src="/buttons/delete-answer-btn.svg"
 									alt=""
 								/>
