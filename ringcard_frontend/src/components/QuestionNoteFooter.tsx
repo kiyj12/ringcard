@@ -10,7 +10,6 @@ export interface FooterProps {
 
 function FooterUnansweredQuestion(props: FooterProps) {
 	const question = props.question;
-	const referrer = document.referrer;
 
 	const handleTrashcanClick = async () => {
 		const questionId = String(question.id);
@@ -18,7 +17,20 @@ function FooterUnansweredQuestion(props: FooterProps) {
 			.get("/question/" + questionId + "/delete/question")
 			.then((res) => {
 				console.log(res.data);
-				window.location.href = referrer;
+				window.history.go(0); // referrer로 이전 페이지를 받아오면 안 된다. 현재 페이지를 해야됨!!!
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const handleRestoreClick = async () => {
+		const questionId = String(question.id);
+		await axios
+			.get("/question/" + questionId + "/restore/question")
+			.then((res) => {
+				console.log(res.data);
+				window.history.go(0);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -78,7 +90,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 									alt=""
 								/>
 							</button>
-							<button>
+							<button onClick={handleRestoreClick}>
 								<img
 									className="note-delete-answer"
 									src="/buttons/delete-answer-btn.svg"
