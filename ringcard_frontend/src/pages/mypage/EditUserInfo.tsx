@@ -41,7 +41,7 @@ const EditUserInfo = () => {
 				</div>
 				<div className="editUserInfo-box-in">
 					<div className="editUserInfo-tag">비밀번호</div>
-					<input className="editUserInfo-input-pw" defaultValue="*****" placeholder="*****" readOnly></input>
+					<input className="editUserInfo-input-pw" defaultValue="●●●●●●●●●●" placeholder="*****" readOnly></input>
 					<button className="editUserInfo-input-pw-edit-button"><div className="editUserInfo-input-pw-edit-button-tag">변경</div></button>
 	
 				</div>

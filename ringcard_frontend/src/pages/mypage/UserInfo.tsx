@@ -52,7 +52,7 @@ const UserInfo = () => {
 				</div>
 				<div className="userInfo-box-in">
 					<div className="userInfo-tag">비밀번호</div>
-					<input className="userInfo-input-pw" defaultValue="*****" placeholder="*****" readOnly></input>
+					<input className="userInfo-input-pw" defaultValue="●●●●●●●●●●" placeholder="*****" readOnly></input>
 				</div>
 				<div className="userInfo-box-in">
 					<div className="userInfo-tag">이메일</div>

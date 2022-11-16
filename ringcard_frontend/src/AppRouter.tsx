@@ -7,6 +7,8 @@ import UserInfo from "./pages/mypage/UserInfo";
 import EditUserInfo from "./pages/mypage/EditUserInfo";
 import QuestionUnanswered from "./pages/question/QuestionUnanswered";
 import Login from "./pages/login/Login";
+import Join from "./pages/login/Join";
+import EditPassword from "./pages/mypage/EditPassword";
 
 const AppRouter = () => {
   return (
@@ -22,6 +24,8 @@ const AppRouter = () => {
           <Route path="/mypage/info" element={<UserInfo />} />
           <Route path="/mypage/info/edit" element={<EditUserInfo />} />
           <Route path="/loginForm" element={<Login />} />
+          <Route path="/joinForm" element={<Join />} />
+          <Route path="/mypage/edit/password" element={<EditPassword />} />
         </Routes>
       </BrowserRouter>
     </>
