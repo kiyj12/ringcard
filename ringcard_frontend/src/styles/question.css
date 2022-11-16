@@ -60,13 +60,20 @@
   /* background-color: aqua; */
   /* overflow는 ...으로 대체하기 위함 */
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   text-overflow: ellipsis; 
   -webkit-box-orient: vertical;
   overflow: hidden;
+  
   text-align: center;
+  font-family: NanumBarunGothic;
   font-size: 14px;
-
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #333;
 }
 
 .note-hr {

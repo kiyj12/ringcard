@@ -8,8 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -18,12 +17,8 @@ public class RestoreQuestionController {
     private final QuestionService questionService;
 
     @GetMapping("question/{questionId}/restore/question")
-    public void restoreQuestionController(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, HttpServletResponse response){
+    public String restoreQuestionController(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, HttpServletRequest request){
         questionService.updateInTrash(questionId);
-        try {
-            response.sendRedirect("/home/unanswered");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return "redirect:" + request.getHeader("Referer");
     }
 }

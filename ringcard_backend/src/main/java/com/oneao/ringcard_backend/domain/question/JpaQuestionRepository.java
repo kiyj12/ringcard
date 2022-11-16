@@ -104,7 +104,7 @@ public class JpaQuestionRepository implements QuestionRepository {
     }
 
     @Override
-    public void emptyTrashcan(Long userId) {
+    public void clearTrashcan(Long userId) {
         List<Question> findQuestions =repository.findAllByUserIdLikeAndInTrashLike(userId, true);
         // findQuestions의 id를 기준으로 answer 찾아서 삭제
         for (Question findQuestion : findQuestions) {
