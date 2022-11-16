@@ -6,7 +6,6 @@ import Navigation from "../../components/Navigation";
 import QuestionList from "../../components/QuestionList";
 
 
-
 function HomeUnanswered() {
 
 	const [questionList, setQuestionList] = useState<any[]>([]);

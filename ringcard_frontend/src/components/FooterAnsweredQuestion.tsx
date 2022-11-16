@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IQuestion } from "./types";
 import "../styles/question.css";
 
+
 export interface FooterProps {
 	question: IQuestion;
 }

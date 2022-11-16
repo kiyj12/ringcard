@@ -2,10 +2,11 @@ import axios from "axios";
 import { url } from "inspector";
 import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
-import Question from "./FooterUnansweredQuestion";
 import { IQuestion } from "./types";
 import "../styles/question.css";
-import QuestionFooter from "./FooterUnansweredQuestion";
+import FooterUnansweredQuestion from "./FooterUnansweredQuestion";
+import FooterAnsweredQuestion from "./FooterAnsweredQuestion";
+// import QuestionFooter from "./FooterUnansweredQuestion";
 
 export interface Props {
 	questionList: IQuestion[];
@@ -29,7 +30,11 @@ function QuestionList(props: Props) {
 							<div>{question.questionContents}</div>
 						</div>
 						<hr className="note-hr" />
-						<QuestionFooter question={question} />
+						{props.homeTabName === "HomeUnanswered" ? (
+							<FooterUnansweredQuestion question={question} />
+						) : (
+							<FooterAnsweredQuestion question={question} />
+						)}
 					</div>
 				))}
 			</div>

@@ -27,7 +27,7 @@ function HomeAnswered() {
 			<div></div>
 			<QuestionList
 				questionList={questionList}
-				homeTabName="HomeUnanswered"
+				homeTabName="HomeAnswered"
 			></QuestionList>
 		</div>
 	);
