@@ -22,7 +22,7 @@ function HomeUnanswered() {
 	return (
 		<div className="container">
 			<Header />
-			<Navigation/>
+			<Navigation />
 			<div className="container-body">
 				<QuestionList questionList={questionList} />
 			</div>
