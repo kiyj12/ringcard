@@ -15,25 +15,28 @@ import Join from "./pages/login/Join";
 import EditPassword from "./pages/mypage/EditPassword";
 
 const AppRouter = () => {
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigation />} />
-          <Route path="/home/unanswered" element={<HomeUnanswered />} />
-          <Route
-            path="/questoin/:questionId/unanswered/user"
-            element={<QuestionUnanswered />}
-          />
-          <Route path="/mypage/info" element={<UserInfo />} />
-          <Route path="/mypage/info/edit" element={<EditUserInfo />} />
-          <Route path="/loginForm" element={<Login />} />
-          <Route path="/joinForm" element={<Join />} />
-          <Route path="/mypage/edit/password" element={<EditPassword />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+	return (
+		<>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Navigation />} />
+					<Route path="/home/unanswered" element={<HomeUnanswered />} />
+					<Route path="/home/answered" element={<HomeAnswered />} />
+					<Route path="/home/trashcan" element={<HomeTrashcan />} />
+					<Route path="/home/collection" element={<HomeCollection />} />
+					<Route
+						path="/questoin/:questionId/unanswered/user"
+						element={<QuestionUnanswered />}
+					/>
+					<Route path="/mypage/info" element={<UserInfo />} />
+					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
+					<Route path="/loginForm" element={<Login />} />
+					<Route path="/joinForm" element={<Join />} />
+					<Route path="/mypage/edit/password" element={<EditPassword />} />
+				</Routes>
+			</BrowserRouter>
+		</>
+	);
 	return (
 		<>
 			<BrowserRouter>
