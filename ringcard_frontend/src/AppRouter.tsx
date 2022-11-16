@@ -37,22 +37,6 @@ const AppRouter = () => {
 			</BrowserRouter>
 		</>
 	);
-	return (
-		<>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<Navigation />} />
-					<Route path="/home/unanswered" element={<HomeUnanswered />} />
-					<Route path="/home/answered" element={<HomeAnswered />} />
-					<Route path="/home/collection" element={<HomeCollection />} />
-					<Route path="/home/trashcan" element={<HomeTrashcan />} />
-					<Route
-						path="/questoin/:questionId/unanswered/user"
-						element={<QuestionUnanswered />}
-					/>
-				</Routes>
-			</BrowserRouter>
-		</>
-	);
+
 };
 export default AppRouter;
