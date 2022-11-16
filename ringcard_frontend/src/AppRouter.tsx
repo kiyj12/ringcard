@@ -4,7 +4,9 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomeUnanswered from "./pages/home/HomeUnanswered";
 import HomeAnswered from "./pages/home/HomeAnswered";
+import HomeCollection from "./pages/home/HomeCollection";
 import HomeTrashcan from "./pages/home/HomeTrashcan";
+
 import QuestionUnanswered from "./pages/question/QuestionUnanswered";
 
 const AppRouter = () => {
@@ -15,6 +17,7 @@ const AppRouter = () => {
 					<Route path="/" element={<Navigation />} />
 					<Route path="/home/unanswered" element={<HomeUnanswered />} />
 					<Route path="/home/answered" element={<HomeAnswered />} />
+					<Route path="/home/collection" element={<HomeCollection />} />
 					<Route path="/home/trashcan" element={<HomeTrashcan />} />
 					<Route
 						path="/questoin/:questionId/unanswered/user"
