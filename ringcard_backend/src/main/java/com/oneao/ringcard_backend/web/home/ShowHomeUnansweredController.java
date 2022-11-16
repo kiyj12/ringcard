@@ -30,7 +30,7 @@ public class ShowHomeUnansweredController {
         List<Question> questions = questionService.findAll(userId, questionSearchCond);
 
 //        System.out.println(questions);
-        model.addAttribute("questions", questions);
+//        model.addAttribute("questions", questions);
 
         return ResponseEntity.ok(questions);
     }

@@ -4,6 +4,7 @@ import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +19,10 @@ public class ShowHomeCollectionController {
     private final QuestionService questionService;
 
     @GetMapping("/home/collection")
-    public String showHomeCollection(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<List<Question>> showHomeCollection(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
         List<Question> questions = questionService.findAllInCollection(userId);
         model.addAttribute("questions", questions);
-        return "home/collection";
+        return ResponseEntity.ok(questions);
     }
 }

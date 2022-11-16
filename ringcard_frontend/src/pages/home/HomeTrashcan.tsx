@@ -10,7 +10,7 @@ function HomeUnanswered() {
 
 	useEffect(() => {
 		axios
-			.get("/home/unanswered")
+			.get("/home/trashcan")
 			.then((res) => {
 				console.log(res.data);
 				setQuestionList(res.data);
@@ -19,6 +19,7 @@ function HomeUnanswered() {
 				console.log(err);
 			});
 	}, []);
+
 	return (
 		<div className="container">
 			<Header></Header>

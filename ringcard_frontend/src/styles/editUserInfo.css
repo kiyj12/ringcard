@@ -1,0 +1,87 @@
+
+
+.editUserInfo-input-pw-edit-button{
+  position: absolute;
+  top: 45%;
+  right: 3%;
+  width: 42px;
+  height: 28px;
+  /* padding: 8px 10px 5px 11px; */
+  border: none;
+  border-radius: 13px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #434658;
+}
+.editUserInfo-input-pw-edit-button-tag{
+  width: 100px;
+  height: 14px;
+  /* margin: 0 0 1px 3px; */
+
+  font-family: NanumBarunGothic;
+  font-size: 12px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  color: #c7cdeb;
+}
+
+
+.editUserInfo-button{
+  width: 100%; 
+  height: 52px;
+  margin: 13px 0 13px 0;
+  padding: 12px 19px 14px 15px;
+  border-radius: 9px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
+  border: none;
+  background-color: #514b8b;
+}
+
+
+.editUserInfo-button-tag{
+  width: 100%;
+  height: 22px;
+  opacity: 0.77;
+  font-family: NanumBarunGothic;
+  font-size: 19px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+}
+/* 
+.editUserInfo-delete-box{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.editUserInfo-delete{
+  width: 100%;
+  height: 15px;
+  margin: 20% 0 4.3px 0;
+  font-family: NanumBarunGothic;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+
+.editUserInfo-delete-tag{
+  color: #fff;
+  text-decoration: none;
+} */
+

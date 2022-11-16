@@ -5,12 +5,12 @@ import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import QuestionList from "../../components/QuestionNoteList";
 
-function HomeUnanswered() {
+function HomeAnswered() {
 	const [questionList, setQuestionList] = useState<any[]>([]);
 
 	useEffect(() => {
 		axios
-			.get("/home/unanswered")
+			.get("/home/answered")
 			.then((res) => {
 				console.log(res.data);
 				setQuestionList(res.data);
@@ -19,6 +19,7 @@ function HomeUnanswered() {
 				console.log(err);
 			});
 	}, []);
+
 	return (
 		<div className="container">
 			<Header></Header>
@@ -29,4 +30,4 @@ function HomeUnanswered() {
 	);
 }
 
-export default HomeUnanswered;
+export default HomeAnswered;
