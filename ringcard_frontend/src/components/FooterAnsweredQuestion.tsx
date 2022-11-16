@@ -12,24 +12,34 @@ function FooterAnsweredQuestion(props: FooterProps) {
 	return (
 		<>
 			<div className="note-footer">
-				{question.answered === false}
-
 				<div className="note-footer-leftside-btns-container">
-					<img
-						className="note-trashcan"
-						src="/buttons/trashcan-btn.svg"
-						alt=""
-					/>
-					<img
-						className="note-collection"
-						src="/buttons/collection-btn.svg"
-						alt=""
-					/>
+					<button>
+						<img
+							className="note-trashcan"
+							src="/buttons/note-trashcan-btn.svg"
+							alt=""
+						/>
+					</button>
+					<button>
+						{question.inCollection === false ? (
+							<img
+								className="note-collection"
+								src="/buttons/note-collection-btn.svg"
+								alt=""
+							/>
+						) : (
+							<img
+								className="note-collection"
+								src="/buttons/note-collection-active-btn.svg"
+								alt=""
+							/>
+						)}
+					</button>
 				</div>
 				<div className="note-footer-rightside-btns-container">
 					<img
-						className="note-collection"
-						src="/buttons/collection-btn.svg"
+						className="note-send-answer"
+						src="/buttons/send-answer-btn.svg"
 						alt=""
 					/>
 				</div>
