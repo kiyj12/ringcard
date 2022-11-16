@@ -2,15 +2,21 @@ import axios from "axios";
 import { url } from "inspector";
 import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
-import Question from "./Question";
+import Question from "./FooterUnansweredQuestion";
 import { IQuestion } from "./types";
 import "../styles/question.css";
+import QuestionFooter from "./FooterUnansweredQuestion";
 
-function QuestionList({ questionList }: { questionList: IQuestion[] }) {
+export interface Props {
+	questionList: IQuestion[];
+	homeTabName: string;
+}
+
+function QuestionList(props: Props) {
 	return (
 		<>
 			<div className="question-notes-container">
-				{questionList.map((question, idx) => (
+				{props.questionList.map((question, idx) => (
 					<div
 						className="question-note"
 						key={idx}
@@ -23,18 +29,7 @@ function QuestionList({ questionList }: { questionList: IQuestion[] }) {
 							<div>{question.questionContents}</div>
 						</div>
 						<hr className="note-hr" />
-						<div className="note-footer">
-							<img
-								className="note-trashcan"
-								src="/buttons/trashcan-btn.svg"
-								alt=""
-							/>
-							<img
-								className="note-collection"
-								src="/buttons/collection-btn.svg"
-								alt=""
-							/>
-						</div>
+						<QuestionFooter question={question} />
 					</div>
 				))}
 			</div>

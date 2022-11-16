@@ -28,7 +28,7 @@ function HomeUnanswered() {
 			<Header></Header>
 			<Navigation></Navigation>
 			<div></div>
-			<QuestionList questionList={questionList}></QuestionList>
+			<QuestionList questionList={questionList} homeTabName="HomeUnanswered"></QuestionList>
 			
 		</div>
 	);
