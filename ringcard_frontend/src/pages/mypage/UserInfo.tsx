@@ -21,6 +21,17 @@ const UserInfo = () => {
 				console.log(err);
 			});
 	}, []);
+
+	function ButtonToUserInfoEdit(){
+	function handleClick(e: any){
+			window.location.href="/mypage/info/edit"
+	}
+		return(
+		<button className="userInfo-button" onClick={handleClick}>
+					<div className="userInfo-button-tag">프로필 변경하기</div>
+					</button>
+		)
+	}
 	
 
 	return (
@@ -32,38 +43,32 @@ const UserInfo = () => {
 						<div className="userInfo-box">
 				<div className="userInfo-box-in">
 					<div className="userInfo-tag">이름</div>
-					<input className="userInfo-input" defaultValue={user.userRingcardName} placeholder="이름을 입력해주세요" readOnly>
-
-
-					</input>
+					<input className="userInfo-input-user" defaultValue={user.userRingcardName} placeholder="이름을 입력해주세요" readOnly></input>
 				</div>
 				{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 				<div className="userInfo-box-in">
 					<div className="userInfo-tag">아이디</div>
-					<input className="userInfo-input" defaultValue={user.username} placeholder="아이디를 입력해주세요" readOnly></input>
+					<input className="userInfo-input-id" defaultValue={user.username} placeholder="아이디를 입력해주세요" readOnly></input>
 				</div>
 				<div className="userInfo-box-in">
 					<div className="userInfo-tag">비밀번호</div>
-					<input className="userInfo-input" defaultValue="*****" placeholder="*****" readOnly></input>
+					<input className="userInfo-input-pw" defaultValue="*****" placeholder="*****" readOnly></input>
 				</div>
 				<div className="userInfo-box-in">
 					<div className="userInfo-tag">이메일</div>
-					<input className="userInfo-input" defaultValue={user.userEmail} placeholder="이메일을 입력해주세요" readOnly></input>
+					<input className="userInfo-input-email" defaultValue={user.userEmail} placeholder="이메일을 입력해주세요" readOnly></input>
 				</div>
 				<div className="userInfo-box-in">
-					<button className="userInfo-button">
-					<div className="userInfo-button-tag">프로필 변경하기</div>
-					</button>
+					<ButtonToUserInfoEdit/>
 				</div>
 			</div>
-						
 					</div>
 				))}
 			</div>
 			
 			<div className="userInfo-delete-box">
 				<div className="userInfo-delete">
-					<a className="userInfo-delete-tag" href="/">링카 계정을 완전히 지우고 싶어요</a>
+					<a className="userInfo-delete-tag" href="/mypage/info/edit">링카 계정을 완전히 지우고 싶어요</a>
 				</div>
 			</div>
 
