@@ -11,7 +11,7 @@
   max-width: 410px;
   min-height: 100px;
   max-height: 220px;
-  height: 21vh;
+  height: 22vh;
 
   background-size: 100% 100%;
   padding: 15px;
@@ -20,20 +20,53 @@
 
 .note-header {
   /* background-color: aqua; */
-  height: 20%;
-  min-height: 30px;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
 }
 
-.note-contents {
-  /* background-color: darkgray; */
-  height: 47%;
-  min-height: 55px;
-  padding: 0 10px;
+.note-profile-pic {
+  /* background-color: pink; */
+  margin-right: 10px;
+}
 
+.note-profile-pic img {
+  width: 40px;
+  border-radius: 100%;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.note-time {
+  line-height: 40px;
+  font-size: 9px;
+  color: #999999;
+}
+
+.note-content-box {
+  /* background-color: darkgray; */
+  height: 54px;
+  padding: 8px 20px;
+
+
+  /* display: flex; */
+  /* display: -webkit-flex; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.note-content {
+  /* background-color: aqua; */
+  /* overflow는 ...으로 대체하기 위함 */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+  font-size: 14px;
+
 }
 
 .note-hr {

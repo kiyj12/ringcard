@@ -1,7 +1,13 @@
 .nav-container {
+  position: fixed;
+  top: 13%;
+
   background-color:#6A75A3 ;
   width: 100%;
+  max-width: inherit;
   height: 116px;
+
+  z-index: 1000;
 
 }
 

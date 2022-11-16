@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { IQuestion } from "./types";
 import "../styles/question.css";
-import { url } from "inspector";
 import axios from "axios";
 
 export interface FooterProps {
