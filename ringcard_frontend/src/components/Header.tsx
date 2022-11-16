@@ -3,14 +3,7 @@ import "../styles/layout/header.css";
 
 function Header() {
 	const handleHomeBtnClick = async () => {
-		await axios
-			.get("/home/unanswered")
-			.then((res) => {
-				console.log(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		window.location.href = "/home/unanswered";
 	};
 
 	return (
