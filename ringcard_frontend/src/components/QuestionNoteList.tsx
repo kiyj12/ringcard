@@ -22,9 +22,14 @@ function QuestionList(props: Props) {
 							backgroundImage: `url("/notes/yellow-note.png")`,
 						}}
 					>
-						<div className="note-header"></div>
-						<div className="note-contents">
-							<div>{question.questionContents}</div>
+						<div className="note-header">
+							<div className="note-profile-pic">
+								<img src="/test-anony-profile-pic.jpg" alt="" />
+							</div>
+							<div className="note-time">5분 전</div>
+						</div>
+						<div className="note-content-box">
+							<div className="note-content">{question.questionContents}</div>
 						</div>
 						<hr className="note-hr" />
 						<QuestionFooter question={question} />

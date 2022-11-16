@@ -1,7 +1,15 @@
 .nav-container {
+  position: fixed;
+  top: 12.9%;
+
   background-color:#6A75A3 ;
   width: 100%;
+  max-width: inherit;
   height: 116px;
+
+  z-index: 998;
+
+  box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.31);
 
 }
 
@@ -38,7 +46,7 @@
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
 
-hr {
+.nav-hr {
   width: 75%;
   border: solid 0.1px rgb(165, 180, 227);
   margin: 15px auto 6px auto;

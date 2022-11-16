@@ -21,3 +21,14 @@ body {
   background-size: cover;
   overflow-y: auto;
 }
+
+.container-body {
+  /* background-color: aquamarine; */
+  /* margin-top:  */
+  position: relative;
+  top: calc(13% + 115px);
+  width: 100%;
+
+  max-width: inherit;
+
+}

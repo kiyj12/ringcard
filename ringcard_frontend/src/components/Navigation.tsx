@@ -115,7 +115,7 @@ const Navigation = () => {
 					</div>
 				</div>
 			</div>
-			<hr />
+			<hr className="nav-hr"/>
 			<div className="page-bar">
 				<div className="page-section">
 					<img alt="" src="/buttons/move-previous-page-btn.svg" />

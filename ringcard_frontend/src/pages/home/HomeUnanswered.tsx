@@ -21,10 +21,11 @@ function HomeUnanswered() {
 	}, []);
 	return (
 		<div className="container">
-			<Header></Header>
-			<Navigation></Navigation>
-			<div></div>
-			<QuestionList questionList={questionList} />
+			<Header />
+			<Navigation />
+			<div className="container-body">
+				<QuestionList questionList={questionList} />
+			</div>
 		</div>
 	);
 }

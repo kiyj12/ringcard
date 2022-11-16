@@ -9,20 +9,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
 @RequiredArgsConstructor
-public class emptyTrashcanController {
+public class clearTrashcanController {
     private final QuestionService questionService;
     private final AnswerService answerService;
 
-    @GetMapping("home/trashcan/emptyTrashcan")
-    public String emptyTrashcan(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    @GetMapping("home/trashcan/clearTrashcan")
+    public String clearTrashcan(@AuthenticationPrincipal PrincipalDetails loginUser, Model model, HttpServletRequest request) {
         Long userId = loginUser.getUser().getId();
-        questionService.emptyTrashcan(userId);
+        questionService.clearTrashcan(userId);
 
-        return "redirect:/home/trashcan";
+        return "redirect:" + request.getHeader("Referer");
     }
 
 }

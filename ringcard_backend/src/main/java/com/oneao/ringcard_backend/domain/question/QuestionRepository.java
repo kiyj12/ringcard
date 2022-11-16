@@ -37,7 +37,7 @@ public interface QuestionRepository {
 
     void updateInCollection(Long questionId);
 
-    void emptyTrashcan(Long userId);
+    void clearTrashcan(Long userId);
 
     void clearStore();
 }

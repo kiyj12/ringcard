@@ -1,23 +1,40 @@
 .header {
+  position: fixed;
+  top: 0;
   width: 100%;
+  max-width: inherit;
   height: 13%;
 
   display: flex;
   flex-direction: column;
 
+  z-index: 1000;
+  background: linear-gradient(#6979ae, #7680b2);
+
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
 .header-blank {
   margin-top: 0;
+
 }
 
 .top-banner {
+
   height: 73px;
   margin-top: auto;
   padding: 0 27px;
   display: flex;
   justify-content: space-between;
-  /* background-color: burlywood; */
+}
+
+.home-btn {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  
+
 }
 
 .profile-pic {
@@ -28,6 +45,11 @@
 
 .profile-pic img {
   border: 2px solid #f7cec6;
-  border-radius: 90%;
+  border-radius: 100%;
 }
 
+.menu-btn {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -11,7 +11,7 @@
   max-width: 410px;
   min-height: 100px;
   max-height: 220px;
-  height: 21vh;
+  height: 22vh;
 
   background-size: 100% 100%;
   padding: 15px;
@@ -20,20 +20,60 @@
 
 .note-header {
   /* background-color: aqua; */
-  height: 20%;
-  min-height: 30px;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
 }
 
-.note-contents {
-  /* background-color: darkgray; */
-  height: 47%;
-  min-height: 55px;
-  padding: 0 10px;
+.note-profile-pic {
+  /* background-color: pink; */
+  margin-right: 10px;
+}
 
+.note-profile-pic img {
+  width: 40px;
+  border-radius: 100%;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.note-time {
+  line-height: 40px;
+  font-size: 9px;
+  color: #999999;
+}
+
+.note-content-box {
+  /* background-color: darkgray; */
+  height: 54px;
+  padding: 8px 20px;
+
+
+  /* display: flex; */
+  /* display: -webkit-flex; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.note-content {
+  /* background-color: aqua; */
+  /* overflow는 ...으로 대체하기 위함 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  text-align: center;
+  font-family: NanumBarunGothic;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #333;
 }
 
 .note-hr {
@@ -47,18 +87,20 @@
   height: 50px;
   display: flex;
   justify-content: space-between;
+
+  padding-top: 3px;
 }
 
 .note-footer-leftside-btns-container {
   width: 68px;
   /* padding-top: 10px; */
-  padding-left: 2px;
+  padding-left: 1px;
   padding-bottom: 7.5px;
   display: flex;
   justify-content: space-around;
 }
 
-button {
+.note-footer button {
   background-color: rgba(0, 0, 0, 0);
   border: solid 0 black;
   display: flex;
@@ -66,14 +108,14 @@ button {
   justify-content: center;
 }
 
-.note-trashcan {
-  width: 21px;
-  height: 24px;
+.note-trashcan-btn {
+  width: 19px;
+  height: 21px;
 }
 
-.note-collection {
-  width: 19px;
-  height: 24px;
+.note-collection-btn {
+  width: 16px;
+  height: 22px;
 }
 
 
@@ -84,10 +126,16 @@ button {
   padding-bottom: 17px;
 }
 
-.note-edit-answer {
-  margin-right: 5px;
+.note-send-answer-btn {
+  width: 23px;
 }
 
-.note-send-answer {
-  width: 28px;
+.note-edit-answer-btn {
+  width: 18px;
+  margin-right: 7px;
+}
+
+.note-delete-answer-btn {
+  width: 18px;
+  margin-right: 3px;
 }

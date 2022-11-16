@@ -76,8 +76,8 @@ public class QuestionService {
     }
 
     
-    public void emptyTrashcan(Long userId) {
-        questionRepository.emptyTrashcan(userId);
+    public void clearTrashcan(Long userId) {
+        questionRepository.clearTrashcan(userId);
     }
 
 
