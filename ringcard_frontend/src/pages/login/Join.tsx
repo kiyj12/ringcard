@@ -26,38 +26,43 @@ const Join = () => {
 	return (
 		<div className="container">
 			<HeaderRingcaShort/>
-			<div className="join-box">
-				<div className="join-box-in">
-					<div className="join-tag">이름</div>
-					<div className="join-input-bar-box">
-						<span className="join-input-bar">|</span>
+			<div className="input-box">
+
+				<div className="input-box-in">
+					<div className="input-tag">이름</div>
+					<div className="input-bar-box">
+						<span className="input-bar">|</span>
 					</div>
-					<input className="join-input-user"></input>
+					<input className="input-icon input-icon-user-light"></input>
 				</div>
 				{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
-				<div className="join-box-in">
-					<div className="join-tag">아이디</div>
-					<div className="join-input-bar-box">
-						<span className="join-input-bar">|</span>
+
+				<div className="input-box-in">
+					<div className="input-tag">아이디</div>
+					<div className="input-bar-box">
+						<span className="input-bar">|</span>
 					</div>
-					<input className="join-input-id"></input>
+					<input className="input-icon input-icon-id-light"></input>
 				</div>
-				<div className="join-box-in">
-					<div className="join-tag">비밀번호</div>
-					<div className="join-input-bar-box">
-						<span className="join-input-bar">|</span>
+
+				<div className="input-box-in">
+					<div className="input-tag">비밀번호</div>
+					<div className="input-bar-box">
+						<span className="input-bar">|</span>
 					</div>
-					<input className="join-input-pw"></input>
+					<input className="input-icon input-icon-pw-light"></input>
 				</div>
-				<div className="join-box-in">
-					<div className="join-tag">이메일</div>
-					<div className="join-input-bar-box">
-						<span className="join-input-bar">|</span>
+
+				<div className="input-box-in">
+					<div className="input-tag">이메일</div>
+					<div className="input-bar-box">
+						<span className="input-bar">|</span>
 					</div>
-					<input className="join-input-email"></input>
+					<input className="input-icon input-icon-email-light"></input>
 				</div>
 			</div>
-			<div className="join-box-in">
+
+			<div className="input-box-in">
 					<button className="join-button">
 					<div className="join-button-tag">회원가입</div>
 					</button>

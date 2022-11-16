@@ -1,81 +1,4 @@
-/* editUserInfotag에는 왼쪽만 공간 놓고, 상하좌우 margin은 모두 input쪽에 넣는다. */
 
-.editUserInfo-tag {
-  height: 17px;
-  opacity: 0.87;
-  font-family: NanumBarunGothic;
-  font-size: 15px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #fff;
-  margin-left: 1%;
-}
-
-.editUserInfo-box{
-  /*전체 감싸기.*/
-  width: 100%;
-}
-.editUserInfo-box-in{
-  /* 왼, 오 빈칸 남기고. padding에서 한 3+3=6% 뺀 94%  */
-  width: 94%; 
-  /* auto로 중간으로 맞추기 */
-  margin: 0 auto;
-  /* pw 변경 버튼 넣기 위해 */
-  position: relative;
-}
-
-.editUserInfo-input-user{
-  /* padding 값 2개 뺀 거.*/
-  width: 84%;
-  height: 22px;
-  margin: 13px 0 13px 0;
-  padding: 15px 13% 14px 3%;
-  border-radius: 9px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
-  border: none;
-  background-color: rgba(255, 255, 255, 0.35); 
-  font-size: 20px;
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
-  /* 이것만 다름 */
-  background-image: url("../../public/buttons/user.svg");
-}
-.editUserInfo-input-id{
-  /* padding 값 2개 뺀 거.*/
-  width: 84%;
-  height: 22px;
-  margin: 13px 0 13px 0;
-  padding: 15px 13% 14px 3%;
-  border-radius: 9px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
-  border: none; 
-  background-color:rgba(255, 255, 255, 0.35); 
-  font-size: 20px;
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
-  /* 이것만 다름 */
-  background-image: url("../../public/buttons/info.svg");
-}
-.editUserInfo-input-pw{
-  /* padding 값 2개 뺀 거.*/
-  width: 84%;
-  height: 22px;
-  margin: 13px 0 13px 0;
-  padding: 15px 13% 14px 3%;
-  border-radius: 9px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
-  border: none;
-  background-color: #7d84a8;
-  font-size: 20px;
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
-  /* 이것만 다름 */
-  background-image: url("../../public/buttons/lock.svg");
-}
 
 .editUserInfo-input-pw-edit-button{
   position: absolute;
@@ -92,7 +15,7 @@
 .editUserInfo-input-pw-edit-button-tag{
   width: 100px;
   height: 14px;
-  margin: 0 0 1px 3px;
+  /* margin: 0 0 1px 3px; */
 
   font-family: NanumBarunGothic;
   font-size: 12px;
@@ -101,34 +24,12 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: left;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
   color: #c7cdeb;
 }
 
-.editUserInfo-input-email{
-  /* padding 값 2개 뺀 거.*/
-  width: 84%;
-  height: 22px;
-  margin: 13px 0 13px 0;
-  padding: 15px 13% 14px 3%;
-  border-radius: 9px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
-  border: none;
-  background-color: rgba(255, 255, 255, 0.35); 
-  font-size: 20px;
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
-  /* 이것만 다름 */
-  background-image: url("../../public/buttons/at-sign.svg");
-}
-.editUserInfo-input-icon{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  left: 10px;
-}
 
 .editUserInfo-button{
   width: 100%; 
@@ -157,7 +58,7 @@
   margin-right: auto;
   color: #fff;
 }
-
+/* 
 .editUserInfo-delete-box{
   width: 100%;
   margin: 0 auto;
@@ -182,8 +83,5 @@
 .editUserInfo-delete-tag{
   color: #fff;
   text-decoration: none;
-  /* text-align: center;
-  margin-left: auto;
-  margin-right: auto; */
-}
+} */
 

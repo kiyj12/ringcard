@@ -6,6 +6,7 @@ import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +22,11 @@ public class ShowHomeAnsweredController {
     private final AnswerService answerService;
 
     @GetMapping("/home/answered")
-    public String showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<List<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
         List<Question> questions = questionService.findAll(userId, questionSearchCond);
         model.addAttribute("questions", questions);
-        return "home/answered";
+        return ResponseEntity.ok(questions);
     }
 }

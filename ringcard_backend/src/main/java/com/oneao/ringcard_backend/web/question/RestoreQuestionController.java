@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 @Controller
@@ -16,8 +18,12 @@ public class RestoreQuestionController {
     private final QuestionService questionService;
 
     @GetMapping("question/{questionId}/restore/question")
-    public String restoreQuestionController(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser){
+    public void restoreQuestionController(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, HttpServletResponse response){
         questionService.updateInTrash(questionId);
-        return "redirect:/home/trashcan";
+        try {
+            response.sendRedirect("/home/unanswered");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
