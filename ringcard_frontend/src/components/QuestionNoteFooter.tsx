@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IQuestion } from "./types";
 import "../styles/question.css";
 import { url } from "inspector";
+import axios from "axios";
 
 export interface FooterProps {
 	question: IQuestion;
@@ -9,12 +10,26 @@ export interface FooterProps {
 
 function FooterUnansweredQuestion(props: FooterProps) {
 	const question = props.question;
+	const referrer = document.referrer;
+
+	const handleTrashcanClick = async () => {
+		const questionId = String(question.id);
+		await axios
+			.get("/question/" + questionId + "/delete/question")
+			.then((res) => {
+				console.log(res.data);
+				window.location.href = referrer;
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	return (
 		<>
 			<div className="note-footer">
 				<div className="note-footer-leftside-btns-container">
-					<button>
+					<button onClick={handleTrashcanClick}>
 						{question.inTrash === false ? (
 							<img
 								className="note-trashcan"

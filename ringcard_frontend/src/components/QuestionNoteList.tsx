@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import { IQuestion } from "./types";
 import "../styles/question.css";
-import FooterUnansweredQuestion from "./QuestionNoteFooter";
-// import FooterAnsweredQuestion from "./FooterAnsweredQuestion";
-// import QuestionFooter from "./FooterUnansweredQuestion";
+import QuestionFooter from "./QuestionNoteFooter";
 
 export interface Props {
 	questionList: IQuestion[];
@@ -29,7 +27,7 @@ function QuestionList(props: Props) {
 							<div>{question.questionContents}</div>
 						</div>
 						<hr className="note-hr" />
-						<FooterUnansweredQuestion question={question} />
+						<QuestionFooter question={question} />
 					</div>
 				))}
 			</div>
