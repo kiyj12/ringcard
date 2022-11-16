@@ -15,18 +15,18 @@ const EditPassword = () => {
 				<div className="editPassword-box">
 					<div className="editPassword-box-in">
 						<div className="editPassword-tag">현재 비밀번호</div>
-						<input className="editPassword-input-pw" placeholder="현재 비밀번호"></input>
+						<input className="editPassword-input" placeholder="현재 비밀번호"></input>
 					</div>
 					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 					<div className="editPassword-box-in">
 						<div className="editPassword-tag">새 비밀번호</div>
-						<input className="editPassword-input-pw-new" placeholder="새 비밀번호"></input>
+						<input className="editPassword-input" placeholder="새 비밀번호"></input>
 					</div>
 					<div className="editPassword-box-in">
 						<div className="editPassword-tag">새 비밀번호 확인</div>
-						<input className="editPassword-input-pw-new-confirm" placeholder="새 비밀번호 확인"></input>
+						<input className="editPassword-input" placeholder="새 비밀번호 확인"></input>
 					</div>
-					<div className="edistPassword-box-in">
+					<div className="editPassword-box-in">
 						<button className="editPassword-button">
 						<div className="editPassword-button-tag">비밀번호 변경하기</div>
 						</button>
