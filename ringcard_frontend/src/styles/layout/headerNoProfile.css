@@ -1,4 +1,22 @@
-.header-user{
+.header-noprofile {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: inherit;
+  height: 13%;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 1000;
+  /* background: linear-gradient(#6979ae, #7680b2);
+
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08); */
+}
+
+
+
+/* .header-noprofile{
   width: 100%;
   height: 31%;
   display: flex;
@@ -6,19 +24,20 @@
 
 }
 
-.header-blank-user {
+.header-blank-noprofile {
   margin-top: 10%;
 }
 
-.top-banner-user {
+.top-banner-noprofile {
   height: 73px;
   margin-top: auto;
   padding: 0 27px;
   display: flex;
   justify-content: space-between;
-  /* background-color: burlywood; */
-}
-
+  /* background-color: burlywood; 
+} 
+*/
+/* 
 .profile-pic-large {
   height:100%;
   display: flex;
@@ -51,4 +70,4 @@
 
 .profile-pic-blank{
   height: 20%;
-}
+} */

@@ -5,7 +5,7 @@ import "../../styles/layout/header.css";
 import "../../styles/user/inputBox.css";
 import "../../styles/user/inputIcon.css";
 import "../../styles/userInfo.css";
-import HeaderUser from "../../components/HeaderNoProfile";
+import HeaderNoProfile from "../../components/HeaderNoProfile";
 
 const UserInfo = () => {
 	const [user, setUser] = useState<any>([]);
@@ -35,7 +35,13 @@ const UserInfo = () => {
 
 	return (
 		<div className="container">
-			<HeaderUser></HeaderUser>
+			<HeaderNoProfile />
+			<div className="userInfo-profile-pic-container">
+				<div className="profile-pic-large">
+					<img alt="" src="/profile.png" width="77px" color="white" />
+				</div>
+				<div className="profile-pic-larg-name">김지연</div>
+			</div>
 			<div>
 				<div>
 					<div className="input-box">

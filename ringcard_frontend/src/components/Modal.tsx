@@ -39,7 +39,7 @@ const Modal = (props: props): ReactElement => {
 						</div>
 						<hr className="menu-modal-hr" />
 						<div className="menu-container">
-							<Link to={"/mypage/info"}>
+							<Link to={"/mypage/info"} style={{ textDecoration: "none" }}>
 								<div className="menu-element">마이 페이지</div>
 							</Link>
 
