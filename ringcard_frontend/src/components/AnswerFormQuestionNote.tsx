@@ -1,3 +1,4 @@
+import AnswerForm from "./AnswerForm";
 import { IQuestion } from "./types";
 
 export interface Props {
@@ -24,9 +25,9 @@ function AnswerFormQuestionNote(props: Props) {
 				<div className="note-content">{question.questionContents}</div>
 			</div>
 			<hr className="note-hr" />
-      <Form>
-        
-      </Form>
+			<div className="note-answer-form-box">
+				<AnswerForm questionId={question.id}/>
+			</div>
 			{/* <QuestionFooter question={question} /> */}
 		</div>
 	);
