@@ -30,41 +30,41 @@ const Join = () => {
 
 				<div className="input-box-in">
 					<div className="input-tag">이름</div>
-					<div className="input-bar-box">
-						<span className="input-bar">|</span>
-					</div>
-					<input className="input-icon input-icon-user-light"></input>
+					<div className="input-box-div-light input-icon-user-light">
+							<span className="input-icon-bar">|</span>
+							<input className="input-inner-transparent"></input>
+						</div>
 				</div>
 				{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
 				<div className="input-box-in">
 					<div className="input-tag">아이디</div>
-					<div className="input-bar-box">
-						<span className="input-bar">|</span>
+					<div className="input-box-div-light input-icon-id-light">
+						<span className="input-icon-bar">|</span>
+						<input className="input-inner-transparent"></input>
 					</div>
-					<input className="input-icon input-icon-id-light"></input>
 				</div>
 
 				<div className="input-box-in">
 					<div className="input-tag">비밀번호</div>
-					<div className="input-bar-box">
-						<span className="input-bar">|</span>
+					<div className="input-box-div-light input-icon-pw-light">
+						<span className="input-icon-bar">|</span>
+						<input className="input-inner-transparent"></input>
 					</div>
-					<input className="input-icon input-icon-pw-light"></input>
 				</div>
 
 				<div className="input-box-in">
 					<div className="input-tag">이메일</div>
-					<div className="input-bar-box">
-						<span className="input-bar">|</span>
+					<div className="input-box-div-light input-icon-email-light">
+						<span className="input-icon-bar">|</span>
+						<input className="input-inner-transparent"></input>
 					</div>
-					<input className="input-icon input-icon-email-light"></input>
 				</div>
 			</div>
 
 			<div className="input-box-in">
-					<button className="join-button">
-					<div className="join-button-tag">회원가입</div>
+					<button className="input-btn join-button">
+					<div className="input-btn-tag">회원가입</div>
 					</button>
 			</div>
 

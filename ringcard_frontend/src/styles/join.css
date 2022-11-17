@@ -153,41 +153,7 @@
 }
 
 .join-button{
-
-  width: 100%;
-  height: 52px;
-  margin: 15% 0 0;
-  padding: 12px 19px 14px 15px;
-  border: none;
-  border-radius: 9px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
-  background-color: #516bb1;
-
-  /* width: 100%; 
-  height: 52px;
-  margin: 13px 0 13px 0;
-  padding: 12px 19px 14px 15px;
-  border-radius: 9px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
-  border: none;
-  background-color: #514b8b; */
-}
-
-
-.join-button-tag{
-  width: 100%;
-  height: 22px;
-  opacity: 0.77;
-  font-family: NanumBarunGothic;
-  font-size: 19px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #fff;
+  margin-top: 15%;
 }
 
 .join-delete-box{

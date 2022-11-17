@@ -29,8 +29,8 @@ const UserInfo = () => {
 			window.location.href="/mypage/info/edit"
 	}
 		return(
-		<button className="userInfo-button" onClick={handleClick}>
-					<div className="userInfo-button-tag">프로필 변경하기</div>
+		<button className="input-btn userInfo-button" onClick={handleClick}>
+					<div className="input-btn-tag">프로필 변경하기</div>
 					</button>
 		)
 	}
@@ -73,7 +73,7 @@ const UserInfo = () => {
 			
 			<div className="userInfo-delete-box">
 				<div className="userInfo-delete">
-					<a className="userInfo-delete-tag" href="/mypage/info/edit">링카 계정을 완전히 지우고 싶어요</a>
+					<a className="userInfo-delete-tag" href="/mypage/delete/account">링카 계정을 완전히 지우고 싶어요</a>
 				</div>
 			</div>
 

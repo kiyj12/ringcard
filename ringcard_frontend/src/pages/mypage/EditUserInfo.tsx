@@ -23,6 +23,14 @@ const EditUserInfo = () => {
 			});
 	}, []);
 
+	function BtnToEditPw(){
+		function handleClick(e: any){
+				window.location.href="/mypage/edit/password"
+		}
+			return(
+				<button value="변경" className="input-box-btn" onClick={handleClick}></button>
+			)
+	}
 	
 	return (
 		<div className="container">
@@ -45,21 +53,11 @@ const EditUserInfo = () => {
 
 							<div className="input-box-in">
 								<div className="input-tag">비밀번호</div>
-								<div className="input-box-div input-icon-dark">
-									<input className="input-icon-pw-edit input-dark" defaultValue="●●●●●●●●●●" placeholder="●●●●●●●●●●" readOnly></input>
-									{/* <button className="editUserInfo-input-pw-edit-button"><div className="editUserInfo-input-pw-edit-button-tag">변경</div></button>				 */}
-									<button value="변경" className="tee input-box-btn"></button>
+								<div className="input-box-div-dark">
+									<input className="input-inner-transparent" defaultValue="●●●●●●●●●●" placeholder="●●●●●●●●●●" readOnly></input>
+									<BtnToEditPw/>
 								</div>
-
-								{/* <div className="email_div">
-									E-mail
-									<input type="text" name="email" className="email"/>
-									<input type="submit" value="전송" className="btn"/>
-								</div> */}
-
 						</div>
-
-
 
 						<div className="input-box-in">
 							<div className="input-tag">이메일</div>
@@ -67,10 +65,11 @@ const EditUserInfo = () => {
 						</div>
 						
 						<div className="input-box-in">
-							<button className="editUserInfo-button">
-							<div className="editUserInfo-button-tag">변경 사항 저장하기</div>
+							<button className="input-btn editUserInfo-button">
+							<div className="input-btn-tag">변경 사항 저장하기</div>
 							</button>
 						</div>
+
 					</div>
 				</div>
 				))}

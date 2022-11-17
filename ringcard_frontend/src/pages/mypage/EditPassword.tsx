@@ -9,6 +9,18 @@ import HeaderUser from "../../components/HeaderUser";
 
 const EditPassword = () => {
 	
+	function ButtonToUserInfoEdit(){
+		function handleClick(e: any){
+				window.location.href="/mypage/info/edit"
+		}
+			return(
+				<button className="input-btn editPassword-button-cancel" onClick={handleClick}>
+					<div className="input-btn-tag editPassword-button-tag-cancel">비밀번호 변경 취소하기</div>
+				</button>
+			)
+	}
+
+
 	return (
 		<div className="container">
 			<HeaderUser></HeaderUser>
@@ -32,15 +44,13 @@ const EditPassword = () => {
 					</div>
 
 					<div className="input-box-in">
-						<button className="editPassword-button">
-						<div className="editPassword-button-tag">비밀번호 변경하기</div>
+						<button className="input-btn editPassword-button">
+						<div className="input-btn-tag">비밀번호 변경하기</div>
 						</button>
 					</div>
 
 					<div className="input-box-in">
-						<button className="editPassword-button-cancel">
-						<div className="editPassword-button-tag-cancel">비밀번호 변경 취소하기</div>
-						</button>
+						<ButtonToUserInfoEdit/>
 					</div>
 				</div>
 			</div>
