@@ -3,13 +3,11 @@ import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/join.css";
-import HeaderUser from "../../components/HeaderUser";
+import HeaderUser from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
 import HeaderRingcaShort from "../../components/HeaderRingcaShort";
 
-
 const Join = () => {
-	
 	// const [userList, setUserList] = useState<any[]>([]);
 
 	// useEffect(() => {
@@ -25,9 +23,8 @@ const Join = () => {
 
 	return (
 		<div className="container">
-			<HeaderRingcaShort/>
+			<HeaderRingcaShort />
 			<div className="input-box">
-
 				<div className="input-box-in">
 					<div className="input-tag">이름</div>
 					<div className="input-bar-box">
@@ -63,9 +60,9 @@ const Join = () => {
 			</div>
 
 			<div className="input-box-in">
-					<button className="join-button">
+				<button className="join-button">
 					<div className="join-button-tag">회원가입</div>
-					</button>
+				</button>
 			</div>
 
 			{/* <div className="join-delete-box">
