@@ -24,16 +24,16 @@ public class EditUserInfoController {
     private final UserService userService;
 
     @GetMapping("/edit")
-    public ResponseEntity<List<User>> editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<User> editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
 
         User user = loginUser.getUser();
-        List<User> userList = Arrays.asList(user);
+//        List<User> userList = Arrays.asList(user);
 
 //        List<User> userList = Collections.emptyList();
         //        Long userId = user.getId();
         //        model.addAttribute("user", user);
         //        model.addAttribute("userId", userId);
-        return ResponseEntity.ok(userList);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/edit")

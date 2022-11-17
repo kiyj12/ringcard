@@ -19,6 +19,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("mypage/info")
 public class GetUserInfoController {
 
     private final UserService userService;
@@ -30,16 +31,11 @@ public class GetUserInfoController {
 //        model.addAttribute("userId", userId);
 //        return "mypage/userInfo";
 //    }
-    @GetMapping("mypage/info")
-    public ResponseEntity<List<User>> showUserInfo(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
-
+    @GetMapping()
+    public ResponseEntity<User> showUserInfo(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         User user = loginUser.getUser();
-        List<User> userList = Arrays.asList(user);
-
-//        List<User> userList = Collections.emptyList();
     //        Long userId = user.getId();
     //        model.addAttribute("user", user);
-    //        model.addAttribute("userId", userId);
-        return ResponseEntity.ok(userList);
+        return ResponseEntity.ok(user);
     }
 }

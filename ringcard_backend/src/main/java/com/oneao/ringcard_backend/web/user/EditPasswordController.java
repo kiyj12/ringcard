@@ -33,7 +33,7 @@ public class EditPasswordController {
     }
 
     @PostMapping()
-    public String editPassword(@AuthenticationPrincipal PrinwcipalDetails loginUser, String pastPassword, String newPassword, String nePasswordConfirm, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public String editPassword(@AuthenticationPrincipal PrincipalDetails loginUser, String pastPassword, String newPassword, String newPasswordConfirm, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         User user = loginUser.getUser();
         Long userId = user.getId();
         // 주기능 : 현재 비번 인증 끝나면 새로운 비번으로 업데이트
