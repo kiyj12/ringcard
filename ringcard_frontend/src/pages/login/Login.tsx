@@ -12,22 +12,21 @@ import HeaderRingca from "../../components/HeaderRingca";
 const Login = () => {
 
 
-// 	function PasswordUpdate() {
-//   return (
-//     <form>
-//       <input name="password" />
-//       <button type="submit">비밀번호 변경</button>
-//     </form>
-//   );
-// }
-
 	const [password, setPassword] = useState("");
+	const [disabled, setDisabled] = useState(false);
 
-  const handleChange = ({ target: { value } }) => setPassword(value);
+  const handleChange = ({ target: { value } }:any) => setPassword(value);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`변경된 패스워드: ${password}`);
+  const handleSubmit = async (event:any) => {
+		setDisabled(true);
+		event.preventDefault();
+    await new Promise((r) => setTimeout(r, 1000));
+    if (password.length < 8) {
+      alert("8자의 이상의 비밀번호를 사용하셔야 합니다.");
+    } else {
+      alert(`변경된 패스워드: ${password}`);
+    }
+    setDisabled(false);
   };
 
 
@@ -45,6 +44,7 @@ const Login = () => {
 	return (
 		<div className="container">
 			<HeaderRingca/>
+			<form onSubmit={handleSubmit}>
 			<div>
 				<div className="input-box">
 					<div className="input-box-in">
@@ -59,11 +59,14 @@ const Login = () => {
 						<div className="input-tag">비밀번호</div>
 						<div className="input-box-div-light input-icon-pw-light">
 							<span className="input-icon-bar">|</span>
-							<input className="input-inner-transparent"></input>
+							<input className="input-inner-transparent" type="password"
+							name="password"
+							value={password}
+							onChange={handleChange}></input>
 						</div>
 					</div>
 
-					<form onSubmit={handleSubmit}>
+					{/* <form onSubmit={handleSubmit}>
 						<input
 							type="password"
 							name="password"
@@ -71,10 +74,10 @@ const Login = () => {
 							onChange={handleChange}
 						/>
 						<button type="submit">비밀번호 변경</button>
-					</form>
+					</form> */}
 
 					<div className="input-box-in">
-						<button type="submit" className="input-btn">
+						<button type="submit" disabled={disabled} className="input-btn">
 							<div className="input-btn-tag">로그인</div>
 						</button>
 					</div>
@@ -85,6 +88,7 @@ const Login = () => {
 				<div className="login-join-box">
 					<BtnToJoin/>
 				</div>
+		</form>
 		</div>
 
 	);
