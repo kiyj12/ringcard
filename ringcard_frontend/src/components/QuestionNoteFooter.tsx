@@ -2,6 +2,8 @@ import React from "react";
 import { IQuestion } from "./types";
 import "../styles/question.css";
 import axios from "axios";
+import { Link, Route, Routes } from "react-router-dom";
+import QuestionUnanswered from "../pages/question/QuestionUnanswered";
 
 export interface FooterProps {
 	question: IQuestion;
@@ -144,13 +146,15 @@ function FooterUnansweredQuestion(props: FooterProps) {
 				</div>
 				<div className="note-footer-rightside-btns-container">
 					{question.answered === false ? (
-						<button onClick={handleSendAnswerClick}>
-							<img
-								className="note-send-answer-btn"
-								src="/buttons/send-answer-btn.svg"
-								alt=""
-							/>
-						</button>
+						<Link to={`/question/${question.id}/unanswered/user`}>
+							<button>
+								<img
+									className="note-send-answer-btn"
+									src="/buttons/send-answer-btn.svg"
+									alt=""
+								/>
+							</button>
+						</Link>
 					) : (
 						<React.Fragment>
 							<button onClick={handleEditAnswerClick}>

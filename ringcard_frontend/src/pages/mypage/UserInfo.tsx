@@ -36,11 +36,11 @@ const UserInfo = () => {
 	return (
 		<div className="container">
 			<HeaderNoProfile />
-			<div className="userInfo-profile-pic-container">
+			<div className="userInfo-profile-container">
 				<div>
 					<img alt="" src="/profile.png" width="77px" color="white" />
 				</div>
-				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
+				<div className="profile-pic-large-name">{user.userRingcardName}</div>
 			</div>
 			<div>
 				<div>

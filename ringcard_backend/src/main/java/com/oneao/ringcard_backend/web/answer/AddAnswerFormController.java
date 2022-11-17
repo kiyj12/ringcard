@@ -7,10 +7,12 @@ import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,7 +28,7 @@ public class AddAnswerFormController {
     private final QuestionService questionService;
 
     @GetMapping("/unanswered/user")
-    public String answerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<Model> answerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
 
         Question question = questionService.findById(questionId, userId).get();
@@ -38,8 +40,10 @@ public class AddAnswerFormController {
         System.out.println(questions);
         System.out.println(questions.size());
         model.addAttribute("question", question);
+        System.out.println("model = " + model);
 //        return "redirect:/{questionId}/completed";
-        return "question/unanswered";
+//        return "question/unanswered";
+        return ResponseEntity.ok(model);
     }
 
     @GetMapping("/completed/user")

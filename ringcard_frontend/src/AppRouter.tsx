@@ -25,9 +25,9 @@ const AppRouter = () => {
 					<Route path="/home/trashcan" element={<HomeTrashcan />} />
 					<Route path="/home/collection" element={<HomeCollection />} />
 					<Route
-						path="/questoin/:questionId/unanswered/user"
-						element={<QuestionUnanswered />}
-					/>
+									path="/question/:questionId/unanswered/user"
+									element={<QuestionUnanswered />}
+								/>
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
 					<Route path="/loginForm" element={<Login />} />
