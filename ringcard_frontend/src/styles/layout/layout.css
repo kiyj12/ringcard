@@ -33,6 +33,14 @@ body {
 
 }
 
+.contents-container {
+  position: relative;
+  top: 13%;
+  width: 100%;
+  max-width: inherit;
+}
+
+
 .userInfo-profile-container {
   /* background-color: aquamarine; */
   height: 19%;
