@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { ReactElement } from "react";
+import { Link } from "react-router-dom";
 import "../styles/layout/modal.css";
 
 interface props {
@@ -9,9 +11,20 @@ interface props {
 const Modal = (props: props): ReactElement => {
 	const { open, close } = props;
 
-	const handleMyInfoClick = () => {
-		window.location.href = "/mypage/info";
-	};
+	// const handleMyInfoClick = async () => {
+	// 	await axios
+	// 		.get("/mypage/info")
+	// 		.then((res) => {
+	// 			window.location.href = "/mypage/info";
+	// 			console.log(
+	// 				"Successfully enter handleMyInfoClick in QuestionNoteFooter :D"
+	// 			);
+	// 			console.log(res.data);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
 	return (
 		<>
@@ -26,9 +39,10 @@ const Modal = (props: props): ReactElement => {
 						</div>
 						<hr className="menu-modal-hr" />
 						<div className="menu-container">
-							<div className="menu-element" onClick={handleMyInfoClick}>
-								마이 페이지
-							</div>
+							<Link to={"/mypage/info"} style={{ textDecoration: "none" }}>
+								<div className="menu-element">마이 페이지</div>
+							</Link>
+
 							<div className="menu-element">로그아웃</div>
 						</div>
 					</div>
