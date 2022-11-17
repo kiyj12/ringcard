@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
-import "../../styles/layout/header.css";
+import "../../styles/layout/headerNoProfile.css";
 import "../../styles/user/inputBox.css";
 import "../../styles/user/inputIcon.css";
 import "../../styles/userInfo.css";
@@ -37,10 +37,10 @@ const UserInfo = () => {
 		<div className="container">
 			<HeaderNoProfile />
 			<div className="userInfo-profile-pic-container">
-				<div className="profile-pic-large">
+				<div>
 					<img alt="" src="/profile.png" width="77px" color="white" />
 				</div>
-				<div className="profile-pic-larg-name">김지연</div>
+				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
 			</div>
 			<div>
 				<div>
