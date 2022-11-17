@@ -36,6 +36,8 @@
   width: fit-content;
   margin-left: auto;
   margin-right: 10px;
+  background: none;
+  border: none;
 }
 
 .modal-close button img {
