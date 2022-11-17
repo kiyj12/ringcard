@@ -1,48 +1,3 @@
-.login-pw-find-tag{
-  width: 160px;
-  height: 15px;
-  /* margin: 14px 18px 42px 181px; */
-  float: right;
-  /* margin: 0 0 0 50%; */
-  opacity: 0.66;
-  font-family: NanumBarunGothic;
-  font-size: 13px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #fff;
-}
-
-/* .login-button{
-  width: 100%; 
-  height: 52px;
-  margin: 13px 0 13px 0;
-  padding: 12px 19px 14px 15px;
-  margin-top: 11%;
-  border-radius: 9px;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
-  border: none;
-  background-color: #516bb1;
-}
-
-.login-button-tag{
-  width: 100%;
-  height: 22px;
-  opacity: 0.77;
-  font-family: NanumBarunGothic;
-  font-size: 19px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #fff;
-} */
 
 .login-join-box{
   width: 100%;
@@ -65,7 +20,7 @@
   text-align: center;
 }
 
-.login-join-tag{
+.login-join-text{
   color: #fff;
   text-decoration: none;
   /* text-align: center;

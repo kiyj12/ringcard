@@ -1,6 +1,6 @@
 :root {
   --side-blank-width: 80%; 
-  --input-box-height: 50px;
+  --user-box-height: 50px;
 }
 
 .input{
@@ -15,20 +15,20 @@
   background-color:rgba(255, 255, 255, 0.35); 
   font-size: 18px;
 }
-.input-box{
+.user-box{
   /*전체 감싸기.*/
   width: 100%;
 }
-.input-box-in{
+.user-box-in{
   /* 왼, 오 공백 남기기*/
   /* ~~와 같이 변경할 것. */
   width: var(--side-blank-width); 
   /* auto로 중간으로 맞추기 */
   margin: 0 auto;
 }
-.input-box-div{
+.user-box-div{
   width: 100%;
-  height: var(--input-box-height);
+  height: var(--user-box-height);
   margin: 13px 0 13px 0;
   /* padding: 15px 13% 14px 3%; */
   border-radius: 9px;
@@ -39,9 +39,9 @@
   background-position: 95% 50%;
 }
 
-.input-box-div-light{
+.user-box-div-light{
   width: 100%;
-  height: var(--input-box-height);
+  height: var(--user-box-height);
   margin: 13px 0 13px 0;
   /* padding: 15px 13% 14px 3%; */
   border-radius: 9px;
@@ -52,9 +52,9 @@
   background-position: 95% 50%;
   background-color: var(--light-color);
 }
-.input-box-div-dark{
+.user-box-div-dark{
   width: 100%;
-  height: var(--input-box-height);
+  height: var(--user-box-height);
   margin: 13px 0 13px 0;
   /* padding: 15px 13% 14px 3%; */
   border-radius: 9px;
@@ -66,7 +66,7 @@
   background-color: var(--dark-color);
 }
 
-.input-box-btn{
+.user-box-btn{
   /* display: inline-block; */
   width: 12.8%;
   height: 28px;
@@ -89,7 +89,7 @@
   color: #fff;
 }
 
-.input-tag {
+.user-text {
   height: 12px;
   opacity: 0.87;
   font-family: NanumBarunGothic;
@@ -104,11 +104,12 @@
   margin-left: 2%;
 }
 
-.input-tag-right{
+.user-text-right{
   text-align: right;
   margin-right: 5%;
 }
-.input-inner-transparent{
+
+.user-inner-transparent{
   display:inline-block;
   /* padding 값 2개 뺀 거.*/
   width: 73%;
@@ -124,9 +125,9 @@
   background-color: transparent;
 }
 
-.input-btn{
+.user-btn{
   width: 100%; 
-  height: var(--input-box-height);
+  height: var(--user-box-height);
   margin: 13px 0 13px 0;
   padding: 12px 19px 14px 15px;
   border-radius: 9px;
@@ -137,7 +138,7 @@
   margin-top: 11%;
 }
 
-.input-btn-tag{
+.user-btn-text{
   width: 100%;
   height: 22px;
   opacity: 0.77;

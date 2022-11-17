@@ -8,12 +8,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
-
-
-.userInfo-button{
+.userInfo-btn{
   margin-top: 4%;
   background-color: #514b8b;
 }
@@ -39,7 +36,7 @@
   text-align: center;
 }
 
-.userInfo-delete-tag{
+.userInfo-delete-text{
   color: #fff;
   text-decoration: none;
   /* text-align: center;

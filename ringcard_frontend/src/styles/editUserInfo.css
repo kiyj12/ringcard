@@ -1,6 +1,6 @@
 
 
-.editUserInfo-input-pw-edit-button{
+.editUserInfo-user-pw-edit-btn{
   position: absolute;
   top: 45%;
   right: 3%;
@@ -36,7 +36,7 @@
   color: #fff;
 }
 
-.editUserInfo-input-pw-edit-btn-tag{
+.editUserInfo-user-pw-edit-btn-text{
   width: 100px;
   height: 14px;
   /* margin: 0 0 1px 3px; */
@@ -55,7 +55,7 @@
 }
 
 
-.editUserInfo-button{
+.editUserInfo-btn{
   background-color: #514b8b;
   margin-top: 4%;
 }
@@ -82,7 +82,7 @@
   text-align: center;
 }
 
-.editUserInfo-delete-tag{
+.editUserInfo-delete-text{
   color: #fff;
   text-decoration: none;
 } */

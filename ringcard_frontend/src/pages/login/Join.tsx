@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
+import "../../styles/user/userBox.css";
+import "../../styles/user/userIcon.css";
 import "../../styles/join.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
@@ -26,51 +28,51 @@ const Join = () => {
 	return (
 		<div className="container">
 			<HeaderRingcaShort/>
-			<div className="input-box">
+			<div className="user-box">
 
-				<div className="input-box-in">
-					<div className="input-tag">이름</div>
-					<div className="input-box-div-light input-icon-user-light">
-							<span className="input-icon-bar">|</span>
-							<input className="input-inner-transparent" type="" name=""></input>
+				<div className="user-box-in">
+					<div className="user-text">이름</div>
+					<div className="user-box-div-light user-icon-user-light">
+							<span className="user-icon-bar">|</span>
+							<input className="user-inner-transparent" type="" name=""></input>
 						</div>
 				</div>
 				{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
-				<div className="input-box-in">
-					<div className="input-tag">아이디</div>
-					<div className="input-box-div-light input-icon-id-light">
-						<span className="input-icon-bar">|</span>
-						<input className="input-inner-transparent"></input>
+				<div className="user-box-in">
+					<div className="user-text">아이디</div>
+					<div className="user-box-div-light user-icon-id-light">
+						<span className="user-icon-bar">|</span>
+						<input className="user-inner-transparent"></input>
 					</div>
 				</div>
 
-				<div className="input-box-in">
-					<div className="input-tag">비밀번호</div>
-					<div className="input-box-div-light input-icon-pw-light">
-						<span className="input-icon-bar">|</span>
-						<input className="input-inner-transparent"></input>
+				<div className="user-box-in">
+					<div className="user-text">비밀번호</div>
+					<div className="user-box-div-light user-icon-pw-light">
+						<span className="user-icon-bar">|</span>
+						<input className="user-inner-transparent"></input>
 					</div>
 				</div>
 
-				<div className="input-box-in">
-					<div className="input-tag">이메일</div>
-					<div className="input-box-div-light input-icon-email-light">
-						<span className="input-icon-bar">|</span>
-						<input className="input-inner-transparent"></input>
+				<div className="user-box-in">
+					<div className="user-text">이메일</div>
+					<div className="user-box-div-light user-icon-email-light">
+						<span className="user-icon-bar">|</span>
+						<input className="user-inner-transparent"></input>
 					</div>
 				</div>
 			</div>
 
-			<div className="input-box-in">
-					<button className="input-btn join-button">
-					<div className="input-btn-tag">회원가입</div>
+			<div className="user-box-in">
+					<button className="user-btn join-btn">
+					<div className="user-btn-text">회원가입</div>
 					</button>
 			</div>
 
 			{/* <div className="join-delete-box">
 				<div className="join-delete">
-					<a className="join-delete-tag" href="/">링카 계정을 완전히 지우고 싶어요</a>
+					<a className="join-delete-text" href="/">링카 계정을 완전히 지우고 싶어요</a>
 				</div>
 			</div> */}
 		</div>

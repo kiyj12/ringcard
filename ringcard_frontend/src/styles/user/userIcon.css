@@ -7,7 +7,7 @@
   --url-email: url("../../../public/buttons/at-sign.svg");
 }
 
-.input-icon{
+.user-icon{
     /* padding 값 2개 뺀 거.*/
   width: 84%;
   height: 22px;
@@ -21,7 +21,7 @@
   background-position: 95% 50%;
   display:inline-block;
 }
-.input-box-inner-transparent{
+.user-box-inner-transparent{
   display:inline-block;
   /* padding 값 2개 뺀 거.*/
   width: 73%;
@@ -36,49 +36,49 @@
   /* background-position: 95% 50%; */
   background-color: transparent;
 }
-.input-icon-dark{
+.user-icon-dark{
   background-color: var(--dark-color);
 }
-.input-icon-light{
+.user-icon-light{
   background-color: var(--light-color);
 }
-.input-transparent{
+.user-transparent{
   background-color: transparent;
 }
-.input-icon-user-dark{
+.user-icon-user-dark{
   background-color: var(--dark-color);
   background-image: var(--url-user);
 }
-.input-icon-id-dark{
+.user-icon-id-dark{
   background-color: var(--dark-color);
   background-image: var(--url-id);
 }
-.input-icon-pw-dark{
+.user-icon-pw-dark{
   background-color: var(--dark-color);
   background-image: var(--url-pw);
 }
-.input-icon-email-dark{
+.user-icon-email-dark{
   background-color: var(--dark-color);
   background-image: var(--url-email);
 }
-.input-icon-user-light{
+.user-icon-user-light{
   background-color: var(--light-color);
   background-image: var(--url-user);
 }
-.input-icon-id-light{
+.user-icon-id-light{
   background-color: var(--light-color);
   background-image: var(--url-id);
 }
-.input-icon-pw-light{
+.user-icon-pw-light{
   background-color: var(--light-color);
   background-image: var(--url-pw);
 }
-.input-icon-email-light{
+.user-icon-email-light{
   background-color: var(--light-color);
   background-image: var(--url-email);
 }
 
-.input-icon-bar{
+.user-icon-bar{
   width: 100px;
   height: 100px;
   margin: 0 0 0 3%;
