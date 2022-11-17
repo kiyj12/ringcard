@@ -64,6 +64,7 @@ const Login = () => {
 							value={password}
 							onChange={handleChange}></input>
 						</div>
+						<div className="input-tag input-tag-right">비밀번호를 잊으셨나요?</div>
 					</div>
 
 					{/* <form onSubmit={handleSubmit}>

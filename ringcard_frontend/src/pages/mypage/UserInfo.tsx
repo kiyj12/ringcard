@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
-import "../../styles/layout/header.css";
+import "../../styles/layout/headerNoProfile.css";
 import "../../styles/user/inputBox.css";
 import "../../styles/user/inputIcon.css";
 import "../../styles/userInfo.css";
@@ -35,7 +35,14 @@ const UserInfo = () => {
 
 	return (
 		<div className="container">
-			<HeaderNoProfile></HeaderNoProfile>
+			<HeaderNoProfile />
+			<div className="userInfo-profile-pic-container">
+				<div>
+					<img alt="" src="/profile.png" width="77px" color="white" />
+				</div>
+				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
+			</div>
+			
 			<div>
 				<div>
 					<div className="input-box">
@@ -89,7 +96,7 @@ const UserInfo = () => {
 
 			<div className="userInfo-delete-box">
 				<div className="userInfo-delete">
-					<a className="userInfo-delete-tag" href="/mypage/delete/account">
+					<a className="userInfo-delete-tag" href="/mypage/info/edit">
 						링카 계정을 완전히 지우고 싶어요
 					</a>
 				</div>

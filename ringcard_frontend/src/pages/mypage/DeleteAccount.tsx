@@ -8,14 +8,28 @@ import HeaderNoProfile from "../../components/HeaderNoProfile";
 
 
 const DeleteAccount = () => {
+
+	const [user, setUser] = useState<any>([]);
+
+	useEffect(() => {
+		axios
+			.get("/mypage/info")
+			.then((res) => {
+				setUser(res.data);
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
 	
 	function ButtonToUserInfo(){
 		function handleClick(e: any){
 				window.location.href="/mypage/info"
 		}
 			return(
-				<button className="deleteAccount-button-cancel" onClick={handleClick}>
-						<div className="deleteAccount-button-tag-cancel">비밀번호 변경 취소하기</div>
+				<button className="input-btn deleteAccount-button-cancel" onClick={handleClick}>
+						<div className="input-btn-tag deleteAccount-button-tag-cancel">계속 링카를 사용하기</div>
 				</button>
 
 			)
@@ -23,7 +37,14 @@ const DeleteAccount = () => {
 	
 	return (
 		<div className="container">
-			<HeaderNoProfile></HeaderNoProfile>
+			<HeaderNoProfile />
+			<div className="userInfo-profile-pic-container">
+				<div>
+					<img alt="" src="/profile.png" width="77px" color="white" />
+				</div>
+				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
+			</div>
+
 			<div>
 				<div className="input-box">
 					{/* width 줄여도 글자 밑에 박스랑 다른 글자 침범하지 않도록! */}
@@ -42,15 +63,14 @@ const DeleteAccount = () => {
 						<div className="input-tag deleteAccount-tag">새 비밀번호</div>
 						<input className="input deleteAccount-input" placeholder="새 비밀번호"></input>
 					</div>
-
 					<div className="input-box-in">
 						<div className="input-tag deleteAccount-tag">새 비밀번호 확인</div>
 						<input className="input deleteAccount-input" placeholder="새 비밀번호 확인"></input>
 					</div> */}
 
 					<div className="input-box-in">
-						<button className="deleteAccount-button">
-						<div className="deleteAccount-button-tag">비밀번호 변경하기</div>
+						<button className="input-btn deleteAccount-button">
+						<div className="input-btn-tag">탈퇴하기</div>
 						</button>
 					</div>
 

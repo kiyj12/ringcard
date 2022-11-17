@@ -6,9 +6,21 @@ import "../../styles/user/inputBox.css";
 import "../../styles/editPassword.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 
-
 const EditPassword = () => {
-	
+	const [user, setUser] = useState<any>([]);
+
+	useEffect(() => {
+		axios
+			.get("/mypage/info")
+			.then((res) => {
+				setUser(res.data);
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
 	function ButtonToUserInfoEdit(){
 		function handleClick(e: any){
 				window.location.href="/mypage/info/edit"
@@ -19,11 +31,17 @@ const EditPassword = () => {
 				</button>
 			)
 	}
-
-
+	
 	return (
 		<div className="container">
-			<HeaderNoProfile></HeaderNoProfile>
+			<HeaderNoProfile />
+			<div className="userInfo-profile-pic-container">
+				<div>
+					<img alt="" src="/profile.png" width="77px" color="white" />
+				</div>
+				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
+			</div>
+
 			<div>
 				<div className="input-box">
 

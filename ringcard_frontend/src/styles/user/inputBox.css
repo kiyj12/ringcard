@@ -104,6 +104,10 @@
   margin-left: 2%;
 }
 
+.input-tag-right{
+  text-align: right;
+  margin-right: 5%;
+}
 .input-inner-transparent{
   display:inline-block;
   /* padding 값 2개 뺀 거.*/
@@ -127,8 +131,8 @@
   padding: 12px 19px 14px 15px;
   border-radius: 9px;
   border: none;
+  box-shadow: 0 3px 10px 0 rgba(126, 116, 116, 0.16);
   /* 조절 */
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
   background-color: #516bb1;
   margin-top: 11%;
 }

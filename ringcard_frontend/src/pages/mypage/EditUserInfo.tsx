@@ -34,7 +34,14 @@ const EditUserInfo = () => {
 	
 	return (
 		<div className="container">
-			<HeaderNoProfile></HeaderNoProfile>
+			<HeaderNoProfile />
+			<div className="userInfo-profile-pic-container">
+				<div>
+					<img alt="" src="/profile.png" width="77px" color="white" />
+				</div>
+				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
+			</div>
+
 			<div>
 					<div>
 						<div className="input-box">
