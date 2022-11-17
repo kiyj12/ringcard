@@ -5,7 +5,7 @@ import "../../styles/layout/header.css";
 import "../../styles/user/inputBox.css";
 import "../../styles/user/inputIcon.css";
 import "../../styles/login.css";
-import HeaderUser from "../../components/HeaderUser";
+import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
 
 

@@ -5,19 +5,19 @@ import "../../styles/layout/header.css";
 import "../../styles/user/inputBox.css";
 import "../../styles/user/inputIcon.css";
 import "../../styles/editUserInfo.css";
-import HeaderUser from "../../components/HeaderUser";
+import HeaderNoProfile from "../../components/HeaderNoProfile";
 
 
 const EditUserInfo = () => {
 	
-	const [userList, setUserList] = useState<any[]>([]);
+	const [user, setUser] = useState<any>([]);
 
 	useEffect(() => {
 		axios
 			.get("/mypage/info")
 			.then((res) => {
 				// console.log(res.data);
-				setUserList(res.data);			})
+				setUser(res.data);			})
 			.catch((err) => {
 				console.log(err);
 			});
@@ -34,10 +34,9 @@ const EditUserInfo = () => {
 	
 	return (
 		<div className="container">
-			<HeaderUser></HeaderUser>
+			<HeaderNoProfile></HeaderNoProfile>
 			<div>
-				{userList.map((user, idx) => (
-					<div key={idx}>
+					<div>
 						<div className="input-box">
 							
 							<div className="input-box-in">
@@ -72,7 +71,6 @@ const EditUserInfo = () => {
 
 					</div>
 				</div>
-				))}
 			</div>
 			
 			{/* <div className="editUserInfo-delete-box">

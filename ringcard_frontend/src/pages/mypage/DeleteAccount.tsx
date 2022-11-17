@@ -4,7 +4,7 @@ import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/inputBox.css";
 import "../../styles/deleteAccount.css";
-import HeaderUser from "../../components/HeaderUser";
+import HeaderNoProfile from "../../components/HeaderNoProfile";
 
 
 const DeleteAccount = () => {
@@ -23,7 +23,7 @@ const DeleteAccount = () => {
 	
 	return (
 		<div className="container">
-			<HeaderUser></HeaderUser>
+			<HeaderNoProfile></HeaderNoProfile>
 			<div>
 				<div className="input-box">
 					{/* width 줄여도 글자 밑에 박스랑 다른 글자 침범하지 않도록! */}

@@ -1,6 +1,6 @@
-import "../styles/layout/headerUser.css";
+import "../styles/layout/headerNoProfile.css";
 
-function HeaderUser() {
+function HeaderNoProfile() {
 	return (
 		<div className="header-user">
 			<div className="header-blank-user"></div>
@@ -18,4 +18,4 @@ function HeaderUser() {
 	);
 }
 
-export default HeaderUser;
+export default HeaderNoProfile;

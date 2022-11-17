@@ -4,7 +4,7 @@ import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/inputBox.css";
 import "../../styles/editPassword.css";
-import HeaderUser from "../../components/HeaderUser";
+import HeaderNoProfile from "../../components/HeaderNoProfile";
 
 
 const EditPassword = () => {
@@ -23,7 +23,7 @@ const EditPassword = () => {
 
 	return (
 		<div className="container">
-			<HeaderUser></HeaderUser>
+			<HeaderNoProfile></HeaderNoProfile>
 			<div>
 				<div className="input-box">
 
