@@ -12,12 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("mypage/info")
 public class GetUserInfoController {
 
     private final UserService userService;
@@ -29,11 +30,16 @@ public class GetUserInfoController {
 //        model.addAttribute("userId", userId);
 //        return "mypage/userInfo";
 //    }
-    @GetMapping()
-    public ResponseEntity<User> showUserInfo(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    @GetMapping("mypage/info")
+    public ResponseEntity<List<User>> showUserInfo(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+
         User user = loginUser.getUser();
-//        Long userId = user.getId();
-//        model.addAttribute("user", user);
-        return ResponseEntity.ok(user);
+        List<User> userList = Arrays.asList(user);
+
+//        List<User> userList = Collections.emptyList();
+    //        Long userId = user.getId();
+    //        model.addAttribute("user", user);
+    //        model.addAttribute("userId", userId);
+        return ResponseEntity.ok(userList);
     }
 }

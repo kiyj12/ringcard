@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -24,13 +24,16 @@ public class EditUserInfoController {
     private final UserService userService;
 
     @GetMapping("/edit")
-    public ResponseEntity<User> editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<List<User>> editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
 
         User user = loginUser.getUser();
-//        Long userId = user.getId();
-//        model.addAttribute("user", user);
-//        model.addAttribute("userId", userId);
-        return ResponseEntity.ok(user);
+        List<User> userList = Arrays.asList(user);
+
+//        List<User> userList = Collections.emptyList();
+        //        Long userId = user.getId();
+        //        model.addAttribute("user", user);
+        //        model.addAttribute("userId", userId);
+        return ResponseEntity.ok(userList);
     }
 
     @PostMapping("/edit")
