@@ -59,7 +59,7 @@ const Login = () => {
 						<div className="user-text">비밀번호</div>
 						<div className="user-box-div-light user-icon-pw-light">
 							<span className="user-icon-bar">|</span>
-							<input className="user-inner-transparent" type="password"
+							<input className="user-inner-transparent"
 							name="password"
 							value={password}
 							onChange={handleChange}></input>
