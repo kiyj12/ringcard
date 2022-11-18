@@ -7,6 +7,16 @@
   display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
+* {
+  font-family: NanumBarunGothic;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+}
+
 body {
   background-color: rgb(91, 91, 91);
 }

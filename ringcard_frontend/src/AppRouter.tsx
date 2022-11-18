@@ -13,6 +13,7 @@ import QuestionUnanswered from "./pages/question/QuestionUnanswered";
 import Login from "./pages/login/Login";
 import Join from "./pages/login/Join";
 import EditPassword from "./pages/mypage/EditPassword";
+import AnswerCompletedPage from "./pages/question/AnswerCompletedPage";
 
 const AppRouter = () => {
 	return (
@@ -27,6 +28,10 @@ const AppRouter = () => {
 					<Route
 									path="/question/:questionId/unanswered/user"
 									element={<QuestionUnanswered />}
+								/>
+					<Route
+									path="/question/:questionId/completed/user"
+									element={<AnswerCompletedPage />}
 								/>
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />

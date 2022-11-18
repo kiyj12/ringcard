@@ -24,14 +24,13 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
-//@JsonSerialize
 @RestController
 public class SendAnswerController {
     private final AnswerService answerService;
     private final QuestionService questionService;
 
     @PostMapping("/question/{questionId}/unanswered/user")
-    public void sendAnswer(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, @RequestBody AnswerSendDto requestBody, Model model) {
+    public void sendAnswer(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, @RequestBody AnswerSendDto requestBody) {
         // find Question by questionId
         Long userId = loginUser.getUser().getId();
         Optional<Question> AnsweredQuestion = questionService.findById(questionId, userId);
@@ -55,7 +54,6 @@ public class SendAnswerController {
 
             Answer answer = new Answer(answerContents, questionId);
             Answer savedAnswer = answerService.save(answer);
-            String savedAnswerContents = savedAnswer.getAnswerContents();
             System.out.println("savedAnswer = " + savedAnswer);
             questionService.updateToAnswered(questionId);
         }

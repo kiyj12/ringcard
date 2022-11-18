@@ -1,0 +1,94 @@
+.each-question-note {
+  /* background-color: aqua; */
+  margin: 0 auto;
+
+  width: 80vw;
+  min-width: 300px;
+  max-width: 410px;
+  min-height: 100px;
+  height: fit-content;
+  /* max-height: 220px; */
+  /* height: 22vh; */
+
+  background-size: 100% 100%;
+  /* TODO: 이미지 오면 얘 조정해야됨. */
+  padding: 15px;
+  /* padding: calc(4% + 15px) 15px 40% 15px; */
+}
+
+
+.each-note-content-box {
+  min-height: 50px;
+  padding: 8px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.each-note-content {
+  text-align: center;
+  font-family: NanumBarunGothic;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #333;
+}
+
+
+
+.answerForm-answer-form {
+  /* background-color: blueviolet; */
+  margin: 8px, 20px;
+  width: 90%;
+
+}
+
+.cursur-bar {
+  margin-top: -1px;
+  margin-left: -6px;
+  margin-right: 3px;
+  font-size: 21px;
+}
+
+.answerForm-text-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.answerForm-textarea {
+  resize: none;
+  width: 100%;
+  min-height: 60px;
+
+  border: none;
+  background: none;
+  font-size: 16px;
+}
+
+.answerForm-textarea:focus {
+  outline: none;
+}
+
+
+.answerForm-btn-box {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 3px;
+}
+
+.answerForm-btn-box button {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin-right: -4%;
+
+  border: none;
+  background: none;
+}

@@ -1,7 +1,7 @@
 import axios from "axios";
+import { useCallback, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router-dom";
-import AnswerCompletedPage from "../pages/question/AnswerCompletedPage";
+import "../styles/answerQuestionNote.css";
 
 export interface Props {
 	questionId: number;
@@ -21,8 +21,7 @@ function AnswerForm(props: Props) {
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);
-        window.location.href = "/question/" + questionId + "/completed/user";
-				
+				window.location.href = "/question/" + questionId + "/completed/user";
 			})
 			.catch(function (error) {
 				if (error.response) {
@@ -50,20 +49,42 @@ function AnswerForm(props: Props) {
 		formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
+	// 유저 입력 값을 넣을 변수
+	const [checkItemContent, setCheckItemContent] = useState("");
+	// 줄 수를 계산해서 저장할 변수
+	const [textareaHeight, setTextareaHeight] = useState(0);
+
+	// 사용자 입력 값이 변경될 때마다 checkItemContent에 저장하고
+	// 엔터('\n') 개수를 세서 textareaHeight에 저장
+	const checkItemChangeHandler = (event: any) => {
+		setTextareaHeight(event.target.value.split("\n").length - 1);
+		setCheckItemContent(event.target.value);
+	};
+
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<div>
-				<label htmlFor="answerAdd">답변 폼</label>
+		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
+			<div className="answerForm-text-box checkItem">
+				<span className="cursur-bar">|</span>
 				<textarea
 					id="answerAdd"
-					placeholder="답변을 입력하세요"
+					className="answerForm-textarea"
+					value={checkItemContent}
+					onInput={checkItemChangeHandler}
+					style={{ height: (textareaHeight + 1) * 27 + "px" }}
+					placeholder="답변을 적어주세요"
 					{...register("answerContents", {
 						required: "답변이 입력되지 않았습니다.",
 					})}
 				></textarea>
 			</div>
-			<div>
-				<button type="submit">답변 등록</button>
+			<div className="answerForm-btn-box">
+				<button type="submit">
+					<img
+						className="note-send-answer-btn"
+						src="/buttons/send-answer-btn.svg"
+						alt=""
+					/>
+				</button>
 			</div>
 		</form>
 	);
