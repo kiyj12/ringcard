@@ -1,5 +1,6 @@
 package com.oneao.ringcard_backend.web.auth;
 
+import com.oneao.ringcard_backend.domain.user.RegisterUserDto;
 import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -30,26 +31,56 @@ public class JoinController {
         return "users/joinForm";
     }
 
-    @PostMapping("/join")
-    public String join(@Valid @ModelAttribute() User user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    @PostMapping("/joinForm")
+    public void join(@Valid @ModelAttribute() RegisterUserDto user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             System.out.println("bindingResult.hasErrors()");
-            return "users/joinForm";
+//            return "users/joinForm";
         }
         else {
             if (userService.findByUsername(request.getParameter("username")).isPresent()) {
                 redirectAttributes.addAttribute("overlappedUsername", true);
                 System.out.println("overlapped");
-                return "redirect:" + request.getHeader("Referer");
+//                return "redirect:" + request.getHeader("Referer");
             }
         }
-        System.out.println("user = " + user);
-        user.setRoles("ROLE_USER");
-        String rawPassword = user.getPassword();
-        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-        user.setPassword(encPassword);
-        userService.save(user);
+        System.out.println((request.getParameter("username")));
+        System.out.println(request);
 
-        return "redirect:/loginForm";
+        System.out.println("user = " + user);
+//        user.setRoles("ROLE_USER");
+//        String rawPassword = user.getPassword();
+//        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+//        user.setPassword(encPassword);
+//        userService.save(user);
+
+        System.out.println("helloSucceed");
+//        return "redirect:/loginForm";
+
     }
+
+
+    // 221118 위에 꺼 작동하면 지우기
+//    @PostMapping("/joinForm")
+//    public String join(@Valid @ModelAttribute() User user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+//        if (bindingResult.hasErrors()) {
+//            System.out.println("bindingResult.hasErrors()");
+//            return "users/joinForm";
+//        }
+//        else {
+//            if (userService.findByUsername(request.getParameter("username")).isPresent()) {
+//                redirectAttributes.addAttribute("overlappedUsername", true);
+//                System.out.println("overlapped");
+//                return "redirect:" + request.getHeader("Referer");
+//            }
+//        }
+//        System.out.println("user = " + user);
+//        user.setRoles("ROLE_USER");
+//        String rawPassword = user.getPassword();
+//        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+//        user.setPassword(encPassword);
+//        userService.save(user);
+//
+//        return "redirect:/loginForm";
+//    }
 }

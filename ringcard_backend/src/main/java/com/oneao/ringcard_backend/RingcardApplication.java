@@ -3,6 +3,7 @@ package com.oneao.ringcard_backend;
 import com.oneao.ringcard_backend.config.CorsConfig;
 import com.oneao.ringcard_backend.config.SecurityConfig;
 import com.oneao.ringcard_backend.config.SpringDataJpaConfig;
+import com.oneao.ringcard_backend.config.TomcatWebCustomConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;

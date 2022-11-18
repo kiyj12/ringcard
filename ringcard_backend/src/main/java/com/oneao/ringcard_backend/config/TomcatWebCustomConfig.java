@@ -1,6 +1,7 @@
-package com.oneao.ringcard_backend.service;
+package com.oneao.ringcard_backend.config;
 
-import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,6 @@ public class TomcatWebCustomConfig implements WebServerFactoryCustomizer<TomcatS
 
     @Override
     public void customize(TomcatServletWebServerFactory factory) {
-        factory.addConnectorCustomizers((TomcatConnectorCustomizer)
-                connector -> connector.setProperty("relaxedQueryChars", "<>[\\]^`{|}"));
+        factory.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "<>[\\]^`{|}"));
     }
 }
