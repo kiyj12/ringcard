@@ -70,5 +70,4 @@ public class SpringDataJpaConfig {
         return new PrincipalDetails(user);
     }
 
-
 }
