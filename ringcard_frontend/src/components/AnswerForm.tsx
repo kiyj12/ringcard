@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 import AnswerCompletedPage from "../pages/question/AnswerCompletedPage";
 
 export interface Props {
@@ -15,15 +16,13 @@ function AnswerForm(props: Props) {
 		// alert(JSON.stringify(data));
 		console.log(data);
 
-		// <AnswerCompletedPage questionId={questionId} />;
-
 		await axios
 			.post("/question/" + questionId + "/unanswered/user", data)
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);
-
-				<AnswerCompletedPage />;
+        window.location.href = "/question/" + questionId + "/completed/user";
+				
 			})
 			.catch(function (error) {
 				if (error.response) {

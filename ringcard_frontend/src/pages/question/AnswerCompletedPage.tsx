@@ -19,7 +19,7 @@ function AnswerCompletedPage() {
 			});
 	}, [questionId]);
 
-	return <></>;
+	return <div>hi hi hi hi hiii</div>;
 }
 
 export default AnswerCompletedPage;
