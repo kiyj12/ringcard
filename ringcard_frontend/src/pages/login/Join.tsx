@@ -56,11 +56,13 @@ const Join = () => {
   // };
 
 	const handleSubmit =  async() => {
-		const api = axios.create({
-			baseURL: 'http://localhost:8080'
-		})
-		await api
-			.post("/joinForm", null, {params:{userRingcardName:{userRingcardName},username: {username}, password:{password}, userEmail: {userEmail}}})
+		const api = axios.create
+		const obj = {
+			userRingcardName:{userRingcardName},
+			username: {username}, password:{password}, userEmail: {userEmail}
+		}
+		await axios
+			.post("/joinForm", {}, {params:obj})
 			.then((res) =>{
             console.log(res);
         })
@@ -68,6 +70,18 @@ const Join = () => {
 				console.log(err);
 			});
   };
+
+	// const handleSubmit =  async() => {
+	// 	await axios
+	// 		.post("/joinForm", null, {params:{userRingcardName:{userRingcardName},username: {username}, password:{password}, userEmail: {userEmail}}})
+	// 		.then((res) =>{
+  //           console.log(res);
+  //       })
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+  // };
+	
 
 	return (
 		<div className="container">
@@ -80,7 +94,7 @@ const Join = () => {
 					<div className="user-box-div-light user-icon-user-light">
 							<span className="user-icon-bar">|</span>
 							<input className="user-inner-transparent" name="userRingcardName"
-							// value={userRingcardName}
+							value={userRingcardName}
 							onChange={handleChangeUserRingcardName}></input>
 						</div>
 				</div>
@@ -92,7 +106,7 @@ const Join = () => {
 						<span className="user-icon-bar">|</span>
 						<input className="user-inner-transparent"
 						name="username"
-						// value={username}
+						value={username}
 						onChange={handleChangeUsername}></input>
 					</div>
 				</div>
@@ -103,7 +117,7 @@ const Join = () => {
 						<span className="user-icon-bar">|</span>
 						<input className="user-inner-transparent"
 						name="password"
-						// value={password}
+						value={password}
 						onChange={handleChangePassword}></input>
 					</div>
 				</div>
