@@ -11,22 +11,38 @@ import HeaderRingca from "../../components/HeaderRingca";
 
 const Login = () => {
 
-
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [disabled, setDisabled] = useState(false);
 
-  const handleChange = ({ target: { value } }:any) => setPassword(value);
+	const handleChangeUsername = ({ target: { value } }:any) => setUsername(value);
+	const handleChangePassword = ({ target: { value } }:any) => setPassword(value);
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit =  async() => {
 		setDisabled(true);
-		event.preventDefault();
-    await new Promise((r) => setTimeout(r, 1000));
-    if (password.length < 8) {
-      alert("8자의 이상의 비밀번호를 사용하셔야 합니다.");
-    } else {
-      alert(`변경된 패스워드: ${password}`);
-    }
-    setDisabled(false);
+		const obj = {
+			username: username, password:password
+		}
+		// await new Promise((r) => setTimeout(r, 1000));
+		if (password.length < 8) {
+							alert("8자의 이상의 비밀번호를 사용하셔야 합니다.");
+							return;
+						} 
+						// else {
+						// 	alert(`변경된 패스워드: ${password}`);
+						// }
+
+		setDisabled(false);
+
+		await axios
+			.post("/joinForm", null ,{params:obj})
+			.then((res) =>{
+            console.log(res);
+						
+        })
+			.catch((err) => {
+				console.log(err);
+			});
   };
 
 
@@ -51,7 +67,10 @@ const Login = () => {
 						<div className="user-text">아이디</div>
 						<div className="user-box-div-light user-icon-id-light">
 							<span className="user-icon-bar">|</span>
-							<input className="user-inner-transparent"></input>
+							<input className="user-inner-transparent"
+							name="username"
+						value={username}
+						onChange={handleChangeUsername}></input>
 						</div>
 					</div>
 
@@ -62,7 +81,7 @@ const Login = () => {
 							<input className="user-inner-transparent"
 							name="password"
 							value={password}
-							onChange={handleChange}></input>
+							onChange={handleChangePassword}></input>
 						</div>
 						<div className="user-text user-text-right">비밀번호를 잊으셨나요?</div>
 					</div>

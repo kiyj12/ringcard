@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Navigate, Route } from 'react-router-dom';
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
@@ -6,8 +7,8 @@ import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/join.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
-import HeaderRingca from "../../components/HeaderRingca";
 import HeaderRingcaShort from "../../components/HeaderRingcaShort";
+import { callbackify } from "util";
 
 
 const Join = () => {
@@ -23,65 +24,55 @@ const Join = () => {
 	const handleChangePassword = ({ target: { value } }:any) => setPassword(value);
 	const handleChangeUserEmail = ({ target: { value } }:any) => setUserEmail(value);
 
-	// useEffect(() => {
-	// 	axios
-	// 		.post("/joinForm", {userRingcardName:"userRingcardName",username: "username", password:"password", userEmail: "userEmail"})
-	// 		.then(function (res) {
-  //           console.log(res);
-  //       })
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
-
-	// const handleSubmit = async (event:any) => {
-	// 	axios
-	// 		.post("/joinForm", {userRingcardName:"userRingcardName",username: "username", password:"password", userEmail: "userEmail"})
-	// 		.then(function (res) {
-  //           console.log(res);
-  //       })
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-  // };
-	// const handleSubmit =  async() => {
-	// 	await axios
-	// 		.post("/joinForm", null, {params:{userRingcardName:"userRingcardName",username: "username", password:"password", userEmail: "userEmail"}})
-	// 		.then((res) =>{
-  //           console.log(res);
-  //       })
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-  // };
-
-	const handleSubmit =  async() => {
-		const api = axios.create
+	const handleSubmit =  async(event:any) => {
+		setDisabled(true);
+		event.preventDefault();
 		const obj = {
-			userRingcardName:{userRingcardName},
-			username: {username}, password:{password}, userEmail: {userEmail}
+			userRingcardName:userRingcardName,
+			username: username, password:password, userEmail: userEmail
 		}
+		// await new Promise((r) => setTimeout(r, 1000));
+		// if (password.length < 8) {
+		// 	alert("8자의 이상의 비밀번호를 사용하셔야 합니다.");
+		// 	return;
+		// } 
+
+		setDisabled(false);
+
 		await axios
-			.post("/joinForm", {}, {params:obj})
+			.post("/joinForm", null ,{params:obj})
 			.then((res) =>{
-            console.log(res);
-        })
+				//- [https://gom20.tistory.com/171](https://gom20.tistory.com/171)
+				//- [https://gom20.tistory.com/170](https://gom20.tistory.com/170)
+				if(res.data.code === 0){
+            // console.log(res);
+						<Navigate to = "/loginForm" />
+        }})
 			.catch((err) => {
 				console.log(err);
 			});
+
   };
 
-	// const handleSubmit =  async() => {
-	// 	await axios
-	// 		.post("/joinForm", null, {params:{userRingcardName:{userRingcardName},username: {username}, password:{password}, userEmail: {userEmail}}})
-	// 		.then((res) =>{
-  //           console.log(res);
-  //       })
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-  // };
+	function BtnToLogin(){
+		function handleClick(e: any){
+				window.location.href="/loginForm"
+		}
+			return(
+				<button type="submit" disabled={disabled} className="user-btn join-btn" onClick={handleClick}>
+					<div className="user-btn-text">회원가입</div>
+					</button>
+			)
+	}
 	
+	// function RedirectToLogin(){
+	// 	function test(){
+	// 		if (disabled) {
+	// 	}
+		
+  //     return <Navigate to = "/loginForm" />;
+  //   }
+	// }
 
 	return (
 		<div className="container">
@@ -99,6 +90,11 @@ const Join = () => {
 						</div>
 				</div>
 				{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
+				{/* {
+        		disabled === true
+        		? <Navigate to = "/loginForm" />
+        		: null
+					} */}
 
 				<div className="user-box-in">
 					<div className="user-text">아이디</div>
@@ -135,10 +131,10 @@ const Join = () => {
 			</div>
 
 			<div className="user-box-in">
-					<button type="submit" className="user-btn join-btn" disabled={disabled}>
-					<div className="user-btn-text">회원가입</div>
-					</button>
+					<BtnToLogin/>
+					
 			</div>
+
 
 			{/* <div className="join-delete-box">
 				<div className="join-delete">
