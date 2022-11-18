@@ -8,23 +8,18 @@ export interface Props {
 function AnswerForm(props: Props) {
 	const questionId = String(props.questionId);
 
-	const {
-		register,
-		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
-
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
 		// alert(JSON.stringify(data));
+		console.log(data);
 
 		await axios
 			.post("/question/" + questionId + "/unanswered/user", data, {
-				headers: {
-					"Content-Type": `multipart/form-data; `,
-				},
-				// baseURL: 'http://localhost:8080'
+				// headers: {
+				// 	"Content-Type": `multipart/form-data; `,
+				// },
+				// baseURL: "http://localhost:8080",
 			})
 			.then((res) => {
 				console.log(data);
@@ -33,6 +28,12 @@ function AnswerForm(props: Props) {
 				console.log(err);
 			});
 	};
+
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting, isDirty, errors },
+	} = useForm();
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

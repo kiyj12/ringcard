@@ -11,10 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,14 +44,14 @@ public class AddAnswerFormController {
     }
 
     @GetMapping("/completed/user")
-    public String answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Long answerId, Model model) {
+    public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, @RequestParam Long answerId, @RequestParam boolean status , Model model) {
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
         Answer answer = answerService.findById(answerId).get();
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
 
-        return "question/answerCompleted";
+        return ResponseEntity.ok(model);
     }
 
 }
