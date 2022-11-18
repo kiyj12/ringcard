@@ -45,11 +45,13 @@ public class AddAnswerFormController {
 
     @GetMapping("/completed/user")
     public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, @RequestParam Long answerId, @RequestParam boolean status , Model model) {
+        System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
         Answer answer = answerService.findById(answerId).get();
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);
     }
