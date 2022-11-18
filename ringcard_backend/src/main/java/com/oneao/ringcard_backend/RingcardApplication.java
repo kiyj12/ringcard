@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-@Import({SpringDataJpaConfig.class, SecurityConfig.class, CorsConfig.class})
+@Import({SpringDataJpaConfig.class, SecurityConfig.class, CorsConfig.class, TomcatWebCustomConfig.class})
 @SpringBootApplication(scanBasePackages = "com.oneao.ringcard_backend.web")
 public class RingcardApplication {
 

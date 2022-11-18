@@ -32,6 +32,7 @@ public class JoinController {
     }
 
     @PostMapping("/joinForm")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public void join(@Valid @ModelAttribute() RegisterUserDto user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             System.out.println("bindingResult.hasErrors()");
@@ -44,8 +45,8 @@ public class JoinController {
 //                return "redirect:" + request.getHeader("Referer");
             }
         }
-        System.out.println((request.getParameter("username")));
-        System.out.println(request);
+//        System.out.println((request.getParameter("username")));
+//        System.out.println(request);
 
         System.out.println("user = " + user);
 //        user.setRoles("ROLE_USER");
