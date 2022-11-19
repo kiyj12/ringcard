@@ -34,8 +34,6 @@ public class AddAnswerFormController {
         List<Question> questions = questionService.findAll(userId, questionSearchCond);
         questions.remove(question);
         model.addAttribute("questions", questions);
-        System.out.println(questions);
-        System.out.println(questions.size());
         model.addAttribute("question", question);
         System.out.println("model = " + model);
 //        return "redirect:/{questionId}/completed";

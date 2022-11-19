@@ -8,6 +8,7 @@ import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ public class EditAnswerController {
     private final QuestionService questionService;
 
     @GetMapping("/edit/user")
-    public String editAnswerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<Model> editAnswerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
         Answer answer = answerService.findByQuestionId(questionId).get();
@@ -37,7 +38,7 @@ public class EditAnswerController {
         model.addAttribute("question", question);
         model.addAttribute("oldAnswer", answer);
 
-        return "question/answeredUser";
+        return ResponseEntity.ok(model);
     }
 
     @PostMapping("/edit/user")
