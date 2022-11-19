@@ -1,20 +1,42 @@
-.each-question-note {
-  /* background-color: aqua; */
+.each-question-note-box {
   margin: 0 auto;
 
-  width: 80vw;
+  /* 이거 건들지 말기. width 아래에 있는 리스트 애들이랑 맞춰놓은 거임. */
+  width: 87%;
   min-width: 300px;
   max-width: 410px;
   min-height: 100px;
-  height: fit-content;
-  /* max-height: 220px; */
-  /* height: 22vh; */
 
+}
+
+.each-question-note-header-edge-img-box {
+  background-color: aquamarine;
+
+}
+
+.each-question-note-body {
+
+
+  background-image: url("../../public/notes/yellow-note-body.png");
   background-size: 100% 100%;
+  
+
   /* TODO: 이미지 오면 얘 조정해야됨. */
   padding: 15px;
-  /* padding: calc(4% + 15px) 15px 40% 15px; */
+
+  /* padding: calc(5% + 15px) 15px 40% 15px; */
+  
+  
 }
+
+.each-note-header {
+  background-color: aqua;
+  height: 40px;
+
+  display: inline-flex;
+  justify-content: left;
+}
+
 
 
 .each-note-content-box {
@@ -39,7 +61,21 @@
   color: #333;
 }
 
+.each-note-answer-form-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 
+}
+
+.each-question-note-footer-edge-img-box {
+  height: 40px;
+
+  background-size: 100% 100%;
+  margin-top: -2px;
+}
+
+/* ######################### AnswerForm #################### */
 
 .answerForm-answer-form {
   /* background-color: blueviolet; */
