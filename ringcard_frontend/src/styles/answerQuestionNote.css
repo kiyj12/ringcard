@@ -10,17 +10,15 @@
 }
 
 .each-question-note-header-edge-img-box {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 
 }
 
 .each-question-note-body {
 
-
   background-image: url("../../public/notes/yellow-note-body.png");
   background-size: 100% 100%;
   
-
   /* TODO: 이미지 오면 얘 조정해야됨. */
   padding: 15px;
 
