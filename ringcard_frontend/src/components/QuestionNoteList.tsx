@@ -10,7 +10,7 @@ export interface Props {
 	questionList: IQuestion[];
 }
 
-function QuestionList(props: Props) {
+function QuestionNoteList(props: Props) {
 	return (
 		<>
 			<div className="question-notes-container">
@@ -22,4 +22,4 @@ function QuestionList(props: Props) {
 	);
 }
 
-export default QuestionList;
+export default QuestionNoteList;

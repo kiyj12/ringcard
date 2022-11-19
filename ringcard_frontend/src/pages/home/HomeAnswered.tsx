@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../styles/layout/layout.css";
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
-import QuestionList from "../../components/QuestionNoteList";
+import QuestionNoteList from "../../components/QuestionNoteList";
 
 function HomeAnswered() {
 	const [questionList, setQuestionList] = useState<any[]>([]);
@@ -25,7 +25,7 @@ function HomeAnswered() {
 			<Header />
 			<Navigation />
 			<div className="container-body">
-				<QuestionList questionList={questionList} />
+				<QuestionNoteList questionList={questionList} />
 			</div>
 		</div>
 	);
