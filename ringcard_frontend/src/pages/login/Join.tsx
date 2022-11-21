@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import "../../styles/layout/layout.css";
@@ -12,6 +12,12 @@ import userEvent from "@testing-library/user-event";
 
 const Join = () => {
 
+	// const [, forceUpdate] = useReducer((x) => x + 1, 0);
+
+	// function ForceUpdate(){
+	// 	forceUpdate();
+	// 	return <></>
+	// }
 	type ResponseList = {
 		bindingResultHasErrors: boolean;
 		overlappedUsername: boolean;
@@ -22,7 +28,7 @@ const Join = () => {
 	});
 	const [bindingResultHasErrors, setBindingResultHasErrors] = useState(false);
 	const [overlappedUsername, setOverlappedUsername] = useState(false);
-
+	const [submitted, setSubmitted] = useState(false);
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
@@ -37,31 +43,32 @@ const Join = () => {
         // window.location.href = "/loginForm";
 				setResponse(res.data);
 				console.log(res.data);
-				// 이거 뜨면 새로고침 안가도록.
 				setBindingResultHasErrors(response.bindingResultHasErrors);
 				setOverlappedUsername(response.overlappedUsername);
-				// 여기서 둘 다 false 여야만 새로고침 되게.
+				// if (response.bindingResultHasErrors===false && response.overlappedUsername===false) {
+				// 	window.location.href = "/loginForm";
+				// }
+				setSubmitted(true);
 			})
 			.catch(function (error) {
-				if (error.response) {
-					// The request was made and the server responded with a status code
-					// that falls out of the range of 2xx
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				} else if (error.request) {
-					// The request was made but no response was received
-					// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-					// http.ClientRequest in node.js
-					console.log(error.request);
-				} else {
-					// Something happened in setting up the request that triggered an Error
-					console.log("Error", error.message);
-				}
 				console.log(error.config);
 			});
 	};
 
+	function RedirectAndInputErrors(){
+		if(submitted === true && response.bindingResultHasErrors===false && response.overlappedUsername===false) {
+			// 위 조건 만족할 때만 loginForm으로 새로고침
+			window.location.href = "/loginForm"
+			return (null);
+		}
+		else if(response.bindingResultHasErrors){
+			return <div className="user-text">bindingResultHasErrors</div>
+		}
+		else if(response.overlappedUsername){
+			return <div className="user-text">overlappedUsername</div>
+		}
+		return (null);
+	}
 
 	const {
 		register,
@@ -71,6 +78,11 @@ const Join = () => {
 
 	return (
 	<form onSubmit={handleSubmit(onSubmit)}>
+		{/* {
+					submitted === true && response.bindingResultHasErrors===false && response.overlappedUsername===false
+					? window.location.href = "/loginForm"
+					: null
+				} */}
 		<div className="container">
 			<HeaderRingcaShort/>
 			<div className="user-box">
@@ -126,7 +138,9 @@ const Join = () => {
 			</div>
 
 			<div className="user-box-in">
-				{
+				<RedirectAndInputErrors/>
+
+				{/* {
 					bindingResultHasErrors
 					? <div className="user-text">bindingResultHasErrors</div>
 					: null
@@ -136,6 +150,7 @@ const Join = () => {
 					? <div className="user-text">overlappedUsername</div>
 					: null
 				}
+				 */}
 				<button type="submit" className="user-btn join-btn">
 					<div className="user-btn-text">회원가입</div>
 				</button>
