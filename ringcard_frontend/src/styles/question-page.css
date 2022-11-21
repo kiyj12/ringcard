@@ -1,0 +1,15 @@
+.questionPage-the-question-container {
+  padding-top: 55px;
+}
+
+
+.questionPage-container-body {
+  /* background-color: aquamarine; */
+  /* margin-top:  */
+  position: relative;
+  top: calc(13% + 115px);
+  width: 100%;
+
+  max-width: inherit;
+
+}

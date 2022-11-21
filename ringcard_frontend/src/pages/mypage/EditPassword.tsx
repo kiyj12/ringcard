@@ -4,11 +4,12 @@ import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
 import "../../styles/editPassword.css";
+import HeaderUser from "../../components/HeaderNoProfile";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 
 const EditPassword = () => {
-	const [user, setUser] = useState<any>([]);
 
+  const [user, setUser] = useState<any>([]);
 	useEffect(() => {
 		axios
 			.get("/mypage/info")
@@ -25,40 +26,47 @@ const EditPassword = () => {
 		function handleClick(e: any){
 				window.location.href="/mypage/info/edit"
 		}
-			return(
-				<button className="user-btn editPassword-btn-cancel" onClick={handleClick}>
-					<div className="user-btn-text editPassword-btn-text-cancel">비밀번호 변경 취소하기</div>
-				</button>
-			)
-	}
-	
+    return(
+          <button className="user-btn editPassword-btn-cancel" onClick={handleClick}>
+					  <div className="user-btn-text editPassword-btn-text-cancel">비밀번호 변경 취소하기</div>
+					</button>)
+  }
+
 	return (
 		<div className="container">
 			<HeaderNoProfile />
-			<div className="userInfo-profile-pic-container">
+      <div className="userInfo-profile-container">
 				<div>
 					<img alt="" src="/profile.png" width="77px" color="white" />
 				</div>
-				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
+				<div className="profile-pic-large-name">{user.userRingcardName}</div>
 			</div>
-
+      
 			<div>
 				<div className="user-box">
-
 					<div className="user-box-in">
 						<div className="user-text editPassword-text">현재 비밀번호</div>
-						<input className="input editPassword-input" placeholder="현재 비밀번호"></input>
+						<input
+							className="user"
+							placeholder="현재 비밀번호"
+						></input>
 					</div>
 					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
 					<div className="user-box-in">
 						<div className="user-text editPassword-text">새 비밀번호</div>
-						<input className="input editPassword-input" placeholder="새 비밀번호"></input>
+						<input
+							className="user"
+							placeholder="새 비밀번호"
+						></input>
 					</div>
 
 					<div className="user-box-in">
 						<div className="user-text editPassword-text">새 비밀번호 확인</div>
-						<input className="input editPassword-input" placeholder="새 비밀번호 확인"></input>
+						<input
+							className="user"
+							placeholder="새 비밀번호 확인"
+						></input>
 					</div>
 
 					<div className="user-box-in">
@@ -68,14 +76,14 @@ const EditPassword = () => {
 					</div>
 
 					<div className="user-box-in">
-						<ButtonToUserInfoEdit/>
+            <ButtonToUserInfoEdit/>
 					</div>
 				</div>
 			</div>
 			{/* 여기에 비밀번호 찾기?? */}
 			{/* <div className="editPassword-delete-box">
 				<div className="editPassword-delete">
-					<a className="editPassword-delete-text" href="/">링카 계정을 완전히 지우고 싶어요</a>
+					<a className="editPassword-delete-tag" href="/">링카 계정을 완전히 지우고 싶어요</a>
 				</div>
 			</div> */}
 		</div>

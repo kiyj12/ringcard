@@ -1,93 +1,88 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, Route } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/join.css";
-import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingcaShort from "../../components/HeaderRingcaShort";
-import { callbackify } from "util";
+import userEvent from "@testing-library/user-event";
 
 
 const Join = () => {
-	
-	const [userRingcardName, setUserRingcardName] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [userEmail, setUserEmail] = useState("");
-	const [disabled, setDisabled] = useState(false);
 
-	const handleChangeUserRingcardName = ({ target: { value } }:any) => setUserRingcardName(value);
-	const handleChangeUsername = ({ target: { value } }:any) => setUsername(value);
-	const handleChangePassword = ({ target: { value } }:any) => setPassword(value);
-	const handleChangeUserEmail = ({ target: { value } }:any) => setUserEmail(value);
+	type ResponseList = {
+		bindingResultHasErrors: boolean;
+		overlappedUsername: boolean;
+	}
+	const [response, setResponse] = useState<ResponseList>({
+		bindingResultHasErrors: false,
+		overlappedUsername: false
+	});
+	const [bindingResultHasErrors, setBindingResultHasErrors] = useState(false);
+	const [overlappedUsername, setOverlappedUsername] = useState(false);
 
-	const handleSubmit =  async(event:any) => {
-		setDisabled(true);
-		event.preventDefault();
-		const obj = {
-			userRingcardName:userRingcardName,
-			username: username, password:password, userEmail: userEmail
-		}
-		// await new Promise((r) => setTimeout(r, 1000));
-		// if (password.length < 8) {
-		// 	alert("8자의 이상의 비밀번호를 사용하셔야 합니다.");
-		// 	return;
-		// } 
+	const onSubmit = async (data: any) => {
+		await new Promise((r) => setTimeout(r, 100));
 
-		setDisabled(false);
+		// alert(JSON.stringify(data));
+		console.log(data);
 
 		await axios
-			.post("/joinForm", null ,{params:obj})
-			.then((res) =>{
-				//- [https://gom20.tistory.com/171](https://gom20.tistory.com/171)
-				//- [https://gom20.tistory.com/170](https://gom20.tistory.com/170)
-				if(res.data.code === 0){
-            // console.log(res);
-						<Navigate to = "/loginForm" />
-        }})
-			.catch((err) => {
-				console.log(err);
+			.post("/joinForm", data)
+			.then((res) => {
+				console.log("postHere");
+				console.log(data);
+        // window.location.href = "/loginForm";
+				setResponse(res.data);
+				console.log(res.data);
+				// 이거 뜨면 새로고침 안가도록.
+				setBindingResultHasErrors(response.bindingResultHasErrors);
+				setOverlappedUsername(response.overlappedUsername);
+				// 여기서 둘 다 false 여야만 새로고침 되게.
+			})
+			.catch(function (error) {
+				if (error.response) {
+					// The request was made and the server responded with a status code
+					// that falls out of the range of 2xx
+					console.log(error.response.data);
+					console.log(error.response.status);
+					console.log(error.response.headers);
+				} else if (error.request) {
+					// The request was made but no response was received
+					// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+					// http.ClientRequest in node.js
+					console.log(error.request);
+				} else {
+					// Something happened in setting up the request that triggered an Error
+					console.log("Error", error.message);
+				}
+				console.log(error.config);
 			});
+	};
 
-  };
 
-	function BtnToLogin(){
-		function handleClick(e: any){
-				window.location.href="/loginForm"
-		}
-			return(
-				<button type="submit" disabled={disabled} className="user-btn join-btn" onClick={handleClick}>
-					<div className="user-btn-text">회원가입</div>
-					</button>
-			)
-	}
-	
-	// function RedirectToLogin(){
-	// 	function test(){
-	// 		if (disabled) {
-	// 	}
-		
-  //     return <Navigate to = "/loginForm" />;
-  //   }
-	// }
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting, isDirty, errors },
+	} = useForm();
 
 	return (
+	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
 			<HeaderRingcaShort/>
-			<form onSubmit={handleSubmit}>
 			<div className="user-box">
-
 				<div className="user-box-in">
 					<div className="user-text">이름</div>
 					<div className="user-box-div-light user-icon-user-light">
-							<span className="user-icon-bar">|</span>
-							<input className="user-inner-transparent" name="userRingcardName"
-							value={userRingcardName}
-							onChange={handleChangeUserRingcardName}></input>
-						</div>
+						<span className="user-icon-bar">|</span>		
+						<input className="user-inner-transparent"
+							{...register("userRingcardName", {
+							required: "답변이 입력되지 않았습니다.",
+							})}></input>
+					</div>
 				</div>
 				{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 				{/* {
@@ -101,9 +96,9 @@ const Join = () => {
 					<div className="user-box-div-light user-icon-id-light">
 						<span className="user-icon-bar">|</span>
 						<input className="user-inner-transparent"
-						name="username"
-						value={username}
-						onChange={handleChangeUsername}></input>
+							{...register("username", {
+							required: "답변이 입력되지 않았습니다.",
+							})}></input>
 					</div>
 				</div>
 
@@ -112,9 +107,9 @@ const Join = () => {
 					<div className="user-box-div-light user-icon-pw-light">
 						<span className="user-icon-bar">|</span>
 						<input className="user-inner-transparent"
-						name="password"
-						value={password}
-						onChange={handleChangePassword}></input>
+							{...register("password", {
+							required: "답변이 입력되지 않았습니다.",
+							})}></input>
 					</div>
 				</div>
 
@@ -123,16 +118,27 @@ const Join = () => {
 					<div className="user-box-div-light user-icon-email-light">
 						<span className="user-icon-bar">|</span>
 						<input className="user-inner-transparent"
-						name="userEmail"
-						// value={userEmail}
-						onChange={handleChangeUserEmail}></input>
+							{...register("userEmail", {
+							required: "답변이 입력되지 않았습니다.",
+							})}></input>
 					</div>
 				</div>
 			</div>
 
 			<div className="user-box-in">
-					<BtnToLogin/>
-					
+				{
+					bindingResultHasErrors
+					? <div className="user-text">bindingResultHasErrors</div>
+					: null
+				}
+				{
+					overlappedUsername
+					? <div className="user-text">overlappedUsername</div>
+					: null
+				}
+				<button type="submit" className="user-btn join-btn">
+					<div className="user-btn-text">회원가입</div>
+				</button>
 			</div>
 
 
@@ -141,8 +147,8 @@ const Join = () => {
 					<a className="join-delete-text" href="/">링카 계정을 완전히 지우고 싶어요</a>
 				</div>
 			</div> */}
-			</form>
 		</div>
+	</form>
 	);
 };
 

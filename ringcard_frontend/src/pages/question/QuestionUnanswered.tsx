@@ -1,21 +1,45 @@
 import axios from "axios";
 import React, { useState, useEffect, Component } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
+import AnswerFormQuestionNote from "../../components/AnswerFormQuestionNote";
+import Header from "../../components/Header";
+import QuestionList from "../../components/QuestionNoteList";
+import "../../styles/layout/layout.css";
+import "../../styles/question-page.css";
 
-const QuestionUnanswered = () => {
-  const { questionId } = useParams();
+function QuestionUnanswered() {
+	const params = useParams();
+	const paramsQuestionId = params.questionId;
 
-  try {
-    const response = axios.get("question/:questionId/unanswered/user");
+	const [questionList, setQuestionList] = useState<any[]>([]);
+	const [question, setQuestion] = useState<any>([]);
 
-    console.log(response);
-  } catch {}
+	useEffect(() => {
+		axios
+			.get("/question/" + paramsQuestionId + "/unanswered/user")
+			.then((res) => {
+				console.log(res.data);
+				setQuestionList(res.data.questions);
+				setQuestion(res.data.question);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, [paramsQuestionId]);
 
-  return (
-    <>
-      <div>quesiton 고유페이지입니다.</div>
-    </>
-  );
-};
+	return (
+		<div className="container">
+			<Header />
+			<div className="contents-container">
+				<div className="questionPage-the-question-container">
+					<AnswerFormQuestionNote question={question} />
+				</div>
+				<div className="questionPage-container-body">
+					<QuestionList questionList={questionList} />
+				</div>
+			</div>
+		</div>
+	);
+}
 
 export default QuestionUnanswered;

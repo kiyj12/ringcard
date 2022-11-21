@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
+import "../../styles/user/userIcon.css";
 import "../../styles/deleteAccount.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 
@@ -13,7 +14,7 @@ const DeleteAccount = () => {
 
 	useEffect(() => {
 		axios
-			.get("/mypage/info")
+			.get("/mypage/delete/account")
 			.then((res) => {
 				setUser(res.data);
 				console.log(res.data);
@@ -38,11 +39,11 @@ const DeleteAccount = () => {
 	return (
 		<div className="container">
 			<HeaderNoProfile />
-			<div className="userInfo-profile-pic-container">
+      <div className="userInfo-profile-container">
 				<div>
 					<img alt="" src="/profile.png" width="77px" color="white" />
 				</div>
-				<div className="profile-pic-larg-name">{user.userRingcardName}</div>
+				<div className="profile-pic-large-name">{user.userRingcardName}</div>
 			</div>
 
 			<div>
@@ -55,7 +56,7 @@ const DeleteAccount = () => {
 					</div>
 					<div className="user-box-in">
 						<div className="user-text deleteAccount-text">탈퇴를 원하시면 비밀번호를 입력해주세요. </div>
-						<input className="input deleteAccount-input" placeholder="비밀번호를 입력해주세요"></input>
+						<input className="user" placeholder="비밀번호를 입력해주세요"></input>
 					</div>
 					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
