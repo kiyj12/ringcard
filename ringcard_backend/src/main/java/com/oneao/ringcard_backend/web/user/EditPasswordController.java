@@ -36,7 +36,7 @@ public class EditPasswordController {
 
     // Blank 없는 버전
     @PostMapping()
-    public ResponseEntity<HashMap<String, Boolean>> editPasswordV2(@AuthenticationPrincipal PrincipalDetails loginUser, @Valid @RequestBody EditPasswordDto requestBody, HttpServletRequest request) {
+    public ResponseEntity<HashMap<String, Boolean>> editPasswordV2(@AuthenticationPrincipal PrincipalDetails loginUser, @Valid @RequestBody EditPasswordDto requestBody) {
         User user = loginUser.getUser();
         Long userId = user.getId();
         // 주기능 : 현재 비번 인증 끝나면 새로운 비번으로 업데이트

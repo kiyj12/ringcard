@@ -38,11 +38,11 @@ public class JpaUserRepository implements UserRepository {
     public void updateUserInfo(Long userId, UserUpdateDto updateParam) {
         User findUser = repository.findById(userId).orElseThrow();
         findUser.setUsername(updateParam.getUsername());
-        findUser.setPassword(updateParam.getPassword());
+//        findUser.setPassword(updateParam.getPassword());
         findUser.setUserRingcardName(updateParam.getUserRingcardName());
         findUser.setUserEmail(updateParam.getUserEmail());
-        findUser.setTwitterId(updateParam.getTwitterId());
-        findUser.setUserPicture(updateParam.getUserPicture());
+//        findUser.setTwitterId(updateParam.getTwitterId());
+//        findUser.setUserPicture(updateParam.getUserPicture());
     }
 
     @Override
