@@ -7,18 +7,21 @@ import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.service.UserService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Objects;
 
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("mypage/delete/account")
 public class DeleteAccountController {
@@ -32,8 +35,14 @@ public class DeleteAccountController {
         return "mypage/deleteAccount";
     }
 
+
+
     @PostMapping()
-    public String deleteAccount(@AuthenticationPrincipal PrincipalDetails loginUser, String password, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public ResponseEntity<HashMap<String, Boolean>> deleteAccount(@AuthenticationPrincipal PrincipalDetails loginUser, String password, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        HashMap<String, Boolean> response=new HashMap<>(1){{
+            put("passwordError",false);
+        }};
+
         User user =  loginUser.getUser();
         Long userId = user.getId();
         if (Objects.equals(password, user.getPassword())) {
@@ -43,11 +52,11 @@ public class DeleteAccountController {
                 questionService.delete(questionId);
             }
             userService.deleteAccount(userId);
-            return "redirect:/login";
+            response.put("passwordError", true);
+            return ResponseEntity.ok(response);
         } else {
-            redirectAttributes.addAttribute("passwordFalse", true);
-            // 비밀번호 재입력하라고 띄워주기. 어떻게 하냐? url에 param 넣어서 이 값 false로 바꾼다음에 thymleaf로 표시되도록 해야하나?
-            return "redirect:" + request.getHeader("Referer");
+//            redirectAttributes.addAttribute("passwordFalse", true);
+            return ResponseEntity.ok(response);
         }
     }
 }

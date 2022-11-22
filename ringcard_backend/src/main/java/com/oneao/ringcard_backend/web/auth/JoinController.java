@@ -1,7 +1,6 @@
 package com.oneao.ringcard_backend.web.auth;
 
 import com.oneao.ringcard_backend.domain.user.User;
-import com.oneao.ringcard_backend.domain.user.UserJoinDto;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -66,14 +65,21 @@ public class JoinController {
             put("overlappedUsername",false);
         }};
 
+        System.out.println("joinForm1");
+        Boolean hasErrorFlag = false;
+        System.out.println("joinForm2");
+
         if (bindingResult.hasErrors()) {
             System.out.println("bindingResult.hasErrors()");
             response.put("bindingResultHasErrors",true);
-            return ResponseEntity.ok(response);
+            hasErrorFlag = true;
         }
-        else if (userService.findByUsername(requestBody.getUsername()).isPresent()) {
+        if (userService.findByUsername(requestBody.getUsername()).isPresent()) {
             System.out.println("overlappedUsername");
             response.put("overlappedUsername",true);
+            hasErrorFlag = true;
+        }
+        if(hasErrorFlag){
             return ResponseEntity.ok(response);
         }
 
