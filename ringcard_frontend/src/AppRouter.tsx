@@ -34,7 +34,7 @@ const AppRouter = () => {
 					<Route path="/loginForm" element={<Login />} />
 					<Route path="/joinForm" element={<Join />} />
 					<Route path="/mypage/edit/password" element={<EditPassword />} />
-					<Route path="mypage/delete/account"element={<DeleteAccount />} />
+					<Route path="/mypage/delete/account"element={<DeleteAccount />} />
 				</Routes>
 			</BrowserRouter>
 		</>
