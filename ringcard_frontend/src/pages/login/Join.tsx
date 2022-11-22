@@ -44,11 +44,6 @@ const Join = () => {
 	};
 
 	function RedirectAndInputErrors(){
-		// if(submitted === true && response.bindingResultHasErrors===false && response.overlappedUsername===false) {
-		// 	// 위 조건 만족할 때만 loginForm으로 새로고침
-		// 	window.location.href = "/loginForm"
-		// 	return (null);
-		// }
 		if(response.bindingResultHasErrors && response.overlappedUsername){
 			return (<>
 			<div className="user-text-error">bindingResultHasErrors</div>
