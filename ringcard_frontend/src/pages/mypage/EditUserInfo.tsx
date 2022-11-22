@@ -27,7 +27,7 @@ const EditUserInfo = () => {
 				window.location.href="/mypage/edit/password"
 		}
 			return(
-				<button value="변경" className="user-box-btn" onClick={handleClick}></button>
+				<button className="user-box-btn" onClick={handleClick}>변경</button>
 			)
 	}
 

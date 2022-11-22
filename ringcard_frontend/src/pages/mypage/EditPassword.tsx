@@ -3,12 +3,14 @@ import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
+import "../../styles/user/userIcon.css";
 import "../../styles/editPassword.css";
 import HeaderUser from "../../components/HeaderNoProfile";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 
 const EditPassword = () => {
+
   type ResponseList = {
     // pastPasswordBlank: boolean;
     pastPasswordFalse: boolean;
@@ -23,6 +25,30 @@ const EditPassword = () => {
     newPasswordFalse: false,
     passwordChanged: false
 	});
+
+  // PW toggle start.
+	const [showPw, setShowPw] = useState<boolean>(false);
+	const toggleShowPw =()=>{
+	setShowPw(!showPw);
+	}
+
+	function handlePwClick(e: any){
+    toggleShowPw()
+  }
+
+	function ShowPw(props: any) {
+  return(
+    <button value="변경" className="user-show-pw" onClick={handlePwClick}></button>
+  	)
+	}
+
+	function HidePw(props: any) {
+  return(
+    <button value="변경" className="user-hide-pw" onClick={handlePwClick}></button>
+  	)
+	}
+	// PW toggle fin.
+
 	const [submitted, setSubmitted] = useState(false);
 
   const [user, setUser] = useState<any>([]);
@@ -62,13 +88,13 @@ const EditPassword = () => {
 		// 	return <div className="user-text-error">pastPasswordBlank</div>
 		// }
     if(response.pastPasswordFalse){
-			return <div className="user-text-error">pastPasswordFalse</div>
+			return <div className="user-text-error">pastPasswordFalse 현재 비밀번호를 정확히 입력해주세요</div>
 		}
     // else if(response.newPasswordBlank){
 		// 	return <div className="user-text-error">newPasswordBlank</div>
 		// }
     else if(response.newPasswordFalse){
-			return <div className="user-text-error">newPasswordFalse</div>
+			return <div className="user-text-error">newPasswordFalse 새 비밀번호와 비밀번호 확인이 일치하지 않습니다.</div>
 		}
 		else if(response.passwordChanged && submitted){
 			// 위 조건 만족할 때만 loginForm으로 새로고침
@@ -108,37 +134,60 @@ const EditPassword = () => {
 			<div>
 				<div className="user-box">
 					<div className="user-box-in">
-						<div className="user-text editPassword-text">현재 비밀번호</div>
-						<input
-							className="user"
+						<div className="user-text">현재 비밀번호</div>
+						<div className="user-box-div user-icon-light">
+							<input
+							type={showPw ? "text" : "password"}
+							className="user-inner-transparent"
 							placeholder="현재 비밀번호"
               {...register("pastPassword", {
 							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
+							})}></input>
+							{showPw ? (
+	  					<ShowPw onClick={toggleShowPw} />
+    					) : (
+	  					<HidePw onClick={toggleShowPw} />
+    					)}
+						</div>
+						
+						
 					</div>
 					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
 					<div className="user-box-in">
-						<div className="user-text editPassword-text">새 비밀번호</div>
-						<input
-							className="user"
-							placeholder="새 비밀번호"
+						<div className="user-text">새 비밀번호</div>
+						<div className="user-box-div user-icon-light">
+							<input
+							type={showPw ? "text" : "password"}
+							className="user-inner-transparent"
+							placeholder="현재 비밀번호"
               {...register("newPassword", {
 							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
+							})}></input>
+							{showPw ? (
+	  					<ShowPw onClick={toggleShowPw} />
+    					) : (
+	  					<HidePw onClick={toggleShowPw} />
+    					)}
+						</div>
 					</div>
 
 					<div className="user-box-in">
-						<div className="user-text editPassword-text">새 비밀번호 확인</div>
-						<input
-							className="user"
-							placeholder="새 비밀번호 확인"
+						<div className="user-text">새 비밀번호 확인</div>
+						<div className="user-box-div user-icon-light">
+							<input
+							type={showPw ? "text" : "password"}
+							className="user-inner-transparent"
+							placeholder="현재 비밀번호"
               {...register("newPasswordConfirm", {
 							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
+							})}></input>
+							{showPw ? (
+	  					<ShowPw onClick={toggleShowPw} />
+    					) : (
+	  					<HidePw onClick={toggleShowPw} />
+    					)}
+						</div>
 					</div>
 
 					<div className="user-box-in">
