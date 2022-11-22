@@ -45,32 +45,26 @@ public class EditPasswordController {
         String newPassword = requestBody.getNewPassword();
         String newPasswordConfirm = requestBody.getNewPasswordConfirm();
 
-        HashMap<String, Boolean> response=new HashMap<>(5){{
-            put("pastPasswordBlank",false);
-            put("newPasswordBlank",false);
+        HashMap<String, Boolean> response=new HashMap<>(3){{
             put("passwordChanged",false);
             put("newPasswordFalse",false);
             put("pastPasswordFalse",false);
         }};
-        System.out.println("f1");
         // 현재 비밀번호 없음
-        if (pastPassword.isEmpty() || pastPassword.isBlank() ) {
-            System.out.println(pastPassword);
-            response.put("pastPasswordBlank", true);
-            return ResponseEntity.ok(response);
-        }
-        System.out.println("f2");
+//        if (pastPassword.isEmpty() || pastPassword.isBlank() ) {
+//            System.out.println(pastPassword);
+//            response.put("pastPasswordBlank", true);
+//            return ResponseEntity.ok(response);
+//        }
         bCryptPasswordEncoder.matches(pastPassword, user.getPassword());
-        System.out.println("f3");
         if (bCryptPasswordEncoder.matches(pastPassword, user.getPassword())) {
             // 새로운 비번 없음
-            System.out.println("f4");
-            if (newPassword.isEmpty() || newPassword.isBlank()){
-                response.put("newPasswordBlank", true);
-                return ResponseEntity.ok(response);
-
-            }
-            else if (Objects.equals(newPassword, newPasswordConfirm)) {
+//            if (newPassword.isEmpty() || newPassword.isBlank()){
+//                response.put("newPasswordBlank", true);
+//                return ResponseEntity.ok(response);
+//
+//            }
+            if (Objects.equals(newPassword, newPasswordConfirm)) {
                 String encNewPassword = bCryptPasswordEncoder.encode(newPassword);
                 userService.updateUserPassword(userId, encNewPassword);
                 response.put("passwordChanged", true);
@@ -83,10 +77,8 @@ public class EditPasswordController {
 
             }
         } else {
-            System.out.println("f5");
             // 현재 비번 인증 안되면, '현재 비밀번호를 정확히 입력해주세요' 알람
             response.put("pastPasswordFalse", true);
-            System.out.println("f6");
             return ResponseEntity.ok(response);
         }
     }

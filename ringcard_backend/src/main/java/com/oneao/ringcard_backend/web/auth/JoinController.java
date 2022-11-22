@@ -65,9 +65,7 @@ public class JoinController {
             put("overlappedUsername",false);
         }};
 
-        System.out.println("joinForm1");
         Boolean hasErrorFlag = false;
-        System.out.println("joinForm2");
 
         if (bindingResult.hasErrors()) {
             System.out.println("bindingResult.hasErrors()");

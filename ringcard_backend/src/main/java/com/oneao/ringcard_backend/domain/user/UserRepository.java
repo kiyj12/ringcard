@@ -20,7 +20,7 @@ public interface UserRepository {
 
     void updateUserPassword(Long userId, String newPassword);
 
-    @Transactionalㅅ
+    @Transactional
     void deleteAccount(Long userId);
 
     void clearStore();
