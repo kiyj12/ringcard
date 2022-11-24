@@ -29,7 +29,7 @@ function AnswerForm(props: Props) {
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);
-				window.location.href = "/question/" + questionId + "/completed/user";
+				window.location.replace("/question/" + questionId + "/completed/user");
 			})
 			.catch(function (error) {
 				if (error.response) {

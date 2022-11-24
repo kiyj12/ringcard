@@ -85,6 +85,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					"Successfully enter handleEditAnswerClick in QuestionNoteFooter :D"
 				);
 				console.log(res.data);
+				
 			})
 			.catch((err) => {
 				console.log(err);
@@ -100,6 +101,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					"Successfully enter handleDeleteAnswerClick in QuestionNoteFooter :D"
 				);
 				console.log(res.data);
+				window.history.go(0);
 			})
 			.catch((err) => {
 				console.log(err);

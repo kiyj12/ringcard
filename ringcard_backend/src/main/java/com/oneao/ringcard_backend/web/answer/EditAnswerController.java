@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/question/{questionId}")
+@RestController
 public class EditAnswerController {
     private final AnswerService answerService;
     private final QuestionService questionService;
@@ -43,25 +47,23 @@ public class EditAnswerController {
     }
 
     @PostMapping("/edit/user")
-    public String editAnswer (@PathVariable Long questionId, Answer answer, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public void editAnswer (@PathVariable Long questionId, RedirectAttributes redirectAttributes, @RequestBody HashMap<String, String> requestBody, HttpServletRequest request) throws IOException {
         Long answerId = answerService.findByQuestionId(questionId).get().getId();
-        if (answer != null) {
-            if (answer.getAnswerContents() != null && answer.getAnswerContents() != "") {
-                AnswerEditDto answerEditDto = new AnswerEditDto(answer.getAnswerContents());
+        System.out.println("requestBody = " + requestBody);
+        String newAnswerContents = requestBody.get("answerContents");
+        if (requestBody != null) {
+            if (newAnswerContents != null && newAnswerContents != "") {
+                AnswerEditDto answerEditDto = new AnswerEditDto(newAnswerContents);
                 answerService.editAnswer(answerId, answerEditDto);
-                redirectAttributes.addAttribute("questionId", questionId);
-                redirectAttributes.addAttribute("answerId", answerId);
-                redirectAttributes.addAttribute("status", true);
-
-                return "redirect:/question/{questionId}/completed/user";
-            } else {
-                redirectAttributes.addAttribute("noAnswerContents", true);
-                return "redirect:" + request.getHeader("Referer");
+//                redirectAttributes.addAttribute("questionId", questionId);
+//                redirectAttributes.addAttribute("answerId", answerId);
+//                redirectAttributes.addAttribute("status", true);
+//
+//                return "redirect:/question/{questionId}/completed/user";
             }
-        } // TODO: else로 에러 던지기 얘는 지금 임시방편
-        else {
-            return "redirect:/question/{questionId}/user";
-        }
+//                return "redirect:" + request.getHeader("Referer");
+            }
+         // TODO: else로 에러 던지기 얘는 지금 임시방편
 
     }
 }

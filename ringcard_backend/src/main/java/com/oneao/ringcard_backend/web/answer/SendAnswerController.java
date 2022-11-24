@@ -35,8 +35,6 @@ public class SendAnswerController {
         Long userId = loginUser.getUser().getId();
         Optional<Question> AnsweredQuestion = questionService.findById(questionId, userId);
 
-        System.out.println(requestBody.toString());
-
         String answerContents = requestBody.getAnswerContents();
 
         System.out.println("answerContents = " + answerContents);
