@@ -48,13 +48,14 @@ body {
   top: 13%;
   width: 100%;
   max-width: inherit;
+  height: 100vh;
 }
 
 .down-background-img {
   background-image: url('../../../public/background-img/down-background.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-position-y: 265px;
+  background-position-y: 278px;
   background-size: 105% 100%;
 }
 
