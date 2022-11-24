@@ -1,6 +1,7 @@
 .UserHome-profile-box {
   /* background-color: yellowgreen; */
   height: 150px;
+  margin-top: 30%;
   margin-bottom: 20px;
 
   display: flex;
