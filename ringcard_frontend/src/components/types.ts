@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import { TimeLike } from "fs";
+// import { TimeLike } from "fs";
 
 export type IQuestion = {
   questionContents: string;
@@ -8,6 +8,14 @@ export type IQuestion = {
   answered: boolean;
   inTrash: boolean;
   inCollection: boolean;
-  uploadTime: TimeLike;
+  // uploadTime: TimeLike;
+  uploadTime: Date;
   id: number;
 }
+
+// export type User = {
+//   userRingcardName: string;
+//   username: string;
+//   password: string;
+//   userEmail: string;
+// }

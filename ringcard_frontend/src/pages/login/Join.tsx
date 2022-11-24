@@ -5,6 +5,7 @@ import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
+import "../../styles/user/userHeader.css";
 import "../../styles/join.css";
 import HeaderRingcaShort from "../../components/HeaderRingcaShort";
 import userEvent from "@testing-library/user-event";
@@ -71,6 +72,29 @@ const Join = () => {
 		formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
+	// PW toggle start.
+	const [showPw, setShowPw] = useState<boolean>(false);
+	const toggleShowPw =()=>{
+	setShowPw(!showPw);
+	}
+
+	function handlePwClick(e: any){
+    toggleShowPw()
+  }
+
+	function ShowPw(props: any) {
+  return(
+    <button value="변경" className="user-show-pw" onClick={handlePwClick}></button>
+  	)
+	}
+
+	function HidePw(props: any) {
+  return(
+    <button value="변경" className="user-hide-pw" onClick={handlePwClick}></button>
+  	)
+	}
+	// PW toggle fin.
+	
 	return (
 	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
@@ -99,12 +123,20 @@ const Join = () => {
 
 				<div className="user-box-in">
 					<div className="user-text">비밀번호</div>
-					<div className="user-box-div-light user-icon-pw-light">
+					<div className="user-box-div user-icon-light">
 						<span className="user-icon-bar">|</span>
-						<input className="user-inner-transparent"
-							{...register("password", {
-							required: "답변이 입력되지 않았습니다.",
-							})}></input>
+						<input
+						type={showPw ? "text" : "password"}
+						className="user-inner-transparent"
+						// placeholder="비밀번호를 입력해주세요"
+						{...register("password", {
+						required: "답변이 입력되지 않았습니다.",
+						})}></input>
+						{showPw ? (
+						<ShowPw onClick={toggleShowPw} />
+						) : (
+						<HidePw onClick={toggleShowPw} />
+						)}
 					</div>
 				</div>
 
@@ -112,7 +144,7 @@ const Join = () => {
 					<div className="user-text">이메일</div>
 					<div className="user-box-div-light user-icon-email-light">
 						<span className="user-icon-bar">|</span>
-						<input className="user-inner-transparent"
+						<input className="user-inner-transparent" type="email"
 							{...register("userEmail", {
 							required: "답변이 입력되지 않았습니다.",
 							})}></input>

@@ -4,32 +4,103 @@ import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
+import "../../styles/user/userHeader.css";
 import "../../styles/login.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
+import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify"
+
+
 
 
 const Login = () => {
 
+	// toastify 알람 실행 함수 만들기
+  const notify = () => toast("Toastify Alert!")
 
-	const [password, setPassword] = useState("");
-	const [disabled, setDisabled] = useState(false);
+	type ResponseList = {
+		bindingResultHasErrors: boolean;
+		overlappedUsername: boolean;
+	}
+	const [response, setResponse] = useState<ResponseList>({
+		bindingResultHasErrors: false,
+		overlappedUsername: false
+	});
+	// submitted==true여야 새로고침 되도록.
+	const [submitted, setSubmitted] = useState(false);
+	
+	const onSubmit = async (data: any) => {
+		await new Promise((r) => setTimeout(r, 100));
 
-  const handleChange = ({ target: { value } }:any) => setPassword(value);
+		// alert(JSON.stringify(data));
+		console.log(data);
 
-  const handleSubmit = async (event:any) => {
-		setDisabled(true);
-		event.preventDefault();
-    await new Promise((r) => setTimeout(r, 1000));
-    if (password.length < 8) {
-      alert("8자의 이상의 비밀번호를 사용하셔야 합니다.");
-    } else {
-      alert(`변경된 패스워드: ${password}`);
-    }
-    setDisabled(false);
-  };
+		await axios
+			.post("/loginForm", data)
+			.then((res) => {
+				console.log("postHere");
+				console.log(data);
+				setResponse(res.data);
+				console.log(res.data);
+				setSubmitted(true);
+			})
+			.catch(function (error) {
+				console.log(error.config);
+			});
+	};
 
+	function RedirectAndInputErrors(){
+		if(response.bindingResultHasErrors && response.overlappedUsername){
+			return (<>
+			<div className="user-text-error">bindingResultHasErrors</div>
+			<div className="user-text-error">overlappedUsername</div>
+			</>
+			)
+		}
+		else if(response.bindingResultHasErrors){
+			return <div className="user-text-error">bindingResultHasErrors</div>
+		}
+		else if(response.overlappedUsername){
+			return <div className="user-text-error">overlappedUsername</div>
+		}
+		else if(submitted) {
+			// 위 조건 만족할 때만 loginForm으로 새로고침
+			window.location.href = "/loginForm"
+			return (null);
+		}
+		return (null);
+	}
 
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting, isDirty, errors },
+	} = useForm();
+
+	// PW toggle start.
+	const [showPw, setShowPw] = useState<boolean>(false);
+	const toggleShowPw =()=>{
+	setShowPw(!showPw);
+	}
+
+	function handlePwClick(e: any){
+    toggleShowPw()
+  }
+
+	function ShowPw(props: any) {
+  return(
+    <button value="변경" className="user-show-pw" onClick={handlePwClick}></button>
+  	)
+	}
+
+	function HidePw(props: any) {
+  return(
+    <button value="변경" className="user-hide-pw" onClick={handlePwClick}></button>
+  	)
+	}
+	// PW toggle fin.
+	
 	function BtnToJoin(){
 		function handleClick(e: any){
 				window.location.href="/joinForm"
@@ -40,58 +111,69 @@ const Login = () => {
 				</div>
 			)
 	}
-	
+
 	return (
+	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
 			<HeaderRingca/>
-			<form onSubmit={handleSubmit}>
-			<div>
-				<div className="user-box">
-					<div className="user-box-in">
-						<div className="user-text">아이디</div>
-						<div className="user-box-div-light user-icon-id-light">
-							<span className="user-icon-bar">|</span>
-							<input className="user-inner-transparent"></input>
-						</div>
-					</div>
-
-					<div className="user-box-in">
-						<div className="user-text">비밀번호</div>
-						<div className="user-box-div-light user-icon-pw-light">
-							<span className="user-icon-bar">|</span>
-							<input className="user-inner-transparent"
-							name="password"
-							value={password}
-							onChange={handleChange}></input>
-						</div>
-						<div className="user-text user-text-right">비밀번호를 잊으셨나요?</div>
-					</div>
-
-					{/* <form onSubmit={handleSubmit}>
-						<input
-							type="password"
-							name="password"
-							value={password}
-							onChange={handleChange}
-						/>
-						<button type="submit">비밀번호 변경</button>
-					</form> */}
-
-					<div className="user-box-in">
-						<button type="submit" disabled={disabled} className="user-btn">
-							<div className="user-btn-text">로그인</div>
-						</button>
+			<div className="user-box">
+				<div className="user-box-in">
+					<div className="user-text">아이디</div>
+					<div className="user-box-div-light user-icon-user-light">
+						<span className="user-icon-bar">|</span>		
+						<input className="user-inner-transparent"
+							{...register("username", {
+							required: "답변이 입력되지 않았습니다.",
+							})}></input>
 					</div>
 				</div>
 
-						</div>
-			
+				<div className="user-box-in">
+					<div className="user-text">비밀번호</div>
+					<div className="user-box-div user-icon-light">
+						<span className="user-icon-bar">|</span>
+						<input
+						type={showPw ? "text" : "password"}
+						className="user-inner-transparent"
+						// placeholder="비밀번호를 입력해주세요"
+						{...register("password", {
+						required: "답변이 입력되지 않았습니다.",
+						})}></input>
+						{showPw ? (
+						<ShowPw onClick={toggleShowPw} />
+						) : (
+						<HidePw onClick={toggleShowPw} />
+						)}
+					</div>
+					<div className="user-text user-text-right">비밀번호를 잊으셨나요?
+					</div>
+				</div>
+
+				{/* <form onSubmit={handleSubmit}>
+					<input
+						type="password"
+						name="password"
+						value={password}
+						onChange={handleChange}
+					/>
+					<button type="submit">비밀번호 변경</button>
+				</form> */}
+
+				<div className="user-box-in">
+					<button type="submit" className="user-btn">
+						<div className="user-btn-text">로그인</div>
+					</button>
+				</div>
+
 				<div className="login-join-box">
 					<BtnToJoin/>
+					<button onClick={notify}>
+   					 <ToastContainer/>
+					</button>
 				</div>
-		</form>
+			</div>
 		</div>
-
+	</form>
 	);
 };
 

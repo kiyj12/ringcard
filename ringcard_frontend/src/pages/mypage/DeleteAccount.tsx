@@ -4,17 +4,70 @@ import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
+import "../../styles/user/userHeader.css";
 import "../../styles/deleteAccount.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
+import { useForm } from "react-hook-form";
+import UserProfile from "../../components/UserProfile";
 
 
 const DeleteAccount = () => {
+
+	type ResponseList = {
+		passwordError: boolean;
+	}
+	const [response, setResponse] = useState<ResponseList>({
+		passwordError: false
+	});
+
+	const [submitted, setSubmitted] = useState(false);
+	
+	const onSubmit = async (data: any) => {
+		await new Promise((r) => setTimeout(r, 100));
+
+		// alert(JSON.stringify(data));
+		console.log(data);
+
+		await axios
+			.post("/mypage/delete/account", data)
+			.then((res) => {
+				console.log("postHere");
+				console.log(data);
+				setResponse(res.data);
+				console.log(res.data);
+				setSubmitted(true);
+			})
+			.catch(function (error) {
+				console.log(error.config);
+			});
+	};
+
+	function RedirectAndInputErrors(){
+		if(response.passwordError){
+			return (
+			<div className="user-text-error">passwordError</div>
+			)
+		}
+		else if(submitted) {
+			// 위 조건 만족할 때만 loginForm으로 새로고침
+			window.location.href = "/loginForm"
+			return (null);
+		}
+		return (null);
+	}
+
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting, isDirty, errors },
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	} = useForm();
 
 	const [user, setUser] = useState<any>([]);
 
 	useEffect(() => {
 		axios
-			.get("/mypage/delete/account")
+			.get("/mypage/info")
 			.then((res) => {
 				setUser(res.data);
 				console.log(res.data);
@@ -36,14 +89,36 @@ const DeleteAccount = () => {
 			)
 	}
 	
+	// PW toggle start.
+	const [showPw, setShowPw] = useState<boolean>(false);
+	const toggleShowPw =()=>{
+	setShowPw(!showPw);
+	}
+
+	function handlePwClick(e: any){
+    toggleShowPw()
+  }
+
+	function ShowPw(props: any) {
+  return(
+    <button value="변경" className="user-show-pw" onClick={handlePwClick}></button>
+  	)
+	}
+
+	function HidePw(props: any) {
+  return(
+    <button value="변경" className="user-hide-pw" onClick={handlePwClick}></button>
+  	)
+	}
+	// PW toggle fin.
+
 	return (
+	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
 			<HeaderNoProfile />
       <div className="userInfo-profile-container">
-				<div>
-					<img alt="" src="/profile.png" width="77px" color="white" />
-				</div>
-				<div className="profile-pic-large-name">{user.userRingcardName}</div>
+				<UserProfile/>
+				<div className="user-profile-name">{user.userRingcardName}</div>
 			</div>
 
 			<div>
@@ -54,11 +129,32 @@ const DeleteAccount = () => {
 						탈퇴하시겠습니까? 링카드는 울어요ㅠㅠ
 						</div>
 					</div>
-					<div className="user-box-in">
+
+					{/* <div className="user-box-in">
 						<div className="user-text deleteAccount-text">탈퇴를 원하시면 비밀번호를 입력해주세요. </div>
-						<input className="user" placeholder="비밀번호를 입력해주세요"></input>
+						<input className="user" placeholder="비밀번호를 입력해주세요" {...register("password", {
+							required: "답변이 입력되지 않았습니다.",
+							})}>
+						</input>
+					</div> */}
+
+					<div className="user-box-in">
+						<div className="user-text deleteAccount-text">탈퇴를 원하면 비밀번호를 입력해 주세요.</div>
+						<div className="user-box-div user-icon-light">
+							<input
+							type={showPw ? "text" : "password"}
+							className="user-inner-transparent"
+							placeholder="비밀번호를 입력해주세요"
+              {...register("password", {
+							required: "답변이 입력되지 않았습니다.",
+							})}></input>
+							{showPw ? (
+	  					<ShowPw onClick={toggleShowPw} />
+    					) : (
+	  					<HidePw onClick={toggleShowPw} />
+    					)}
+						</div>
 					</div>
-					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
 					{/* <div className="user-box-in">
 						<div className="user-text deleteAccount-text">새 비밀번호</div>
@@ -68,6 +164,10 @@ const DeleteAccount = () => {
 						<div className="user-text deleteAccount-text">새 비밀번호 확인</div>
 						<input className="input deleteAccount-input" placeholder="새 비밀번호 확인"></input>
 					</div> */}
+
+					<div className="user-box-in">
+            <RedirectAndInputErrors/>
+          </div>
 
 					<div className="user-box-in">
 						<button className="user-btn deleteAccount-btn">
@@ -87,7 +187,7 @@ const DeleteAccount = () => {
 				</div>
 			</div> */}
 		</div>
+	</form>
 	);
 };
-
 export default DeleteAccount;

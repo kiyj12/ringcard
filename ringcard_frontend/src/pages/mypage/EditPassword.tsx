@@ -4,10 +4,12 @@ import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
+import "../../styles/user/userHeader.css";
 import "../../styles/editPassword.css";
 import HeaderUser from "../../components/HeaderNoProfile";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import { useForm } from "react-hook-form";
+import UserProfile from "../../components/UserProfile";
 
 const EditPassword = () => {
 
@@ -15,6 +17,7 @@ const EditPassword = () => {
     // pastPasswordBlank: boolean;
     pastPasswordFalse: boolean;
     // newPasswordBlank: boolean;
+		passwordSame: boolean;
     newPasswordFalse: boolean;
     passwordChanged: boolean;
 	}
@@ -22,6 +25,7 @@ const EditPassword = () => {
 		// pastPasswordBlank: false,
     pastPasswordFalse: false,
     // newPasswordBlank: false,
+		passwordSame: false,
     newPasswordFalse: false,
     passwordChanged: false
 	});
@@ -88,11 +92,14 @@ const EditPassword = () => {
 		// 	return <div className="user-text-error">pastPasswordBlank</div>
 		// }
     if(response.pastPasswordFalse){
-			return <div className="user-text-error">pastPasswordFalse 현재 비밀번호를 정확히 입력해주세요</div>
+			return <div className="user-text-error">pastPasswordFalse 현재 비밀번호를 정확히 입력해 주세요</div>
 		}
     // else if(response.newPasswordBlank){
 		// 	return <div className="user-text-error">newPasswordBlank</div>
 		// }
+		else if(response.passwordSame){
+			return <div className="user-text-error">passwordSame 새 비밀번호를 현재 비밀번호와 다르게 변경해 주세요.</div>
+		}
     else if(response.newPasswordFalse){
 			return <div className="user-text-error">newPasswordFalse 새 비밀번호와 비밀번호 확인이 일치하지 않습니다.</div>
 		}
@@ -125,10 +132,8 @@ const EditPassword = () => {
 		<div className="container">
 			<HeaderNoProfile />
       <div className="userInfo-profile-container">
-				<div>
-					<img alt="" src="/profile.png" width="77px" color="white" />
-				</div>
-				<div className="profile-pic-large-name">{user.userRingcardName}</div>
+				<UserProfile/>
+				<div className="user-profile-name">{user.userRingcardName}</div>
 			</div>
       
 			<div>
@@ -139,7 +144,7 @@ const EditPassword = () => {
 							<input
 							type={showPw ? "text" : "password"}
 							className="user-inner-transparent"
-							placeholder="현재 비밀번호"
+							// placeholder="현재 비밀번호"
               {...register("pastPassword", {
 							required: "답변이 입력되지 않았습니다.",
 							})}></input>
@@ -160,7 +165,7 @@ const EditPassword = () => {
 							<input
 							type={showPw ? "text" : "password"}
 							className="user-inner-transparent"
-							placeholder="현재 비밀번호"
+							// placeholder="새 비밀번호"
               {...register("newPassword", {
 							required: "답변이 입력되지 않았습니다.",
 							})}></input>
@@ -178,7 +183,7 @@ const EditPassword = () => {
 							<input
 							type={showPw ? "text" : "password"}
 							className="user-inner-transparent"
-							placeholder="현재 비밀번호"
+							// placeholder="새 비밀번호 확인"
               {...register("newPasswordConfirm", {
 							required: "답변이 입력되지 않았습니다.",
 							})}></input>
@@ -200,11 +205,11 @@ const EditPassword = () => {
 						</button>
 					</div>
 
-					<div className="user-box-in">
+					{/* <div className="user-box-in">
 						<button className="user-btn editPassword-btn-cancel">
 					  	<div className="user-btn-text editPassword-btn-text-cancel">비밀번호 변경 취소하기</div>
 						</button>
-					</div>
+					</div> */}
 				</div>
 			</div>
 			{/* 여기에 비밀번호 찾기?? */}

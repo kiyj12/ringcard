@@ -56,3 +56,8 @@
   margin-right: auto; */
 }
 
+input.user-icon::placeholder {
+        color: rgb(94, 94, 94);
+        /* font-style: italic; */
+        /* opacity: 1; */
+      }

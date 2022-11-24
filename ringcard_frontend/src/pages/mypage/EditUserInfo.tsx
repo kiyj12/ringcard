@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
+import "../../styles/user/userHeader.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/editUserInfo.css";
-import HeaderUser from "../../components/HeaderNoProfile";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import { useForm } from "react-hook-form";
+import UserProfile from "../../components/UserProfile";
 
 const EditUserInfo = () => {
 
@@ -29,7 +30,8 @@ const EditUserInfo = () => {
 				console.log(res.data);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err.config);
+				console.log(err.response.data);
 			});
 	}, []);
 
@@ -59,6 +61,7 @@ const EditUserInfo = () => {
 			})
 			.catch(function (error) {
 				console.log(error.config);
+			
 			});
 	};
 
@@ -70,7 +73,7 @@ const EditUserInfo = () => {
 		}
 		else if(submitted) {
 			// 위 조건 만족할 때만 loginForm으로 새로고침
-			// window.location.href = "/mypage/info/edit"
+			window.location.href = "/mypage/info/edit"
 			return (null);
 		}
 		return (null);
@@ -81,16 +84,15 @@ const EditUserInfo = () => {
 		handleSubmit,
 		formState: { isSubmitting, isDirty, errors },
 	} = useForm();
-	
+
 	return (
 	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
 			<HeaderNoProfile />
+		
       <div className="userInfo-profile-container">
-				<div>
-					<img alt="" src="/profile.png" width="77px" color="white" />
-				</div>
-				<div className="profile-pic-large-name">{user.userRingcardName}</div>
+				<UserProfile/>
+				<div className="user-profile-name">{user.userRingcardName}</div>
 			</div>
 
 			<div>
@@ -108,7 +110,7 @@ const EditUserInfo = () => {
 					</div>
 					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
-					<div className="user-box-in">
+					{/* <div className="user-box-in">
 						<div className="user-text">아이디</div>
 						<input
 							className="user-icon user-icon-id-light"
@@ -118,7 +120,7 @@ const EditUserInfo = () => {
 							required: "답변이 입력되지 않았습니다.",
 							})}
 						></input>
-					</div>
+					</div> */}
 
 					<div className="user-box-in">
 						<div className="user-text">비밀번호</div>
@@ -129,23 +131,17 @@ const EditUserInfo = () => {
 								placeholder="●●●●●●●●●●"
 								readOnly
 							></input>
-							{/* <button className="editUserInfo-input-pw-edit-button"><div className="editUserInfo-input-pw-edit-button-tag">변경</div></button>				 */}
 							<BtnToEditPw/>
 						</div>
-
-						{/* <div className="email_div">
-							E-mail
-							<input type="text" name="email" className="email"/>
-							<input type="submit" value="전송" className="btn"/>
-						</div> */}
 					</div>
 
 				<div className="user-box-in">
 					<div className="user-text">이메일</div>
 					<input className="user-icon user-icon-email-light" defaultValue={user.userEmail} placeholder="이메일을 입력해주세요"
+					type="email"
 					{...register("userEmail", {
 							required: "답변이 입력되지 않았습니다.",
-							})} ></input>
+							})}></input>
 				</div>
 
 				<div className="user-box-in">

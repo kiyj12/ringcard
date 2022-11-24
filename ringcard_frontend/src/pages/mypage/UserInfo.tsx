@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/headerNoProfile.css";
+import "../../styles/user/userHeader.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/userInfo.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
+import UserProfile from "../../components/UserProfile";
 
 const UserInfo = () => {
 	const [user, setUser] = useState<any>([]);
@@ -35,20 +37,16 @@ const UserInfo = () => {
 		<div className="container">
 			<HeaderNoProfile />
       <div className="userInfo-profile-container">
-				<div>
-					<img alt="" src="/profile.png" width="77px" color="white" />
-				</div>
-				<div className="profile-pic-large-name">{user.userRingcardName}</div>
+				<UserProfile/>
+				<div className="user-profile-name">{user.userRingcardName}</div>
 			</div>
-
 			<div>
 				<div className="user-box">
 					<div className="user-box-in">
 						<div className="user-text">이름</div>
 						<input
 							className="user-icon user-icon-user-dark"
-							defaultValue={user.userRingcardName}
-							placeholder="이름을 입력해주세요"
+							placeholder={user.userRingcardName}
 							readOnly
 						></input>
 					</div>
@@ -58,8 +56,7 @@ const UserInfo = () => {
 						<div className="user-text">아이디</div>
 						<input
 							className="user-icon user-icon-id-dark"
-							defaultValue={user.username}
-							placeholder="아이디를 입력해주세요"
+							placeholder={user.username}
 							readOnly
 						></input>
 					</div>
@@ -68,8 +65,7 @@ const UserInfo = () => {
 						<div className="user-text">비밀번호</div>
 						<input
 							className="user-icon user-icon-pw-dark"
-							defaultValue="●●●●●●●●●●"
-							placeholder="*****"
+							placeholder="●●●●●●●●●●"
 							readOnly
 						></input>
 					</div>
@@ -78,8 +74,7 @@ const UserInfo = () => {
 						<div className="user-text">이메일</div>
 						<input
 							className="user-icon user-icon-email-dark"
-							defaultValue={user.userEmail}
-							placeholder="이메일을 입력해주세요"
+							placeholder={user.userEmail}
 							readOnly
 						></input>
 					</div>

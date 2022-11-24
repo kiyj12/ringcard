@@ -150,3 +150,16 @@
   background-image: var(--url-pw);
   margin: 13px 0 13px 0;
 }
+
+.user-profile-name{
+  margin-top: 7px;
+  font-family: AppleSDGothicNeo;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+}
