@@ -45,10 +45,11 @@ public class EditPasswordController {
         String newPassword = requestBody.getNewPassword();
         String newPasswordConfirm = requestBody.getNewPasswordConfirm();
 
-        HashMap<String, Boolean> response=new HashMap<>(3){{
-            put("passwordChanged",false);
-            put("newPasswordFalse",false);
-            put("pastPasswordFalse",false);
+        HashMap<String, Boolean> response = new HashMap<>(3) {{
+            put("passwordChanged", false);
+            put("passwordSame", false);
+            put("newPasswordFalse", false);
+            put("pastPasswordFalse", false);
         }};
         // 현재 비밀번호 없음
 //        if (pastPassword.isEmpty() || pastPassword.isBlank() ) {
@@ -56,7 +57,7 @@ public class EditPasswordController {
 //            response.put("pastPasswordBlank", true);
 //            return ResponseEntity.ok(response);
 //        }
-        bCryptPasswordEncoder.matches(pastPassword, user.getPassword());
+//        bCryptPasswordEncoder.matches(pastPassword, user.getPassword());
         if (bCryptPasswordEncoder.matches(pastPassword, user.getPassword())) {
             // 새로운 비번 없음
 //            if (newPassword.isEmpty() || newPassword.isBlank()){
@@ -64,7 +65,9 @@ public class EditPasswordController {
 //                return ResponseEntity.ok(response);
 //
 //            }
-            if (Objects.equals(newPassword, newPasswordConfirm)) {
+            if (Objects.equals(pastPassword, newPassword)) {
+                response.put("passwordSame", true);
+            } else if (Objects.equals(newPassword, newPasswordConfirm)) {
                 String encNewPassword = bCryptPasswordEncoder.encode(newPassword);
                 userService.updateUserPassword(userId, encNewPassword);
                 response.put("passwordChanged", true);
@@ -74,8 +77,8 @@ public class EditPasswordController {
                 // 현재 비번 인증 안되면, '새 비밀번호와 비밀번호 확인이 일치하지 않습니다.' 알람
                 response.put("newPasswordFalse", true);
                 return ResponseEntity.ok(response);
-
             }
+            return ResponseEntity.ok(response);
         } else {
             // 현재 비번 인증 안되면, '현재 비밀번호를 정확히 입력해주세요' 알람
             response.put("pastPasswordFalse", true);
