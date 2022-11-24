@@ -39,6 +39,12 @@ function QuestionAnswered() {
 						oldAnswer={oldAnswer}
 					/>
 				</div>
+				<div className="QuestionPage-hr-box">
+					<hr className="QuestionPage-hr" />
+
+					<div className="QuestionPage-hr-text">미응답 질문들</div>
+					<hr className="QuestionPage-hr" />
+				</div>
 				<div className="questionPage-container-body">
 					<QuestionNoteList questionList={questionList} />
 				</div>

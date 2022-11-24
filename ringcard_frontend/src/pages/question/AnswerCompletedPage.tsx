@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
 import Header from "../../components/Header";
 import QuestionNoteList from "../../components/QuestionNoteList";
-import { IQuestion } from "../../components/types";
 
 function AnswerCompletedPage() {
 	const params = useParams();
@@ -35,11 +34,11 @@ function AnswerCompletedPage() {
 				<div className="questionPage-the-question-container">
 					<AnsweredQuestionNote question={question} answer={answer} />
 				</div>
-				<div className="AnsweredQuestionNote-hr-box">
-					<hr className="AnsweredQuestionNote-hr" />
+				<div className="QuestionPage-hr-box">
+					<hr className="QuestionPage-hr" />
 
-					<div className="AnsweredQuestionNote-hr-text">미응답 질문들</div>
-					<hr className="AnsweredQuestionNote-hr" />
+					<div className="QuestionPage-hr-text">미응답 질문들</div>
+					<hr className="QuestionPage-hr" />
 				</div>
 				<div className="questionPage-container-body">
 					<QuestionNoteList questionList={questionList} />
