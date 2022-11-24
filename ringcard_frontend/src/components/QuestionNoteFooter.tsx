@@ -157,13 +157,15 @@ function FooterUnansweredQuestion(props: FooterProps) {
 						</Link>
 					) : (
 						<React.Fragment>
-							<button onClick={handleEditAnswerClick}>
-								<img
-									className="note-edit-answer-btn"
-									src="/buttons/edit-answer-btn.svg"
-									alt=""
-								/>
-							</button>
+							<Link to={`/question/${question.id}/edit/user`}>
+								<button>
+									<img
+										className="note-edit-answer-btn"
+										src="/buttons/edit-answer-btn.svg"
+										alt=""
+									/>
+								</button>
+							</Link>
 							<button onClick={handleDeleteAnswerClick}>
 								<img
 									className="note-delete-answer-btn"

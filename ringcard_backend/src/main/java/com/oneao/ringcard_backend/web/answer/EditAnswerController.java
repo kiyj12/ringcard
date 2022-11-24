@@ -30,13 +30,14 @@ public class EditAnswerController {
     public ResponseEntity<Model> editAnswerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
-        Answer answer = answerService.findByQuestionId(questionId).get();
+        Answer oldAnswer = answerService.findByQuestionId(questionId).get();
+        String oldAnswerContents = oldAnswer.getAnswerContents();
 
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
         List<Question> questions = questionService.findAll(userId, questionSearchCond);
         model.addAttribute("questions", questions);
         model.addAttribute("question", question);
-        model.addAttribute("oldAnswer", answer);
+        model.addAttribute("oldAnswer", oldAnswerContents);
 
         return ResponseEntity.ok(model);
     }

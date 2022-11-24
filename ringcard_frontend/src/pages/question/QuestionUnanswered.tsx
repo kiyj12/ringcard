@@ -3,7 +3,7 @@ import React, { useState, useEffect, Component } from "react";
 import { useParams } from "react-router-dom";
 import AnswerFormQuestionNote from "../../components/AnswerFormQuestionNote";
 import Header from "../../components/Header";
-import QuestionNoteList from "../../components/QuestionNoteList";
+import QuestionList from "../../components/QuestionNoteList";
 import "../../styles/layout/layout.css";
 import "../../styles/question-page.css";
 
@@ -35,7 +35,7 @@ function QuestionUnanswered() {
 					<AnswerFormQuestionNote question={question} />
 				</div>
 				<div className="questionPage-container-body">
-					<QuestionNoteList questionList={questionList} />
+					<QuestionList questionList={questionList} />
 				</div>
 			</div>
 		</div>

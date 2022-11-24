@@ -14,6 +14,7 @@ import Login from "./pages/login/Login";
 import Join from "./pages/login/Join";
 import EditPassword from "./pages/mypage/EditPassword";
 import AnswerCompletedPage from "./pages/question/AnswerCompletedPage";
+import QuestionAnswered from "./pages/question/QuestionAnswered";
 
 const AppRouter = () => {
 	return (
@@ -26,13 +27,18 @@ const AppRouter = () => {
 					<Route path="/home/trashcan" element={<HomeTrashcan />} />
 					<Route path="/home/collection" element={<HomeCollection />} />
 					<Route
-									path="/question/:questionId/unanswered/user"
-									element={<QuestionUnanswered />}
-								/>
+						path="/question/:questionId/unanswered/user"
+						element={<QuestionUnanswered />}
+					/>
 					<Route
-									path="/question/:questionId/completed/user"
-									element={<AnswerCompletedPage />}
-								/>
+						path="/question/:questionId/edit/user"
+						element={<QuestionAnswered />}
+					/>
+					<Route
+						path="/question/:questionId/completed/user"
+						element={<AnswerCompletedPage />}
+					/>
+
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
 					<Route path="/loginForm" element={<Login />} />
@@ -42,6 +48,5 @@ const AppRouter = () => {
 			</BrowserRouter>
 		</>
 	);
-
 };
 export default AppRouter;

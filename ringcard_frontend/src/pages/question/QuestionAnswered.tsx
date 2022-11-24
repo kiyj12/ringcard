@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect, Component } from "react";
 import { useParams } from "react-router-dom";
-import AnswerFormQuestionNote from "../../components/AnswerFormQuestionNote";
+import EditAnswerFormQuestionNote from "../../components/EditAnswerFormQuestionNote";
 import Header from "../../components/Header";
 import QuestionNoteList from "../../components/QuestionNoteList";
 import "../../styles/layout/layout.css";
@@ -34,7 +34,10 @@ function QuestionAnswered() {
 			<Header />
 			<div className="contents-container">
 				<div className="questionPage-the-question-container">
-					<AnswerFormQuestionNote question={question} />
+					<EditAnswerFormQuestionNote
+						question={question}
+						oldAnswer={oldAnswer}
+					/>
 				</div>
 				<div className="questionPage-container-body">
 					<QuestionNoteList questionList={questionList} />

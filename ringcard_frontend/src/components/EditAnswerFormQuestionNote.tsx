@@ -2,21 +2,21 @@ import AnswerForm from "./AnswerForm";
 import { IQuestion } from "./types";
 import "../styles/question.css";
 import "../styles/answerQuestionNote.css";
+import EditAnswerForm from "./EditAnswerForm";
 
 export interface Props {
 	question: IQuestion;
+	oldAnswer: String;
 }
 
-function AnswerFormQuestionNote(props: Props) {
+function EditAnswerFormQuestionNote(props: Props) {
 	const question = props.question;
+	const oldAnswer = props.oldAnswer;
 
 	return (
 		<>
 			<div className="each-question-note-box">
-				<div
-					className="each-question-note-header-edge-img-box"
-					style={{ backgroundImage: `url("/notes/yellow-note-top-edge.png")` }}
-				></div>
+				<div className="each-question-note-header-edge-img-box"></div>
 				<div className="each-question-note-body">
 					<div className="each-note-header">
 						<div className="note-profile-pic">
@@ -29,7 +29,7 @@ function AnswerFormQuestionNote(props: Props) {
 					</div>
 					<hr className="note-hr" />
 					<div className="each-note-answer-form-box">
-						<AnswerForm questionId={question.id} />
+						<EditAnswerForm questionId={question.id} oldAnswer={oldAnswer} />
 					</div>
 				</div>
 				<div
@@ -41,4 +41,4 @@ function AnswerFormQuestionNote(props: Props) {
 	);
 }
 
-export default AnswerFormQuestionNote;
+export default EditAnswerFormQuestionNote;
