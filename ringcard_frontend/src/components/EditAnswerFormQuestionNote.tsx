@@ -1,4 +1,3 @@
-import AnswerForm from "./AnswerForm";
 import { IQuestion } from "./types";
 import "../styles/question.css";
 import "../styles/answerQuestionNote.css";

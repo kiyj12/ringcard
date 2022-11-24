@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/answerQuestionNote.css";
 
@@ -54,7 +54,7 @@ function AnswerForm(props: Props) {
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
+		// formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
 	// 디폴트 밸류로 예전 값 넣는 방법.

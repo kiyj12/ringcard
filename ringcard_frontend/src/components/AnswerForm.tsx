@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/answerQuestionNote.css";
 
@@ -46,7 +46,7 @@ function AnswerForm(props: Props) {
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
+		// formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
 	// 유저 입력 값을 넣을 변수
