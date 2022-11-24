@@ -11,3 +11,9 @@ export type IQuestion = {
   uploadTime: TimeLike;
   id: number;
 }
+
+export type IAnswer = {
+  answerContents: string;
+  questionId: number;
+  uploadTime: TimeLike;
+}

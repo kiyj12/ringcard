@@ -127,3 +127,72 @@
   border: none;
   background: none;
 }
+
+
+/* ##################### AnsweredQuestionNote ####################### */
+
+.each-note-answer-content-box {
+  width: 100%;
+  height: fit-content;
+
+  /* display: inline-flex; */
+}
+
+.AnsweredQuestionNote-answer-profile-pic {
+  /* width: 40px; */
+  height: 1px;
+  padding: 10px 12px 10px 12px;
+}
+
+.AnsweredQuestionNote-answer-profile-pic img {
+  width: 23px;
+}
+
+.AnsweredQuestionNote-answer-content {
+  /* background-color: aquamarine; */
+  /* width: 100%;  */
+  height: fit-content;
+  padding: 5px;
+  padding-bottom : 18px;
+
+
+  font-family: NanumBarunGothic;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  text-align: center;
+  color: #5972aa;
+}
+
+.AnsweredQuestionNote-hr-box {
+  width: 100%;
+  height: 20px;
+  margin-top: 30px;
+  /* background-color:chartreuse; */
+  display: inline-flex;
+}
+
+.AnsweredQuestionNote-hr {
+  margin-top: 10px;
+  width: 34%;
+  border: 0;
+  height: 01px;
+  background-color: rgba(234, 234, 234, 0.66);
+  
+}
+
+.AnsweredQuestionNote-hr-text {
+  /* background-color: aquamarine; */
+  color: #ffffff;
+  font-family: NanumBarunGothic;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: center;
+}

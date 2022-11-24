@@ -46,10 +46,18 @@ public class AddAnswerFormController {
         System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
+
         Long answerId = answerService.findByQuestionId(questionId).get().getId();
         Answer answer = answerService.findById(answerId).get();
+
+        // 미응답 질문 리스트에서 본인 제외
+        QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
+        List<Question> questions = questionService.findAll(userId, questionSearchCond);
+        questions.remove(question);
+
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        model.addAttribute("questions", questions);
         System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);
