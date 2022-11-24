@@ -1,0 +1,30 @@
+.UserHome-profile-box {
+  /* background-color: yellowgreen; */
+  height: 150px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.UserHome-profile-box img {
+  width: 75px;
+  border-radius: 100%;
+  border: solid 2px #f7cec6;
+}
+
+.UserHome-profile-username {
+  margin-top: 15px;
+
+  font-family: AppleSDGothicNeo;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+}

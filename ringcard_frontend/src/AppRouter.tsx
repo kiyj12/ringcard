@@ -15,6 +15,7 @@ import Join from "./pages/login/Join";
 import EditPassword from "./pages/mypage/EditPassword";
 import AnswerCompletedPage from "./pages/question/AnswerCompletedPage";
 import QuestionAnswered from "./pages/question/QuestionAnswered";
+import UserHome from "./pages/anony/UserHome";
 
 const AppRouter = () => {
 	return (
@@ -38,6 +39,7 @@ const AppRouter = () => {
 						path="/question/:questionId/completed/user"
 						element={<AnswerCompletedPage />}
 					/>
+					<Route path="/userHome/:userName" element={<UserHome />} />
 
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
