@@ -16,7 +16,10 @@ function EditAnswerFormQuestionNote(props: Props) {
 	return (
 		<>
 			<div className="each-question-note-box">
-				<div className="each-question-note-header-edge-img-box"></div>
+				<div
+					className="each-question-note-header-edge-img-box"
+					style={{ backgroundImage: `url("/notes/yellow-note-top-edge.png")` }}
+				></div>
 				<div className="each-question-note-body">
 					<div className="each-note-header">
 						<div className="note-profile-pic">
