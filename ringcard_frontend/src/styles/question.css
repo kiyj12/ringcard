@@ -137,7 +137,8 @@
 }
 
 .note-delete-answer-btn {
-  width: 18px;
+  margin-top: 2px;
+  width: 19px;
   margin-right: 3px;
 }
 
