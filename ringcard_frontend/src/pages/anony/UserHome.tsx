@@ -28,15 +28,17 @@ function UserHome() {
 	return (
 		<div className="container">
 			<HeaderNoProfile />
-			<div className="contents-container">
-				<div className="UserHome-profile-box">
-					<img src="/profile.png" alt="" />
-					<div className="UserHome-profile-username">
-						{user.userRingcardName}
+			<div className="down-background-img">
+				<div className="contents-container">
+					<div className="UserHome-profile-box">
+						<img src="/profile.png" alt="" />
+						<div className="UserHome-profile-username">
+							{user.userRingcardName}
+						</div>
 					</div>
+					<SendQuestionForm userName={userName} />
+					<QuestionNoteList questionList={questionList} />
 				</div>
-				<SendQuestionForm userName={userName} />
-				<QuestionNoteList questionList={questionList} />
 			</div>
 		</div>
 	);

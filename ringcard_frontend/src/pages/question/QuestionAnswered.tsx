@@ -33,20 +33,22 @@ function QuestionAnswered() {
 		<div className="container">
 			<Header />
 			<div className="contents-container">
-				<div className="questionPage-the-question-container">
-					<EditAnswerFormQuestionNote
-						question={question}
-						oldAnswer={oldAnswer}
-					/>
-				</div>
-				<div className="QuestionPage-hr-box">
-					<hr className="QuestionPage-hr" />
+				<div className="down-background-img">
+					<div className="questionPage-the-question-container">
+						<EditAnswerFormQuestionNote
+							question={question}
+							oldAnswer={oldAnswer}
+						/>
+					</div>
+					<div className="QuestionPage-hr-box">
+						<hr className="QuestionPage-hr" />
 
-					<div className="QuestionPage-hr-text">미응답 질문들</div>
-					<hr className="QuestionPage-hr" />
-				</div>
-				<div className="questionPage-container-body">
-					<QuestionNoteList questionList={questionList} />
+						<div className="QuestionPage-hr-text">미응답 질문들</div>
+						<hr className="QuestionPage-hr" />
+					</div>
+					<div className="questionPage-container-body">
+						<QuestionNoteList questionList={questionList} />
+					</div>
 				</div>
 			</div>
 		</div>

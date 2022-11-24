@@ -68,7 +68,7 @@ function SendQuestionForm(props: Props) {
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<div className="SendQuestionForm-questionForm-box">
-					<span className="cursur-bar">|</span>
+					<span className="SendQuestionForm-cursur-bar">|</span>
 					<textarea
 						id="questionAdd"
 						className="questionForm-textarea"
