@@ -32,7 +32,7 @@ function QuestionAnswered() {
 	return (
 		<div className="container">
 			<Header />
-			<div className="contents-container">
+			<div className="UserHome-contents-container">
 				<div className="down-background-img">
 					<div className="questionPage-the-question-container">
 						<EditAnswerFormQuestionNote

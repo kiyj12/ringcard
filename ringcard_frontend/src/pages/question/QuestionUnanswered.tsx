@@ -32,17 +32,17 @@ function QuestionUnanswered() {
 			<Header />
 
 			<div className="contents-container">
-				<div className="down-background-img">
-					<div className="questionPage-the-question-container">
-						<AnswerFormQuestionNote question={question} />
-					</div>
-					<div className="QuestionPage-hr-box">
-						<hr className="QuestionPage-hr" />
+				<div className="questionPage-the-question-container">
+					<AnswerFormQuestionNote question={question} />
+				</div>
+				<div className="QuestionPage-hr-box">
+					<hr className="QuestionPage-hr" />
 
-						<div className="QuestionPage-hr-text">미응답 질문들</div>
-						<hr className="QuestionPage-hr" />
-					</div>
-					<div className="questionPage-container-body">
+					<div className="QuestionPage-hr-text">미응답 질문들</div>
+					<hr className="QuestionPage-hr" />
+				</div>
+				<div className="questionPage-container-body">
+					<div className="QuestionPage-down-background-img">
 						<QuestionList questionList={questionList} />
 					</div>
 				</div>

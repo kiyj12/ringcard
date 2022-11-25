@@ -1,10 +1,19 @@
 .SendQuestionForm-container{
   /* background-color: aquamarine; */
-  height: 170px;
+  width: 100%;
+  height: 70px;
+
+  position: fixed;
+  top: 260px;
+
+  margin-top: 70px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  z-index: 20;
 }
 
 .SendQuestionForm-question-form {

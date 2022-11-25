@@ -51,13 +51,6 @@ body {
   height: 100%;
 }
 
-.down-background-img {
-  background-image: url('../../../public/background-img/down-background.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-position-y: 278px;
-  background-size: 105% 100%;
-}
 
 
 .userInfo-profile-container {
