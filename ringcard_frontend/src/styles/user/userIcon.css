@@ -5,8 +5,7 @@
   --url-id: url("../../../public/buttons/info.svg");
   --url-pw: url("../../../public/buttons/lock.svg");
   --url-email: url("../../../public/buttons/at-sign.svg");
-  --icon-height: 22px;
-}
+  --icon-height: 22px; }
 
 .user-icon{
     /* padding 값 2개 뺀 거.*/

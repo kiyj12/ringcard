@@ -5,11 +5,13 @@ import "../../styles/layout/header.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/user/userHeader.css";
+import "../../styles/layout/reactToast.css"
 import "../../styles/login.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
 import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify"
+import { toast, ToastContainer, Zoom} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -17,7 +19,20 @@ import { toast, ToastContainer } from "react-toastify"
 const Login = () => {
 
 	// toastify 알람 실행 함수 만들기
-  const notify = () => toast("Toastify Alert!")
+  const notify = () => toast("질문의 답변이 등록되었습니다.", { 
+		autoClose: 700,
+		position:"top-center", 
+		pauseOnFocusLoss: true,
+		hideProgressBar: true,
+		draggable: true, 
+		pauseOnHover: true,
+		theme: "dark",
+		closeButton: false,
+		transition: Zoom,
+		// onOpen: () => window.alert('Called when I open'),
+		// onClose: () => window.alert('Called when I close')
+})
+
 
 	type ResponseList = {
 		bindingResultHasErrors: boolean;
@@ -112,10 +127,12 @@ const Login = () => {
 			)
 	}
 
+
 	return (
 	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
 			<HeaderRingca/>
+			<ToastContainer/>
 			<div className="user-box">
 				<div className="user-box-in">
 					<div className="user-text">아이디</div>
@@ -167,9 +184,7 @@ const Login = () => {
 
 				<div className="login-join-box">
 					<BtnToJoin/>
-					<button onClick={notify}>
-   					 <ToastContainer/>
-					</button>
+					<button onClick={notify}/>
 				</div>
 			</div>
 		</div>
