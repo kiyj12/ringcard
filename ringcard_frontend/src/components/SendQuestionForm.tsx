@@ -75,7 +75,7 @@ function SendQuestionForm(props: Props) {
 						value={checkItemContent}
 						onInput={checkItemChangeHandler}
 						style={{ height: (textareaHeight + 1) * 27 + "px" }}
-						placeholder="질문 해주세요"
+						placeholder="질문해 주세요"
 						{...register("questionContents", {
 							required: "답변이 입력되지 않았습니다.",
 						})}
