@@ -7,12 +7,11 @@ import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class AddAnswerFormController {
     private final QuestionService questionService;
 
     @GetMapping("/unanswered/user")
-    public String answerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<Model> answerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
 
         Question question = questionService.findById(questionId, userId).get();
@@ -35,22 +34,33 @@ public class AddAnswerFormController {
         List<Question> questions = questionService.findAll(userId, questionSearchCond);
         questions.remove(question);
         model.addAttribute("questions", questions);
-        System.out.println(questions);
-        System.out.println(questions.size());
         model.addAttribute("question", question);
+        System.out.println("model = " + model);
 //        return "redirect:/{questionId}/completed";
-        return "question/unanswered";
+//        return "question/unanswered";
+        return ResponseEntity.ok(model);
     }
 
     @GetMapping("/completed/user")
-    public String answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Long answerId, Model model) {
+    public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+        System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
+
+        Long answerId = answerService.findByQuestionId(questionId).get().getId();
         Answer answer = answerService.findById(answerId).get();
+
+        // 미응답 질문 리스트에서 본인 제외
+        QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
+        List<Question> questions = questionService.findAll(userId, questionSearchCond);
+        questions.remove(question);
+
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        model.addAttribute("questions", questions);
+        System.out.println("model = " + model);
 
-        return "question/answerCompleted";
+        return ResponseEntity.ok(model);
     }
 
 }

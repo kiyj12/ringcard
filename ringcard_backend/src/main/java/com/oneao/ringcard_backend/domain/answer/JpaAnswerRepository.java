@@ -36,6 +36,7 @@ public class JpaAnswerRepository implements AnswerRepository{
     public void edit(Long answerId, AnswerEditDto editParam) {
         Answer findAnswer = repository.findById(answerId).orElseThrow();
         findAnswer.setAnswerContents(editParam.getAnswerContents());
+        findAnswer.setUploadTime(Timestamp.valueOf(LocalDateTime.now()));
     }
 
     @Override

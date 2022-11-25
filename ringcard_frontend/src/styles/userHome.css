@@ -1,0 +1,74 @@
+.UserHome-contents-container {
+  position: relative;
+  
+  top: 260px;
+  width: 100%;
+  max-width: inherit;
+  height: 100%;
+  z-index: 20;
+}
+
+
+.UserHome-profile-box {
+  /* background-color: yellowgreen; */
+  width: 100%;
+  height: 150px;
+  /* margin-top: 3%; */
+  margin-bottom: 20px;
+  
+  position: fixed;
+  top: 120px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.UserHome-profile-box img {
+  width: 75px;
+  border-radius: 100%;
+  border: solid 2px #f7cec6;
+}
+
+.UserHome-profile-username {
+  margin-top: 15px;
+
+  font-family: AppleSDGothicNeo;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+}
+
+.UserHome-questionlist-box {
+  width: 100%;
+  height: 80%;
+  /* padding-top: 40px; */
+  margin-top: 276px;
+
+  position: sticky;
+  top: 300px;
+  z-index: 0;
+
+  border-radius: 30px 25px 0 0;
+  box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.16);
+
+  overflow: scroll;
+
+
+  /* background-color: #f7cec6; */
+}
+
+.UserHome-down-background-img {
+  background-image: url('../../public/background-img/down-background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position-y: -20px;
+  background-size: 105% 100%;
+  padding-top: 20px;
+}

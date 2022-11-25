@@ -1,5 +1,6 @@
 package com.oneao.ringcard_backend.web.question;
 
+import com.oneao.ringcard_backend.domain.question.QuestionSendDto;
 import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.service.AnswerService;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor
+@RestController
 public class SendQuestionController {
 
     private final QuestionService questionService;
@@ -37,15 +41,19 @@ public class SendQuestionController {
     }
 
     @PostMapping({"userHome/{username}"})
-    public String addQuestion2(@PathVariable String username, Question question, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-        User user= userService.findByUsername(username).get();
-        question.setUserId(user.getId());
+    public void addQuestion2(@PathVariable String username,   HttpServletRequest request, @RequestBody QuestionSendDto requestBody) {
+        User user = userService.findByUsername(username).get();
+
+        String questionContents = requestBody.getQuestionContents();
+        String questionHyperlink = requestBody.getQuestionHyperlink();
+
+        Long userId = user.getId();
+        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false);
+
+        System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
         System.out.println(savedQuestion);
         System.out.println(user);
-        redirectAttributes.addAttribute("username", user.getUsername());
-        redirectAttributes.addAttribute("status",true);
 
-        return "redirect:/userHome/{username}";
     }
 }

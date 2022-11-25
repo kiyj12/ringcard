@@ -6,6 +6,7 @@ import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.UserService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class ShowUserHomeController {
     private final QuestionService questionService;
     private final UserService userService;
     @GetMapping("userHome/{username}")
-    public String showHomeAnswered(@PathVariable String username, Model model) {
+    public ResponseEntity<Model> showHomeAnswered(@PathVariable String username, Model model) {
         User user= userService.findByUsername(username).get();
         // Optional .orElseThrow()로 값 가져오기
         // https://minchul-son.tistory.com/472
@@ -32,6 +33,6 @@ public class ShowUserHomeController {
         model.addAttribute("questions", questions);
         model.addAttribute("username", username);
         model.addAttribute("user", user);
-        return "home/userHome";
+        return ResponseEntity.ok(model);
     }
 }

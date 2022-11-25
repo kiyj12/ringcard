@@ -4,7 +4,7 @@ import "../../styles/layout/layout.css";
 import "../../styles/home.css";
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
-import QuestionList from "../../components/QuestionNoteList";
+import QuestionNoteList from "../../components/QuestionNoteList";
 
 function HomeUnanswered() {
 	const [questionList, setQuestionList] = useState<any[]>([]);
@@ -42,7 +42,7 @@ function HomeUnanswered() {
 			<Navigation />
 
 			<div className="container-body">
-				<QuestionList questionList={questionList} />
+				<QuestionNoteList questionList={questionList} />
 			</div>
 			<div className="clear-trashcan">
 				<img

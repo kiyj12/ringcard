@@ -1,0 +1,198 @@
+.each-question-note-box {
+  margin: 0 auto;
+
+  /* 이거 건들지 말기. width 아래에 있는 리스트 애들이랑 맞춰놓은 거임. */
+  width: 93.5%;
+  min-width: 300px;
+  max-width: 440px;
+  min-height: 100px;
+
+}
+
+.each-question-note-header-edge-img-box {
+  height: 17px;
+  background-size: 100% 100%;
+  margin-bottom: -2px;
+}
+
+.each-question-note-body {
+
+  background-image: url("../../public/notes/yellow-note-body.png");
+  background-size: 100% 100%;
+  
+  /* TODO: 이미지 오면 얘 조정해야됨. */
+  padding: 0 25px 10px 25px;
+
+  /* padding: calc(5% + 15px) 15px 40% 15px; */
+  
+  
+}
+
+.each-note-header {
+  /* background-color: aqua; */
+  height: 40px;
+  padding-left: 2px;
+
+  display: inline-flex;
+  justify-content: left;
+}
+
+
+
+.each-note-content-box {
+  min-height: 50px;
+  padding: 8px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.each-note-content {
+  text-align: center;
+  font-family: NanumBarunGothic;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #333;
+}
+
+.each-note-answer-form-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+
+}
+
+.each-question-note-footer-edge-img-box {
+  height: 40px;
+  background-size: 100% 100%;
+  margin-top: -20px;
+}
+
+/* ######################### AnswerForm #################### */
+
+.answerForm-answer-form {
+  /* background-color: blueviolet; */
+  margin: 8px, 20px;
+  width: 90%;
+
+}
+
+.cursur-bar {
+  margin-top: -1px;
+  margin-left: -6px;
+  margin-right: 3px;
+  font-size: 21px;
+}
+
+.answerForm-text-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.answerForm-textarea {
+  resize: none;
+  width: 100%;
+  min-height: 60px;
+
+  border: none;
+  background: none;
+  font-size: 16px;
+}
+
+.answerForm-textarea:focus {
+  outline: none;
+}
+
+
+.answerForm-btn-box {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 3px;
+}
+
+.answerForm-btn-box button {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin-right: -4%;
+
+  border: none;
+  background: none;
+}
+
+
+/* ##################### AnsweredQuestionNote ####################### */
+
+.each-note-answer-content-box {
+  width: 100%;
+  height: fit-content;
+
+  /* display: inline-flex; */
+}
+
+.AnsweredQuestionNote-answer-profile-pic {
+  /* width: 40px; */
+  height: 1px;
+  padding: 10px 12px 10px 12px;
+}
+
+.AnsweredQuestionNote-answer-profile-pic img {
+  width: 23px;
+}
+
+.AnsweredQuestionNote-answer-content {
+  /* background-color: aquamarine; */
+  /* width: 100%;  */
+  height: fit-content;
+  padding: 5px;
+  padding-bottom : 18px;
+
+
+  font-family: NanumBarunGothic;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  text-align: center;
+  color: #5972aa;
+}
+
+.QuestionPage-hr-box {
+  width: 100%;
+  height: 20px;
+  margin-top: 30px;
+  /* background-color:chartreuse; */
+  display: inline-flex;
+}
+
+.QuestionPage-hr {
+  margin-top: 10px;
+  width: 34%;
+  border: 0;
+  height: 01px;
+  background-color: rgba(234, 234, 234, 0.66);
+  
+}
+
+.QuestionPage-hr-text {
+  /* background-color: aquamarine; */
+  color: #ffffff;
+  font-family: NanumBarunGothic;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: center;
+}

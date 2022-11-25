@@ -2,6 +2,8 @@ import React from "react";
 import { IQuestion } from "./types";
 import "../styles/question.css";
 import axios from "axios";
+import { Link, Route, Routes } from "react-router-dom";
+import QuestionUnanswered from "../pages/question/QuestionUnanswered";
 
 export interface FooterProps {
 	question: IQuestion;
@@ -83,6 +85,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					"Successfully enter handleEditAnswerClick in QuestionNoteFooter :D"
 				);
 				console.log(res.data);
+				
 			})
 			.catch((err) => {
 				console.log(err);
@@ -98,6 +101,7 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					"Successfully enter handleDeleteAnswerClick in QuestionNoteFooter :D"
 				);
 				console.log(res.data);
+				window.history.go(0);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -144,22 +148,26 @@ function FooterUnansweredQuestion(props: FooterProps) {
 				</div>
 				<div className="note-footer-rightside-btns-container">
 					{question.answered === false ? (
-						<button onClick={handleSendAnswerClick}>
-							<img
-								className="note-send-answer-btn"
-								src="/buttons/send-answer-btn.svg"
-								alt=""
-							/>
-						</button>
-					) : (
-						<React.Fragment>
-							<button onClick={handleEditAnswerClick}>
+						<Link to={`/question/${question.id}/unanswered/user`}>
+							<button>
 								<img
-									className="note-edit-answer-btn"
-									src="/buttons/edit-answer-btn.svg"
+									className="note-send-answer-btn"
+									src="/buttons/send-answer-btn.svg"
 									alt=""
 								/>
 							</button>
+						</Link>
+					) : (
+						<React.Fragment>
+							<Link to={`/question/${question.id}/edit/user`}>
+								<button>
+									<img
+										className="note-edit-answer-btn"
+										src="/buttons/edit-answer-btn.svg"
+										alt=""
+									/>
+								</button>
+							</Link>
 							<button onClick={handleDeleteAnswerClick}>
 								<img
 									className="note-delete-answer-btn"

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -19,11 +20,11 @@ public class DeleteAnswerController {
     private final QuestionService questionService;
 
     @GetMapping("question/{questionId}/deleteAnswer")
-    public String deleteAnswer(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser) {
+    public String deleteAnswer(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, HttpServletRequest request) {
         Long userId = loginUser.getUser().getId();
         Answer answer = answerService.findByQuestionId(questionId).get();
         answerService.deleteAnswer(answer.getId());
         questionService.updateToUnanswered(questionId);
-        return "redirect:/home/answered";
+        return "redirect:" + request.getHeader("Referer");
     }
 }

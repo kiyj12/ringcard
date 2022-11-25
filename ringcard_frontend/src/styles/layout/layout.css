@@ -7,6 +7,16 @@
   display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
+* {
+  font-family: NanumBarunGothic;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+}
+
 body {
   background-color: rgb(91, 91, 91);
 }
@@ -32,3 +42,27 @@ body {
   max-width: inherit;
 
 }
+
+.contents-container {
+  position: relative;
+  top: 13%;
+  width: 100%;
+  max-width: inherit;
+  height: 100%;
+}
+
+
+
+.userInfo-profile-container {
+  /* background-color: aquamarine; */
+  height: 19%;
+  margin-top: calc(100vh*0.13);
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+

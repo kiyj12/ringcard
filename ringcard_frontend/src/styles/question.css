@@ -6,7 +6,7 @@
 .question-note {
   margin: 0 auto;
 
-  width: 80vw;
+  width: 80%;
   min-width: 300px;
   max-width: 410px;
   min-height: 100px;
@@ -128,6 +128,7 @@
 
 .note-send-answer-btn {
   width: 23px;
+  margin-top: -4px;
 }
 
 .note-edit-answer-btn {
@@ -136,6 +137,16 @@
 }
 
 .note-delete-answer-btn {
-  width: 18px;
+  margin-top: 2px;
+  width: 19px;
   margin-right: 3px;
 }
+
+.note-answer-form-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+
