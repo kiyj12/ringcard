@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/headerNoProfile.css";
-import "../../styles/user/inputBox.css";
-import "../../styles/user/inputIcon.css";
+import "../../styles/user/userBox.css";
+import "../../styles/user/userIcon.css";
 import "../../styles/userInfo.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 

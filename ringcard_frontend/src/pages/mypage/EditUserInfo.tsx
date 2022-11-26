@@ -2,99 +2,161 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
-import "../../styles/user/inputBox.css";
-import "../../styles/user/inputIcon.css";
+import "../../styles/user/userHeader.css";
+import "../../styles/user/userBox.css";
+import "../../styles/user/userIcon.css";
 import "../../styles/editUserInfo.css";
-import HeaderUser from "../../components/HeaderNoProfile";
+import HeaderNoProfile from "../../components/HeaderNoProfile";
+import { useForm } from "react-hook-form";
+import UserProfile from "../../components/UserProfile";
 
 const EditUserInfo = () => {
-	const [userList, setUserList] = useState<any[]>([]);
 
+	type ResponseList = {
+		overlappedUsername: boolean;
+	}
+	const [response, setResponse] = useState<ResponseList>({
+		overlappedUsername: false
+	});
+	// submitted==true여야 새로고침 되도록.
+	const [submitted, setSubmitted] = useState(false);
+
+	const [user, setUser] = useState<any>([]);
 	useEffect(() => {
 		axios
-			.get("/mypage/info")
+			.get("/mypage/info/edit")
 			.then((res) => {
-				// console.log(res.data);
-				setUserList(res.data);
+				setUser(res.data);
+				console.log(res.data);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err.config);
+				console.log(err.response.data);
 			});
 	}, []);
 
+  function BtnToEditPw(){
+		function handleClick(e: any){
+				window.location.href="/mypage/edit/password"
+		}
+			return(
+				<button className="user-box-btn" onClick={handleClick}>변경</button>
+			)
+	}
+
+	const onSubmit = async (data: any) => {
+		await new Promise((r) => setTimeout(r, 100));
+
+		// alert(JSON.stringify(data));
+		console.log(data);
+
+		await axios
+			.post("/mypage/info/edit", data)
+			.then((res) => {
+				console.log("postHere");
+				console.log(data);
+				setResponse(res.data);
+				console.log(res.data);
+				setSubmitted(true);
+			})
+			.catch(function (error) {
+				console.log(error.config);
+			
+			});
+	};
+
+	function RedirectAndInputErrors(){
+		if(response.overlappedUsername){
+			return (
+			<div className="user-text-error">overlappedUsername</div>
+			)
+		}
+		else if(submitted) {
+			// 위 조건 만족할 때만 loginForm으로 새로고침
+			window.location.href = "/mypage/info/edit"
+			return (null);
+		}
+		return (null);
+	}
+
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting, isDirty, errors },
+	} = useForm();
+
 	return (
+	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
-			<HeaderUser></HeaderUser>
-			<div>
-				{userList.map((user, idx) => (
-					<div key={idx}>
-						<div className="input-box">
-							<div className="input-box-in">
-								<div className="input-tag">이름</div>
-								<input
-									className="input-icon input-icon-user-light"
-									defaultValue={user.userRingcardName}
-									placeholder="이름을 입력해주세요"
-								></input>
-							</div>
-							{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
-
-							<div className="input-box-in">
-								<div className="input-tag">아이디</div>
-								<input
-									className="input-icon input-icon-id-light"
-									defaultValue={user.username}
-									placeholder="아이디를 입력해주세요"
-								></input>
-							</div>
-
-							<div className="input-box-in">
-								<div className="input-tag">비밀번호</div>
-								<div className="input-box-div input-icon-dark">
-									<input
-										className="input-icon-pw-edit input-dark"
-										defaultValue="●●●●●●●●●●"
-										placeholder="●●●●●●●●●●"
-										readOnly
-									></input>
-									{/* <button className="editUserInfo-input-pw-edit-button"><div className="editUserInfo-input-pw-edit-button-tag">변경</div></button>				 */}
-									<button value="변경" className="tee input-box-btn"></button>
-								</div>
-
-								{/* <div className="email_div">
-									E-mail
-									<input type="text" name="email" className="email"/>
-									<input type="submit" value="전송" className="btn"/>
-								</div> */}
-							</div>
-
-							<div className="input-box-in">
-								<div className="input-tag">이메일</div>
-								<input
-									className="input-icon input-icon-email-light"
-									defaultValue={user.userEmail}
-									placeholder="이메일을 입력해주세요"
-								></input>
-							</div>
-
-							<div className="input-box-in">
-								<button className="editUserInfo-button">
-									<div className="editUserInfo-button-tag">
-										변경 사항 저장하기
-									</div>
-								</button>
-							</div>
-						</div>
-					</div>
-				))}
+			<HeaderNoProfile />
+		
+      <div className="userInfo-profile-container">
+				<UserProfile/>
+				<div className="user-profile-name">{user.userRingcardName}</div>
 			</div>
 
-			{/* <div className="editUserInfo-delete-box">
-				<div className="editUserInfo-delete">
-					<a className="editUserInfo-delete-tag" href="/">링카 계정을 완전히 지우고 싶어요</a>
+			<div>
+				<div className="user-box">
+					<div className="user-box-in">
+						<div className="user-text">이름</div>
+						<input
+							className="user-icon user-icon-user-light"
+							defaultValue={user.userRingcardName}
+							placeholder="이름을 입력해주세요"
+							{...register("userRingcardName", {
+							required: "답변이 입력되지 않았습니다.",
+							})}
+						></input>
+					</div>
+					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
+
+					{/* <div className="user-box-in">
+						<div className="user-text">아이디</div>
+						<input
+							className="user-icon user-icon-id-light"
+							defaultValue={user.username}
+							placeholder="아이디를 입력해주세요"
+							{...register("username", {
+							required: "답변이 입력되지 않았습니다.",
+							})}
+						></input>
+					</div> */}
+
+					<div className="user-box-in">
+						<div className="user-text">비밀번호</div>
+						<div className="user-box-div user-icon-dark">
+							<input
+								className="user-inner-transparent"
+								defaultValue="●●●●●●●●●●"
+								placeholder="●●●●●●●●●●"
+								readOnly
+							></input>
+							<BtnToEditPw/>
+						</div>
+					</div>
+
+				<div className="user-box-in">
+					<div className="user-text">이메일</div>
+					<input className="user-icon user-icon-email-light" defaultValue={user.userEmail} placeholder="이메일을 입력해주세요"
+					type="email"
+					{...register("userEmail", {
+							required: "답변이 입력되지 않았습니다.",
+							})}></input>
 				</div>
-			</div> */}
+
+				<div className="user-box-in">
+					<RedirectAndInputErrors/>
+				</div>
+
+				<div className="user-box-in">
+					<button type="submit" className="user-btn editUserInfo-btn">
+						<div className="user-btn-text">변경 사항 저장하기</div>
+					</button>
+				</div>
+			</div>
 		</div>
+	</div>
+</form>
 	);
 };
 
