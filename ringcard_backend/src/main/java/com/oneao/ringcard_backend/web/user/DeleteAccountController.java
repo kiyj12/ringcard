@@ -2,23 +2,24 @@ package com.oneao.ringcard_backend.web.user;
 
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
-import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.domain.question.Question;
-import com.oneao.ringcard_backend.service.UserService;
+import com.oneao.ringcard_backend.domain.user.DeleteAccountDto;
+import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.service.QuestionService;
+import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Objects;
+import javax.validation.Valid;
+import java.util.HashMap;
 
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("mypage/delete/account")
 public class DeleteAccountController {
@@ -27,27 +28,63 @@ public class DeleteAccountController {
     private final QuestionService questionService;
     private final SpringDataJpaAnswerRepository answerRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     @GetMapping()
     public String deleteAccountForm() {
         return "mypage/deleteAccount";
     }
 
+
+
     @PostMapping()
-    public String deleteAccount(@AuthenticationPrincipal PrincipalDetails loginUser, String password, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public ResponseEntity<HashMap<String, Boolean>> deleteAccount(@Valid @RequestBody DeleteAccountDto requestBody, @AuthenticationPrincipal PrincipalDetails loginUser, HttpServletRequest request) {
+        HashMap<String, Boolean> response=new HashMap<>(1){{
+            put("passwordError",false);
+        }};
+
+        String password = requestBody.getPassword();
+        String encPassword = bCryptPasswordEncoder.encode(password);
+
         User user =  loginUser.getUser();
         Long userId = user.getId();
-        if (Objects.equals(password, user.getPassword())) {
+        if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
             for (Question question : questionService.findAllByUserId(userId)) {
                 Long questionId = question.getId();
                 answerRepository.deleteByQuestionIdLike(questionId);
                 questionService.delete(questionId);
             }
             userService.deleteAccount(userId);
-            return "redirect:/login";
+//            System.out.println("password = " + password);
+//            System.out.println("password = " + user.getPassword());
         } else {
-            redirectAttributes.addAttribute("passwordFalse", true);
-            // 비밀번호 재입력하라고 띄워주기. 어떻게 하냐? url에 param 넣어서 이 값 false로 바꾼다음에 thymleaf로 표시되도록 해야하나?
-            return "redirect:" + request.getHeader("Referer");
+//            System.out.println("password = " + password);
+//            System.out.println("password = " + user.getPassword());
+            response.put("passwordError", true);
         }
+        return ResponseEntity.ok(response);
     }
+
+//    @PostMapping()
+//    public ResponseEntity<HashMap<String, Boolean>> deleteAccount(@AuthenticationPrincipal PrincipalDetails loginUser, String password, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+//        HashMap<String, Boolean> response=new HashMap<>(1){{
+//            put("passwordError",false);
+//        }};
+//
+//        User user =  loginUser.getUser();
+//        Long userId = user.getId();
+//        if (Objects.equals(password, user.getPassword())) {
+//            for (Question question : questionService.findAllByUserId(userId)) {
+//                Long questionId = question.getId();
+//                answerRepository.deleteByQuestionIdLike(questionId);
+//                questionService.delete(questionId);
+//            }
+//            userService.deleteAccount(userId);
+//            response.put("passwordError", true);
+//            return ResponseEntity.ok(response);
+//        } else {
+////            redirectAttributes.addAttribute("passwordFalse", true);
+//            return ResponseEntity.ok(response);
+//        }
+//    }
 }
