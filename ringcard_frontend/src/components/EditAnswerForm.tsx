@@ -81,6 +81,10 @@ function AnswerForm(props: Props) {
 		setTextareaHeight(event.target.value.split("\n").length - 1);
 		setCheckItemContent(event.target.value);
 	};
+	// const checkItemChangeHandler = (event: any) => {
+	// 	setTextareaHeight(event.target.value.split("\n").length - 1);
+	// 	setCheckItemContent(event.target.value);
+	// };
 
 	return (
 		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
@@ -89,10 +93,12 @@ function AnswerForm(props: Props) {
 				<textarea
 					id="answerAdd"
 					className="answerForm-textarea"
-					value={checkItemContent}
+					// value={checkItemContent}
 					onInput={checkItemChangeHandler}
 					style={{ height: (textareaHeight + 1) * 27 + "px" }}
-					placeholder={oldAnswer}
+					// placeholder={oldAnswer}
+					defaultValue={oldAnswer} 
+					value={checkItemContent}
 					{...register("answerContents", {
 						required: "답변이 입력되지 않았습니다.",
 					})}

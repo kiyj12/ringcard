@@ -22,7 +22,7 @@ function QuestionAnswered() {
 				console.log(res.data);
 				setQuestionList(res.data.questions);
 				setQuestion(res.data.question);
-				setOldAnswer(JSON.stringify(res.data.oldAnswer));
+				setOldAnswer(res.data.oldAnswer);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -39,7 +39,6 @@ function QuestionAnswered() {
 							question={question}
 							oldAnswer={oldAnswer}
 						/>
-
 					</div>
 					<div className="QuestionPage-hr-box">
 						<hr className="QuestionPage-hr" />

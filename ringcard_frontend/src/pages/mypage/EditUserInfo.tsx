@@ -22,12 +22,13 @@ const EditUserInfo = () => {
 	const [submitted, setSubmitted] = useState(false);
 
 	const [user, setUser] = useState<any>([]);
+	
 	useEffect(() => {
 		axios
 			.get("/mypage/info/edit")
 			.then((res) => {
 				setUser(res.data);
-				console.log(res.data);
+				console.log(res.data)
 			})
 			.catch((err) => {
 				console.log(err.config);
