@@ -110,17 +110,18 @@ const EditUserInfo = () => {
 					</div>
 					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
-					{/* <div className="user-box-in">
+					<div className="user-box-in">
 						<div className="user-text">아이디</div>
 						<input
-							className="user-icon user-icon-id-light"
-							defaultValue={user.username}
-							placeholder="아이디를 입력해주세요"
+							className="user-icon user-icon-id-dark"
+							// defaultValue={user.username}
+							placeholder={user.username}
+							readOnly
 							{...register("username", {
 							required: "답변이 입력되지 않았습니다.",
 							})}
 						></input>
-					</div> */}
+					</div>
 
 					<div className="user-box-in">
 						<div className="user-text">비밀번호</div>
@@ -128,7 +129,7 @@ const EditUserInfo = () => {
 							<input
 								className="user-inner-transparent"
 								defaultValue="●●●●●●●●●●"
-								placeholder="●●●●●●●●●●"
+								// placeholder="●●●●●●●●●●"
 								readOnly
 							></input>
 							<BtnToEditPw/>
