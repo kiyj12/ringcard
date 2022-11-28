@@ -17,3 +17,8 @@ export type IAnswer = {
   questionId: number;
   uploadTime: TimeLike;
 }
+
+export type IMapQuestionAnswer = {
+  Question: IQuestion;
+  Answer: IAnswer;
+}

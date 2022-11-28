@@ -150,3 +150,40 @@
 }
 
 
+
+.QuestionNoteAnony-note-footer {
+  /* background-color:honeydew; */
+  /* height: 50px; */
+
+  padding-top: 10px;
+
+}
+
+
+
+.QuestionNoteAnony-note-footer-btns-container {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.QuestionNoteAnony-note-footer-btns-container button {
+  background-color: rgba(0, 0, 0, 0);
+  border: solid 0 black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.QuestionNoteAnony-note-content-answer {
+  display: flex;
+  justify-content: center;
+  min-height: 30px;
+  padding: 10px;
+}
+
+.QuestionNoteAnony-each-question-note-footer-edge-img-box {
+  height: 40px;
+  background-size: 100% 100%;
+  margin-top: -20px;
+}

@@ -12,12 +12,12 @@ function SendQuestionForm(props: Props) {
 	const userName = props.userName;
 
 	// if(localStorage.getItem("toastShow")==="1"){
-	// 		toast("hello", { 
+	// 		toast("hello", {
 	// 				autoClose: 700,
-	// 				position:"top-center", 
+	// 				position:"top-center",
 	// 				pauseOnFocusLoss: true,
 	// 				hideProgressBar: true,
-	// 				draggable: true, 
+	// 				draggable: true,
 	// 				pauseOnHover: true,
 	// 				theme: "dark",
 	// 				closeButton: false,
@@ -31,7 +31,7 @@ function SendQuestionForm(props: Props) {
 
 		// alert(JSON.stringify(data));
 		console.log(data);
-		
+
 		await axios
 			.post("/userHome/" + userName, data)
 			.then((res) => {
@@ -81,7 +81,7 @@ function SendQuestionForm(props: Props) {
 
 	return (
 		<div className="SendQuestionForm-container">
-			<Toastify/>
+			<Toastify />
 			<form
 				className="SendQuestionForm-question-form"
 				onSubmit={handleSubmit(onSubmit)}
@@ -104,7 +104,7 @@ function SendQuestionForm(props: Props) {
 				<div className="SendQuestionForm-footer">
 					<img
 						className="SendQuestionForm-hyperlink-btn"
-						src="/buttons/in-collection-button.svg"
+						src="/buttons/link-icn.svg"
 						alt=""
 					/>
 					<input
