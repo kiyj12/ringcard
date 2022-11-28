@@ -35,7 +35,8 @@ function QuestionUnanswered() {
 				<div className="questionPage-the-question-container">
 					<AnswerFormQuestionNote question={question} />
 				</div>
-				<div className="QuestionPage-hr-box">
+				{/* 퀘스쳔리스트 삭제^^ */}
+				{/* <div className="QuestionPage-hr-box">
 					<hr className="QuestionPage-hr" />
 
 					<div className="QuestionPage-hr-text">미응답 질문들</div>
@@ -45,7 +46,7 @@ function QuestionUnanswered() {
 					<div className="QuestionPage-down-background-img">
 						<QuestionList questionList={questionList} />
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

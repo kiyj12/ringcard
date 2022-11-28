@@ -1,4 +1,4 @@
-.UserHome-contents-container {
+/* .UserHome-contents-container {
   position: relative;
   
   top: 260px;
@@ -6,7 +6,7 @@
   max-width: inherit;
   height: 100%;
   z-index: 20;
-}
+} */
 
 
 .UserHome-profile-box {
@@ -61,7 +61,7 @@
   overflow: scroll;
 
 
-  /* background-color: #f7cec6; */
+
 }
 
 .UserHome-down-background-img {
