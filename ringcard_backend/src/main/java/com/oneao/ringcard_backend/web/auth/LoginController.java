@@ -13,12 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Controller
 public class LoginController {
-
     @GetMapping("/loginForm")
     public String loginForm() {
         return "login/loginForm";
     }
-
-
-
 }
