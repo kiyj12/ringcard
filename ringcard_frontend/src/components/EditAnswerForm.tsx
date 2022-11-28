@@ -108,7 +108,7 @@ function AnswerForm(props: Props) {
 					id="answerAdd"
 					className="answerForm-textarea"
 					// value={checkItemContent}
-					onInput={checkItemChangeHandler}
+					// onInput={checkItemChangeHandler}
 					defaultValue={oldAnswer}
 					// value={oldAnswer}
 					rows={5}

@@ -6,7 +6,6 @@ import Header from "../../components/Header";
 import QuestionNoteList from "../../components/QuestionNoteList";
 import "../../styles/layout/layout.css";
 import "../../styles/question-page.css";
-import TextareaAutosize from 'react-textarea-autosize';
 
 
 function QuestionAnswered() {
@@ -41,14 +40,6 @@ function QuestionAnswered() {
 						<EditAnswerFormQuestionNote
 							question={question}
 							oldAnswer={oldAnswer}
-						/>
-						<TextareaAutosize 
-						defaultValue={oldAnswer}
-						// value={oldAnswer}
-						rows={5}
-         	 	maxRows={10}
-          	// onChange={onChangeEvent}
-          	// onHeightChange={onHeightChangeEvent}
 						/>
 
 					</div>

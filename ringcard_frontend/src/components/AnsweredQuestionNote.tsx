@@ -35,6 +35,7 @@ function AnsweredQuestionNote(props: Props) {
 					<div className="AnsweredQuestionNote-answer-content">
 						{answer.answerContents}
 					</div>
+
 				</div>
 			</div>
 			<div

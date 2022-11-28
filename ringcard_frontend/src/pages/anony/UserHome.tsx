@@ -6,6 +6,8 @@ import QuestionNoteList from "../../components/QuestionNoteList";
 import SendQuestionForm from "../../components/SendQuestionForm";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
+import { toast, ToastContainer, Zoom} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 function UserHome() {
 	const params = useParams();
@@ -25,6 +27,7 @@ function UserHome() {
 				console.log(err);
 			});
 	}, []);
+
 	return (
 		<div className="container">
 			<HeaderNoProfile />
