@@ -7,9 +7,7 @@ import QuestionNoteList from "../../components/QuestionNoteList";
 import "../../styles/layout/layout.css";
 import "../../styles/question-page.css";
 
-
 function QuestionAnswered() {
-
 	const params = useParams();
 	const paramsQuestionId = params.questionId;
 
@@ -41,7 +39,6 @@ function QuestionAnswered() {
 							question={question}
 							oldAnswer={oldAnswer}
 						/>
-
 					</div>
 					<div className="QuestionPage-hr-box">
 						<hr className="QuestionPage-hr" />

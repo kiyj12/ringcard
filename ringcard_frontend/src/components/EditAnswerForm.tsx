@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/answerQuestionNote.css";
+import TextareaAutosize from 'react-textarea-autosize';
 
 export interface Props {
 	questionId: number;
@@ -81,22 +82,43 @@ function AnswerForm(props: Props) {
 		setTextareaHeight(event.target.value.split("\n").length - 1);
 		setCheckItemContent(event.target.value);
 	};
+	// const checkItemChangeHandler = (event: any) => {
+	// 	setTextareaHeight(event.target.value.split("\n").length - 1);
+	// 	setCheckItemContent(event.target.value);
+	// };
 
 	return (
 		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
 			<div className="answerForm-text-box checkItem">
 				<span className="cursur-bar">|</span>
-				<textarea
+				{/* <textarea
 					id="answerAdd"
 					className="answerForm-textarea"
-					value={checkItemContent}
+					// value={checkItemContent}
 					onInput={checkItemChangeHandler}
 					style={{ height: (textareaHeight + 1) * 27 + "px" }}
-					placeholder={oldAnswer}
+					// placeholder={oldAnswer}
+					defaultValue={oldAnswer} 
 					{...register("answerContents", {
 						required: "답변이 입력되지 않았습니다.",
 					})}
-				></textarea>
+				></textarea> */}
+
+				<TextareaAutosize 
+					id="answerAdd"
+					className="answerForm-textarea"
+					// value={checkItemContent}
+					// onInput={checkItemChangeHandler}
+					defaultValue={oldAnswer}
+					// value={oldAnswer}
+					rows={5}
+					maxRows={10}
+					// onChange={onChangeEvent}
+					// onHeightChange={onHeightChangeEvent}
+					{...register("answerContents", {
+					required: "답변이 입력되지 않았습니다.",
+					})}
+				/>
 			</div>
 			<div className="answerForm-btn-box">
 				<button type="submit">

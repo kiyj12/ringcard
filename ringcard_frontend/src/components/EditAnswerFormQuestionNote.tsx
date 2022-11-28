@@ -2,6 +2,7 @@ import { IQuestion } from "./types";
 import "../styles/question.css";
 import "../styles/answerQuestionNote.css";
 import EditAnswerForm from "./EditAnswerForm";
+import NowDate from "./NowDate";
 
 export interface Props {
 	question: IQuestion;
@@ -24,7 +25,7 @@ function EditAnswerFormQuestionNote(props: Props) {
 						<div className="note-profile-pic">
 							<img src="/test-anony-profile-pic.jpg" alt="" />
 						</div>
-						<div className="note-time">5분 전</div>
+						<NowDate questionUploadTime={question.uploadTime}/>
 					</div>
 					<div className="each-note-content-box">
 						<div className="each-note-content">{question.questionContents}</div>

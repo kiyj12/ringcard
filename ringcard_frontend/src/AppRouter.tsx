@@ -16,6 +16,7 @@ import EditPassword from "./pages/mypage/EditPassword";
 import AnswerCompletedPage from "./pages/question/AnswerCompletedPage";
 import QuestionAnswered from "./pages/question/QuestionAnswered";
 import UserHome from "./pages/anony/UserHome";
+import DeleteAccount from "./pages/mypage/DeleteAccount";
 
 const AppRouter = () => {
 	return (
@@ -46,6 +47,7 @@ const AppRouter = () => {
 					<Route path="/loginForm" element={<Login />} />
 					<Route path="/joinForm" element={<Join />} />
 					<Route path="/mypage/edit/password" element={<EditPassword />} />
+					<Route path="/mypage/delete/account" element={<DeleteAccount />} />
 				</Routes>
 			</BrowserRouter>
 		</>

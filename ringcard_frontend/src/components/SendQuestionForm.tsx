@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/sendQuestionForm.css";
+import Toastify from "./Toast";
 
 export interface Props {
 	userName: String;
@@ -10,17 +11,34 @@ export interface Props {
 function SendQuestionForm(props: Props) {
 	const userName = props.userName;
 
+	// if(localStorage.getItem("toastShow")==="1"){
+	// 		toast("hello", { 
+	// 				autoClose: 700,
+	// 				position:"top-center", 
+	// 				pauseOnFocusLoss: true,
+	// 				hideProgressBar: true,
+	// 				draggable: true, 
+	// 				pauseOnHover: true,
+	// 				theme: "dark",
+	// 				closeButton: false,
+	// 				transition: Zoom,
+	// 			});
+	// 		localStorage.removeItem("toastShow");
+	// 	}
+
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
 		// alert(JSON.stringify(data));
 		console.log(data);
-
+		
 		await axios
 			.post("/userHome/" + userName, data)
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);
+				localStorage.setItem("toastShow", "1");
+				localStorage.setItem("toastText", "질문이 안전하게 전달되었습니다.");
 				window.location.reload();
 			})
 			.catch(function (error) {
@@ -63,6 +81,7 @@ function SendQuestionForm(props: Props) {
 
 	return (
 		<div className="SendQuestionForm-container">
+			<Toastify/>
 			<form
 				className="SendQuestionForm-question-form"
 				onSubmit={handleSubmit(onSubmit)}
