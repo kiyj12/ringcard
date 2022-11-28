@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
-import QuestionNoteList from "../../components/QuestionNoteListAnony";
+import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
 import SendQuestionForm from "../../components/SendQuestionForm";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
@@ -40,11 +40,13 @@ function UserHome() {
 						{user.userRingcardName}
 					</div>
 				</div>
-				<SendQuestionForm userName={userName} />
+				<div className="UserHome-SendQuestionForm-container">
+					<SendQuestionForm userName={userName} />
+				</div>
 
 				<div className="UserHome-questionlist-box">
 					<div className="UserHome-down-background-img">
-						{map ? <QuestionNoteList map={map} /> : undefined}
+						{map ? <QuestionNoteListAnony map={map} /> : undefined}
 					</div>
 				</div>
 			</div>

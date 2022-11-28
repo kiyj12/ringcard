@@ -10,7 +10,7 @@ export interface Props {
 	answer: IAnswer;
 }
 
-function QuestionNote(props: Props) {
+function QuestionNoteAnony(props: Props) {
 	const idx = props.idx;
 	const question = props.question;
 	const answer = props.answer;
@@ -71,4 +71,4 @@ function QuestionNote(props: Props) {
 	);
 }
 
-export default QuestionNote;
+export default QuestionNoteAnony;

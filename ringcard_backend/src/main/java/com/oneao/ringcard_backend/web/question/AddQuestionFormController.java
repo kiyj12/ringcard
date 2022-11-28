@@ -4,8 +4,10 @@ import com.oneao.ringcard_backend.domain.answer.Answer;
 
 import com.oneao.ringcard_backend.domain.question.Question;
 
+import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
+import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,6 +24,8 @@ import java.util.List;
 public class AddQuestionFormController {
     private final QuestionService questionService;
     private final AnswerService answerService;
+
+    private final UserService userService;
 
 //    //@GetMapping("question/{questionId}/anony")
 //    public String addFormV1(@PathVariable Long questionId, Model model){
@@ -36,15 +41,31 @@ public class AddQuestionFormController {
 //    }
 
     @GetMapping("question/{questionId}/anony")
-    public String addFormV3(@PathVariable Long questionId, Model model){
+    public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model){
         Question question = questionService.findByIdNoAuth(questionId).get();
         Answer answer = answerService.findByQuestionId(questionId).get();
+
+        // user도 모델에 보내기
+        User user = userService.findById(question.getUserId()).get();
+
         // 해당 질문 제외한 다른 응답 질문 리스트
         List<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth();
         questions.remove(question);
-        model.addAttribute("questions", questions);
+
+        List<Object> map = new ArrayList<>();
+        for (Question q : questions) {
+            Long qId = q.getId();
+            Answer a = answerService.findByQuestionId(qId).get();
+            List<Object> innerMap = new ArrayList<>();
+            innerMap.add(q);
+            innerMap.add(a);
+            map.add(innerMap);
+        }
+
+        model.addAttribute("map", map);
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
-        return "question/answeredAnony";
+        model.addAttribute("user", user);
+        return ResponseEntity.ok(model);
     }
 }

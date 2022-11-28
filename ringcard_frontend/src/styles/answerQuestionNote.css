@@ -150,11 +150,11 @@
 
 .AnsweredQuestionNote-answer-content {
   /* background-color: aquamarine; */
-  /* width: 100%;  */
+  width: 79%; 
   height: fit-content;
   padding: 5px;
   padding-bottom : 18px;
-
+  margin: 0 auto;
 
   font-family: NanumBarunGothic;
   font-size: 14px;
@@ -166,7 +166,7 @@
   text-align: center;
   color: #5972aa;
 }
-/* 
+
 .QuestionPage-hr-box {
   width: 100%;
   height: 20px;
@@ -195,4 +195,4 @@
   line-height: 1.67;
   letter-spacing: normal;
   text-align: center;
-} */
+}

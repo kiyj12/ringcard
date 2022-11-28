@@ -17,6 +17,7 @@ import AnswerCompletedPage from "./pages/question/AnswerCompletedPage";
 import QuestionAnswered from "./pages/question/QuestionAnswered";
 import UserHome from "./pages/anony/UserHome";
 import DeleteAccount from "./pages/mypage/DeleteAccount";
+import QuestionAnony from "./pages/question/QuestionAnony";
 
 const AppRouter = () => {
 	return (
@@ -39,6 +40,10 @@ const AppRouter = () => {
 					<Route
 						path="/question/:questionId/completed/user"
 						element={<AnswerCompletedPage />}
+					/>
+					<Route
+						path="/question/:questionId/anony"
+						element={<QuestionAnony />}
 					/>
 					<Route path="/userHome/:userName" element={<UserHome />} />
 
