@@ -10,6 +10,7 @@ import HeaderUser from "../../components/HeaderNoProfile";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/UserProfile";
+import Toastify from "../../components/Toast";
 
 const EditPassword = () => {
 
@@ -105,6 +106,8 @@ const EditPassword = () => {
 		}
 		else if(response.passwordChanged && submitted){
 			// 위 조건 만족할 때만 loginForm으로 새로고침
+			localStorage.setItem("toastShow", "1");
+			localStorage.setItem("toastText", "비밀번호가 변경되었습니다.");
 			window.location.href = "/mypage/info/edit"
 			return (null);
 		}

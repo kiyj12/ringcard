@@ -10,7 +10,7 @@ import "../../styles/login.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
 import { useForm } from "react-hook-form";
-import Toastify from "../../components/Toast";
+// import Toastify from "../../components/Toast";
 
 
 
@@ -184,7 +184,7 @@ const Login = () => {
 				<div className="login-join-box">
 					<BtnToJoin/>
 					{/* <button onClick={notify}/> */}
-					<Toastify text="hello"/>
+					{/* <Toastify text="hello"/> */}
 				</div>
 			</div>
 		</div>

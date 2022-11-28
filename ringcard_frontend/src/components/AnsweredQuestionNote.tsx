@@ -1,3 +1,4 @@
+import NowDate from "./NowDate";
 import { IAnswer, IQuestion } from "./types";
 
 export interface Props {
@@ -22,7 +23,7 @@ function AnsweredQuestionNote(props: Props) {
 					<div className="note-profile-pic">
 						<img src="/test-anony-profile-pic.jpg" alt="" />
 					</div>
-					<div className="note-time">5분 전</div>
+					<NowDate questionUploadTime={question.uploadTime}/>
 				</div>
 				<div className="each-note-content-box">
 					<div className="each-note-content">{question.questionContents}</div>

@@ -9,6 +9,7 @@ import "../../styles/editUserInfo.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/UserProfile";
+import Toastify from "../../components/Toast";
 
 const EditUserInfo = () => {
 
@@ -74,6 +75,8 @@ const EditUserInfo = () => {
 		}
 		else if(submitted) {
 			// 위 조건 만족할 때만 loginForm으로 새로고침
+			localStorage.setItem("toastShow", "1");
+			localStorage.setItem("toastText", "개인 정보가 수정되었습니다.");
 			window.location.href = "/mypage/info/edit"
 			return (null);
 		}
@@ -90,7 +93,7 @@ const EditUserInfo = () => {
 	<form onSubmit={handleSubmit(onSubmit)}>
 		<div className="container">
 			<HeaderNoProfile />
-		
+			<Toastify/>
       <div className="userInfo-profile-container">
 				<UserProfile/>
 				<div className="user-profile-name">{user.userRingcardName}</div>
@@ -110,6 +113,7 @@ const EditUserInfo = () => {
 						></input>
 					</div>
 					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
+					
 
 					<div className="user-box-in">
 						<div className="user-text">아이디</div>
@@ -118,9 +122,6 @@ const EditUserInfo = () => {
 							// defaultValue={user.username}
 							placeholder={user.username}
 							readOnly
-							{...register("username", {
-							required: "답변이 입력되지 않았습니다.",
-							})}
 						></input>
 					</div>
 
