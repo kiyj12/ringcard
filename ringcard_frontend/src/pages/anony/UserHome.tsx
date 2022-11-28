@@ -6,7 +6,7 @@ import QuestionNoteList from "../../components/QuestionNoteList";
 import SendQuestionForm from "../../components/SendQuestionForm";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
-import { toast, ToastContainer, Zoom} from "react-toastify"
+import { toast, ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function UserHome() {
@@ -32,7 +32,7 @@ function UserHome() {
 		<div className="container">
 			<HeaderNoProfile />
 
-			<div className="contents-container">
+			<div className="UserHome-contents-container">
 				<div className="UserHome-profile-box">
 					<img src="/profile.png" alt="" />
 					<div className="UserHome-profile-username">

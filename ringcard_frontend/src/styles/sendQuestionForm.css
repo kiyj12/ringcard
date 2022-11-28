@@ -1,6 +1,7 @@
 .SendQuestionForm-container{
   /* background-color: aquamarine; */
   width: 100%;
+  max-width: inherit;
   height: 70px;
 
   position: fixed;
