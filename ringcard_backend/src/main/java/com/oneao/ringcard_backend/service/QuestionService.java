@@ -3,6 +3,7 @@ package com.oneao.ringcard_backend.service;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.domain.question.QuestionRepository;
 import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
+import com.oneao.ringcard_backend.web.paging.Criteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
@@ -85,4 +86,5 @@ public class QuestionService {
     public void clearStore() {
         questionRepository.clearStore();
     }
+
 }

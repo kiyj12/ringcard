@@ -1,5 +1,7 @@
 package com.oneao.ringcard_backend.domain.question;
 
+import com.oneao.ringcard_backend.web.paging.Criteria;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,9 @@ public interface QuestionRepository {
     List<Question> findAllInCollection(Long userId);
 
     List<Question> findAllByUserId(Long userId);
+
+    /* 게시판 목록(페이징 적용) */
+//    List<Question> getListPaging(Criteria cri);
 
     void delete(Long questionId);
 

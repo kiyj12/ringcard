@@ -1,6 +1,7 @@
 package com.oneao.ringcard_backend.domain.question;
 
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
+import com.oneao.ringcard_backend.web.paging.Criteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -72,6 +73,10 @@ public class JpaQuestionRepository implements QuestionRepository {
         return repository.findByUserIdLike(userId);
     }
 
+//    @Override
+//    public List<Question> getListPaging(Criteria cri){
+//        return repository.findAll();
+//    }
     @Override
     public void delete(Long questionId) {
         repository.delete(repository.findById(questionId).get());
