@@ -1,4 +1,4 @@
-package com.oneao.ringcard_backend.domain.question;
+package com.oneao.ringcard_backend.web.paging;
 
 public class PagingVO {
 
