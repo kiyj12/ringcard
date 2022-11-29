@@ -15,9 +15,16 @@ function QuestionNote(props: Props) {
 	const idx = props.idx;
 	const question = props.question;
 
+	// making tape 동적 삽입
 	const tapeList = ["tape1.svg", "tape2.svg"];
+	const cntTape = tapeList.length;
+	const tapePositionList = [
+		"left: -35px; transform: rotate(-24deg); width: 110px;",
+		"left: 33%; top: -25px; transform: rotate(2deg); width: 130px;",
+		"left: 82%; top: -10px; transform: rotate(16deg); width: 105px;",
+	];
+	const cntPosition = tapePositionList.length;
 
-	// img 태그 동적 삽입
 	const tapeImages = document.getElementsByClassName(
 		"QuestionNote-maskingTape-img"
 	);
@@ -25,9 +32,26 @@ function QuestionNote(props: Props) {
 	var tapeImageList = Array.from(tapeImages);
 
 	tapeImageList.forEach((tapeImage) => {
-		const chosenTape = tapeList[Math.floor(Math.random() * tapeList.length)];
+		const chosenTape = tapeList[Math.floor(Math.random() * cntTape)];
+		const chosenPosition =
+			tapePositionList[Math.floor(Math.random() * cntPosition)];
 		tapeImage.setAttribute("src", `../masking-tapes/${chosenTape}`);
+		tapeImage.setAttribute("style", chosenPosition);
 	});
+
+	// const tapeBoxes = document.getElementsByClassName(
+	// 	"QuestionNote-maskingTape-box"
+	// );
+
+	// var tapeBoxList = Array.from(tapeBoxes);
+	// tapeBoxList.forEach((tapeBox) => {
+	// 	console.log(tapeBox)
+	// 	var tapeImage = document.createElement("img");
+	// 	const tape = tapeBox.appendChild(tapeImage);
+
+	// 	var chosenTape = tapeList[Math.floor(Math.random() * tapeList.length)];
+	// 	tape.setAttribute("src", `../masking-tapes/${chosenTape}`);
+	// });
 
 	return (
 		<div
