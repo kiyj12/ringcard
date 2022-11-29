@@ -18,6 +18,23 @@
 
 }
 
+.QuestionNote-maskingTape-box {
+  background-color: aqua;
+  width: 1px;
+  height: 1px;
+  position: relative;
+
+}
+
+.QuestionNote-maskingTape-img {
+  width: 110px;
+  transform: rotate(-17deg);
+
+  position:relative;
+  top: -10px;
+  left: -40px;
+}
+
 .note-header {
   /* background-color: aqua; */
   height: 40px;

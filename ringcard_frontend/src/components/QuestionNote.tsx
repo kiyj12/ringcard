@@ -3,6 +3,8 @@ import QuestionFooter from "./QuestionNoteFooter";
 import "../styles/question.css";
 import NowDate from "./NowDate";
 import HyperlinkBox from "./HyperlinkBox";
+import { useEffect } from "react";
+import { forEachChild } from "typescript";
 
 export interface Props {
 	idx: number;
@@ -13,6 +15,20 @@ function QuestionNote(props: Props) {
 	const idx = props.idx;
 	const question = props.question;
 
+	const tapeList = ["tape1.svg", "tape2.svg"];
+
+	// img 태그 동적 삽입
+	const tapeImages = document.getElementsByClassName(
+		"QuestionNote-maskingTape-img"
+	);
+
+	var tapeImageList = Array.from(tapeImages);
+
+	tapeImageList.forEach((tapeImage) => {
+		const chosenTape = tapeList[Math.floor(Math.random() * tapeList.length)];
+		tapeImage.setAttribute("src", `../masking-tapes/${chosenTape}`);
+	});
+
 	return (
 		<div
 			className="question-note"
@@ -21,6 +37,9 @@ function QuestionNote(props: Props) {
 				backgroundImage: `url("/notes/yellow-note.png")`,
 			}}
 		>
+			<div className="QuestionNote-maskingTape-box">
+				<img className="QuestionNote-maskingTape-img" src="" alt="" />
+			</div>
 			<div className="note-header">
 				<div className="note-profile-pic">
 					<img src="/test-anony-profile-pic.jpg" alt="" />
