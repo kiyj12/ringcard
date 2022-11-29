@@ -3,6 +3,9 @@ package com.oneao.ringcard_backend.domain.question;
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
 import com.oneao.ringcard_backend.web.paging.Criteria;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -43,14 +46,21 @@ public class JpaQuestionRepository implements QuestionRepository {
         return repository.findById(id);
     }
 
+//    @Override
+//    public List<Question> findAll(Long userId, QuestionSearchCond cond) {
+//        boolean answered = cond.isAnswered();
+//        boolean inTrash = cond.isInTrash();
+//
+//        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, answered, inTrash);
+//    }
+
     @Override
-    public List<Question> findAll(Long userId, QuestionSearchCond cond) {
-        boolean answered = cond.isAnswered();
-        boolean inTrash = cond.isInTrash();
+    public Page<Question> findAll(Long userId, QuestionSearchCond con, Pageable pageable) {
+        boolean answered = con.isAnswered();
+        boolean inTrash = con.isInTrash();
 
-        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, answered, inTrash);
+        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, answered, inTrash, pageable);
     }
-
 
     @Override
     public List<Question> findAllAnsweredNotInTrashNoAuth() {

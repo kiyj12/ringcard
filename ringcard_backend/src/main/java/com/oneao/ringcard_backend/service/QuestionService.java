@@ -3,9 +3,11 @@ package com.oneao.ringcard_backend.service;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.domain.question.QuestionRepository;
 import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
-import com.oneao.ringcard_backend.web.paging.Criteria;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class QuestionService {
         return questionRepository.findByIdNoAuth(id);
     }
     
-    public List<Question> findAll(Long userId, QuestionSearchCond cond) {
-        return questionRepository.findAll(userId, cond);
+    public Page<Question> findAll(Long userId, QuestionSearchCond cond, Pageable pageable) {
+        return questionRepository.findAll(userId, cond, pageable);
     }
 
     

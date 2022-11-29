@@ -1,6 +1,8 @@
 package com.oneao.ringcard_backend.domain.question;
 
 import com.oneao.ringcard_backend.web.paging.Criteria;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,8 @@ public interface SpringDataJpaQuestionRepository extends JpaRepository<Question,
 
     List<Question> findByUserIdLike(Long userId);
 
-    List<Question> findByUserIdLikeAndAnsweredLikeAndInTrashLike(Long userId, boolean answered, boolean inTrash);
+    Page<Question> findByUserIdLikeAndAnsweredLikeAndInTrashLike(Long userId, boolean answered, boolean inTrash, Pageable pageable);
+//    List<Question> findByUserIdLikeAndAnsweredLikeAndInTrashLike(Long userId, boolean answered, boolean inTrash);
 
     List<Question> findByAnsweredLikeAndInTrashLike(boolean isAnswered, boolean inTrash);
 
