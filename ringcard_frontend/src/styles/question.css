@@ -149,7 +149,10 @@
   padding-bottom: 30px;
 }
 
-
+.QuestionNote-note-hyperlink-box {
+  /* background-color: aquamarine; */
+  width: 100%;
+}
 
 .QuestionNoteAnony-note-footer {
   /* background-color:honeydew; */

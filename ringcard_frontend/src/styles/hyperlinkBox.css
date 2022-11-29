@@ -1,0 +1,34 @@
+.HyperlinkBox-container {
+
+  width: 100%;
+
+  display: inline-flex;
+}
+
+.HyperlinkBox-link-icn-container {
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.HyperlinkBox-link-icn-container img {
+  width: 13px;
+  margin: 0 auto;
+}
+
+.HyperlinkBox-hyperlink-container {
+
+  /* width: 60%; */
+  /* overflow는 ...으로 대체하기 위함 */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  text-decoration: none;
+  color: #666666;
+
+}

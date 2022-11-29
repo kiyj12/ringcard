@@ -110,7 +110,7 @@ function SendQuestionForm(props: Props) {
 					<input
 						id="hyperLinkAdd"
 						className="QuestionForm-hyperlink-input"
-						placeholder="첨부할 사이트 주소를 넣어주세요"
+						placeholder="첨부할 사이트 주소를 넣어주세요 (최대 1개)"
 						{...register("questionHyperlink")}
 					/>
 					<button className="SendQuestionForm-send-question-btn" type="submit">
