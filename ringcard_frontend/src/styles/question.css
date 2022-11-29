@@ -152,6 +152,8 @@
 .QuestionNote-note-hyperlink-box {
   /* background-color: aquamarine; */
   width: 100%;
+  text-decoration: none;
+  color: #666666;
 }
 
 .QuestionNoteAnony-note-footer {

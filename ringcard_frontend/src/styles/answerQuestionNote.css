@@ -61,6 +61,20 @@
   color: #333;
 }
 
+.AnswerFormQuestionNote-note-hyperlink-box {
+  /* background-color: aqua; */
+  width: 100%;
+
+  text-decoration: none;
+  color: #666666;
+
+}
+
+.AnswerFormQuestionNote-note-hyperlink-box img {
+  width: 18px;
+}
+
+
 .each-note-answer-form-box {
   display: flex;
   justify-content: center;
