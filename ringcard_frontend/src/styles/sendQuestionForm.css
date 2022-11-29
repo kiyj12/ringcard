@@ -15,7 +15,7 @@
   background-color:  #fff;
   width: 90%;
   max-width: 440px;
-  height: 155px;
+  min-height: 155px;
 
   border-radius: 26px;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16);
@@ -48,6 +48,7 @@
   border: none;
   width: 85%;
   min-height: 70px;
+  height: fit-content;
   margin-top: 26px;
   
   font-family: NanumBarunGothic;

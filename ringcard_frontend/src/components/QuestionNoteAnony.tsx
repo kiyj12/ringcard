@@ -47,12 +47,20 @@ function QuestionNoteAnony(props: Props) {
 					<div className="QuestionNoteAnony-note-footer">
 						<div className="QuestionNoteAnony-note-footer-btns-container">
 							<button onClick={handleShowAnswerClick}>
-								{/* TODO: 얘 이미지 오면 바꾸기 */}
-								<img
-									className="note-send-answer-btn"
-									src="/buttons/send-answer-btn.svg"
-									alt=""
-								/>
+								{showAnswer ? (
+									<img
+										className="note-send-answer-btn"
+										src="/buttons/chevron-down-btn.svg"
+										alt=""
+										style={{ transform: "scaleY(-1)" }}
+									/>
+								) : (
+									<img
+										className="note-send-answer-btn"
+										src="/buttons/chevron-down-btn.svg"
+										alt=""
+									/>
+								)}
 							</button>
 						</div>
 						{showAnswer ? (

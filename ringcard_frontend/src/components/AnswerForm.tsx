@@ -70,7 +70,10 @@ function AnswerForm(props: Props) {
 					className="answerForm-textarea"
 					value={checkItemContent}
 					onInput={checkItemChangeHandler}
-					style={{ height: (textareaHeight + 1) * 27 + "px" }}
+					style={{
+						height: (textareaHeight + 1) * 27 + "px",
+						whiteSpace: "pre-wrap",
+					}}
 					placeholder="답변을 적어주세요"
 					{...register("answerContents", {
 						required: "답변이 입력되지 않았습니다.",
