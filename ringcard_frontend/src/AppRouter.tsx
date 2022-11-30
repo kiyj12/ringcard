@@ -40,7 +40,7 @@ const AppRouter = () => {
 						path="/question/:questionId/completed/user"
 						element={<AnswerCompletedPage />}
 					/>
-					<Route path="/userHome/:userName" element={<UserHome />} />
+					<Route path="/userHome/:userName/:page" element={<UserHome />} />
 
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />

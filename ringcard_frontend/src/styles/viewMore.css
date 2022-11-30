@@ -1,0 +1,17 @@
+.view-more-btn-section{
+  height: 40px;
+  display: flex;
+  text-align: center;
+  /* float: right; */
+  /* margin-top: 20px; */
+  justify-content: center;
+}
+
+.view-more-btn{
+  width: 50%;
+  font-family: NanumBarunGothic;
+  font-size: 18px;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+}
