@@ -37,10 +37,10 @@ function QuestionAnony() {
 	return (
 		<div className="container">
 			<HeaderNoProfile />
-			<div className="QuestionAnony-profile-box">
+			{/* <div className="QuestionAnony-profile-box">
 				<img src="/profile.png" alt="" />
 				<div className="UserHome-profile-username">{user.userRingcardName}</div>
-			</div>
+			</div> */}
 			<div className="QuestionAnony-for-not-overflowing">
 				<img src="/background-img/background.png" alt="" />
 			</div>

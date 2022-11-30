@@ -1,12 +1,13 @@
 .QuestionAnony-for-not-overflowing {
+
   width: 100%;
   max-width: inherit;
-  height: calc(13% + 150px);
+  height: calc(13% + 280px);
 
   padding-bottom: 10px;
 
   position: fixed;
-  top: 0;
+  top: -13%;
   z-index: 500;
 
   overflow: hidden;
@@ -20,7 +21,7 @@
   position: absolute;
   top: 0;
   overflow: hidden;
-  z-index: 300;
+  z-index: 600;
 }
 
 .QuestionAnony-container {
@@ -30,15 +31,15 @@
 }
 
 .QuestionAnony-profile-box {
-    /* background-color: yellowgreen; */
+
     width: 100%;
     max-width: inherit;
-    height: 150px;
+    height: 130px;
 
     margin-bottom: 20px;
     
     position: fixed;
-    top: 120px;
+    top: 100px;
     
     display: flex;
     flex-direction: column;
@@ -49,7 +50,7 @@
 }
 
 .QuestionAnony-profile-box img {
-  width: 75px;
+  width: 50px;
   border-radius: 100%;
   border: solid 2px #f7cec6;
 }
@@ -57,9 +58,11 @@
 .QuestionAnony-the-question-container {
   width: 100%;
   /* padding-top: 55px; */
-  margin-top: 150px;
+  margin-top: 25px;
 
-  /* position: relative; */
+  position: relative;
+
+  z-index: 800;
 
 }
 
@@ -70,15 +73,15 @@
   /* height: 70px; */
   position: -webkit-sticky;
   position: sticky;
-  top: 260px;
+  top: 120px;
 
   margin-top: 0px;
 
   align-self: flex-start;
   z-index: 1000;
 
-
 }
+
 
 .QuestionAnony-questionlist-box {
   width: 100%;
