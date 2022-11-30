@@ -7,6 +7,9 @@ import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -31,8 +34,11 @@ public class AddAnswerFormController {
         Question question = questionService.findById(questionId, userId).get();
         // 미응답 질문 리스트에서 본인 제외
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-        List<Question> questions = questionService.findAll(userId, questionSearchCond);
-        questions.remove(question);
+
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
+
+//        questions.remove(question);
         model.addAttribute("questions", questions);
         model.addAttribute("question", question);
         System.out.println("model = " + model);
@@ -52,8 +58,11 @@ public class AddAnswerFormController {
 
         // 미응답 질문 리스트에서 본인 제외
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-        List<Question> questions = questionService.findAll(userId, questionSearchCond);
-        questions.remove(question);
+
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
+
+//        questions.remove(question);
 
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);

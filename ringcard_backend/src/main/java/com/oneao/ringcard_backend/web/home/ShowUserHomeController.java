@@ -6,6 +6,9 @@ import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.UserService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +32,10 @@ public class ShowUserHomeController {
         Long userId = user.getId();
         String userRingcardName = user.getUserRingcardName();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
-        List<Question> questions = questionService.findAll(userId, questionSearchCond);
+
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
+
         model.addAttribute("questions", questions);
         model.addAttribute("username", username);
         model.addAttribute("user", user);

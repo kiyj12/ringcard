@@ -1,7 +1,11 @@
 package com.oneao.ringcard_backend.domain.question;
 
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
+import com.oneao.ringcard_backend.web.paging.Criteria;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -42,14 +46,21 @@ public class JpaQuestionRepository implements QuestionRepository {
         return repository.findById(id);
     }
 
+//    @Override
+//    public List<Question> findAll(Long userId, QuestionSearchCond cond) {
+//        boolean answered = cond.isAnswered();
+//        boolean inTrash = cond.isInTrash();
+//
+//        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, answered, inTrash);
+//    }
+
     @Override
-    public List<Question> findAll(Long userId, QuestionSearchCond cond) {
-        boolean answered = cond.isAnswered();
-        boolean inTrash = cond.isInTrash();
+    public Page<Question> findAll(Long userId, QuestionSearchCond con, Pageable pageable) {
+        boolean answered = con.isAnswered();
+        boolean inTrash = con.isInTrash();
 
-        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, answered, inTrash);
+        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, answered, inTrash, pageable);
     }
-
 
     @Override
     public List<Question> findAllAnsweredNotInTrashNoAuth() {
@@ -58,13 +69,13 @@ public class JpaQuestionRepository implements QuestionRepository {
     }
 
     @Override
-    public List<Question> findAllInTrash(Long userId) {
-        return repository.findByUserIdLikeAndInTrashLike(userId, true);
+    public Page<Question> findAllInTrash(Long userId, Pageable pageable) {
+        return repository.findByUserIdLikeAndInTrashLike(userId, true, pageable);
     }
 
     @Override
-    public List<Question> findAllInCollection(Long userId) {
-        return repository.findByUserIdLikeAndInCollectionLike(userId, true);
+    public Page<Question> findAllInCollection(Long userId, Pageable pageable) {
+        return repository.findByUserIdLikeAndInCollectionLike(userId, true, pageable);
     }
 
     @Override
@@ -72,6 +83,10 @@ public class JpaQuestionRepository implements QuestionRepository {
         return repository.findByUserIdLike(userId);
     }
 
+//    @Override
+//    public List<Question> getListPaging(Criteria cri){
+//        return repository.findAll();
+//    }
     @Override
     public void delete(Long questionId) {
         repository.delete(repository.findById(questionId).get());

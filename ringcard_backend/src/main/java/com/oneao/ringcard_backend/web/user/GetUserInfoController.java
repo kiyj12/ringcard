@@ -1,7 +1,9 @@
 package com.oneao.ringcard_backend.web.user;
 
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
+import com.oneao.ringcard_backend.domain.question.QuestionRepository;
 import com.oneao.ringcard_backend.domain.user.User;
+import com.oneao.ringcard_backend.service.QuestionService;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GetUserInfoController {
 
     private final UserService userService;
-
 //    @GetMapping("/{userId}")
 //    public String showUserInfo(@PathVariable Long userId, Model model) {
 //        User user = userService.findById(userId);
