@@ -11,6 +11,7 @@ function HomeAnswered(props:any) {
 
 	const [totalPages, setTotalPages] = useState<number>();
 	const [pageNumber, setPageNumber] = useState<number>();
+	const pageAddress = "answered";
 	const { page } = useParams();
 
 	useEffect(() => {
@@ -27,41 +28,11 @@ function HomeAnswered(props:any) {
 			});
 	}, []);
 	
-	// function BtnToPageUp(){
-	// 	function handleClick(e: any){
-	// 		const pageNumber = Number(page);
-	// 		const newPage = pageNumber + 1;
-	// 		if (totalPages === undefined){}
-	// 		else if (newPage>=totalPages){
-	// 		}else{
-	// 			window.location.href=`/home/answered/${newPage}`
-	// 		}
-	// 	}
-	// 	return (<button onClick={handleClick}>Up</button>);
-	// }
-
-	// function BtnToPageDown(){
-	// 	function handleClick(e: any){
-	// 		const pageNumber = Number(page);
-	// 		const newPage = pageNumber - 1;
-	// 		if (newPage<0){
-	// 		}else{
-	// 			window.location.href=`/home/answered/${newPage}`
-	// 		}
-	// 	}
-	// 	return (<button onClick={handleClick}>Down</button>);
-	// }
-
 	return (
 		<div className="container">
 			<Header />
-			<Navigation totalPages={totalPages} pageNumber={pageNumber} page={page}/>
+			<Navigation pageAddress={pageAddress} totalPages={totalPages} pageNumber={pageNumber} page={page}/>
 			<div className="container-body">
-
-				{/* <BtnToPageUp/>
-				<p>{pageNumber}/{totalPages}</p>
-				<BtnToPageDown/> */}
-
 				<QuestionNoteList questionList={questionList} />
 			</div>
 		</div>

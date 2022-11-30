@@ -60,7 +60,8 @@
 
 .page-section {
   /* background-color: antiquewhite; */
-  width: 42%;
+  width: 35%;
+  /* width: 35%; */
 
   /* items */
   display: inline-flex;
@@ -71,11 +72,32 @@
   width: 26px;
   margin-top: 0;
 }
+.page-num-section{
+  width: 37px;
+  height: 30px;
+  text-align:center;
+}
+
+.page-num-current{
+  float: left;
+  font-size: 1.2rem;
+  color: #ffffff;
+  /* padding-left: 0.4rem; */
+  margin-left: 0.2rem;
+  /* padding-bottom: 3px; */
+  /* background-color: gold; */
+}
 
 .page-num {
+  /* float:right; */
   font-size: 1rem;
   margin-top: 3px;
+  /* padding-right: 0.4rem; */
   color: rgba(165, 180, 227);
+}
+
+.page-blank{
+  width:5px;
 }
 
 .activeNav .home-tab-text {
@@ -86,5 +108,7 @@
   background-color: transparent;
   border: none;
   height: 32px;
-  width: 40px;
+  width: 26px;
+  padding: 0 0 0 0;
 }
+

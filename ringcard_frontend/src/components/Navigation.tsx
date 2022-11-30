@@ -7,6 +7,7 @@ const Navigation = (props: any) => {
 	const totalPages=props.totalPages;
 	const pageNumber=props.pageNumber;
 	const page = props.page;
+	const pageAddress = props.pageAddress;
 
 	function BtnToPageUp(){
 		function handleClick(e: any){
@@ -15,7 +16,7 @@ const Navigation = (props: any) => {
 			if (totalPages === undefined){}
 			else if (newPage>=totalPages){
 			}else{
-				window.location.href=`/home/answered/${newPage}`
+				window.location.href=`/home/${pageAddress}/${newPage}`
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
@@ -29,7 +30,7 @@ const Navigation = (props: any) => {
 			const newPage = pageNumber - 1;
 			if (newPage<0){
 			}else{
-				window.location.href=`/home/answered/${newPage}`
+				window.location.href=`/home/${pageAddress}/${newPage}`
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
@@ -44,7 +45,7 @@ const Navigation = (props: any) => {
 				<div className="nav-tab">
 					<div className="nav-unanswered">
 						<NavLink
-							to="/home/unanswered"
+							to="/home/unanswered/0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -70,7 +71,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-answered">
 						<NavLink
-							to="/home/answered"
+							to="/home/answered/0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -96,7 +97,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-collection">
 						<NavLink
-							to="/home/collection"
+							to="/home/collection/0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -122,7 +123,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-trashcan">
 						<NavLink
-							to="/home/trashcan"
+							to="/home/trashcan/0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -152,7 +153,10 @@ const Navigation = (props: any) => {
 			<div className="page-bar">
 				<div className="page-section">
 					<BtnToPageDown/>
-					<div className="page-num">{pageNumber}/{totalPages}</div>
+					<div className="page-num-section">
+						<div className="page-num-current">{pageNumber}</div>
+						<div className="page-num">/ {totalPages}</div>
+					</div>
 					<BtnToPageUp/>
 				</div>
 			</div>
