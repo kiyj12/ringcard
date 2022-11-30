@@ -17,6 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.sql.Array;
+import java.util.List;
+
 import static java.sql.Types.NULL;
 
 
@@ -52,11 +55,14 @@ public class SendQuestionController {
         Integer questionNoteType = requestBody.getNoteType();
         Integer questionTapeType = requestBody.getTapeType();
 
+        Integer[] noteList = { 1, 2, 3, 4 };
+        Integer[] tapeList = { 1, 2, 3, 4, 5 };
+
         if (questionNoteType == null) {
-            questionNoteType = 0;
+            questionNoteType = (int) (Math.random()*noteList.length);
         }
         if (questionTapeType == null) {
-            questionTapeType = 0;
+            questionNoteType = (int) (Math.random()*tapeList.length);
         }
 
         Long userId = user.getId();

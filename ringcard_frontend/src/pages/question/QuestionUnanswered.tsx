@@ -10,6 +10,7 @@ import "../../styles/question-page.css";
 function QuestionUnanswered() {
 	const params = useParams();
 	const paramsQuestionId = params.questionId;
+	
 
 	const [questionList, setQuestionList] = useState<any[]>([]);
 	const [question, setQuestion] = useState<any>([]);
