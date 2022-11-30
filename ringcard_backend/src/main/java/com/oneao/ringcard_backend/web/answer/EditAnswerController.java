@@ -81,7 +81,6 @@ public class EditAnswerController {
 
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
         List<Question> questions = questionService.findAll(userId, questionSearchCond);
-        model.addAttribute("questions", questions);
         model.addAttribute("question", question);
         model.addAttribute("oldAnswer", oldAnswerContents);
 

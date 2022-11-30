@@ -57,7 +57,6 @@ public class AddAnswerFormController {
 
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
-        model.addAttribute("questions", questions);
         System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);
