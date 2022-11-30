@@ -14,7 +14,6 @@ export interface Props {
 function QuestionNote(props: Props) {
 	const idx = props.idx;
 	const question = props.question;
-	console.log(question.tapeType);
 
 	// making tape 동적 삽입
 	const tapeList = ["1", "2", "3", "4", "5"];
@@ -50,6 +49,25 @@ function QuestionNote(props: Props) {
 		}
 	});
 
+	const noteList = ["1", "2", "3"];
+	const cntNote = noteList.length;
+
+	const noteImages = document.getElementsByClassName("question-note");
+
+	var noteImageList = Array.from(noteImages);
+	noteImageList.forEach((noteImage) => {
+		if (question.noteType !== 0) {
+			const customizedNoteType = String(question.noteType);
+			noteImage.setAttribute(
+				"src",
+				`/masking-tapes/tape${customizedNoteType}.svg`
+			);
+		} else {
+			const chosenNote = noteList[Math.floor(Math.random() * cntNote)];
+			noteImage.setAttribute("src", `/notes/note${chosenNote}.svg`);
+		}
+	});
+
 	// const tapeBoxes = document.getElementsByClassName(
 	// 	"QuestionNote-maskingTape-box"
 	// );
@@ -69,7 +87,7 @@ function QuestionNote(props: Props) {
 			className="question-note"
 			key={idx}
 			style={{
-				backgroundImage: `url("/notes/yellow-note.png")`,
+				backgroundImage: `url("/notes/note1.png")`,
 			}}
 		>
 			<div className="QuestionNote-maskingTape-box">

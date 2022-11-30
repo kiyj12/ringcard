@@ -31,7 +31,7 @@ function QuestionNoteAnony(props: Props) {
 			<div className="each-question-note-box">
 				<div
 					className="each-question-note-header-edge-img-box"
-					style={{ backgroundImage: `url("/notes/yellow-note-top-edge.png")` }}
+					style={{ backgroundImage: `url("/notes/note1-top-edge.png")` }}
 				></div>
 				<div className="each-question-note-body">
 					<div className="each-note-header">
@@ -72,7 +72,7 @@ function QuestionNoteAnony(props: Props) {
 				</div>
 				<div
 					className="QuestionNoteAnony-each-question-note-footer-edge-img-box"
-					style={{ backgroundImage: `url("/notes/yellow-note-edge.png")` }}
+					style={{ backgroundImage: `url("/notes/note1-bottom-edge.png")` }}
 				></div>
 			</div>
 		</>
