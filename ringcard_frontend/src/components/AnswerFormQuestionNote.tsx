@@ -17,9 +17,16 @@ function AnswerFormQuestionNote(props: Props) {
 			<div className="each-question-note-box">
 				<div
 					className="each-question-note-header-edge-img-box"
-					style={{ backgroundImage: `url("/notes/note1-top-edge.png")` }}
+					style={{
+						backgroundImage: `url("/notes/note${question.noteType}-top-edge.png")`,
+					}}
 				></div>
-				<div className="each-question-note-body">
+				<div
+					className="each-question-note-body"
+					style={{
+						backgroundImage: `url("/notes/note${question.noteType}-body.png")`,
+					}}
+				>
 					<div className="each-note-header">
 						<div className="note-profile-pic">
 							<img src="/test-anony-profile-pic.jpg" alt="" />
@@ -42,7 +49,9 @@ function AnswerFormQuestionNote(props: Props) {
 				</div>
 				<div
 					className="each-question-note-footer-edge-img-box"
-					style={{ backgroundImage: `url("/notes/note1-bottom-edge.png")` }}
+					style={{
+						backgroundImage: `url("/notes/note${question.noteType}-bottom-edge.png")`,
+					}}
 				></div>
 			</div>
 		</>

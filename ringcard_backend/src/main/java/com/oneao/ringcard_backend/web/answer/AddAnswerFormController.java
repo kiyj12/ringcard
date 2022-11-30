@@ -33,7 +33,6 @@ public class AddAnswerFormController {
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
         List<Question> questions = questionService.findAll(userId, questionSearchCond);
         questions.remove(question);
-        model.addAttribute("questions", questions);
         model.addAttribute("question", question);
         System.out.println("model = " + model);
 //        return "redirect:/{questionId}/completed";
@@ -57,6 +56,7 @@ public class AddAnswerFormController {
 
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        model.addAttribute("questions", questions);
         System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);
