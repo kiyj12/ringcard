@@ -34,22 +34,12 @@ public class ShowHomeAnsweredController {
         Long userId = loginUser.getUser().getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
 
-        System.out.println("page==" + page);
-
-//        PageRequest pageRequest1 = PageRequest.of(page, 5, Sort.by("id").ascending());
         PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-//        PageRequest pageRequest3 = PageRequest.of(page, 5);
-
-//        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
-
-        redirectAttributes.addAttribute("page", page);
-//        redirectAttributes.addAttribute("size", size);
+//        redirectAttributes.addAttribute("page", page);
 
         model.addAttribute("questions", questions);
-
-        System.out.println("questions==" + questions);
         return ResponseEntity.ok(questions);
     }
 }
