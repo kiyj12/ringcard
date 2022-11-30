@@ -42,12 +42,12 @@ public class QuestionService {
         return questionRepository.findAllAnsweredNotInTrashNoAuth();
     }
 
-    public List<Question> findAllInTrash(Long userId) {
-        return questionRepository.findAllInTrash(userId);
+    public Page<Question> findAllInTrash(Long userId, Pageable pageable) {
+        return questionRepository.findAllInTrash(userId, pageable);
     }
 
-    public List<Question> findAllInCollection(Long userId) {
-        return questionRepository.findAllInCollection(userId);
+    public Page<Question> findAllInCollection(Long userId, Pageable pageable) {
+        return questionRepository.findAllInCollection(userId, pageable);
     }
 
     

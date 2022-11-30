@@ -28,36 +28,15 @@ public class ShowHomeUnansweredController {
     private final QuestionService questionService;
     private final SpringDataJpaQuestionRepository springDataJpaQuestionRepository;
     private final JpaQuestionRepository jpaQuestionRepository;
-//    @RequestMapping(value="home/unanswered", method = {RequestMethod.GET, RequestMethod.POST})
-    @GetMapping("home/unanswered")
-    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model, RedirectAttributes redirectAttributes, @PageableDefault(size=5) Pageable pageable, @RequestParam("page") int page) {
-//    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model, RedirectAttributes redirectAttributes, @PageableDefault(size=5) Pageable pageable, @PathVariable int page) {
-//    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PageableDefault(size=5) Pageable pageable) {
-//        System.out.println("page = " + page);
-        System.out.println("loginUser = " + loginUser);
+    @GetMapping("home/unanswered/{page}")
+    public ResponseEntity<Page<Question>> showHomeUnAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PathVariable int page) {
         Long userId = loginUser.getUser().getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-//        List<Question> questions = questionService.findAll(userId, questionSearchCond, pageRequest);
 
-//        PageRequest pageRequest = PageRequest.of(page, 5);
-        PageRequest pageRequest = PageRequest.of(page, 5);
-        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
-//        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
-//        System.out.println("eee=" + questions);
-//        Criteria cri = new Criteria();
-//        cri.setPageNum(2);
-////        List<Question> list = springDataJpaQuestionRepository.getListPaging(cri);
-//        List<Question> list = jpaQuestionRepository.getListPaging(cri);
-//        list.forEach(board -> System.out.println("" + board));
-
-//        System.out.println(questions);
-//        model.addAttribute("questions", questions);
-
-
-//        redirectAttributes.addAttribute("page", page);
+        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
         return ResponseEntity.ok(questions);
-//        return "redirect:" + request.getHeader("Referer");
     }
 
 //    @GetMapping("home/unanswered")

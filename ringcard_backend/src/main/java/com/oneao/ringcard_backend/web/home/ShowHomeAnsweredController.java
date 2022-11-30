@@ -30,16 +30,13 @@ public class ShowHomeAnsweredController {
     private final AnswerService answerService;
 
     @GetMapping("/home/answered/{page}")
-    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, Model model, RedirectAttributes redirectAttributes, @PathVariable int page) {
+    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PathVariable int page) {
         Long userId = loginUser.getUser().getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
 
         PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
-//        redirectAttributes.addAttribute("page", page);
-
-        model.addAttribute("questions", questions);
         return ResponseEntity.ok(questions);
     }
 }

@@ -69,13 +69,13 @@ public class JpaQuestionRepository implements QuestionRepository {
     }
 
     @Override
-    public List<Question> findAllInTrash(Long userId) {
-        return repository.findByUserIdLikeAndInTrashLike(userId, true);
+    public Page<Question> findAllInTrash(Long userId, Pageable pageable) {
+        return repository.findByUserIdLikeAndInTrashLike(userId, true, pageable);
     }
 
     @Override
-    public List<Question> findAllInCollection(Long userId) {
-        return repository.findByUserIdLikeAndInCollectionLike(userId, true);
+    public Page<Question> findAllInCollection(Long userId, Pageable pageable) {
+        return repository.findByUserIdLikeAndInCollectionLike(userId, true, pageable);
     }
 
     @Override

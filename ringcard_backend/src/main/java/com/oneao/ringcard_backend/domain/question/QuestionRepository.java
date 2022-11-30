@@ -24,8 +24,8 @@ public interface QuestionRepository {
 //    List<Question> findAllUnansweredInTrash(Long userId);
 //    List<Question> findAllUnansweredNotInTrash(Long userId);
 
-    List<Question> findAllInTrash(Long userId);
-    List<Question> findAllInCollection(Long userId);
+    Page<Question> findAllInTrash(Long userId, Pageable pageable);
+    Page<Question> findAllInCollection(Long userId, Pageable pageable);
 
     List<Question> findAllByUserId(Long userId);
 
