@@ -16,12 +16,20 @@ function QuestionNote(props: Props) {
 	const question = props.question;
 
 	// making tape 동적 삽입
-	const tapeList = ["tape1.svg", "tape2.svg"];
+	const tapeList = [
+		"tape_PastelPink.svg",
+		"tape_PastelYellow.svg",
+		"tape_PastelGreen.svg",
+		"tape_PastelBlue.svg",
+		"tape_PastelPurple.svg",
+	];
 	const cntTape = tapeList.length;
 	const tapePositionList = [
-		"left: -35px; transform: rotate(-24deg); width: 110px;",
-		"left: 33%; top: -25px; transform: rotate(2deg); width: 130px;",
-		"left: 82%; top: -10px; transform: rotate(16deg); width: 105px;",
+		"width: 120px; height: 28px; transform: rotate(-30deg); margin: -10px auto -15px -40px;",
+		"width: 130px; height: 28px; transform: rotate(-18deg); margin: -20px auto -30px -30px;",
+		"width: 130px; height: 28px;  margin: 0 auto;  margin-top: -25px;",
+		"width: 130px; height: 28px; margin: 0 auto 0 auto; margin-top: -22.5px; transform: rotate(6deg);",
+		"width: 130px; height: 28px; transform: rotate(20deg); margin: -12px -40px -10px auto;",
 	];
 	const cntPosition = tapePositionList.length;
 
@@ -35,7 +43,7 @@ function QuestionNote(props: Props) {
 		const chosenTape = tapeList[Math.floor(Math.random() * cntTape)];
 		const chosenPosition =
 			tapePositionList[Math.floor(Math.random() * cntPosition)];
-		tapeImage.setAttribute("src", `../masking-tapes/${chosenTape}`);
+		tapeImage.setAttribute("src", `/masking-tapes/${chosenTape}`);
 		tapeImage.setAttribute("style", chosenPosition);
 	});
 
