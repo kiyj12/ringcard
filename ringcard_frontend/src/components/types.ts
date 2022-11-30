@@ -9,6 +9,8 @@ export type IQuestion = {
   inTrash: boolean;
   inCollection: boolean;
   uploadTime: TimeLike;
+  noteType: number;
+  tapeType: number;
   id: number;
 }
 

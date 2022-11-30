@@ -7,6 +7,7 @@ import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.UserService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static java.sql.Types.NULL;
 
 
 @Controller
@@ -46,9 +49,18 @@ public class SendQuestionController {
 
         String questionContents = requestBody.getQuestionContents();
         String questionHyperlink = requestBody.getQuestionHyperlink();
+        Integer questionNoteType = requestBody.getNoteType();
+        Integer questionTapeType = requestBody.getTapeType();
+
+        if (questionNoteType == null) {
+            questionNoteType = 0;
+        }
+        if (questionTapeType == null) {
+            questionTapeType = 0;
+        }
 
         Long userId = user.getId();
-        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false);
+        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType);
 
         System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
