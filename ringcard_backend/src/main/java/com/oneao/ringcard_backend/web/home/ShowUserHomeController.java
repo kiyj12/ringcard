@@ -24,8 +24,8 @@ import java.util.List;
 public class ShowUserHomeController {
     private final QuestionService questionService;
     private final UserService userService;
-    @GetMapping("userHome/{username}")
-    public ResponseEntity<Model> showHomeAnswered(@PathVariable String username, Model model) {
+    @GetMapping("userHome/{username}/{page}")
+    public ResponseEntity<Model> showHomeAnswered(@PathVariable String username, @PathVariable int page, Model model) {
         User user= userService.findByUsername(username).get();
         // Optional .orElseThrow()로 값 가져오기
         // https://minchul-son.tistory.com/472
@@ -33,8 +33,9 @@ public class ShowUserHomeController {
         String userRingcardName = user.getUserRingcardName();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
 
-        PageRequest pageRequest = PageRequest.of(0, 5);
+        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
+//        List<Question> questions =questionService.findAll1(userId, questionSearchCond);
 
         model.addAttribute("questions", questions);
         model.addAttribute("username", username);

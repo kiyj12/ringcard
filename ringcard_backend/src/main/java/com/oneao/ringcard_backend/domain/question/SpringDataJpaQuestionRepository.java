@@ -14,7 +14,7 @@ public interface SpringDataJpaQuestionRepository extends JpaRepository<Question,
     List<Question> findByUserIdLike(Long userId);
 
     Page<Question> findByUserIdLikeAndAnsweredLikeAndInTrashLike(Long userId, boolean answered, boolean inTrash, Pageable pageable);
-//    List<Question> findByUserIdLikeAndAnsweredLikeAndInTrashLike(Long userId, boolean answered, boolean inTrash);
+//    List<Question> findByUserIdLikeAndAnsweredLikeAndInTrashLike1(Long userId, boolean answered, boolean inTrash);
 
     List<Question> findByAnsweredLikeAndInTrashLike(boolean isAnswered, boolean inTrash);
 
