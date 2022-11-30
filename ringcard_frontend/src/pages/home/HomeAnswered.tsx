@@ -19,7 +19,7 @@ function HomeAnswered(props:any) {
 			.then((res) => {
 				console.log(res.data);
 				setQuestionList(res.data.content);
-				setTotalPages(res.data.totalPages)
+				setTotalPages(res.data.totalPages);
 				setPageNumber(res.data.number+1);
 			})
 			.catch((err) => {
@@ -27,40 +27,40 @@ function HomeAnswered(props:any) {
 			});
 	}, []);
 	
-	function BtnToPageUp(){
-		function handleClick(e: any){
-			const pageNumber = Number(page);
-			const newPage = pageNumber + 1;
-			if (totalPages === undefined){}
-			else if (newPage>=totalPages){
-			}else{
-				window.location.href=`/home/answered/${newPage}`
-			}
-		}
-		return (<button onClick={handleClick}>Up</button>);
-	}
+	// function BtnToPageUp(){
+	// 	function handleClick(e: any){
+	// 		const pageNumber = Number(page);
+	// 		const newPage = pageNumber + 1;
+	// 		if (totalPages === undefined){}
+	// 		else if (newPage>=totalPages){
+	// 		}else{
+	// 			window.location.href=`/home/answered/${newPage}`
+	// 		}
+	// 	}
+	// 	return (<button onClick={handleClick}>Up</button>);
+	// }
 
-	function BtnToPageDown(){
-		function handleClick(e: any){
-			const pageNumber = Number(page);
-			const newPage = pageNumber - 1;
-			if (newPage<0){
-			}else{
-				window.location.href=`/home/answered/${newPage}`
-			}
-		}
-		return (<button onClick={handleClick}>Down</button>);
-	}
+	// function BtnToPageDown(){
+	// 	function handleClick(e: any){
+	// 		const pageNumber = Number(page);
+	// 		const newPage = pageNumber - 1;
+	// 		if (newPage<0){
+	// 		}else{
+	// 			window.location.href=`/home/answered/${newPage}`
+	// 		}
+	// 	}
+	// 	return (<button onClick={handleClick}>Down</button>);
+	// }
 
 	return (
 		<div className="container">
 			<Header />
-			<Navigation />
+			<Navigation totalPages={totalPages} pageNumber={pageNumber} page={page}/>
 			<div className="container-body">
 
-				<BtnToPageUp/>
+				{/* <BtnToPageUp/>
 				<p>{pageNumber}/{totalPages}</p>
-				<BtnToPageDown/>
+				<BtnToPageDown/> */}
 
 				<QuestionNoteList questionList={questionList} />
 			</div>

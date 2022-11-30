@@ -81,3 +81,10 @@
 .activeNav .home-tab-text {
   color: #ffffff;
 }
+
+.page-btn{
+  background-color: transparent;
+  border: none;
+  height: 32px;
+  width: 40px;
+}

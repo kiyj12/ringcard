@@ -44,6 +44,7 @@
 }
 .user-transparent{
   background-color: transparent;
+  border: none;
 }
 .user-icon-user-dark{
   background-color: var(--dark-color);

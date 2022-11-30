@@ -2,8 +2,41 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/navigation.css";
 
-const Navigation = () => {
+const Navigation = (props: any) => {
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+	const totalPages=props.totalPages;
+	const pageNumber=props.pageNumber;
+	const page = props.page;
+
+	function BtnToPageUp(){
+		function handleClick(e: any){
+			const pageNumber = Number(page);
+			const newPage = pageNumber + 1;
+			if (totalPages === undefined){}
+			else if (newPage>=totalPages){
+			}else{
+				window.location.href=`/home/answered/${newPage}`
+			}
+		}
+		return (<button className="page-btn" onClick={handleClick}>
+			<img alt="" src="/buttons/move-next-page-btn.svg" />
+		</button>);
+	}
+
+	function BtnToPageDown(){
+		function handleClick(e: any){
+			const pageNumber = Number(page);
+			const newPage = pageNumber - 1;
+			if (newPage<0){
+			}else{
+				window.location.href=`/home/answered/${newPage}`
+			}
+		}
+		return (<button className="page-btn" onClick={handleClick}>
+			<img alt="" src="/buttons/move-previous-page-btn.svg" />
+		</button>);
+	}
+
 
 	return (
 		<nav className="nav-container">
@@ -118,9 +151,9 @@ const Navigation = () => {
 			<hr className="nav-hr"/>
 			<div className="page-bar">
 				<div className="page-section">
-					<img alt="" src="/buttons/move-previous-page-btn.svg" />
-					<div className="page-num">1 /17</div>
-					<img alt="" src="/buttons/move-next-page-btn.svg" />
+					<BtnToPageDown/>
+					<div className="page-num">{pageNumber}/{totalPages}</div>
+					<BtnToPageUp/>
 				</div>
 			</div>
 		</nav>
