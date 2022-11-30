@@ -21,12 +21,6 @@ function QuestionNoteAnony(props: Props) {
 		setShowAnswer(!showAnswer);
 	};
 
-	function FindAnswer(e: { questionId: number }) {
-		if (e.questionId === question.id) {
-			return e;
-		}
-	}
-
 	return (
 		<>
 			<div className="each-question-note-box">
