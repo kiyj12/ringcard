@@ -9,6 +9,9 @@ import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -49,8 +53,9 @@ public class AddQuestionFormController {
         User user = userService.findById(question.getUserId()).get();
 
         // 해당 질문 제외한 다른 응답 질문 리스트
-        List<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth();
-        questions.remove(question);
+        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(pageRequest);
+//        questions.remove(question);
 
         List<Object> map = new ArrayList<>();
         for (Question q : questions) {
@@ -62,7 +67,13 @@ public class AddQuestionFormController {
             map.add(innerMap);
         }
 
+        HashMap<String, Integer> pageInfo = new HashMap<>(2){{
+            put("totalPages", questions.getTotalPages());
+            put("number", questions.getNumber());
+        }};
+
         model.addAttribute("map", map);
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
         model.addAttribute("user", user);

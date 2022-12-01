@@ -13,19 +13,60 @@ function AnswerCompletedPage() {
 	const [answer, setAnswer] = useState<any>([]);
 	const [questionList, setQuestionList] = useState<any[]>([]);
 
+	const [totalPages, setTotalPages] = useState<Number>(0);
+	const [pageNumber, setPageNumber] = useState<Number>(0);
+	const { page } = useParams();
+
 	useEffect(() => {
 		axios
-			.get("/question/" + questionId + "/completed/user")
+			.get("/question/" + questionId + "/completed/user/0")
 			.then((res) => {
 				console.log(res.data);
 				setQuestionList(res.data.questions);
 				setQuestion(res.data.question);
 				setAnswer(res.data.answer);
+				setTotalPages(res.data.totalPages);
+				setPageNumber(res.data.number + 1);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}, [questionId]);
+
+	function BtnToViewMore() {
+		function handleClick(e: any) {
+			const newPage = pageNumber;
+			if (totalPages === undefined) {
+			} else if (newPage >= totalPages) {
+			} else {
+				axios
+					.get("/question/" + questionId + "/completed/user/" + page)
+					.then((res) => {
+						console.log(res.data);
+						// setQuestionList1(res.data.questions.content);
+						// setQuestionList(questionList, ...res.data.questions);
+						setTotalPages(res.data.pageInfo.totalPages);
+						setPageNumber(res.data.pageInfo.number + 1);
+					})
+				.catch((err) => {
+						console.log(err);
+					});
+			}
+		}
+		return (
+			<div>
+				{totalPages === pageNumber ? undefined : (
+					<div className="UserHome-viewMore-btn-container">
+					<div className="UserHome-viewMore-btn-section">
+						<button className="UserHome-viewMore-btn" onClick={handleClick}>
+							+ 더보기
+						</button>
+					</div>
+				</div>
+				)}
+			</div>
+		);
+	}
 
 	return (
 		<div className="container">
@@ -43,6 +84,7 @@ function AnswerCompletedPage() {
 				<div className="questionPage-container-body">
 					<QuestionNoteList questionList={questionList} />
 				</div>
+				<BtnToViewMore/>
 			</div>
 		</div>
 	);

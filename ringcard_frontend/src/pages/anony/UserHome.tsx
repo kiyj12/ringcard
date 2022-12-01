@@ -6,7 +6,6 @@ import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
 import SendQuestionForm from "../../components/SendQuestionFormUserHome";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
-import "../../styles/viewMore.css";
 
 import { toast, ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -48,7 +47,6 @@ function UserHome() {
 					.get("/userHome/" + userName + "/" + newPage)
 					.then((res) => {
 						console.log(res.data);
-						setUser(res.data.user);
 						// setQuestionList1(res.data.questions.content);
 						console.log("a");
 						const b: [[IQuestion, IAnswer]] = res.data.map;
@@ -71,27 +69,24 @@ function UserHome() {
 							setMap(mapTemp);
 						}
 
-						// const b= res.data.map;
-						// if(map && b){
-						// 	console.log('a');
-						// 	console.log(...map);
-						// 	console.log(...b);
-						// }
-
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
-					.catch((err) => {
+				.catch((err) => {
 						console.log(err);
 					});
 			}
 		}
 		return (
-			<div className="view-more-btn-section">
+			<div>
 				{totalPages === pageNumber ? undefined : (
-					<button className="view-more-btn" onClick={handleClick}>
-						+ 더보기
-					</button>
+					<div className="UserHome-viewMore-btn-container">
+					<div className="UserHome-viewMore-btn-section">
+						<button className="UserHome-viewMore-btn" onClick={handleClick}>
+							+ 더보기
+						</button>
+					</div>
+				</div>
 				)}
 			</div>
 		);
@@ -115,10 +110,7 @@ function UserHome() {
 				<div className="UserHome-questionlist-box">
 					<div className="UserHome-down-background-img">
 						<div>{map ? <QuestionNoteListAnony map={map} /> : undefined}</div>
-
-						<div className="UserHome-viewMore-btn">
-							<BtnToViewMore />
-						</div>
+						<BtnToViewMore />
 					</div>
 				</div>
 			</div>

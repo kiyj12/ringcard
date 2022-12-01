@@ -38,7 +38,7 @@ const AppRouter = () => {
 						element={<QuestionAnswered />}
 					/>
 					<Route
-						path="/question/:questionId/completed/user"
+						path="/question/:questionId/completed/user/:page"
 						element={<AnswerCompletedPage />}
 					/>
 					<Route
