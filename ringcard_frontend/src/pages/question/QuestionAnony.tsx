@@ -22,7 +22,7 @@ function QuestionAnony() {
 
 	useEffect(() => {
 		axios
-			.get("/question/" + questionId + "/anony")
+			.get("/question/" + questionId + "/anony/0")
 			.then((res) => {
 				console.log(res.data);
 				setUser(res.data.user);
