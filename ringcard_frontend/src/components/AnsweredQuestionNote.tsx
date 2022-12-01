@@ -35,9 +35,9 @@ function AnsweredQuestionNote(props: Props) {
 				</div>
 				<hr className="note-hr" />
 				<div className="each-note-answer-content-box">
-					<div className="AnsweredQuestionNote-answer-profile-pic">
+					{/* <div className="AnsweredQuestionNote-answer-profile-pic">
 						<img src="/profile.png" alt="" />
-					</div>
+					</div> */}
 					<div className="AnsweredQuestionNote-answer-content">
 						{answer.answerContents}
 					</div>

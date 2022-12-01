@@ -9,4 +9,5 @@ public class QuestionSendDto {
     private String questionHyperlink;
     private Integer noteType;
     private Integer tapeType;
+    private Integer tapePosition;
 }
