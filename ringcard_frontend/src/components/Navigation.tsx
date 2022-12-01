@@ -4,40 +4,44 @@ import "../styles/navigation.css";
 
 const Navigation = (props: any) => {
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-	const totalPages=props.totalPages;
-	const pageNumber=props.pageNumber;
+	const totalPages = props.totalPages;
+	const pageNumber = props.pageNumber;
 	const page = props.page;
 	const pageAddress = props.pageAddress;
 
-	function BtnToPageUp(){
-		function handleClick(e: any){
+	function BtnToPageUp() {
+		function handleClick(e: any) {
 			const pageNumber = Number(page);
 			const newPage = pageNumber + 1;
-			if (totalPages === undefined){}
-			else if (newPage>=totalPages){
-			}else{
-				window.location.href=`/home/${pageAddress}/${newPage}`
+			if (totalPages === undefined) {
+			} else if (newPage >= totalPages) {
+			} else {
+				window.location.href = `/home/${pageAddress}/${newPage}`;
 			}
 		}
-		return (<button className="page-btn" onClick={handleClick}>
-			<img alt="" src="/buttons/move-next-page-btn.svg" />
-		</button>);
+		return (
+			<button className="page-btn" onClick={handleClick}>
+				<img alt="" src="/buttons/move-next-page-btn.svg" />
+			</button>
+		);
 	}
 
-	function BtnToPageDown(){
-		function handleClick(e: any){
+	function BtnToPageDown() {
+		function handleClick(e: any) {
 			const pageNumber = Number(page);
 			const newPage = pageNumber - 1;
-			if (newPage<0){
-			}else{
-				window.location.href=`/home/${pageAddress}/${newPage}`
+			if (newPage < 0) {
+			} else {
+				window.location.href = `/home/${pageAddress}/${newPage}`;
 			}
 		}
-		return (<button className="page-btn" onClick={handleClick}>
-			<img alt="" src="/buttons/move-previous-page-btn.svg" />
-		</button>);
+		return (
+			<button className="page-btn" onClick={handleClick}>
+				<img alt="" src="/buttons/move-previous-page-btn.svg" />
+			</button>
+		);
 	}
-
+	const hi = 0;
 
 	return (
 		<nav className="nav-container">
@@ -149,15 +153,15 @@ const Navigation = (props: any) => {
 					</div>
 				</div>
 			</div>
-			<hr className="nav-hr"/>
+			<hr className="nav-hr" />
 			<div className="page-bar">
 				<div className="page-section">
-					<BtnToPageDown/>
+					<BtnToPageDown />
 					<div className="page-num-section">
 						<div className="page-num-current">{pageNumber}</div>
 						<div className="page-num">/ {totalPages}</div>
 					</div>
-					<BtnToPageUp/>
+					<BtnToPageUp />
 				</div>
 			</div>
 		</nav>

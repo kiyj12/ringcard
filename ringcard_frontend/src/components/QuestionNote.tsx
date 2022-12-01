@@ -3,8 +3,6 @@ import QuestionFooter from "./QuestionNoteFooter";
 import "../styles/question.css";
 import NowDate from "./NowDate";
 import HyperlinkBox from "./HyperlinkBox";
-import { useEffect } from "react";
-import { forEachChild } from "typescript";
 
 export interface Props {
 	idx: number;

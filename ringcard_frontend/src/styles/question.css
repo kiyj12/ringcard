@@ -31,25 +31,25 @@
 
 }
 
-.QuestionNoteAnony-maskingTape-img {
-  width: 110px;
-  height: 50px;
-
-  margin: 0 auto;
-  /* margin-top 필수! 얘가 있어야 보임. */
-  margin-top: -5px;
-
-}
-
-.QuestionNote-maskingTape-img {
+/* .QuestionNoteAnony-maskingTape-img {
   width: 130px;
   height: 28px;
 
   margin: 0 auto;
-  /* margin-top 필수! 얘가 있어야 보임. */
+  margin-top 필수! 얘가 있어야 보임.
+  margin-top: -5px;
+
+} */
+
+/* .QuestionNote-maskingTape-img {
+  width: 130px;
+  height: 28px;
+
+  margin: 0 auto;
+  margin-top 필수! 얘가 있어야 보임.
   margin-top: -25px;
 
-}
+} */
 
 .note-header {
   /* background-color: aqua; */
