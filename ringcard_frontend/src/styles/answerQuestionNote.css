@@ -166,7 +166,8 @@
   width: 79%; 
   height: fit-content;
   padding: 5px;
-  padding-bottom : 18px;
+  padding-top: 18px;
+  padding-bottom : 15px;
   margin: 0 auto;
 
   font-family: NanumBarunGothic;
