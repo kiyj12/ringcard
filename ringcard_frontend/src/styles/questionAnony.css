@@ -2,9 +2,10 @@
 
   width: 100%;
   max-width: inherit;
-  height: calc(13% + 280px);
-
+  height: calc(13% + 273px);
   padding-bottom: 10px;
+
+
 
   position: fixed;
   top: -13%;
