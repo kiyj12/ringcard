@@ -12,31 +12,28 @@ import HeaderRingca from "../../components/HeaderRingca";
 import { useForm } from "react-hook-form";
 // import Toastify from "../../components/Toast";
 
-// import { Client, auth } from "twitter-api-sdk";
-// import express from "express";
-// import dotenv from "dotenv";
 
 
 const Login = () => {
 
-var Twitter = require('twitter');
+// var Twitter = require('twitter');
 
-var client = new Twitter({
-  consumer_key: 'S0FVySANFNnlISMw5D1vSE8P0',
-  consumer_secret: 'KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X',
-  access_token_key: '1516353113430851586-BikPyEoaehv4mDqSnCLc5mMQGuigeR',
-  access_token_secret: 'zReOE8IWZ5wbGnPC4D8AClbBqc1hXhDQZcbBf2OOar2vw'
-});
+// var client = new Twitter({
+//   consumer_key: 'S0FVySANFNnlISMw5D1vSE8P0',
+//   consumer_secret: 'KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X',
+//   access_token_key: '1516353113430851586-BikPyEoaehv4mDqSnCLc5mMQGuigeR',
+//   access_token_secret: 'zReOE8IWZ5wbGnPC4D8AClbBqc1hXhDQZcbBf2OOar2vw'
+// });
 
-function tweetPost(content: string) {
-  client.post('statuses/update', {status: content}, function(error: any, tweet: any, response: any) {
-    if (!error) {
-      console.log("tweet success: " + content);
-    } else {
-      console.log(error);
-    }
-  });
-}
+// function tweetPost(content: string) {
+//   client.post('statuses/update', {status: content}, function(error: any, tweet: any, response: any) {
+//     if (!error) {
+//       console.log("tweet success: " + content);
+//     } else {
+//       console.log(error);
+//     }
+//   });
+// }
 // dotenv.config();
 
 // const app = express();

@@ -83,11 +83,15 @@ function QuestionAnony() {
 			}
 		}
 		return (
-			<div className="view-more-btn-section">
+			<div>
 				{totalPages === pageNumber ? undefined : (
-					<button className="view-more-btn" onClick={handleClick}>
-						+ 더보기
-					</button>
+				<div className="Question-viewMore-btn-container">
+					<div className="QuestionAnony-viewMore-btn-section">
+						<button className="QuestionAnony-viewMore-btn" onClick={handleClick}>
+							+ 더보기
+						</button>
+					</div>
+				</div>
 				)}
 			</div>
 		);
@@ -111,13 +115,8 @@ function QuestionAnony() {
 				<div className="QuestionAnony-SendQuestionForm-container">
 					<SendQuestionForm />
 				</div>
-
-				{/* <div className="QuestionAnony-questionlist-box"> */}
-				{/* <div className="QuestionAnony-down-background-img"> */}
 				{map ? <QuestionNoteListAnony map={map} /> : undefined}
-				<BtnToViewMore/>
-				{/* </div> */}
-				{/* </div> */}
+					<BtnToViewMore/>
 			</div>
 		</div>
 	);
