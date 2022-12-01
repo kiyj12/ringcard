@@ -20,7 +20,7 @@ public interface QuestionRepository {
     Page<Question> findAll(Long userId, QuestionSearchCond cond, Pageable pageable);
 //    List<Question> findAll1(Long userId, QuestionSearchCond cond);
 //    List<Question> findAllAnsweredNotInTrash(Long userId);
-    List<Question> findAllAnsweredNotInTrashNoAuth();
+    Page<Question> findAllAnsweredNotInTrashNoAuth(Pageable pageable);
 //    List<Question> findAllUnansweredInTrash(Long userId);
 //    List<Question> findAllUnansweredNotInTrash(Long userId);
 
