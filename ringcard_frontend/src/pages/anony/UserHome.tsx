@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
-import SendQuestionForm from "../../components/SendQuestionForm";
+import SendQuestionForm from "../../components/SendQuestionFormUserHome";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
 import "../../styles/viewMore.css";

@@ -33,17 +33,40 @@ public class SendQuestionController {
     private final UserService userService;
 
     @PostMapping({"question/{questionId}/anony/{page}"})
-    public String addQuestion(@PathVariable Long questionId, Question question, RedirectAttributes redirectAttributes, HttpServletRequest request, @PathVariable int page) {
+    public void addQuestion(@PathVariable Long questionId, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestBody QuestionSendDto requestBody, @PathVariable int page) {
 
         // 이미 띄워져있는 question의 정보
         Question beforeQuestion= questionService.findByIdNoAuth(questionId).get();
         Long userId = beforeQuestion.getUserId();
-        question.setUserId(userId);
-        Question savedQuestion = questionService.save(question);
-        redirectAttributes.addAttribute("questionId", beforeQuestion.getId());
-        redirectAttributes.addAttribute("status",true);
 
-        return "redirect:/question/{questionId}/anony/{page}";
+    // new Question 시작
+        String questionContents = requestBody.getQuestionContents();
+        String questionHyperlink = requestBody.getQuestionHyperlink();
+        Integer questionNoteType = requestBody.getNoteType();
+        Integer questionTapeType = requestBody.getTapeType();
+
+
+        Integer[] noteList = { 1, 2, 3, 4 };
+        Integer[] tapeList = { 1, 2, 3, 4, 5 };
+
+        if (questionNoteType == null) {
+            int noteIdx = (int) (Math.random() * noteList.length);
+            questionNoteType = noteList[noteIdx];
+        }
+        if (questionTapeType == null) {
+            int tapeIdx = (int) (Math.random() * tapeList.length);
+            questionTapeType = tapeList[tapeIdx];
+        }
+
+        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType);
+
+        System.out.println("question = " + question);
+        Question savedQuestion = questionService.save(question);
+
+//        redirectAttributes.addAttribute("questionId", beforeQuestion.getId());
+//        redirectAttributes.addAttribute("status",true);
+//
+//        return "redirect:/question/{questionId}/anony/{page}";
     }
 
     @PostMapping({"userHome/{username}/{page}"})
@@ -59,10 +82,12 @@ public class SendQuestionController {
         Integer[] tapeList = { 1, 2, 3, 4, 5 };
 
         if (questionNoteType == null) {
-            questionNoteType = (int) (Math.random()*noteList.length);
+            int noteIdx = (int) (Math.random() * noteList.length);
+            questionNoteType = noteList[noteIdx];
         }
         if (questionTapeType == null) {
-            questionTapeType = (int) (Math.random()*tapeList.length);
+            int tapeIdx = (int) (Math.random() * tapeList.length);
+            questionTapeType = tapeList[tapeIdx];
         }
 
         Long userId = user.getId();

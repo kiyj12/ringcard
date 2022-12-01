@@ -17,7 +17,7 @@ import AnswerCompletedPage from "./pages/question/AnswerCompletedPage";
 import QuestionAnswered from "./pages/question/QuestionAnswered";
 import UserHome from "./pages/anony/UserHome";
 import DeleteAccount from "./pages/mypage/DeleteAccount";
-import QuestionAnony from "./pages/question/QuestionAnony";
+import QuestionAnony from "./pages/anony/QuestionAnony";
 
 const AppRouter = () => {
 	return (
