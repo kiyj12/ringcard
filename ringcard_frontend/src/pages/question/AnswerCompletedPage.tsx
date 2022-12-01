@@ -22,7 +22,7 @@ function AnswerCompletedPage() {
 			.get("/question/" + questionId + "/completed/user/0")
 			.then((res) => {
 				console.log(res.data);
-				setQuestionList(res.data.questions);
+				setQuestionList(res.data.questions.content);
 				setQuestion(res.data.question);
 				setAnswer(res.data.answer);
 				setTotalPages(res.data.totalPages);
