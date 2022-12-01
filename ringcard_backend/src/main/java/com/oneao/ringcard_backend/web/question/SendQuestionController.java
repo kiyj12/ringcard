@@ -62,7 +62,7 @@ public class SendQuestionController {
             questionNoteType = (int) (Math.random()*noteList.length);
         }
         if (questionTapeType == null) {
-            questionNoteType = (int) (Math.random()*tapeList.length);
+            questionTapeType = (int) (Math.random()*tapeList.length);
         }
 
         Long userId = user.getId();
