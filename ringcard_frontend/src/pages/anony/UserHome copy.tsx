@@ -2,27 +2,23 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
-import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
+import QuestionNoteList from "../../components/QuestionNoteList";
 import SendQuestionForm from "../../components/SendQuestionForm";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
 import "../../styles/viewMore.css";
-
-import { toast, ToastContainer, Zoom } from "react-toastify";
+import { toast, ToastContainer, Zoom} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
-import { IAnswer, IQuestion } from "../../components/types";
 
-function UserHome() {
+function UserHomeCopy() {
 	const params = useParams();
 	const userName = String(params.userName);
 	const [user, setUser] = useState<any>([]);
-
-	const [map, setMap] = useState<[IQuestion, IAnswer][]>();
+	const [questionList, setQuestionList] = useState<any[]>([]);
 
 	const [totalPages, setTotalPages] = useState<Number>(0);
 	const [pageNumber, setPageNumber] = useState<Number>(0);
 	const { page } = useParams();
-
 
 	useEffect(() => {
 		axios
@@ -30,10 +26,9 @@ function UserHome() {
 			.then((res) => {
 				console.log(res.data);
 				setUser(res.data.user);
-				setMap(res.data.map);
-				setTotalPages(res.data.pageInfo.totalPages);
-				setPageNumber(res.data.pageInfo.number+1);
-
+				setQuestionList(res.data.questions.content);
+				setTotalPages(res.data.questions.totalPages);
+				setPageNumber(res.data.questions.number+1);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -52,34 +47,9 @@ function UserHome() {
 				console.log(res.data);
 				setUser(res.data.user);
 				// setQuestionList1(res.data.questions.content);
-				console.log('a');
-				const b:[[IQuestion, IAnswer]]= res.data.map;
-				// [IQuestion, IAnswer]
-				// 새로운 맵에 넣고, 그 맵을 다시 setMap 하자.
-				let mapTemp= [];
-				if(map){
-					for(let idx = 0; idx < map.length; idx++){
-					mapTemp.push(map[idx])
-				}}
-				if(b){
-					for(let idx = 0; idx < b.length; idx++){
-					mapTemp.push(b[idx])
-				}}
-				console.log("cc");
-				console.log(mapTemp);
-				if(mapTemp){
-					setMap(mapTemp);
-				}
-
-				// const b= res.data.map;
-				// if(map && b){
-				// 	console.log('a');
-				// 	console.log(...map);
-				// 	console.log(...b);
-				// }
-				
-				setTotalPages(res.data.pageInfo.totalPages);
-				setPageNumber(res.data.pageInfo.number+1);
+				setQuestionList([...questionList, ...res.data.questions.content]);
+				setTotalPages(res.data.questions.totalPages);
+				setPageNumber(res.data.questions.number+1);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -92,27 +62,23 @@ function UserHome() {
 		</div>
 		);
 	}
-		
+
 	return (
 		<div className="container">
 			<HeaderNoProfile />
-
-			<div className="contents-container block">
+			<div className="contents-container">
 				<div className="UserHome-profile-box">
 					<img src="/profile.png" alt="" />
 					<div className="UserHome-profile-username">
 						{user.userRingcardName}
 					</div>
 				</div>
-				<div className="UserHome-SendQuestionForm-container">
-					<SendQuestionForm userName={userName} />
-				</div>
+				<SendQuestionForm userName={userName} />
 
-				<div className="UserHome-questionlist-box">
+				<div className="UserHome-questionlist-box ">
 					<div className="UserHome-down-background-img">
-						{map ? <QuestionNoteListAnony map={map} /> : undefined}
+						<QuestionNoteList questionList={questionList} />
 						<BtnToViewMore/>
-
 					</div>
 				</div>
 			</div>
@@ -120,4 +86,4 @@ function UserHome() {
 	);
 }
 
-export default UserHome;
+export default UserHomeCopy;

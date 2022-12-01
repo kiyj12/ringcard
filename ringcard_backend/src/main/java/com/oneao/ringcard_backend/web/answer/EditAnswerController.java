@@ -3,12 +3,14 @@ package com.oneao.ringcard_backend.web.answer;
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.domain.answer.Answer;
 import com.oneao.ringcard_backend.domain.answer.AnswerEditDto;
-import com.oneao.ringcard_backend.domain.answer.EditAnswerDto;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import com.oneao.ringcard_backend.service.AnswerService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -79,8 +80,6 @@ public class EditAnswerController {
         Answer oldAnswer = answerService.findByQuestionId(questionId).get();
         String oldAnswerContents = oldAnswer.getAnswerContents();
 
-        QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-        List<Question> questions = questionService.findAll(userId, questionSearchCond);
         model.addAttribute("question", question);
         model.addAttribute("oldAnswer", oldAnswerContents);
 

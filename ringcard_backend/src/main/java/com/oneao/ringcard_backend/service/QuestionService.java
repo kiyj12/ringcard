@@ -4,7 +4,10 @@ import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.domain.question.QuestionRepository;
 import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,21 +33,24 @@ public class QuestionService {
         return questionRepository.findByIdNoAuth(id);
     }
     
-    public List<Question> findAll(Long userId, QuestionSearchCond cond) {
-        return questionRepository.findAll(userId, cond);
+    public Page<Question> findAll(Long userId, QuestionSearchCond cond, Pageable pageable) {
+        return questionRepository.findAll(userId, cond, pageable);
     }
 
+//    public List<Question> findAll1(Long userId, QuestionSearchCond cond) {
+//        return questionRepository.findAll1(userId, cond);
+//    }
     
     public List<Question> findAllAnsweredNotInTrashNoAuth() {
         return questionRepository.findAllAnsweredNotInTrashNoAuth();
     }
 
-    public List<Question> findAllInTrash(Long userId) {
-        return questionRepository.findAllInTrash(userId);
+    public Page<Question> findAllInTrash(Long userId, Pageable pageable) {
+        return questionRepository.findAllInTrash(userId, pageable);
     }
 
-    public List<Question> findAllInCollection(Long userId) {
-        return questionRepository.findAllInCollection(userId);
+    public Page<Question> findAllInCollection(Long userId, Pageable pageable) {
+        return questionRepository.findAllInCollection(userId, pageable);
     }
 
     
@@ -85,4 +91,5 @@ public class QuestionService {
     public void clearStore() {
         questionRepository.clearStore();
     }
+
 }

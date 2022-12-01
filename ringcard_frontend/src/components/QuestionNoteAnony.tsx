@@ -21,6 +21,7 @@ function QuestionNoteAnony(props: Props) {
 		setShowAnswer(!showAnswer);
 	};
 
+
 	return (
 		<>
 			<div className="each-question-note-box">
@@ -81,13 +82,17 @@ function QuestionNoteAnony(props: Props) {
 				</div>
 				<div
 					className="QuestionNoteAnony-each-question-note-footer-edge-img-box"
+
 					style={{
 						backgroundImage: `url("/notes/note${question.noteType}-bottom-edge.png")`,
 					}}
+
 				></div>
 			</div>
 		</>
 	);
 }
 
+
 export default QuestionNoteAnony;
+

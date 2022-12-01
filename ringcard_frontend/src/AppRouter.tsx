@@ -25,10 +25,10 @@ const AppRouter = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Navigation />} />
-					<Route path="/home/unanswered" element={<HomeUnanswered />} />
-					<Route path="/home/answered" element={<HomeAnswered />} />
-					<Route path="/home/trashcan" element={<HomeTrashcan />} />
-					<Route path="/home/collection" element={<HomeCollection />} />
+					<Route path="/home/unanswered/:page" element={<HomeUnanswered />} />
+					<Route path="/home/answered/:page" element={<HomeAnswered />} />
+					<Route path="/home/trashcan/:page" element={<HomeTrashcan />} />
+					<Route path="/home/collection/:page" element={<HomeCollection />} />
 					<Route
 						path="/question/:questionId/unanswered/user"
 						element={<QuestionUnanswered />}
@@ -45,8 +45,7 @@ const AppRouter = () => {
 						path="/question/:questionId/anony"
 						element={<QuestionAnony />}
 					/>
-					<Route path="/userHome/:userName" element={<UserHome />} />
-
+					<Route path="/userHome/:userName/:page" element={<UserHome />} />
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
 					<Route path="/loginForm" element={<Login />} />

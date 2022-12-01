@@ -1,18 +1,11 @@
-<!-- 총 게시글 갯수 출력 -->
-<select id="countBoard" resultType="int">
-    SELECT COUNT(*) FROM BOARD
-</select>
+<!-- MySQL-->
+<!-- 게시물 목록(페이징) -->
+<select id="getListPaging" resultType="com.vam.model.BoardVO">
 
-        <!-- 페이징 처리 후 게시글 조회 -->
-<select id="selectBoard" resultType="com.my.spring.domain.BoardVO">
-SELECT *
-FROM (
-SELECT ROWNUM RN, A.*
-FROM (
-SELECT *
-FROM BOARD
-ORDER BY SEQ DESC
-) A
-)
-WHERE RN BETWEEN #{start} AND #{end}
+    select * from (
+    select *
+    from ringcard.question order by id desc) as T1
+    <!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
+    limit #{skip},#{amount}
+
 </select>

@@ -8,7 +8,7 @@ import QuestionNoteAnony from "./QuestionNoteAnony";
 import React from "react";
 
 export interface Props {
-	map: [[IQuestion, IAnswer]];
+  map: [IQuestion, IAnswer][];
 }
 
 function makeTapeUrl(tapeType: Number) {
@@ -41,6 +41,7 @@ function QuestionNoteList(props: Props) {
 			tapePositionList[Math.floor(Math.random() * cntPosition)];
 		tapeImage.setAttribute("style", chosenPosition);
 	});
+
 	return (
 		<>
 			<div className="question-notes-container">
@@ -50,7 +51,9 @@ function QuestionNoteList(props: Props) {
 						idx={idx}
 						question={QA[0]}
 						answer={QA[1]}
+
 						tapeUrl={makeTapeUrl(QA[0].tapeType)}
+
 					/>
 				))}
 			</div>
@@ -59,3 +62,4 @@ function QuestionNoteList(props: Props) {
 }
 
 export default QuestionNoteList;
+

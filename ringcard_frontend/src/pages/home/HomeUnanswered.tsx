@@ -4,25 +4,40 @@ import "../../styles/layout/layout.css";
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import QuestionNoteList from "../../components/QuestionNoteList";
+import {useParams } from "react-router-dom";
 
-function HomeUnanswered() {
+
+const HomeUnanswered = () => {
+
 	const [questionList, setQuestionList] = useState<any[]>([]);
+	
+	const [totalPages, setTotalPages] = useState<number>();
+	const [pageNumber, setPageNumber] = useState<number>();
+	const pageAddress = "unanswered";
+	const { page } = useParams();
 
 	useEffect(() => {
 		axios
-			.get("/home/unanswered")
+			.get(`/home/unanswered/${page}`)
 			.then((res) => {
 				console.log(res.data);
-				setQuestionList(res.data);
+				setQuestionList(res.data.content);
+				setTotalPages(res.data.totalPages);
+				setPageNumber(res.data.number+1);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}, []);
+
+		
+	
 	return (
 		<div className="container">
+			{/* <PageLoad/> */}
 			<Header />
-			<Navigation />
+			<Navigation pageAddress={pageAddress} totalPages={totalPages} pageNumber={pageNumber} page={page}/>
+			
 			<div className="container-body">
 				<QuestionNoteList questionList={questionList} />
 			</div>
