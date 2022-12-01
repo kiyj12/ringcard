@@ -9,6 +9,8 @@ export type IQuestion = {
   inTrash: boolean;
   inCollection: boolean;
   uploadTime: TimeLike;
+  noteType: number;
+  tapeType: number;
   id: number;
 }
 
@@ -16,4 +18,9 @@ export type IAnswer = {
   answerContents: string;
   questionId: number;
   uploadTime: TimeLike;
+}
+
+export type IMapQuestionAnswer = {
+  Question: IQuestion;
+  Answer: IAnswer;
 }

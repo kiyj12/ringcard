@@ -31,15 +31,22 @@ public class Question {
     private boolean inCollection;
     private Timestamp uploadTime;
 
+    @NotNull
+    private Integer noteType;
+    @NotNull
+    private Integer tapeType;
+
     public Question() {
     }
 
-    public Question(String questionContents, String questionHyperlink, Long userId, boolean answered, boolean inTrash, boolean inCollection) {
+    public Question(String questionContents, String questionHyperlink, Long userId, boolean answered, boolean inTrash, boolean inCollection, Integer noteType, Integer tape_type) {
         this.questionContents = questionContents;
         this.questionHyperlink = questionHyperlink;
         this.userId = userId;
         this.answered = answered;
         this.inTrash = inTrash;
         this.inCollection = inCollection;
+        this.noteType = noteType;
+        this.tapeType = tapeType;
     }
 }

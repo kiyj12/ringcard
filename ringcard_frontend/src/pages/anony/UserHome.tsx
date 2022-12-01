@@ -7,6 +7,7 @@ import SendQuestionForm from "../../components/SendQuestionForm";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
 import "../../styles/viewMore.css";
+
 import { toast, ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IAnswer, IQuestion } from "../../components/types";
@@ -15,11 +16,13 @@ function UserHome() {
 	const params = useParams();
 	const userName = String(params.userName);
 	const [user, setUser] = useState<any>([]);
+
 	const [map, setMap] = useState<[IQuestion, IAnswer][]>();
 
 	const [totalPages, setTotalPages] = useState<Number>(0);
 	const [pageNumber, setPageNumber] = useState<Number>(0);
 	const { page } = useParams();
+
 
 	useEffect(() => {
 		axios
@@ -30,6 +33,7 @@ function UserHome() {
 				setMap(res.data.map);
 				setTotalPages(res.data.pageInfo.totalPages);
 				setPageNumber(res.data.pageInfo.number+1);
+
 			})
 			.catch((err) => {
 				console.log(err);
@@ -108,6 +112,7 @@ function UserHome() {
 					<div className="UserHome-down-background-img">
 						{map ? <QuestionNoteListAnony map={map} /> : undefined}
 						<BtnToViewMore/>
+
 					</div>
 				</div>
 			</div>

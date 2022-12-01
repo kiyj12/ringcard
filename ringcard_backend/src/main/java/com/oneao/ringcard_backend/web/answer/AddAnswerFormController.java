@@ -32,15 +32,8 @@ public class AddAnswerFormController {
         Long userId = loginUser.getUser().getId();
 
         Question question = questionService.findById(questionId, userId).get();
-        // 미응답 질문 리스트에서 본인 제외
-        QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-
-        PageRequest pageRequest = PageRequest.of(0, 5);
-        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
-
-//        questions.remove(question);
-        model.addAttribute("questions", questions);
         model.addAttribute("question", question);
+        
         System.out.println("model = " + model);
 //        return "redirect:/{questionId}/completed";
 //        return "question/unanswered";

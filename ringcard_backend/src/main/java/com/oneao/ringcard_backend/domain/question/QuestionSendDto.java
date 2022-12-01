@@ -7,4 +7,6 @@ public class QuestionSendDto {
 
     private String questionContents;
     private String questionHyperlink;
+    private Integer noteType;
+    private Integer tapeType;
 }

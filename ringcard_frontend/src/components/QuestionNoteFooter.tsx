@@ -85,7 +85,6 @@ function FooterUnansweredQuestion(props: FooterProps) {
 					"Successfully enter handleEditAnswerClick in QuestionNoteFooter :D"
 				);
 				console.log(res.data);
-				
 			})
 			.catch((err) => {
 				console.log(err);

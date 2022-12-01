@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 
 //멤버 홈 - 응답 질문
@@ -27,6 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShowUserHomeController {
     private final QuestionService questionService;
+    private final AnswerService answerService;
     private final UserService userService;
     private final AnswerService answerService;
     @GetMapping("userHome/{username}/{page}")
@@ -36,7 +38,6 @@ public class ShowUserHomeController {
         // https://minchul-son.tistory.com/472
         Long userId = user.getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
-
         PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 

@@ -8,6 +8,7 @@ export interface Props {
 	idx: number;
 	question: IQuestion;
 	answer: IAnswer;
+	tapeUrl: string;
 }
 
 function QuestionNoteAnony(props: Props) {
@@ -20,20 +21,29 @@ function QuestionNoteAnony(props: Props) {
 		setShowAnswer(!showAnswer);
 	};
 
-	function FindAnswer(e: { questionId: number }) {
-		if (e.questionId === question.id) {
-			return e;
-		}
-	}
 
 	return (
 		<>
 			<div className="each-question-note-box">
+				<div className="QuestionNote-maskingTape-box">
+					<img
+						className="QuestionNote-maskingTape-img"
+						src={props.tapeUrl}
+						alt=""
+					/>
+				</div>
 				<div
 					className="each-question-note-header-edge-img-box"
-					style={{ backgroundImage: `url("/notes/yellow-note-top-edge.png")` }}
+					style={{
+						backgroundImage: `url("/notes/note${question.noteType}-top-edge.png")`,
+					}}
 				></div>
-				<div className="each-question-note-body">
+				<div
+					className="each-question-note-body"
+					style={{
+						backgroundImage: `url("/notes/note${question.noteType}-body.png")`,
+					}}
+				>
 					<div className="each-note-header">
 						<div className="note-profile-pic">
 							<img src="/test-anony-profile-pic.jpg" alt="" />
@@ -72,11 +82,17 @@ function QuestionNoteAnony(props: Props) {
 				</div>
 				<div
 					className="QuestionNoteAnony-each-question-note-footer-edge-img-box"
-					style={{ backgroundImage: `url("/notes/yellow-note-edge.png")` }}
+
+					style={{
+						backgroundImage: `url("/notes/note${question.noteType}-bottom-edge.png")`,
+					}}
+
 				></div>
 			</div>
 		</>
 	);
 }
 
+
 export default QuestionNoteAnony;
+

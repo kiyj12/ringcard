@@ -12,12 +12,12 @@ function SendQuestionForm(props: Props) {
 	const userName = props.userName;
 
 	// if(localStorage.getItem("toastShow")==="1"){
-	// 		toast("hello", { 
+	// 		toast("hello", {
 	// 				autoClose: 700,
-	// 				position:"top-center", 
+	// 				position:"top-center",
 	// 				pauseOnFocusLoss: true,
 	// 				hideProgressBar: true,
-	// 				draggable: true, 
+	// 				draggable: true,
 	// 				pauseOnHover: true,
 	// 				theme: "dark",
 	// 				closeButton: false,
@@ -31,7 +31,7 @@ function SendQuestionForm(props: Props) {
 
 		// alert(JSON.stringify(data));
 		console.log(data);
-		
+
 		await axios
 			.post("/userHome/" + userName, data)
 			.then((res) => {
@@ -81,7 +81,7 @@ function SendQuestionForm(props: Props) {
 
 	return (
 		<div className="SendQuestionForm-container">
-			<Toastify/>
+			<Toastify />
 			<form
 				className="SendQuestionForm-question-form"
 				onSubmit={handleSubmit(onSubmit)}
@@ -93,7 +93,7 @@ function SendQuestionForm(props: Props) {
 						className="questionForm-textarea"
 						value={checkItemContent}
 						onInput={checkItemChangeHandler}
-						style={{ height: (textareaHeight + 1) * 27 + "px" }}
+						style={{ height: (textareaHeight + 1) * 20 + "px" }}
 						placeholder="질문해 주세요"
 						{...register("questionContents", {
 							required: "답변이 입력되지 않았습니다.",
@@ -104,13 +104,13 @@ function SendQuestionForm(props: Props) {
 				<div className="SendQuestionForm-footer">
 					<img
 						className="SendQuestionForm-hyperlink-btn"
-						src="/buttons/in-collection-button.svg"
+						src="/buttons/link-icn.svg"
 						alt=""
 					/>
 					<input
 						id="hyperLinkAdd"
 						className="QuestionForm-hyperlink-input"
-						placeholder="첨부할 사이트 주소를 넣어주세요"
+						placeholder="첨부할 사이트 주소를 넣어주세요 (최대 1개)"
 						{...register("questionHyperlink")}
 					/>
 					<button className="SendQuestionForm-send-question-btn" type="submit">

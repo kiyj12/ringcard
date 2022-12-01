@@ -80,12 +80,6 @@ public class EditAnswerController {
         Answer oldAnswer = answerService.findByQuestionId(questionId).get();
         String oldAnswerContents = oldAnswer.getAnswerContents();
 
-        QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-
-        PageRequest pageRequest = PageRequest.of(0, 5);
-        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
-
-        model.addAttribute("questions", questions);
         model.addAttribute("question", question);
         model.addAttribute("oldAnswer", oldAnswerContents);
 

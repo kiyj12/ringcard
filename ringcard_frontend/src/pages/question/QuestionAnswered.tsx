@@ -7,9 +7,7 @@ import QuestionNoteList from "../../components/QuestionNoteList";
 import "../../styles/layout/layout.css";
 import "../../styles/question-page.css";
 
-
 function QuestionAnswered() {
-
 	const params = useParams();
 	const paramsQuestionId = params.questionId;
 
@@ -34,16 +32,15 @@ function QuestionAnswered() {
 	return (
 		<div className="container">
 			<Header />
-			<div className="UserHome-contents-container">
-				<div className="down-background-img">
-					<div className="questionPage-the-question-container">
-						<EditAnswerFormQuestionNote
-							question={question}
-							oldAnswer={oldAnswer}
-						/>
-
-					</div>
-					<div className="QuestionPage-hr-box">
+			<div className="contents-container">
+				<div className="questionPage-the-question-container">
+					<EditAnswerFormQuestionNote
+						question={question}
+						oldAnswer={oldAnswer}
+					/>
+				</div>
+				{/* 퀘스쳔리스트 삭제^^ */}
+				{/* <div className="QuestionPage-hr-box">
 						<hr className="QuestionPage-hr" />
 
 						<div className="QuestionPage-hr-text">미응답 질문들</div>
@@ -51,8 +48,7 @@ function QuestionAnswered() {
 					</div>
 					<div className="questionPage-container-body">
 						<QuestionNoteList questionList={questionList} />
-					</div>
-				</div>
+					</div> */}
 			</div>
 		</div>
 	);
