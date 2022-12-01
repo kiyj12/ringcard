@@ -9,10 +9,10 @@ export interface Props {
 	userName: String;
 }
 
-function SendQuestionForm(props: Props) {
+function SendQuestionFormUserHome(props: Props) {
 	const userName = props.userName;
 
-	const {page} = useParams();
+	const { page } = useParams();
 
 	// if(localStorage.getItem("toastShow")==="1"){
 	// 		toast("hello", {
@@ -125,4 +125,4 @@ function SendQuestionForm(props: Props) {
 	);
 }
 
-export default SendQuestionForm;
+export default SendQuestionFormUserHome;
