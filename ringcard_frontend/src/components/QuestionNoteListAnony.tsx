@@ -8,7 +8,7 @@ import QuestionNoteAnony from "./QuestionNoteAnony";
 import React from "react";
 
 export interface Props {
-  map: [IQuestion, IAnswer][];
+	map: [IQuestion, IAnswer][];
 }
 
 function makeTapeUrl(tapeType: Number) {
@@ -23,7 +23,7 @@ function QuestionNoteList(props: Props) {
 	const tapePositionList = [
 		"width: 120px; height: 28px; transform: rotate(-30deg); margin: 13px auto -15px -10px;",
 		"width: 110px; height: 28px; transform: rotate(-18deg); margin: 5px auto -30px -5px;",
-		"width: 130px; height: 28px;  margin: 0 auto;  margin-top: -5px;",
+		"width: 130px; height: 28px; margin: 0 auto; margin-top: -5px;",
 		"width: 130px; height: 28px; margin: 0 auto; margin-top: -5px; transform: rotate(6deg);",
 		"width: 130px; height: 28px; transform: rotate(18deg); margin: 7px 0px -10px auto;",
 		"width: 95px; height: 28px; transform: rotate(36deg); margin: 11px -10px -10px auto;",
@@ -51,9 +51,7 @@ function QuestionNoteList(props: Props) {
 						idx={idx}
 						question={QA[0]}
 						answer={QA[1]}
-
 						tapeUrl={makeTapeUrl(QA[0].tapeType)}
-
 					/>
 				))}
 			</div>
@@ -62,4 +60,3 @@ function QuestionNoteList(props: Props) {
 }
 
 export default QuestionNoteList;
-

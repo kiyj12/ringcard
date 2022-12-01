@@ -23,76 +23,80 @@ function UserHome() {
 	const [pageNumber, setPageNumber] = useState<Number>(0);
 	const { page } = useParams();
 
-
 	useEffect(() => {
 		axios
-			.get("/userHome/" + userName + "/"+ page)
+			.get("/userHome/" + userName + "/" + page)
 			.then((res) => {
 				console.log(res.data);
 				setUser(res.data.user);
 				setMap(res.data.map);
 				setTotalPages(res.data.pageInfo.totalPages);
-				setPageNumber(res.data.pageInfo.number+1);
-
+				setPageNumber(res.data.pageInfo.number + 1);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}, []);
 
-	function BtnToViewMore(){
-		function handleClick(e: any){
+	function BtnToViewMore() {
+		function handleClick(e: any) {
 			const newPage = pageNumber;
-			if (totalPages === undefined){}
-			else if (newPage>=totalPages){
-			}else{
-			axios
-			.get("/userHome/" + userName + "/"+ newPage)
-			.then((res) => {
-				console.log(res.data);
-				setUser(res.data.user);
-				// setQuestionList1(res.data.questions.content);
-				console.log('a');
-				const b:[[IQuestion, IAnswer]]= res.data.map;
-				// [IQuestion, IAnswer]
-				// 새로운 맵에 넣고, 그 맵을 다시 setMap 하자.
-				let mapTemp= [];
-				if(map){
-					for(let idx = 0; idx < map.length; idx++){
-					mapTemp.push(map[idx])
-				}}
-				if(b){
-					for(let idx = 0; idx < b.length; idx++){
-					mapTemp.push(b[idx])
-				}}
-				console.log("cc");
-				console.log(mapTemp);
-				if(mapTemp){
-					setMap(mapTemp);
-				}
+			if (totalPages === undefined) {
+			} else if (newPage >= totalPages) {
+			} else {
+				axios
+					.get("/userHome/" + userName + "/" + newPage)
+					.then((res) => {
+						console.log(res.data);
+						setUser(res.data.user);
+						// setQuestionList1(res.data.questions.content);
+						console.log("a");
+						const b: [[IQuestion, IAnswer]] = res.data.map;
+						// [IQuestion, IAnswer]
+						// 새로운 맵에 넣고, 그 맵을 다시 setMap 하자.
+						let mapTemp = [];
+						if (map) {
+							for (let idx = 0; idx < map.length; idx++) {
+								mapTemp.push(map[idx]);
+							}
+						}
+						if (b) {
+							for (let idx = 0; idx < b.length; idx++) {
+								mapTemp.push(b[idx]);
+							}
+						}
+						console.log("cc");
+						console.log(mapTemp);
+						if (mapTemp) {
+							setMap(mapTemp);
+						}
 
-				// const b= res.data.map;
-				// if(map && b){
-				// 	console.log('a');
-				// 	console.log(...map);
-				// 	console.log(...b);
-				// }
-				
-				setTotalPages(res.data.pageInfo.totalPages);
-				setPageNumber(res.data.pageInfo.number+1);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+						// const b= res.data.map;
+						// if(map && b){
+						// 	console.log('a');
+						// 	console.log(...map);
+						// 	console.log(...b);
+						// }
+
+						setTotalPages(res.data.pageInfo.totalPages);
+						setPageNumber(res.data.pageInfo.number + 1);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
 			}
 		}
 		return (
-		<div className="view-more-btn-section">
-		{totalPages === pageNumber ? undefined : (<button className="view-more-btn" onClick={handleClick}>+ 더보기</button>)}
-		</div>
+			<div className="view-more-btn-section">
+				{totalPages === pageNumber ? undefined : (
+					<button className="view-more-btn" onClick={handleClick}>
+						+ 더보기
+					</button>
+				)}
+			</div>
 		);
 	}
-		
+
 	return (
 		<div className="container">
 			<HeaderNoProfile />
@@ -110,9 +114,11 @@ function UserHome() {
 
 				<div className="UserHome-questionlist-box">
 					<div className="UserHome-down-background-img">
-						{map ? <QuestionNoteListAnony map={map} /> : undefined}
-						<BtnToViewMore/>
+						<div>{map ? <QuestionNoteListAnony map={map} /> : undefined}</div>
 
+						<div className="UserHome-viewMore-btn">
+							<BtnToViewMore />
+						</div>
 					</div>
 				</div>
 			</div>

@@ -41,13 +41,13 @@
 
 } */
 
-.QuestionNote-maskingTape-box img {
+.QuestionNote-maskingTape-img {
   width: 130px;
   height: 28px;
 
   margin: 0 auto;
   /* margin-top 필수! 얘가 있어야 보임. */
-  margin-top: -27px;
+  margin-top: -5px;
 
 }
 
