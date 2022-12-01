@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
 import Header from "../../components/Header";
 import QuestionNoteList from "../../components/QuestionNoteList";
-import "../../styles/answerCompletedPage.css";
 
 function AnswerCompletedPage() {
 	const params = useParams();
@@ -46,6 +45,7 @@ function AnswerCompletedPage() {
 						console.log(res.data);
 						// setQuestionList1(res.data.questions.content);
 						// setQuestionList(questionList, ...res.data.questions);
+
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
@@ -83,9 +83,10 @@ function AnswerCompletedPage() {
 					<hr className="QuestionPage-hr" />
 				</div>
 				<div className="questionPage-container-body">
-					<QuestionNoteList questionList={questionList} />
-				</div>
-				<div className="AnswerCompletedPage-BtnToViewMore">
+					<div>
+						<QuestionNoteList questionList={questionList} />
+					</div>
+
 					<BtnToViewMore />
 				</div>
 			</div>

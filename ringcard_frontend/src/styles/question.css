@@ -1,6 +1,6 @@
 .question-notes-container {
   width: 100%;
-  padding-top: 45px;
+  padding-top: 20px;
 }
 
 .question-note {
@@ -232,4 +232,12 @@
 
 .note-link{
   text-decoration-line : none;
+}
+
+.QuestionNoteAnony-line-limit {
+  display: -webkit-box!important;
+  -webkit-line-clamp: 5;
+  text-overflow: ellipsis; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

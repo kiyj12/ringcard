@@ -2,6 +2,7 @@ import { IAnswer, IQuestion } from "./types";
 import "../styles/question.css";
 import NowDate from "./NowDate";
 import React, { useEffect, useState } from "react";
+import HyperlinkBox from "./HyperlinkBox";
 
 export interface Props {
 	idx: number;
@@ -70,8 +71,16 @@ function QuestionNoteAnony(props: Props) {
 						<NowDate questionUploadTime={question.uploadTime} />
 					</div>
 					<div className="each-note-content-box">
-						<div className="each-note-content">{question.questionContents}</div>
+						<div className="each-note-content QuestionNoteAnony-line-limit">
+							{question.questionContents}
+						</div>
 					</div>
+					{question.questionHyperlink == null ||
+					question.questionHyperlink === "" ? undefined : (
+						<div className="QuestionNote-note-hyperlink-box">
+							<HyperlinkBox hyperlinkContent={question.questionHyperlink} />
+						</div>
+					)}
 					<hr className="note-hr" />
 					<div className="QuestionNoteAnony-note-footer">
 						<div className="QuestionNoteAnony-note-footer-btns-container">

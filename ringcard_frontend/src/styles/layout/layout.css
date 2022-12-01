@@ -36,7 +36,8 @@ body {
   /* background-color: aquamarine; */
   /* margin-top:  */
   position: relative;
-  top: calc(13% + 115px);
+  /* top: calc(13% + 115px); */
+  top: 200px;
   width: 100%;
 
   max-width: inherit;
@@ -45,7 +46,8 @@ body {
 
 .contents-container {
   position: relative;
-  top: 13%;
+  /* top: 13%; */
+  top: 75px;
   width: 100%;
   max-width: inherit;
   height: 100%;

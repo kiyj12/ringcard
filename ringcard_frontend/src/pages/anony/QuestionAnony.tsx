@@ -83,9 +83,9 @@ function QuestionAnony() {
 			}
 		}
 		return (
-			<div>
+			<div className="QuestionAnony-viewMore-btn-box">
 				{totalPages === pageNumber ? undefined : (
-					<div className="Question-viewMore-btn-container">
+					<div className="QuestionAnony-viewMore-btn-container">
 						<div className="QuestionAnony-viewMore-btn-section">
 							<button
 								className="QuestionAnony-viewMore-btn"
@@ -117,6 +117,12 @@ function QuestionAnony() {
 				</div>
 				<div className="QuestionAnony-SendQuestionForm-container">
 					<SendQuestionForm />
+				</div>
+				<div className="QuestionAnony-hr-box">
+					<hr className="QuestionAnony-hr" />
+
+					<div className="QuestionAnony-hr-text">다른 응답된 질문들</div>
+					<hr className="QuestionAnony-hr" />
 				</div>
 				<div>{map ? <QuestionNoteListAnony map={map} /> : undefined}</div>
 

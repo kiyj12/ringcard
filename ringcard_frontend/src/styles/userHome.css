@@ -13,12 +13,12 @@
   /* background-color: yellowgreen; */
   width: 100%;
   max-width: inherit;
-  height: 150px;
+  height: 110px;
   /* margin-top: 3%; */
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   
   position: fixed;
-  top: 120px;
+  top: 110px;
   
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@
 }
 
 .UserHome-profile-box img {
-  width: 75px;
+  width: 70px;
   border-radius: 100%;
   border: solid 2px #f7cec6;
 }
@@ -52,7 +52,7 @@
   height: 70px;
 
   position: fixed;
-  top: 220px;
+  top: 180px;
 
   margin-top: 70px;
 
@@ -72,7 +72,7 @@
 
   /* sticky -> fixed로 바꾼 게 스크롤 문제 해결열쇠 */
   position: fixed;
-  top: 297px;
+  top: 257px;
   /* bottom: 0px; */
   z-index: 0;
 
@@ -98,6 +98,7 @@
 .UserHome-viewMore-btn-container{
   width: 100%;
   height: 40px;
+  padding-bottom: 30px;
   /* background-color: #fff; */
 }
 .UserHome-viewMore-btn-section {

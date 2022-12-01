@@ -47,8 +47,6 @@ function UserHome() {
 					.get("/userHome/" + userName + "/" + newPage)
 					.then((res) => {
 						console.log(res.data);
-						// setQuestionList1(res.data.questions.content);
-						console.log("a");
 						const b: [[IQuestion, IAnswer]] = res.data.map;
 						// [IQuestion, IAnswer]
 						// 새로운 맵에 넣고, 그 맵을 다시 setMap 하자.
@@ -72,7 +70,7 @@ function UserHome() {
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
-				.catch((err) => {
+					.catch((err) => {
 						console.log(err);
 					});
 			}
@@ -81,12 +79,12 @@ function UserHome() {
 			<div>
 				{totalPages === pageNumber ? undefined : (
 					<div className="UserHome-viewMore-btn-container">
-					<div className="UserHome-viewMore-btn-section">
-						<button className="UserHome-viewMore-btn" onClick={handleClick}>
-							+ 더보기
-						</button>
+						<div className="UserHome-viewMore-btn-section">
+							<button className="UserHome-viewMore-btn" onClick={handleClick}>
+								+ 더보기
+							</button>
+						</div>
 					</div>
-				</div>
 				)}
 			</div>
 		);
@@ -109,6 +107,7 @@ function UserHome() {
 
 				<div className="UserHome-questionlist-box">
 					<div className="UserHome-down-background-img">
+						<div style={{ height: "30px" }}></div>
 						<div>{map ? <QuestionNoteListAnony map={map} /> : undefined}</div>
 						<BtnToViewMore />
 					</div>

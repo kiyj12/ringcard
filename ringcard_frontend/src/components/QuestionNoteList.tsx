@@ -9,8 +9,6 @@ export interface Props {
 }
 
 function QuestionNoteList(props: Props) {
-	// making tape 동적 삽입
-
 	return (
 		<>
 			<div className="question-notes-container">

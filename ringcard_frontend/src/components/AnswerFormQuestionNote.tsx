@@ -65,10 +65,11 @@ function AnswerFormQuestionNote(props: Props) {
 					</div>
 					{question.questionHyperlink == null ||
 					question.questionHyperlink === "" ? undefined : (
-						<div className="AnswerFormQuestionNote-note-hyperlink-box">
+						<div className="QuestionNote-note-hyperlink-box">
 							<HyperlinkBox hyperlinkContent={question.questionHyperlink} />
 						</div>
 					)}
+
 					<hr className="note-hr" />
 					<div className="each-note-answer-form-box">
 						<AnswerForm questionId={question.id} />
