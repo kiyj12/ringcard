@@ -47,7 +47,6 @@ function UserHome() {
 					.get("/userHome/" + userName + "/" + newPage)
 					.then((res) => {
 						console.log(res.data);
-						setUser(res.data.user);
 						// setQuestionList1(res.data.questions.content);
 						console.log("a");
 						const b: [[IQuestion, IAnswer]] = res.data.map;
