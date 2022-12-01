@@ -71,17 +71,10 @@ function UserHome() {
 							setMap(mapTemp);
 						}
 
-						// const b= res.data.map;
-						// if(map && b){
-						// 	console.log('a');
-						// 	console.log(...map);
-						// 	console.log(...b);
-						// }
-
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
-					.catch((err) => {
+				.catch((err) => {
 						console.log(err);
 					});
 			}
