@@ -29,8 +29,6 @@ const HomeUnanswered = () => {
 				console.log(err);
 			});
 	}, []);
-
-		
 	
 	return (
 		<div className="container">

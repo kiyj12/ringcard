@@ -115,10 +115,37 @@
   padding-top: 20px;
   padding-bottom: 200px;
 }
-
-.UserHome-viewMore-btn {
+.QuestionAnony-viewMore-btn-container{
   width: 100%;
+  height: 40px;
+  /* background-color: #fff; */
+}
+.QuestionAnony-viewMore-btn-section {
+  /* background-color: aqua; */
+  width: 50%;
+  height: 40px;
+  background-color: #8188b3;
+  border-radius: 12px;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16);
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
+}
+
+.QuestionAnony-viewMore-btn{
+  width: 100%;
+  font-family: NanumBarunGothic;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2.7rem;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 9px;
+  border: none;
+}
+
+.QuestionAnony-viewMore-btn-section:active {
+  background-color: #b1b4c7;
+}
+
+.QuestionAnony-viewMore-btn-section:active .view-more-btn {
+  color: #666666;
 }

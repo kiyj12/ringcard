@@ -4,6 +4,11 @@ import "../styles/question.css";
 import NowDate from "./NowDate";
 import HyperlinkBox from "./HyperlinkBox";
 
+import { useEffect } from "react";
+import { forEachChild } from "typescript";
+import { Link } from "react-router-dom";
+
+
 export interface Props {
 	idx: number;
 	question: IQuestion;
@@ -55,9 +60,19 @@ function QuestionNote(props: Props) {
 				{/* <div className="note-time">{nowDate}</div> */}
 				<NowDate questionUploadTime={question.uploadTime} />
 			</div>
+			
+			{question.answered === true 
+			? <Link to={"/question/" + question.id + "/edit/user"} className="note-link">
 			<div className="note-content-box">
 				<div className="note-content">{question.questionContents}</div>
 			</div>
+			</Link>
+			: <Link to={"/question/" + question.id + "/unanswered/user"} className="note-link">
+			<div className="note-content-box">
+				<div className="note-content">{question.questionContents}</div>
+			</div>
+			</Link>}
+			
 			{question.questionHyperlink == null ||
 			question.questionHyperlink === "" ? undefined : (
 				<div className="QuestionNote-note-hyperlink-box">
