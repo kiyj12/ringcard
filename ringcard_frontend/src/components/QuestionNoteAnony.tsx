@@ -28,7 +28,7 @@ function QuestionNoteAnony(props: Props) {
 		"width: 130px; height: 28px; transform: rotate(20deg); margin: 6px -8px -10px auto;",
 		"width: 100px; height: 28px; transform: rotate(36deg); margin: 10px -13px -10px auto;",
 	];
-	const chosenPosition = tapePositionList[question.tapePosition];
+	const chosenPosition = tapePositionList[question.tapePosition - 1];
 
 	const qIdStr = String(question.id);
 	const tapeTypeStr = String(question.tapeType);
@@ -44,7 +44,7 @@ function QuestionNoteAnony(props: Props) {
 			<div className="each-question-note-box">
 				<div className="QuestionNote-maskingTape-box">
 					<img
-						className="QuestionNote-maskingTape-img"
+						className="QuestionNoteAnony-maskingTape-img"
 						id={qIdStr}
 						src={tapeUrl}
 						alt=""
