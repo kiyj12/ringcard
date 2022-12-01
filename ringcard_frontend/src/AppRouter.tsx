@@ -42,7 +42,7 @@ const AppRouter = () => {
 						element={<AnswerCompletedPage />}
 					/>
 					<Route
-						path="/question/:questionId/anony"
+						path="/question/:questionId/anony/:page"
 						element={<QuestionAnony />}
 					/>
 					<Route path="/userHome/:userName/:page" element={<UserHome />} />
