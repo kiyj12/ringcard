@@ -1,18 +1,29 @@
 .view-more-btn-section{
-  background-color: aqua;
+  /* background-color: aqua; */
   width: 200px;
   height: 40px;
+  background-color: #8188b3;
+  border-radius: 12px;
 
-
-text-align: center
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16);
+  text-align: center
 }
 
 .view-more-btn{
   width: 50%;
   font-family: NanumBarunGothic;
   font-size: 18px;
+  font-weight: bold;
   line-height: 2.7rem;
   color: #fff;
   background-color: transparent;
   border: none;
+}
+
+.view-more-btn-section:active {
+  background-color: #b1b4c7;
+}
+
+.view-more-btn-section:active .view-more-btn {
+  color: #666666;
 }
