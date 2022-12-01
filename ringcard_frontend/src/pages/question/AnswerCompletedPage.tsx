@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
 import Header from "../../components/Header";
 import QuestionNoteList from "../../components/QuestionNoteList";
+import "../../styles/answerCompletedPage.css";
 
 function AnswerCompletedPage() {
 	const params = useParams();
@@ -48,7 +49,7 @@ function AnswerCompletedPage() {
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
-				.catch((err) => {
+					.catch((err) => {
 						console.log(err);
 					});
 			}
@@ -57,12 +58,12 @@ function AnswerCompletedPage() {
 			<div>
 				{totalPages === pageNumber ? undefined : (
 					<div className="UserHome-viewMore-btn-container">
-					<div className="UserHome-viewMore-btn-section">
-						<button className="UserHome-viewMore-btn" onClick={handleClick}>
-							+ 더보기
-						</button>
+						<div className="UserHome-viewMore-btn-section">
+							<button className="UserHome-viewMore-btn" onClick={handleClick}>
+								+ 더보기
+							</button>
+						</div>
 					</div>
-				</div>
 				)}
 			</div>
 		);
@@ -84,7 +85,9 @@ function AnswerCompletedPage() {
 				<div className="questionPage-container-body">
 					<QuestionNoteList questionList={questionList} />
 				</div>
-				<BtnToViewMore/>
+				<div className="AnswerCompletedPage-BtnToViewMore">
+					<BtnToViewMore />
+				</div>
 			</div>
 		</div>
 	);

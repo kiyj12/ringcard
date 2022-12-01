@@ -1,7 +1,7 @@
 import { IAnswer, IQuestion } from "./types";
 import "../styles/question.css";
 import NowDate from "./NowDate";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export interface Props {
 	idx: number;
@@ -33,8 +33,10 @@ function QuestionNoteAnony(props: Props) {
 	const tapeTypeStr = String(question.tapeType);
 	const tapeUrl = String("/masking-tapes/tape" + tapeTypeStr + ".svg");
 
-	const eachNote = document.getElementById(qIdStr);
-	eachNote?.setAttribute("style", chosenPosition);
+	useEffect(() => {
+		const eachNote = document.getElementById(qIdStr);
+		eachNote?.setAttribute("style", chosenPosition);
+	});
 
 	const qNoteType = question.noteType;
 
