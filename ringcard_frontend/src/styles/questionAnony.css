@@ -115,3 +115,10 @@
   padding-top: 20px;
   padding-bottom: 200px;
 }
+
+.UserHome-viewMore-btn {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
