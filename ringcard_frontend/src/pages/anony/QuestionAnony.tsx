@@ -5,7 +5,7 @@ import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
 import Header from "../../components/Header";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
-import SendQuestionForm from "../../components/SendQuestionForm";
+import SendQuestionForm from "../../components/SendQuestionFormQuestionAnony";
 import { IAnswer, IQuestion } from "../../components/types";
 
 import "../../styles/questionAnony.css";
@@ -51,7 +51,7 @@ function QuestionAnony() {
 					<AnsweredQuestionNote question={question} answer={answer} />
 				</div>
 				<div className="QuestionAnony-SendQuestionForm-container">
-					<SendQuestionForm userName={userName} />
+					<SendQuestionForm />
 				</div>
 
 				{/* <div className="QuestionAnony-questionlist-box"> */}
