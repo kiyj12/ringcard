@@ -30,9 +30,8 @@ public class ShowUserHomeController {
     private final QuestionService questionService;
     private final AnswerService answerService;
     private final UserService userService;
-    private final AnswerService answerService;
     @GetMapping("userHome/{username}/{page}")
-    public ResponseEntity<Model> showHomeAnswered(@PathVariable String username, @PathVariable int page, Model model) {
+    public ResponseEntity<Model> showHomeAnswered(@PathVariable String username, Model model, @PathVariable int page) {
         User user= userService.findByUsername(username).get();
         // Optional .orElseThrow()로 값 가져오기
         // https://minchul-son.tistory.com/472
@@ -62,22 +61,4 @@ public class ShowUserHomeController {
         return ResponseEntity.ok(model);
     }
 
-//    @GetMapping("userHome/{username}/{page}")
-//    public ResponseEntity<Model> showHomeAnswered(@PathVariable String username, @PathVariable int page, Model model) {
-//        User user= userService.findByUsername(username).get();
-//        // Optional .orElseThrow()로 값 가져오기
-//        // https://minchul-son.tistory.com/472
-//        Long userId = user.getId();
-//        String userRingcardName = user.getUserRingcardName();
-//        QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
-//
-//        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-//        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
-////        List<Question> questions =questionService.findAll1(userId, questionSearchCond);
-//
-//        model.addAttribute("questions", questions);
-//        model.addAttribute("username", username);
-//        model.addAttribute("user", user);
-//        return ResponseEntity.ok(model);
-//    }
 }

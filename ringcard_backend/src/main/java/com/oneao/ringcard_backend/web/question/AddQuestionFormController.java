@@ -40,8 +40,8 @@ public class AddQuestionFormController {
 //        return "question/answeredAnony";
 //    }
 
-    @GetMapping("question/{questionId}/anony")
-    public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model){
+    @GetMapping("question/{questionId}/anony/{page}")
+    public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model, @PathVariable int page){
         Question question = questionService.findByIdNoAuth(questionId).get();
         Answer answer = answerService.findByQuestionId(questionId).get();
 

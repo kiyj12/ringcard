@@ -39,7 +39,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(String questionContents, String questionHyperlink, Long userId, boolean answered, boolean inTrash, boolean inCollection, Integer noteType, Integer tape_type) {
+    public Question(String questionContents, String questionHyperlink, Long userId, boolean answered, boolean inTrash, boolean inCollection, Integer noteType, Integer tapeType) {
         this.questionContents = questionContents;
         this.questionHyperlink = questionHyperlink;
         this.userId = userId;
