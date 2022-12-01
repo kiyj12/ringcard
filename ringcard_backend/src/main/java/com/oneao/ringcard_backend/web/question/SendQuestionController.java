@@ -44,10 +44,12 @@ public class SendQuestionController {
         String questionHyperlink = requestBody.getQuestionHyperlink();
         Integer questionNoteType = requestBody.getNoteType();
         Integer questionTapeType = requestBody.getTapeType();
+        Integer questionTapePosition = requestBody.getTapePosition();
 
 
         Integer[] noteList = { 1, 2, 3, 4 };
         Integer[] tapeList = { 1, 2, 3, 4, 5 };
+        Integer[] tapePositionList = {1, 2, 3, 4, 5, 6};
 
         if (questionNoteType == null) {
             int noteIdx = (int) (Math.random() * noteList.length);
@@ -57,8 +59,12 @@ public class SendQuestionController {
             int tapeIdx = (int) (Math.random() * tapeList.length);
             questionTapeType = tapeList[tapeIdx];
         }
+        if (questionTapePosition == null) {
+            int tapePositionIdx = (int) (Math.random() * tapePositionList.length);
+            questionTapePosition = tapePositionList[tapePositionIdx];
+        }
 
-        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType);
+        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType, questionTapePosition);
 
         System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
@@ -77,9 +83,11 @@ public class SendQuestionController {
         String questionHyperlink = requestBody.getQuestionHyperlink();
         Integer questionNoteType = requestBody.getNoteType();
         Integer questionTapeType = requestBody.getTapeType();
+        Integer questionTapePosition = requestBody.getTapePosition();
 
         Integer[] noteList = { 1, 2, 3, 4 };
         Integer[] tapeList = { 1, 2, 3, 4, 5 };
+        Integer[] tapePositionList = {1, 2, 3, 4, 5, 6};
 
         if (questionNoteType == null) {
             int noteIdx = (int) (Math.random() * noteList.length);
@@ -89,14 +97,17 @@ public class SendQuestionController {
             int tapeIdx = (int) (Math.random() * tapeList.length);
             questionTapeType = tapeList[tapeIdx];
         }
+        if (questionTapePosition == null) {
+            int tapePositionIdx = (int) (Math.random() * tapePositionList.length);
+            questionTapePosition = tapePositionList[tapePositionIdx];
+        }
 
         Long userId = user.getId();
-        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType);
+        Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType, questionTapePosition);
 
         System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
-        System.out.println(savedQuestion);
-        System.out.println(user);
+
 
     }
 }

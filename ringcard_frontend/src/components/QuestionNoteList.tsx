@@ -24,10 +24,10 @@ function QuestionNoteList(props: Props) {
 	// making tape 동적 삽입
 
 	const tapePositionList = [
-		"width: 120px; height: 28px; transform: rotate(-30deg); margin: -10px auto -15px -40px;",
-		"width: 130px; height: 28px; transform: rotate(-18deg); margin: -20px auto -30px -30px;",
 		"width: 130px; height: 28px;  margin: 0 auto;  margin-top: -25px;",
 		"width: 130px; height: 28px; margin: 0 auto 0 auto; margin-top: -22.5px; transform: rotate(6deg);",
+		"width: 120px; height: 28px; transform: rotate(-30deg); margin: -10px auto -15px -40px;",
+		"width: 130px; height: 28px; transform: rotate(-18deg); margin: -20px auto -30px -30px;",
 		"width: 130px; height: 28px; transform: rotate(20deg); margin: -12px -40px -10px auto;",
 		"width: 100px; height: 28px; transform: rotate(36deg); margin: -10px -40px -10px auto;",
 	];

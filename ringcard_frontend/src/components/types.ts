@@ -11,6 +11,7 @@ export type IQuestion = {
   uploadTime: TimeLike;
   noteType: number;
   tapeType: number;
+  tapePosition: number;
   id: number;
 }
 

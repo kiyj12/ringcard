@@ -36,10 +36,13 @@ public class Question {
     @NotNull
     private Integer tapeType;
 
+    @NotNull
+    private Integer tapePosition;
+
     public Question() {
     }
 
-    public Question(String questionContents, String questionHyperlink, Long userId, boolean answered, boolean inTrash, boolean inCollection, Integer noteType, Integer tapeType) {
+    public Question(String questionContents, String questionHyperlink, Long userId, boolean answered, boolean inTrash, boolean inCollection, Integer noteType, Integer tapeType, Integer tapePosition) {
         this.questionContents = questionContents;
         this.questionHyperlink = questionHyperlink;
         this.userId = userId;
@@ -48,5 +51,6 @@ public class Question {
         this.inCollection = inCollection;
         this.noteType = noteType;
         this.tapeType = tapeType;
+        this.tapePosition = tapePosition;
     }
 }
