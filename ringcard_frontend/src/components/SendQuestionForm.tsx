@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 import "../styles/sendQuestionForm.css";
 import Toastify from "./Toast";
 
@@ -10,6 +11,8 @@ export interface Props {
 
 function SendQuestionForm(props: Props) {
 	const userName = props.userName;
+
+	const {page} = useParams();
 
 	// if(localStorage.getItem("toastShow")==="1"){
 	// 		toast("hello", {
@@ -33,7 +36,7 @@ function SendQuestionForm(props: Props) {
 		console.log(data);
 
 		await axios
-			.post("/userHome/" + userName, data)
+			.post("/userHome/" + userName + "/" + page, data)
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);

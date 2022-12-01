@@ -32,8 +32,8 @@ public class SendQuestionController {
     private final AnswerService answerService;
     private final UserService userService;
 
-    @PostMapping({"question/{questionId}/anony"})
-    public String addQuestion1(@PathVariable Long questionId, Question question, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    @PostMapping({"question/{questionId}/anony/{page}"})
+    public String addQuestion(@PathVariable Long questionId, Question question, RedirectAttributes redirectAttributes, HttpServletRequest request, @PathVariable int page) {
 
         // 이미 띄워져있는 question의 정보
         Question beforeQuestion= questionService.findByIdNoAuth(questionId).get();
@@ -43,11 +43,11 @@ public class SendQuestionController {
         redirectAttributes.addAttribute("questionId", beforeQuestion.getId());
         redirectAttributes.addAttribute("status",true);
 
-        return "redirect:/question/{questionId}/anony";
+        return "redirect:/question/{questionId}/anony/{page}";
     }
 
-    @PostMapping({"userHome/{username}"})
-    public void addQuestion2(@PathVariable String username,   HttpServletRequest request, @RequestBody QuestionSendDto requestBody) {
+    @PostMapping({"userHome/{username}/{page}"})
+    public void addQuestion2(@PathVariable String username, HttpServletRequest request, @RequestBody QuestionSendDto requestBody, @PathVariable int page) {
         User user = userService.findByUsername(username).get();
 
         String questionContents = requestBody.getQuestionContents();
