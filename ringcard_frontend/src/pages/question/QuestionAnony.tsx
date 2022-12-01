@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
+import Header from "../../components/Header";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
 import SendQuestionForm from "../../components/SendQuestionForm";
@@ -36,7 +37,8 @@ function QuestionAnony() {
 
 	return (
 		<div className="container">
-			<HeaderNoProfile />
+			{/* <HeaderNoProfile /> */}
+			<Header />
 			{/* <div className="QuestionAnony-profile-box">
 				<img src="/profile.png" alt="" />
 				<div className="UserHome-profile-username">{user.userRingcardName}</div>
