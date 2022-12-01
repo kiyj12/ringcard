@@ -30,11 +30,9 @@ const HomeUnanswered = () => {
 			});
 	}, []);
 
-	
+		
 	
 	return (
-	// <form onSubmit={handleSubmit(onSubmit)}>
-
 		<div className="container">
 			{/* <PageLoad/> */}
 			<Header />
@@ -44,8 +42,6 @@ const HomeUnanswered = () => {
 				<QuestionNoteList questionList={questionList} />
 			</div>
 		</div>
-		
-	// </form>
 	);
 }
 

@@ -18,7 +18,7 @@ public interface QuestionRepository {
     Optional<Question> findByIdNoAuth(Long id);
 //    List<Question> findAll(Long userId);
     Page<Question> findAll(Long userId, QuestionSearchCond cond, Pageable pageable);
-//    List<Question> findAll(Long userId, QuestionSearchCond cond);
+//    List<Question> findAll1(Long userId, QuestionSearchCond cond);
 //    List<Question> findAllAnsweredNotInTrash(Long userId);
     List<Question> findAllAnsweredNotInTrashNoAuth();
 //    List<Question> findAllUnansweredInTrash(Long userId);

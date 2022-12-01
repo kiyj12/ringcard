@@ -37,6 +37,9 @@ public class QuestionService {
         return questionRepository.findAll(userId, cond, pageable);
     }
 
+//    public List<Question> findAll1(Long userId, QuestionSearchCond cond) {
+//        return questionRepository.findAll1(userId, cond);
+//    }
     
     public List<Question> findAllAnsweredNotInTrashNoAuth() {
         return questionRepository.findAllAnsweredNotInTrashNoAuth();

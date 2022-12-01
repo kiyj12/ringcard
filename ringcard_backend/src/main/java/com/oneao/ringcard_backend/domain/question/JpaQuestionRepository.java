@@ -61,6 +61,13 @@ public class JpaQuestionRepository implements QuestionRepository {
 
         return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, answered, inTrash, pageable);
     }
+//    @Override
+//    public List<Question> findAll1(Long userId, QuestionSearchCond con) {
+//        boolean answered = con.isAnswered();
+//        boolean inTrash = con.isInTrash();
+//
+//        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike1(userId, answered, inTrash);
+//    }
 
     @Override
     public List<Question> findAllAnsweredNotInTrashNoAuth() {
