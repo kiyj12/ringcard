@@ -48,6 +48,9 @@ const AppRouter = () => {
 					<Route path="/userHome/:userName/:page" element={<UserHome />} />
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
+
+					<Route path="" element={<Login />} />
+					<Route path="/" element={<Login />} />
 					<Route path="/loginForm" element={<Login />} />
 					<Route path="/joinForm" element={<Join />} />
 					<Route path="/mypage/edit/password" element={<EditPassword />} />

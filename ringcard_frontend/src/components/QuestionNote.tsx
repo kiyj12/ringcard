@@ -32,7 +32,6 @@ function QuestionNote(props: Props) {
 	const tapeUrl = String("/masking-tapes/tape" + tapeTypeStr + ".svg");
 
 	useEffect(() => {
-		console.log("렌더링 됨~~");
 		const eachNote = document.getElementById(qIdStr);
 		eachNote?.setAttribute("style", chosenPosition);
 	});

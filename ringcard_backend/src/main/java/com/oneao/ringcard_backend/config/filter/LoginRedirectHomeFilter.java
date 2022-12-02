@@ -19,7 +19,7 @@ public class LoginRedirectHomeFilter implements Filter {
         System.out.println("req.getServletPath() = " + req.getServletPath());
         if (Objects.equals(req.getServletPath(), "/login") && res.getStatus() == 200) {
             res.setStatus(302);
-            res.setHeader("Location", "/home/unanswered");
+            res.setHeader("Location", "/home/unanswered/0");
 
             chain.doFilter(request, res);
 

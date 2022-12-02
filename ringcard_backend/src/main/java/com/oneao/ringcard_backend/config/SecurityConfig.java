@@ -53,7 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .anyRequest().permitAll();
         http.formLogin()
-                .successForwardUrl("/home/unanswered")
+                .successForwardUrl("/home/unanswered/0")
+                .defaultSuccessUrl("/home/unanswered/0")
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/login")
 

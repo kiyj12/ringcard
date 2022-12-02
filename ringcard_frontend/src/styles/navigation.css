@@ -17,6 +17,7 @@
 .nav-bar {
   height: 60px;
   display: flex;
+  padding-top: 3px;
 }
 
 .nav-tab {
@@ -50,7 +51,7 @@
 .nav-hr {
   width: 75%;
   border: solid 0.1px rgb(165, 180, 227);
-  margin: 15px auto 6px auto;
+  margin: 13px auto 6px auto;
 
 }
 
