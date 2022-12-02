@@ -8,74 +8,63 @@ import { useSearchParams } from "react-router-dom";
 
 const HomeUnanswered = () => {
 	const [searchParams] = useSearchParams();
-  const page = searchParams.get('page'); // test
+	const [page, setPage] = useState(searchParams.get('page'));
+	const getPage = (page:any) => {
+    setPage(page);
+  };
+	// 	useEffect(() => {
+	// 	axios
+	// 		// .get("/home/unanswered?page="+page)
+	// 		.get("/home/unanswered?page="+page)
+	// 		.then((res) => {
+	// 			console.log(res.data);
+	// 			// setQuestionList(res.data.content);
+	// 			// setTotalPages(res.data.totalPages);
+	// 			// setPageNumber(res.data.number);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }, []);
 
-		useEffect(() => {
+	const [questionList, setQuestionList] = useState<any[]>([]);
+	const getQuestionList = (questionList:any) => {setQuestionList(questionList);};
+	const [totalPages, setTotalPages] = useState<number>();
+	const getTotalPages = (totalPages:any) => {
+    setTotalPages(totalPages);
+  };
+	const [pageNumber, setPageNumber] = useState(0);
+	const getPageNumber = (pageNumber:any) => {
+    setPageNumber(pageNumber);
+  };
+	const pageAddress = "unanswered";
+
+	useEffect(() => {
 		axios
-			// .get("/home/unanswered?page="+page)
 			.get("/home/unanswered?page="+page)
 			.then((res) => {
 				console.log(res.data);
-				// setQuestionList(res.data.content);
-				// setTotalPages(res.data.totalPages);
-				// setPageNumber(res.data.number);
+				setQuestionList(res.data.content);
+				setTotalPages(res.data.totalPages);
+				setPageNumber(res.data.number);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}, []);
+	
 
 	return (
 		<div className="container">
-		<div>{page}</div>
+			{/* <PageLoad/> */}
+			<Header />
+			<Navigation page={page} getPage={getPage} pageAddress={pageAddress} totalPages={totalPages} getTotalPages={getTotalPages} pageNumber={pageNumber} getPageNumber={getPageNumber} questionList={questionList} getQuestionList={getQuestionList} />
+			
+			<div className="container-body">
+				<QuestionNoteList questionList={questionList} />
+			</div>
 		</div>
 	);
-
-	// const [searchParams] = useSearchParams();
-  // const queryList = [...searchParams]; // [['key1', 'test1'], ['key2', 'test2']]
-
-  // return (
-  //   <h2>{query}<h2>
-  // );
-
-	// const [questionList, setQuestionList] = useState<any[]>([]);
-	// const getQuestionList = (questionList:any) => {setQuestionList(questionList);};
-	// const [totalPages, setTotalPages] = useState<number>();
-	// const getTotalPages = (totalPages:any) => {
-  //   setTotalPages(totalPages);
-  // };
-	// const [pageNumber, setPageNumber] = useState(0);
-	// const getPageNumber = (pageNumber:any) => {
-  //   setPageNumber(pageNumber);
-  // };
-	// const pageAddress = "unanswered";
-
-// 	useEffect(() => {
-// 		axios
-// 			.get("/home/unanswered/"+pageNumber)
-// 			.then((res) => {
-// 				console.log(res.data);
-// 				setQuestionList(res.data.content);
-// 				setTotalPages(res.data.totalPages);
-// 				setPageNumber(res.data.number);
-// 			})
-// 			.catch((err) => {
-// 				console.log(err);
-// 			});
-// 	}, []);
-	
-
-// 	return (
-// 		<div className="container">
-// 			{/* <PageLoad/> */}
-// 			<Header />
-// 			<Navigation pageAddress={pageAddress} totalPages={totalPages} getTotalPages={getTotalPages} pageNumber={pageNumber} getPageNumber={getPageNumber} questionList={questionList} getQuestionList={getQuestionList}/>
-			
-// 			<div className="container-body">
-// 				<QuestionNoteList questionList={questionList} />
-// 			</div>
-// 		</div>
-// 	);
 }
 
 export default HomeUnanswered;

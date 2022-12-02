@@ -8,10 +8,13 @@ const Navigation = (props: any) => {
 	const getQuestionList = props.getQuestionList;
 	const totalPages=props.totalPages;
 	const getTotalPages=props.getTotalPages;
-	let pageNumber=props.pageNumber;
-	const getPageNumber=props.getPageNumber;
+	let page = props.page;
+	const getPage = props.getPage;
+	// let pageNumber=props.pageNumber;
+	// const getPageNumber=props.getPageNumber;
 	const pageAddress = props.pageAddress;
-	const [showPageNumber, setShowPageNumber] = useState(pageNumber+1);
+	const [showPageNumber, setShowPageNumber] = useState(page+1);
+	
 
 	function BtnToPageUp(){
 		function handleClick(e: any){
@@ -19,17 +22,17 @@ const Navigation = (props: any) => {
 			if (totalPages === undefined){}
 			else if (showPageNumber>=totalPages){
 			}else{
-				pageNumber+=1;
+				page+=1;
 			axios
-				.get("/home/" + pageAddress +"/"+ pageNumber)
+				.get("/home/" + pageAddress +"/?page="+ page)
 				.then((res) => {
 					console.log("before=");
 					console.log(res.data);
-					console.log(pageNumber);
 					console.log(res.data.number+1);
 					getQuestionList(res.data.content);
 					getTotalPages(res.data.totalPages);
-					getPageNumber(res.data.number);
+					// getPageNumber(res.data.number);
+					getPage(page);
 					setShowPageNumber(res.data.number+1);
 					// setUpFlag(true);
 				})
@@ -43,22 +46,53 @@ const Navigation = (props: any) => {
 		</button>);
 	}
 
+	// function BtnToPageUp(){
+	// 	function handleClick(e: any){
+	// 		console.log("Up");
+	// 		if (totalPages === undefined){}
+	// 		else if (showPageNumber>=totalPages){
+	// 		}else{
+	// 			pageNumber+=1;
+	// 		axios
+	// 			.get("/home/" + pageAddress +"/"+ pageNumber)
+	// 			.then((res) => {
+	// 				console.log("before=");
+	// 				console.log(res.data);
+	// 				console.log(pageNumber);
+	// 				console.log(res.data.number+1);
+	// 				getQuestionList(res.data.content);
+	// 				getTotalPages(res.data.totalPages);
+	// 				getPageNumber(res.data.number);
+	// 				setShowPageNumber(res.data.number+1);
+	// 				// setUpFlag(true);
+	// 			})
+	// 			.catch((err) => {
+	// 				console.log(err);
+	// 			});
+	// 		}
+	// 	}
+	// 	return (<button className="page-btn" onClick={handleClick}>
+	// 		<img alt="" src="/buttons/move-next-page-btn.svg" />
+	// 	</button>);
+	// }
+
 
 	function BtnToPageDown(){
 		function handleClick(e: any){
 			console.log("Down");
-			if (pageNumber<1){}
+			if (showPageNumber<=1){}
 			else{
-			pageNumber-=1;
+			page-=1;
 			axios
-				.get("/home/" + pageAddress +"/"+ pageNumber)
+				.get("/home/" + pageAddress +"/?page="+ page)
 				.then((res) => {
 					console.log(res.data);
-					console.log(pageNumber);
 					getQuestionList(res.data.content);
 					getTotalPages(res.data.totalPages);
-					getPageNumber(res.data.number);
+					// getPageNumber(res.data.number);
+					getPage(page);
 					setShowPageNumber(res.data.number+1);
+					// setUpFlag(true);
 				})
 				.catch((err) => {
 					console.log(err);
