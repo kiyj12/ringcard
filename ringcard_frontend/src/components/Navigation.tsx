@@ -8,7 +8,7 @@ const Navigation = (props: any) => {
 	const getQuestionList = props.getQuestionList;
 	const totalPages=props.totalPages;
 	const getTotalPages=props.getTotalPages;
-	let page = props.page;
+	let page = Number(props.page);
 	const getPage = props.getPage;
 	// let pageNumber=props.pageNumber;
 	// const getPageNumber=props.getPageNumber;
@@ -23,22 +23,24 @@ const Navigation = (props: any) => {
 			else if (showPageNumber>=totalPages){
 			}else{
 				page+=1;
-			axios
-				.get("/home/" + pageAddress +"/?page="+ page)
-				.then((res) => {
-					console.log("before=");
-					console.log(res.data);
-					console.log(res.data.number+1);
-					getQuestionList(res.data.content);
-					getTotalPages(res.data.totalPages);
-					// getPageNumber(res.data.number);
-					getPage(page);
-					setShowPageNumber(res.data.number+1);
-					// setUpFlag(true);
-				})
-				.catch((err) => {
-					console.log(err);
-				});
+				// setShowPageNumber(page+2);
+			// axios
+			// 	.get("/home/" + pageAddress +"/?page="+ page)
+			// 	.then((res) => {
+			// 		console.log("before=");
+			// 		console.log(res.data);
+			// 		console.log(res.data.number+1);
+			// 		getQuestionList(res.data.content);
+			// 		getTotalPages(res.data.totalPages);
+			// 		// getPageNumber(res.data.number);
+			// 		getPage(page);
+			// 		setShowPageNumber(res.data.number+1);
+			// 		// setUpFlag(true);
+				// })
+				// .catch((err) => {
+				// 	console.log(err);
+				// });
+				window.location.href = "/home/unanswered?page="+page;
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
@@ -83,20 +85,22 @@ const Navigation = (props: any) => {
 			if (showPageNumber<=1){}
 			else{
 			page-=1;
-			axios
-				.get("/home/" + pageAddress +"/?page="+ page)
-				.then((res) => {
-					console.log(res.data);
-					getQuestionList(res.data.content);
-					getTotalPages(res.data.totalPages);
-					// getPageNumber(res.data.number);
-					getPage(page);
-					setShowPageNumber(res.data.number+1);
-					// setUpFlag(true);
-				})
-				.catch((err) => {
-					console.log(err);
-				});
+			// setShowPageNumber(page);
+			// axios
+			// 	.get("/home/" + pageAddress +"/?page="+ page)
+			// 	.then((res) => {
+			// 		console.log(res.data);
+			// 		getQuestionList(res.data.content);
+			// 		getTotalPages(res.data.totalPages);
+			// 		// getPageNumber(res.data.number);
+			// 		getPage(page);
+			// 		setShowPageNumber(res.data.number+1);
+			// 		// setUpFlag(true);
+			// 	})
+			// 	.catch((err) => {
+			// 		console.log(err);
+			// 	});
+			window.location.href = "/home/unanswered?page="+page;
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
@@ -110,7 +114,7 @@ const Navigation = (props: any) => {
 				<div className="nav-tab">
 					<div className="nav-unanswered">
 						<NavLink
-							to="/home/unanswered/0"
+							to="/home/unanswered?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -136,7 +140,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-answered">
 						<NavLink
-							to="/home/answered/0"
+							to="/home/answered?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -162,7 +166,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-collection">
 						<NavLink
-							to="/home/collection/0"
+							to="/home/collection?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -188,7 +192,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-trashcan">
 						<NavLink
-							to="/home/trashcan/0"
+							to="/home/trashcan?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
