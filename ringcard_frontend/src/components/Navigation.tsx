@@ -1,22 +1,41 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/navigation.css";
 
 const Navigation = (props: any) => {
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+	const getQuestionList = props.getQuestionList;
 	const totalPages=props.totalPages;
-	const pageNumber=props.pageNumber;
-	const page = props.page;
+	const getTotalPages=props.getTotalPages;
+	let pageNumber=props.pageNumber;
+	const getPageNumber=props.getPageNumber;
 	const pageAddress = props.pageAddress;
+	const [showPageNumber, setShowPageNumber] = useState(pageNumber+1);
 
 	function BtnToPageUp(){
 		function handleClick(e: any){
-			const pageNumber = Number(page);
-			const newPage = pageNumber + 1;
+			console.log("Up");
 			if (totalPages === undefined){}
-			else if (newPage>=totalPages){
+			else if (showPageNumber>=totalPages){
 			}else{
-				window.location.href=`/home/${pageAddress}/${newPage}`
+				pageNumber+=1;
+			axios
+				.get("/home/" + pageAddress +"/"+ pageNumber)
+				.then((res) => {
+					console.log("before=");
+					console.log(res.data);
+					console.log(pageNumber);
+					console.log(res.data.number+1);
+					getQuestionList(res.data.content);
+					getTotalPages(res.data.totalPages);
+					getPageNumber(res.data.number);
+					setShowPageNumber(res.data.number+1);
+					// setUpFlag(true);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
@@ -24,20 +43,32 @@ const Navigation = (props: any) => {
 		</button>);
 	}
 
+
 	function BtnToPageDown(){
 		function handleClick(e: any){
-			const pageNumber = Number(page);
-			const newPage = pageNumber - 1;
-			if (newPage<0){
-			}else{
-				window.location.href=`/home/${pageAddress}/${newPage}`
+			console.log("Down");
+			if (pageNumber<1){}
+			else{
+			pageNumber-=1;
+			axios
+				.get("/home/" + pageAddress +"/"+ pageNumber)
+				.then((res) => {
+					console.log(res.data);
+					console.log(pageNumber);
+					getQuestionList(res.data.content);
+					getTotalPages(res.data.totalPages);
+					getPageNumber(res.data.number);
+					setShowPageNumber(res.data.number+1);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
 			<img alt="" src="/buttons/move-previous-page-btn.svg" />
 		</button>);
 	}
-
 
 	return (
 		<nav className="nav-container">
@@ -154,7 +185,7 @@ const Navigation = (props: any) => {
 				<div className="page-section">
 					<BtnToPageDown/>
 					<div className="page-num-section">
-						<div className="page-num-current">{pageNumber}</div>
+						<div className="page-num-current">{showPageNumber}</div>
 						<div className="page-num">/ {totalPages}</div>
 					</div>
 					<BtnToPageUp/>
