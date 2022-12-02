@@ -26,6 +26,17 @@ const Modal = (props: props): ReactElement => {
 	// 		});
 	// };
 
+	const onClickHandler = () => {
+		axios
+			.get("/logout")
+			.then((response) => {
+				window.location.replace("/loginForm");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	return (
 		<>
 			<div className={open ? "bg" : ""} />
@@ -43,7 +54,9 @@ const Modal = (props: props): ReactElement => {
 								<div className="menu-element">마이 페이지</div>
 							</Link>
 
-							<div className="menu-element">로그아웃</div>
+							<div className="menu-element" onClick={onClickHandler}>
+								로그아웃
+							</div>
 						</div>
 					</div>
 				) : null}

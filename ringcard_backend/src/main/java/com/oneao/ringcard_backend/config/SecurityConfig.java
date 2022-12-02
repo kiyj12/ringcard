@@ -14,13 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.DisableEncodeUrlFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.CorsUtils;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -66,10 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new LoginRedirectHomeFilter(), DisableEncodeUrlFilter.class);
         http.logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
+//                .logoutSuccessUrl("/loginForm").permitAll()
                 .deleteCookies(JwtProperties.COOKIE_NAME)
-                .invalidateHttpSession(true);
-
+                .invalidateHttpSession(true)
+                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
     }
 
 }
