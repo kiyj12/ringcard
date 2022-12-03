@@ -151,7 +151,7 @@ const Login = () => {
 				setResponse(res.data);
 				console.log(res.data);
 				setSubmitted(true);
-				window.location.replace("/home/unanswered/0");
+				window.location.replace("/home/unanswered");
 			})
 			.catch(function (error) {
 				console.log(error.config);

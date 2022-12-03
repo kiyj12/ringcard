@@ -48,8 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/loginForm", "/login", "/logout", "/userHome/**", "/**/anony").permitAll()
                 .anyRequest().authenticated();
         http.formLogin()
-                .successForwardUrl("/home/unanswered/0")
-                .defaultSuccessUrl("/home/unanswered/0")
+                .successForwardUrl("/home/unanswered")
+                .defaultSuccessUrl("/home/unanswered")
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/login")
 
@@ -61,10 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new LoginRedirectHomeFilter(), DisableEncodeUrlFilter.class);
         http.logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/loginForm").permitAll()
+//                .logoutSuccessUrl("/loginForm").permitAll()
                 .deleteCookies(JwtProperties.COOKIE_NAME)
-                .invalidateHttpSession(true);
-//                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
+                .invalidateHttpSession(true)
+                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
     }
 
 }
