@@ -28,11 +28,13 @@ function QuestionNoteAnony(props: Props) {
 		"width: 130px; height: 28px; transform: rotate(20deg); margin: 6px -8px -10px auto;",
 		"width: 100px; height: 28px; transform: rotate(36deg); margin: 10px -13px -10px auto;",
 	];
+
 	const chosenPosition = tapePositionList[question.tapePosition];
 
 	const qIdStr = String(question.id);
 	const tapeTypeStr = String(question.tapeType);
 	const tapeUrl = String("/masking-tapes/tape" + tapeTypeStr + ".svg");
+
 
 	useEffect(() => {
 		const eachNote = document.getElementById(qIdStr);

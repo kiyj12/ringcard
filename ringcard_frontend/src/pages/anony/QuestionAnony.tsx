@@ -22,7 +22,7 @@ function QuestionAnony() {
 
 	const [totalPages, setTotalPages] = useState<Number>(0);
 	const [pageNumber, setPageNumber] = useState<Number>(0);
-	const { page } = useParams();
+	// const { page } = useParams();
 
 	useEffect(() => {
 		axios

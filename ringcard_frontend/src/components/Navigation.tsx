@@ -1,22 +1,42 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/navigation.css";
 
 const Navigation = (props: any) => {
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-	const totalPages = props.totalPages;
-	const pageNumber = props.pageNumber;
-	const page = props.page;
-	const pageAddress = props.pageAddress;
 
-	function BtnToPageUp() {
-		function handleClick(e: any) {
-			const pageNumber = Number(page);
-			const newPage = pageNumber + 1;
-			if (totalPages === undefined) {
-			} else if (newPage >= totalPages) {
-			} else {
-				window.location.href = `/home/${pageAddress}/${newPage}`;
+	const totalPages=props.totalPages;
+	let page = Number(props.page);
+
+	const pageAddress = props.pageAddress;
+	const showPageNumber = page+1;
+	
+	function BtnToPageUp(){
+		function handleClick(e: any){
+			console.log("Up");
+			if (totalPages === undefined){}
+			else if (showPageNumber>=totalPages){
+			}else{
+				page+=1;
+				// setShowPageNumber(page+2);
+			// axios
+			// 	.get("/home/" + pageAddress +"/?page="+ page)
+			// 	.then((res) => {
+			// 		console.log("before=");
+			// 		console.log(res.data);
+			// 		console.log(res.data.number+1);
+			// 		getQuestionList(res.data.content);
+			// 		getTotalPages(res.data.totalPages);
+			// 		// getPageNumber(res.data.number);
+			// 		getPage(page);
+			// 		setShowPageNumber(res.data.number+1);
+			// 		// setUpFlag(true);
+				// })
+				// .catch((err) => {
+				// 	console.log(err);
+				// });
+				window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
 		return (
@@ -26,13 +46,60 @@ const Navigation = (props: any) => {
 		);
 	}
 
-	function BtnToPageDown() {
-		function handleClick(e: any) {
-			const pageNumber = Number(page);
-			const newPage = pageNumber - 1;
-			if (newPage < 0) {
-			} else {
-				window.location.href = `/home/${pageAddress}/${newPage}`;
+
+	// function BtnToPageUp(){
+	// 	function handleClick(e: any){
+	// 		console.log("Up");
+	// 		if (totalPages === undefined){}
+	// 		else if (showPageNumber>=totalPages){
+	// 		}else{
+	// 			pageNumber+=1;
+	// 		axios
+	// 			.get("/home/" + pageAddress +"/"+ pageNumber)
+	// 			.then((res) => {
+	// 				console.log("before=");
+	// 				console.log(res.data);
+	// 				console.log(pageNumber);
+	// 				console.log(res.data.number+1);
+	// 				getQuestionList(res.data.content);
+	// 				getTotalPages(res.data.totalPages);
+	// 				getPageNumber(res.data.number);
+	// 				setShowPageNumber(res.data.number+1);
+	// 				// setUpFlag(true);
+	// 			})
+	// 			.catch((err) => {
+	// 				console.log(err);
+	// 			});
+	// 		}
+	// 	}
+	// 	return (<button className="page-btn" onClick={handleClick}>
+	// 		<img alt="" src="/buttons/move-next-page-btn.svg" />
+	// 	</button>);
+	// }
+
+
+	function BtnToPageDown(){
+		function handleClick(e: any){
+			console.log("Down");
+			if (showPageNumber<=1){}
+			else{
+			page-=1;
+			// setShowPageNumber(page);
+			// axios
+			// 	.get("/home/" + pageAddress +"/?page="+ page)
+			// 	.then((res) => {
+			// 		console.log(res.data);
+			// 		getQuestionList(res.data.content);
+			// 		getTotalPages(res.data.totalPages);
+			// 		// getPageNumber(res.data.number);
+			// 		getPage(page);
+			// 		setShowPageNumber(res.data.number+1);
+			// 		// setUpFlag(true);
+			// 	})
+			// 	.catch((err) => {
+			// 		console.log(err);
+			// 	});
+			window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
 		return (
@@ -41,7 +108,6 @@ const Navigation = (props: any) => {
 			</button>
 		);
 	}
-	const hi = 0;
 
 	return (
 		<nav className="nav-container">
@@ -49,7 +115,7 @@ const Navigation = (props: any) => {
 				<div className="nav-tab">
 					<div className="nav-unanswered">
 						<NavLink
-							to="/home/unanswered/0"
+							to="/home/unanswered?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -75,7 +141,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-answered">
 						<NavLink
-							to="/home/answered/0"
+							to="/home/answered?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -101,7 +167,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-collection">
 						<NavLink
-							to="/home/collection/0"
+							to="/home/collection?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -127,7 +193,7 @@ const Navigation = (props: any) => {
 					</div>
 					<div className="nav-trashcan">
 						<NavLink
-							to="/home/trashcan/0"
+							to="/home/trashcan?page=0"
 							style={{ textDecoration: "none" }}
 							className={({ isActive }) =>
 								isActive ? "activeNav" : "inactiveNav"
@@ -158,7 +224,7 @@ const Navigation = (props: any) => {
 				<div className="page-section">
 					<BtnToPageDown />
 					<div className="page-num-section">
-						<div className="page-num-current">{pageNumber}</div>
+						<div className="page-num-current">{showPageNumber}</div>
 						<div className="page-num">/ {totalPages}</div>
 					</div>
 					<BtnToPageUp />

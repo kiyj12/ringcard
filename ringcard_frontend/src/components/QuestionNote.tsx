@@ -31,10 +31,12 @@ function QuestionNote(props: Props) {
 	const tapeTypeStr = String(question.tapeType);
 	const tapeUrl = String("/masking-tapes/tape" + tapeTypeStr + ".svg");
 
+
 	useEffect(() => {
 		const eachNote = document.getElementById(qIdStr);
 		eachNote?.setAttribute("style", chosenPosition);
 	});
+
 
 	const qNoteType = String(question.noteType);
 

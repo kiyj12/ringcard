@@ -11,7 +11,9 @@ import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +57,9 @@ public class AddQuestionFormController {
         // 해당 질문 제외한 다른 응답 질문 리스트
         PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
         Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(pageRequest);
-//        questions.remove(question);
+//        questions.remove(question)
+//        questions.getContent().remove(question);
+//        System.out.println(questions.getContent());
 
         List<Object> map = new ArrayList<>();
         for (Question q : questions) {

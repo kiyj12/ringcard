@@ -10,6 +10,7 @@ import "../../styles/join.css";
 import HeaderRingcaShort from "../../components/HeaderRingcaShort";
 import userEvent from "@testing-library/user-event";
 
+import { useNavigate } from "react-router-dom";
 
 const Join = () => {
 

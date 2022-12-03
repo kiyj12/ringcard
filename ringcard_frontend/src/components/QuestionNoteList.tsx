@@ -9,6 +9,7 @@ export interface Props {
 }
 
 function QuestionNoteList(props: Props) {
+
 	return (
 		<>
 			<div className="question-notes-container">

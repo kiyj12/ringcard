@@ -15,6 +15,7 @@ function QuestionNoteList(props: Props) {
 	const QandAmap = props.map;
 
 	return (
+
 		<div className="question-notes-container">
 			{QandAmap.map((QA, idx) => (
 				<QuestionNoteAnony
@@ -25,6 +26,7 @@ function QuestionNoteList(props: Props) {
 				/>
 			))}
 		</div>
+
 	);
 }
 

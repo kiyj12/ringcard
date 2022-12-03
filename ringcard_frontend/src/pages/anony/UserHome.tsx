@@ -20,11 +20,11 @@ function UserHome() {
 
 	const [totalPages, setTotalPages] = useState<Number>(0);
 	const [pageNumber, setPageNumber] = useState<Number>(0);
-	const { page } = useParams();
+	// const { page } = useParams();
 
 	useEffect(() => {
 		axios
-			.get("/userHome/" + userName + "/" + page)
+			.get("/userHome/" + userName + "/0")
 			.then((res) => {
 				console.log(res.data);
 				setUser(res.data.user);
@@ -40,6 +40,8 @@ function UserHome() {
 	function BtnToViewMore() {
 		function handleClick(e: any) {
 			const newPage = pageNumber;
+			console.log("newPage="+newPage);
+			console.log("pageNumber="+pageNumber);
 			if (totalPages === undefined) {
 			} else if (newPage >= totalPages) {
 			} else {
@@ -61,8 +63,7 @@ function UserHome() {
 								mapTemp.push(b[idx]);
 							}
 						}
-						console.log("cc");
-						console.log(mapTemp);
+
 						if (mapTemp) {
 							setMap(mapTemp);
 						}

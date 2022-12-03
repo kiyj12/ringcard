@@ -29,14 +29,11 @@ public class ShowHomeAnsweredController {
     private final QuestionService questionService;
     private final AnswerService answerService;
 
-    @GetMapping("/home/answered/{page}")
-    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PathVariable int page) {
+    @GetMapping("/home/answered")
+    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
         Long userId = loginUser.getUser().getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
-
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
-
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
         return ResponseEntity.ok(questions);
     }
 }
