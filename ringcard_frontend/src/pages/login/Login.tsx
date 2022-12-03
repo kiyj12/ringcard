@@ -14,9 +14,93 @@ import { useForm } from "react-hook-form";
 
 
 
-
 const Login = () => {
 
+// var Twitter = require('twitter');
+
+// var client = new Twitter({
+//   consumer_key: 'S0FVySANFNnlISMw5D1vSE8P0',
+//   consumer_secret: 'KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X',
+//   access_token_key: '1516353113430851586-BikPyEoaehv4mDqSnCLc5mMQGuigeR',
+//   access_token_secret: 'zReOE8IWZ5wbGnPC4D8AClbBqc1hXhDQZcbBf2OOar2vw'
+// });
+
+// function tweetPost(content: string) {
+//   client.post('statuses/update', {status: content}, function(error: any, tweet: any, response: any) {
+//     if (!error) {
+//       console.log("tweet success: " + content);
+//     } else {
+//       console.log(error);
+//     }
+//   });
+// }
+// dotenv.config();
+
+// const app = express();
+
+// const authClient = new auth.OAuth2User({
+//   client_id: "OHZuVXNLOU9Yd2xEZTM1Q3pSTl86MTpjaQ",
+//   client_secret: "R5LrpInanUZYCRH8l9aq5oUGBoxfAHNQTPjs8vhqB2zGjKI29m",
+//   callback: "https://127.0.0.1:3000/callback",
+//   scopes: ["tweet.read", "users.read", "offline.access"],
+// });
+
+// // const authClient = new auth.OAuth2User({
+// //   client_id: process.env.CLIENT_ID as string,
+// //   client_secret: process.env.CLIENT_SECRET as string,
+// //   callback: "https://127.0.0.1:3000/callback",
+// //   scopes: ["tweet.read", "users.read", "offline.access"],
+// // });
+
+// const client = new Client(authClient);
+
+// const STATE = "my-state";
+
+// app.get("/callback", async function (req, res) {
+//   try {
+//     const { code, state } = req.query;
+//     if (state !== STATE) return res.status(500).send("State isn't matching");
+//     await authClient.requestAccessToken(code as string);
+//     res.redirect("/tweets");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+// app.get("/login", async function (req, res) {
+//   const authUrl = authClient.generateAuthURL({
+//     state: STATE,
+//     code_challenge_method: "plain",
+//     code_challenge: "test",
+//   });
+//   res.redirect(authUrl);
+// });
+
+// app.get("/tweets", async function (req, res) {
+//   try {
+//     const tweets = await client.tweets.findTweetById("20");
+//     res.send(tweets);
+//   } catch (error) {
+//     console.log("tweets error", error);
+//   }
+// });
+
+// app.get("/revoke", async function (req, res) {
+//   try {
+//     const response = await authClient.revokeAccessToken();
+//     res.send(response);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+// app.listen(3000, () => {
+//   console.log(`Go here to login: http://127.0.0.1:3000/login`);
+// });
+
+
+
+	
 // 	// toastify 알람 실행 함수 만들기
 //   const notify = () => toast("질문의 답변이 등록되었습니다.", { 
 // 		autoClose: 700,
@@ -31,7 +115,6 @@ const Login = () => {
 // 		// onOpen: () => window.alert('Called when I open'),
 // 		// onClose: () => window.alert('Called when I close')
 // })
-
 
 	type ResponseList = {
 		bindingResultHasErrors: boolean;

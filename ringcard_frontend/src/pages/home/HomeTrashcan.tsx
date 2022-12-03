@@ -5,24 +5,24 @@ import "../../styles/home.css";
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import QuestionNoteList from "../../components/QuestionNoteList";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function HomeUnanswered() {
+	const [searchParams] = useSearchParams();
+	const page = searchParams.get('page');
 	const [questionList, setQuestionList] = useState<any[]>([]);
-
 	const [totalPages, setTotalPages] = useState<number>();
-	const [pageNumber, setPageNumber] = useState<number>();
+	const [pageNumber, setPageNumber] = useState(0);
 	const pageAddress = "trashcan";
-	const { page } = useParams();
 
 	useEffect(() => {
 		axios
-			.get(`/home/trashcan/${page}`)
+			.get("/home/"+pageAddress+"?page="+page)
 			.then((res) => {
 				console.log(res.data);
 				setQuestionList(res.data.content);
 				setTotalPages(res.data.totalPages);
-				setPageNumber(res.data.number+1);
+				setPageNumber(res.data.number);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -47,7 +47,7 @@ function HomeUnanswered() {
 	return (
 		<div className="container">
 			<Header />
-			<Navigation pageAddress={pageAddress} totalPages={totalPages} pageNumber={pageNumber} page={page}/>
+			<Navigation page={page} pageAddress={pageAddress} totalPages={totalPages} pageNumber={pageNumber} />
 
 			<div className="container-body">
 				<QuestionNoteList questionList={questionList} />

@@ -70,9 +70,9 @@ public class JpaQuestionRepository implements QuestionRepository {
 //    }
 
     @Override
-    public List<Question> findAllAnsweredNotInTrashNoAuth() {
+    public Page<Question> findAllAnsweredNotInTrashNoAuth(Pageable pageable) {
 
-        return repository.findByAnsweredLikeAndInTrashLike(true, false);
+        return repository.findByAnsweredLikeAndInTrashLike(true, false, pageable);
     }
 
     @Override

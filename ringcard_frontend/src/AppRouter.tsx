@@ -18,6 +18,7 @@ import QuestionAnswered from "./pages/question/QuestionAnswered";
 import UserHome from "./pages/anony/UserHome";
 import DeleteAccount from "./pages/mypage/DeleteAccount";
 import QuestionAnony from "./pages/anony/QuestionAnony";
+import Oauth from "./pages/login/Oauth";
 
 const AppRouter = () => {
 	return (
@@ -25,10 +26,10 @@ const AppRouter = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Navigation />} />
-					<Route path="/home/unanswered/:page" element={<HomeUnanswered />} />
-					<Route path="/home/answered/:page" element={<HomeAnswered />} />
-					<Route path="/home/trashcan/:page" element={<HomeTrashcan />} />
-					<Route path="/home/collection/:page" element={<HomeCollection />} />
+					<Route path="/home/unanswered" element={<HomeUnanswered />} />
+					<Route path="/home/answered" element={<HomeAnswered />} />
+					<Route path="/home/trashcan" element={<HomeTrashcan />} />
+					<Route path="/home/collection" element={<HomeCollection />} />
 					<Route
 						path="/question/:questionId/unanswered/user"
 						element={<QuestionUnanswered />}
@@ -42,16 +43,17 @@ const AppRouter = () => {
 						element={<AnswerCompletedPage />}
 					/>
 					<Route
-						path="/question/:questionId/anony/:page"
+						path="/question/:questionId/anony"
 						element={<QuestionAnony />}
 					/>
-					<Route path="/userHome/:userName/:page" element={<UserHome />} />
+					<Route path="/userHome/:userName" element={<UserHome />} />
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
 					<Route path="/loginForm" element={<Login />} />
 					<Route path="/joinForm" element={<Join />} />
 					<Route path="/mypage/edit/password" element={<EditPassword />} />
 					<Route path="/mypage/delete/account" element={<DeleteAccount />} />
+					<Route path="/oauth" element={<Oauth />} />
 				</Routes>
 			</BrowserRouter>
 		</>

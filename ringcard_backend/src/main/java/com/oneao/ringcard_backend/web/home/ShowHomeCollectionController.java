@@ -6,7 +6,9 @@ import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,13 +24,10 @@ import java.util.List;
 public class ShowHomeCollectionController {
     private final QuestionService questionService;
 
-    @GetMapping("/home/collection/{page}")
-    public ResponseEntity<Page<Question>> showHomeCollection(@AuthenticationPrincipal PrincipalDetails loginUser, @PathVariable int page) {
+    @GetMapping("/home/collection")
+    public ResponseEntity<Page<Question>> showHomeCollection(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
         Long userId = loginUser.getUser().getId();
-
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions = questionService.findAllInCollection(userId, pageRequest);
-
+        Page<Question> questions = questionService.findAllInCollection(userId, pageable);
         return ResponseEntity.ok(questions);
     }
 }

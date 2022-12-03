@@ -28,14 +28,21 @@ public class ShowHomeUnansweredController {
     private final QuestionService questionService;
     private final SpringDataJpaQuestionRepository springDataJpaQuestionRepository;
     private final JpaQuestionRepository jpaQuestionRepository;
-    @GetMapping("home/unanswered/{page}")
-    public ResponseEntity<Page<Question>> showHomeUnAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PathVariable int page) {
+//    @GetMapping("home/unanswered/{page}")
+//    public ResponseEntity<Page<Question>> showHomeUnAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PathVariable int page) {
+//        Long userId = loginUser.getUser().getId();
+//        QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
+//
+//        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+//        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
+//
+//        return ResponseEntity.ok(questions);
+//    }
+    @GetMapping("home/unanswered")
+    public ResponseEntity<Page<Question>> showHomeUnAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
         Long userId = loginUser.getUser().getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
-
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
         return ResponseEntity.ok(questions);
     }
 
