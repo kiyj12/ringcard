@@ -8,40 +8,15 @@ import { useSearchParams } from "react-router-dom";
 
 const HomeUnanswered = () => {
 	const [searchParams] = useSearchParams();
-	const [page, setPage] = useState(searchParams.get('page'));
-	const getPage = (page:any) => {
-    setPage(page);
-  };
-	// 	useEffect(() => {
-	// 	axios
-	// 		// .get("/home/unanswered?page="+page)
-	// 		.get("/home/unanswered?page="+page)
-	// 		.then((res) => {
-	// 			console.log(res.data);
-	// 			// setQuestionList(res.data.content);
-	// 			// setTotalPages(res.data.totalPages);
-	// 			// setPageNumber(res.data.number);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
-
+	const page = searchParams.get('page');
 	const [questionList, setQuestionList] = useState<any[]>([]);
-	const getQuestionList = (questionList:any) => {setQuestionList(questionList);};
 	const [totalPages, setTotalPages] = useState<number>();
-	const getTotalPages = (totalPages:any) => {
-    setTotalPages(totalPages);
-  };
 	const [pageNumber, setPageNumber] = useState(0);
-	const getPageNumber = (pageNumber:any) => {
-    setPageNumber(pageNumber);
-  };
 	const pageAddress = "unanswered";
 
 	useEffect(() => {
 		axios
-			.get("/home/unanswered?page="+page)
+			.get("/home/"+pageAddress+"?page="+page)
 			.then((res) => {
 				console.log(res.data);
 				setQuestionList(res.data.content);
@@ -58,7 +33,7 @@ const HomeUnanswered = () => {
 		<div className="container">
 			{/* <PageLoad/> */}
 			<Header />
-			<Navigation page={page} getPage={getPage} pageAddress={pageAddress} totalPages={totalPages} getTotalPages={getTotalPages} pageNumber={pageNumber} getPageNumber={getPageNumber} questionList={questionList} getQuestionList={getQuestionList} />
+			<Navigation page={page} pageAddress={pageAddress} totalPages={totalPages} pageNumber={pageNumber} />
 			
 			<div className="container-body">
 				<QuestionNoteList questionList={questionList} />

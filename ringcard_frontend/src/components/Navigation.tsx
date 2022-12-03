@@ -5,15 +5,10 @@ import "../styles/navigation.css";
 
 const Navigation = (props: any) => {
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-	const getQuestionList = props.getQuestionList;
 	const totalPages=props.totalPages;
-	const getTotalPages=props.getTotalPages;
 	let page = Number(props.page);
-	const getPage = props.getPage;
-	// let pageNumber=props.pageNumber;
-	// const getPageNumber=props.getPageNumber;
 	const pageAddress = props.pageAddress;
-	const [showPageNumber, setShowPageNumber] = useState(page+1);
+	const showPageNumber = page+1;
 	
 
 	function BtnToPageUp(){
@@ -40,7 +35,7 @@ const Navigation = (props: any) => {
 				// .catch((err) => {
 				// 	console.log(err);
 				// });
-				window.location.href = "/home/unanswered?page="+page;
+				window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
@@ -100,7 +95,7 @@ const Navigation = (props: any) => {
 			// 	.catch((err) => {
 			// 		console.log(err);
 			// 	});
-			window.location.href = "/home/unanswered?page="+page;
+			window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
 		return (<button className="page-btn" onClick={handleClick}>
