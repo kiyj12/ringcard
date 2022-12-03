@@ -5,12 +5,13 @@ import "../styles/navigation.css";
 
 const Navigation = (props: any) => {
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+
 	const totalPages=props.totalPages;
 	let page = Number(props.page);
+
 	const pageAddress = props.pageAddress;
 	const showPageNumber = page+1;
 	
-
 	function BtnToPageUp(){
 		function handleClick(e: any){
 			console.log("Up");
@@ -38,10 +39,13 @@ const Navigation = (props: any) => {
 				window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
-		return (<button className="page-btn" onClick={handleClick}>
-			<img alt="" src="/buttons/move-next-page-btn.svg" />
-		</button>);
+		return (
+			<button className="page-btn" onClick={handleClick}>
+				<img alt="" src="/buttons/move-next-page-btn.svg" />
+			</button>
+		);
 	}
+
 
 	// function BtnToPageUp(){
 	// 	function handleClick(e: any){
@@ -98,9 +102,11 @@ const Navigation = (props: any) => {
 			window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
-		return (<button className="page-btn" onClick={handleClick}>
-			<img alt="" src="/buttons/move-previous-page-btn.svg" />
-		</button>);
+		return (
+			<button className="page-btn" onClick={handleClick}>
+				<img alt="" src="/buttons/move-previous-page-btn.svg" />
+			</button>
+		);
 	}
 
 	return (
@@ -213,15 +219,15 @@ const Navigation = (props: any) => {
 					</div>
 				</div>
 			</div>
-			<hr className="nav-hr"/>
+			<hr className="nav-hr" />
 			<div className="page-bar">
 				<div className="page-section">
-					<BtnToPageDown/>
+					<BtnToPageDown />
 					<div className="page-num-section">
 						<div className="page-num-current">{showPageNumber}</div>
 						<div className="page-num">/ {totalPages}</div>
 					</div>
-					<BtnToPageUp/>
+					<BtnToPageUp />
 				</div>
 			</div>
 		</nav>

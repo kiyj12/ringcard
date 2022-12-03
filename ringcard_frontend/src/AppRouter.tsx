@@ -18,7 +18,9 @@ import QuestionAnswered from "./pages/question/QuestionAnswered";
 import UserHome from "./pages/anony/UserHome";
 import DeleteAccount from "./pages/mypage/DeleteAccount";
 import QuestionAnony from "./pages/anony/QuestionAnony";
+import Logout from "./pages/login/Logout";
 import Oauth from "./pages/login/Oauth";
+
 
 const AppRouter = () => {
 	return (
@@ -49,7 +51,11 @@ const AppRouter = () => {
 					<Route path="/userHome/:userName" element={<UserHome />} />
 					<Route path="/mypage/info" element={<UserInfo />} />
 					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
+
+					<Route path="" element={<Login />} />
+					<Route path="/" element={<Login />} />
 					<Route path="/loginForm" element={<Login />} />
+					<Route path="/logout" element={<Logout />} />
 					<Route path="/joinForm" element={<Join />} />
 					<Route path="/mypage/edit/password" element={<EditPassword />} />
 					<Route path="/mypage/delete/account" element={<DeleteAccount />} />

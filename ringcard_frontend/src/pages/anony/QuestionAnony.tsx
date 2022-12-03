@@ -68,7 +68,7 @@ function QuestionAnony() {
 								mapTemp.push(b[idx]);
 							}
 						}
-						console.log("cc");
+
 						console.log(mapTemp);
 						if (mapTemp) {
 							setMap(mapTemp);
@@ -77,21 +77,24 @@ function QuestionAnony() {
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
-				.catch((err) => {
+					.catch((err) => {
 						console.log(err);
 					});
 			}
 		}
 		return (
-			<div>
+			<div className="QuestionAnony-viewMore-btn-box">
 				{totalPages === pageNumber ? undefined : (
-				<div className="Question-viewMore-btn-container">
-					<div className="QuestionAnony-viewMore-btn-section">
-						<button className="QuestionAnony-viewMore-btn" onClick={handleClick}>
-							+ 더보기
-						</button>
+					<div className="QuestionAnony-viewMore-btn-container">
+						<div className="QuestionAnony-viewMore-btn-section">
+							<button
+								className="QuestionAnony-viewMore-btn"
+								onClick={handleClick}
+							>
+								+ 더보기
+							</button>
+						</div>
 					</div>
-				</div>
 				)}
 			</div>
 		);
@@ -115,8 +118,15 @@ function QuestionAnony() {
 				<div className="QuestionAnony-SendQuestionForm-container">
 					<SendQuestionForm />
 				</div>
-				{map ? <QuestionNoteListAnony map={map} /> : undefined}
-					<BtnToViewMore/>
+				<div className="QuestionAnony-hr-box">
+					<hr className="QuestionAnony-hr" />
+
+					<div className="QuestionAnony-hr-text">다른 응답된 질문들</div>
+					<hr className="QuestionAnony-hr" />
+				</div>
+				<div>{map ? <QuestionNoteListAnony map={map} /> : undefined}</div>
+
+				<BtnToViewMore />
 			</div>
 		</div>
 	);

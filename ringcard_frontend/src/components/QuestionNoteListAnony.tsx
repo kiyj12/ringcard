@@ -15,18 +15,18 @@ function QuestionNoteList(props: Props) {
 	const QandAmap = props.map;
 
 	return (
-		<>
-			<div className="question-notes-container">
-				{QandAmap.map((QA, idx) => (
-					<QuestionNoteAnony
-						key={idx}
-						idx={idx}
-						question={QA[0]}
-						answer={QA[1]}
-					/>
-				))}
-			</div>
-		</>
+
+		<div className="question-notes-container">
+			{QandAmap.map((QA, idx) => (
+				<QuestionNoteAnony
+					key={idx}
+					idx={idx}
+					question={QA[0]}
+					answer={QA[1]}
+				/>
+			))}
+		</div>
+
 	);
 }
 

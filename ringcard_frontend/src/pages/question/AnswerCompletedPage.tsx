@@ -49,6 +49,7 @@ function AnswerCompletedPage() {
 					.then((res) => {
 						console.log(res.data);
 						// setQuestionList1(res.data.questions.content);
+
 						const a:any[]=res.data.questions.content;
 						console.log("a="+res.data.questions.content);
 						let mapTemp = [];
@@ -67,8 +68,9 @@ function AnswerCompletedPage() {
 						}
 						setTotalPages(res.data.questions.totalPages);
 						setPageNumber(res.data.questions.number + 1);
+
 					})
-				.catch((err) => {
+					.catch((err) => {
 						console.log(err);
 					});
 			}
@@ -77,12 +79,12 @@ function AnswerCompletedPage() {
 			<div>
 				{totalPages === pageNumber ? undefined : (
 					<div className="UserHome-viewMore-btn-container">
-					<div className="UserHome-viewMore-btn-section">
-						<button className="UserHome-viewMore-btn" onClick={handleClick}>
-							+ 더보기
-						</button>
+						<div className="UserHome-viewMore-btn-section">
+							<button className="UserHome-viewMore-btn" onClick={handleClick}>
+								+ 더보기
+							</button>
+						</div>
 					</div>
-				</div>
 				)}
 			</div>
 		);
@@ -153,10 +155,13 @@ function AnswerCompletedPage() {
 					<hr className="QuestionPage-hr" />
 				</div>
 				<div className="questionPage-container-body">
-					<QuestionNoteList questionList={questionList} />
-					<BtnToViewMore/>
+					<div>
+						<QuestionNoteList questionList={questionList} />
+					</div>
+
+					<BtnToViewMore />
 				</div>
-				
+
 			</div>
 		</div>
 	);

@@ -1,8 +1,8 @@
 import { IAnswer, IQuestion } from "./types";
-import QuestionFooter from "./QuestionNoteFooter";
 import "../styles/question.css";
 import NowDate from "./NowDate";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import HyperlinkBox from "./HyperlinkBox";
 
 export interface Props {
 	idx: number;
@@ -28,14 +28,18 @@ function QuestionNoteAnony(props: Props) {
 		"width: 130px; height: 28px; transform: rotate(20deg); margin: 6px -8px -10px auto;",
 		"width: 100px; height: 28px; transform: rotate(36deg); margin: 10px -13px -10px auto;",
 	];
-	const chosenPosition = tapePositionList[question.tapePosition - 1];
+
+	const chosenPosition = tapePositionList[question.tapePosition];
 
 	const qIdStr = String(question.id);
 	const tapeTypeStr = String(question.tapeType);
 	const tapeUrl = String("/masking-tapes/tape" + tapeTypeStr + ".svg");
 
-	const eachNote = document.getElementById(qIdStr);
-	eachNote?.setAttribute("style", chosenPosition);
+
+	useEffect(() => {
+		const eachNote = document.getElementById(qIdStr);
+		eachNote?.setAttribute("style", chosenPosition);
+	});
 
 	const qNoteType = question.noteType;
 
@@ -69,8 +73,16 @@ function QuestionNoteAnony(props: Props) {
 						<NowDate questionUploadTime={question.uploadTime} />
 					</div>
 					<div className="each-note-content-box">
-						<div className="each-note-content">{question.questionContents}</div>
+						<div className="each-note-content QuestionNoteAnony-line-limit">
+							{question.questionContents}
+						</div>
 					</div>
+					{question.questionHyperlink == null ||
+					question.questionHyperlink === "" ? undefined : (
+						<div className="QuestionNote-note-hyperlink-box">
+							<HyperlinkBox hyperlinkContent={question.questionHyperlink} />
+						</div>
+					)}
 					<hr className="note-hr" />
 					<div className="QuestionNoteAnony-note-footer">
 						<div className="QuestionNoteAnony-note-footer-btns-container">

@@ -14,13 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.DisableEncodeUrlFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.CorsUtils;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-import java.util.List;
+import static org.springframework.http.HttpMethod.GET;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -49,11 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Preflight Request 허용해주기
-                .antMatchers("/home/**", "/mypage/**", "/**/user")
-                .authenticated()
-                .anyRequest().permitAll();
+//                .antMatchers("/home/**", "/mypage/**", "/**/user")
+                .antMatchers( "/loginForm", "/login", "/logout", "/userHome/**", "/**/anony").permitAll()
+                .anyRequest().authenticated();
         http.formLogin()
-                .successForwardUrl("/home/unanswered")
+                .successForwardUrl("/home/unanswered/0")
+                .defaultSuccessUrl("/home/unanswered/0")
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/login")
 
@@ -65,10 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new LoginRedirectHomeFilter(), DisableEncodeUrlFilter.class);
         http.logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/loginForm").permitAll()
                 .deleteCookies(JwtProperties.COOKIE_NAME)
                 .invalidateHttpSession(true);
-
+//                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
     }
 
 }

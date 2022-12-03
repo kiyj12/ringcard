@@ -9,6 +9,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -17,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Set;
 
 
 // 스프링 시큐리티에서 UsernamePasswordAuthenticationFilter 가 있음.
@@ -31,7 +36,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         System.out.println("JwtAuthenticationFilter : 로그인 시도 중");
-
+        // 얘는 requestBody의 파라미터를 다 읽어오는 애들임.
+//        Enumeration<String> params = request.getParameterNames();
+//        while(params.hasMoreElements()){
+//            String paramName = params.nextElement();
+//            System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+//        }
         // 1. username, password 받아서
         String paramUsername = request.getParameter("username");
         String paramPwd = request.getParameter("password");

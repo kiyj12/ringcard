@@ -1,6 +1,4 @@
-import axios from "axios";
-import { url } from "inspector";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Pagination from "react-js-pagination";
 import { IQuestion } from "./types";
 
@@ -11,7 +9,6 @@ export interface Props {
 }
 
 function QuestionNoteList(props: Props) {
-	// making tape 동적 삽입
 
 	return (
 		<>
