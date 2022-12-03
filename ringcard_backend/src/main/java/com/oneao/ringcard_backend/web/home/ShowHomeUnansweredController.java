@@ -39,15 +39,10 @@ public class ShowHomeUnansweredController {
 //        return ResponseEntity.ok(questions);
 //    }
     @GetMapping("home/unanswered")
-    public ResponseEntity<Page<Question>> showHomeUnAnswered(@PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable, @AuthenticationPrincipal PrincipalDetails loginUser, RedirectAttributes redirectAttributes) {
+    public ResponseEntity<Page<Question>> showHomeUnAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
         Long userId = loginUser.getUser().getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
-
-//        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
-        System.out.println(pageable);
-//        int page = pageable.getPageNumber();
-//        redirectAttributes.addAttribute("page", page);
         return ResponseEntity.ok(questions);
     }
 

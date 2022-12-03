@@ -6,7 +6,9 @@ import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,16 +24,15 @@ import java.util.List;
 public class ShowHomeTrashcanController {
     private final QuestionService questionService;
 
-    @GetMapping("home/trashcan/{page}")
-    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PathVariable int page) {
+    @GetMapping("home/trashcan")
+    public ResponseEntity<Page<Question>> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
         // list 합치기
         //CF: https://hianna.tistory.com/560 2.Collections.addAll()
 //        List<Question> questions = new ArrayList<>();         // list 합치기        Collections.addAll(mergedList, list1.toArray(new String[0]));        Collections.addAll(mergedList, list2.toArray(new String[0]));
 //        Long userId = loginUser.getId();
         Long userId = loginUser.getUser().getId();
 
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions =questionService.findAllInTrash(userId, pageRequest);
+        Page<Question> questions =questionService.findAllInTrash(userId, pageable);
 //        List<Question> questions = questionService.findAllInTrash(userId);        // list 합치기        Collections.addAll(mergedList, list1.toArray(new String[0]));        Collections.addAll(mergedList, list2.toArray(new String[0]));
         return ResponseEntity.ok(questions);
     }

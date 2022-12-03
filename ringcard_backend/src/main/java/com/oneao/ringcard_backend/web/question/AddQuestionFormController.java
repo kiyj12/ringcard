@@ -11,7 +11,9 @@ import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,8 +46,8 @@ public class AddQuestionFormController {
 //        return "question/answeredAnony";
 //    }
 
-    @GetMapping("question/{questionId}/anony/{page}")
-    public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model, @PathVariable int page){
+    @GetMapping("question/{questionId}/anony")
+    public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable){
         Question question = questionService.findByIdNoAuth(questionId).get();
         Answer answer = answerService.findByQuestionId(questionId).get();
 
@@ -53,9 +55,11 @@ public class AddQuestionFormController {
         User user = userService.findById(question.getUserId()).get();
 
         // 해당 질문 제외한 다른 응답 질문 리스트
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(pageRequest);
-//        questions.remove(question);
+//        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(pageable);
+//        questions.remove(question)
+        questions.getContent().remove(question);
+        System.out.println(questions.getContent());
 
         List<Object> map = new ArrayList<>();
         for (Question q : questions) {

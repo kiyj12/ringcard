@@ -9,7 +9,9 @@ import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -40,9 +42,8 @@ public class AddAnswerFormController {
 //        return "question/unanswered";
         return ResponseEntity.ok(model);
     }
-
-    @GetMapping("/completed/user/{page}")
-    public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PathVariable int page) {
+    @GetMapping("/completed/user")
+    public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
         System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
@@ -53,10 +54,10 @@ public class AddAnswerFormController {
         // 미응답 질문 리스트에서 본인 제외
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
 
-        PageRequest pageRequest = PageRequest.of(0, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
+//        PageRequest pageRequest = PageRequest.of(0, 5, Sort.by("uploadTime").descending());
 
-//        questions.remove(question);
+//        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
 
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
