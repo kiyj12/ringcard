@@ -32,8 +32,8 @@ public class SendQuestionController {
     private final AnswerService answerService;
     private final UserService userService;
 
-    @PostMapping({"question/{questionId}/anony/{page}"})
-    public void addQuestion(@PathVariable Long questionId, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestBody QuestionSendDto requestBody, @PathVariable int page) {
+    @PostMapping({"question/{questionId}/anony"})
+    public void addQuestion(@PathVariable Long questionId, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestBody QuestionSendDto requestBody) {
 
         // 이미 띄워져있는 question의 정보
         Question beforeQuestion= questionService.findByIdNoAuth(questionId).get();

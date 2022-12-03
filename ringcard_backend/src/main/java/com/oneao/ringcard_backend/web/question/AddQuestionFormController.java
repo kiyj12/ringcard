@@ -46,8 +46,8 @@ public class AddQuestionFormController {
 //        return "question/answeredAnony";
 //    }
 
-    @GetMapping("question/{questionId}/anony")
-    public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable){
+    @GetMapping("question/{questionId}/anony/{page}")
+    public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model, @PathVariable int page){
         Question question = questionService.findByIdNoAuth(questionId).get();
         Answer answer = answerService.findByQuestionId(questionId).get();
 
@@ -55,11 +55,11 @@ public class AddQuestionFormController {
         User user = userService.findById(question.getUserId()).get();
 
         // 해당 질문 제외한 다른 응답 질문 리스트
-//        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(pageable);
+        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(pageRequest);
 //        questions.remove(question)
-        questions.getContent().remove(question);
-        System.out.println(questions.getContent());
+//        questions.getContent().remove(question);
+//        System.out.println(questions.getContent());
 
         List<Object> map = new ArrayList<>();
         for (Question q : questions) {

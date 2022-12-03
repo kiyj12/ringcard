@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,8 +43,8 @@ public class AddAnswerFormController {
 //        return "question/unanswered";
         return ResponseEntity.ok(model);
     }
-    @GetMapping("/completed/user")
-    public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
+    @GetMapping("/completed/user/{page}")
+    public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PathVariable int page) {
         System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
         Question question = questionService.findById(questionId, userId).get();
@@ -54,15 +55,15 @@ public class AddAnswerFormController {
         // 미응답 질문 리스트에서 본인 제외
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
 
-//        PageRequest pageRequest = PageRequest.of(0, 5, Sort.by("uploadTime").descending());
+        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
 
 //        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
-        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
+        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
+        model.addAttribute("questions", questions);
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
-        model.addAttribute("questions", questions);
-        System.out.println("model = " + model);
+//        System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);
     }
