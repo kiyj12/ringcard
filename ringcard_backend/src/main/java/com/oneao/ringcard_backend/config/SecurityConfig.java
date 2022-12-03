@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.DisableEncodeUrlFilter;
 
+import static org.springframework.http.HttpMethod.GET;
+
 @RequiredArgsConstructor
 @Slf4j
 @Configuration
@@ -42,9 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Preflight Request 허용해주기
-                .antMatchers("/home/**", "/mypage/**", "/**/user")
-                .authenticated()
-                .anyRequest().permitAll();
+//                .antMatchers("/home/**", "/mypage/**", "/**/user")
+                .antMatchers( "/loginForm", "/login", "/logout", "/userHome/**", "/**/anony").permitAll()
+                .anyRequest().authenticated();
         http.formLogin()
                 .successForwardUrl("/home/unanswered/0")
                 .defaultSuccessUrl("/home/unanswered/0")
@@ -59,10 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new LoginRedirectHomeFilter(), DisableEncodeUrlFilter.class);
         http.logout()
                 .logoutUrl("/logout")
-//                .logoutSuccessUrl("/loginForm").permitAll()
+                .logoutSuccessUrl("/loginForm").permitAll()
                 .deleteCookies(JwtProperties.COOKIE_NAME)
-                .invalidateHttpSession(true)
-                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
+                .invalidateHttpSession(true);
+//                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
     }
 
 }

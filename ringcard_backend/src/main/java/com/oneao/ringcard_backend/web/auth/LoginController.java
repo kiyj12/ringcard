@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
     @GetMapping(value = {"/loginForm", "", "/"})
     public void loginForm() {
-
+        System.out.println("LoginController.loginForm");
     }
 
 //    @GetMapping("/logout")

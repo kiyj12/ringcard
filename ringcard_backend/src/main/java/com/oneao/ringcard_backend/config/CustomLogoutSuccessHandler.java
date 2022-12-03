@@ -20,7 +20,9 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
                 e.printStackTrace();
             }
         }
+        System.out.println("CustomLogoutSuccessHandler.onLogoutSuccess");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.sendRedirect("http://localhost:3000/loginForm");
+//        response.sendRedirect("/loginForm");
+        response.setHeader("Location", "/loginForm");
     }
 }

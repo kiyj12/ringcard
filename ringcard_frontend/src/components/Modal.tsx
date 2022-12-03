@@ -54,9 +54,9 @@ const Modal = (props: props): ReactElement => {
 								<div className="menu-element">마이 페이지</div>
 							</Link>
 
-							<div className="menu-element" onClick={onClickHandler}>
-								로그아웃
-							</div>
+							<Link to={"/logout"} style={{ textDecoration: "none" }}>
+								<div className="menu-element">로그아웃</div>
+							</Link>
 						</div>
 					</div>
 				) : null}
