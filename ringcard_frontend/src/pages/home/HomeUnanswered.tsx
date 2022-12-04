@@ -39,7 +39,7 @@ const HomeUnanswered = () => {
 				<QuestionNoteList questionList={questionList} />
 			</div>
 		</div>
-	);
+	); 
 }
 
 export default HomeUnanswered;

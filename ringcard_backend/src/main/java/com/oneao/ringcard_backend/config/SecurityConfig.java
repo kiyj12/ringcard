@@ -61,10 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new LoginRedirectHomeFilter(), DisableEncodeUrlFilter.class);
         http.logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/loginForm").permitAll()
+//                .logoutSuccessUrl("/loginForm").permitAll()
                 .deleteCookies(JwtProperties.COOKIE_NAME)
-                .invalidateHttpSession(true);
-//                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
+                .invalidateHttpSession(true)
+                .logoutSuccessHandler(new CustomLogoutSuccessHandler());
     }
 
 }
