@@ -5,7 +5,7 @@ import Modal from "../components/Modal";
 
 function Header() {
 	const handleHomeBtnClick = async () => {
-		window.location.href = "/home/unanswered/0";
+		window.location.href = "/home/unanswered";
 	};
 
 	// 모달창 노출 여부 state

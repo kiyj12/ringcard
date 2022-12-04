@@ -115,6 +115,7 @@ const Login = () => {
 			.then(
 				axios.spread((res1, res2, res3) => {
 					console.log("front loginForm");
+					// window.location.href = "/loginForm";
 				})
 			)
 			.catch((err) => {
