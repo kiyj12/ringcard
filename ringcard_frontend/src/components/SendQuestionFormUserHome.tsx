@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 import "../styles/sendQuestionForm.css";
 import Toastify from "./Toast";
 
@@ -12,23 +11,6 @@ export interface Props {
 function SendQuestionFormUserHome(props: Props) {
 	const userName = props.userName;
 
-	const { page } = useParams();
-
-	// if(localStorage.getItem("toastShow")==="1"){
-	// 		toast("hello", {
-	// 				autoClose: 700,
-	// 				position:"top-center",
-	// 				pauseOnFocusLoss: true,
-	// 				hideProgressBar: true,
-	// 				draggable: true,
-	// 				pauseOnHover: true,
-	// 				theme: "dark",
-	// 				closeButton: false,
-	// 				transition: Zoom,
-	// 			});
-	// 		localStorage.removeItem("toastShow");
-	// 	}
-
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
@@ -36,7 +18,7 @@ function SendQuestionFormUserHome(props: Props) {
 		console.log(data);
 
 		await axios
-			.post("/userHome/" + userName + "/" + page, data)
+			.post("/userHome/" + userName + "/", data)
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);

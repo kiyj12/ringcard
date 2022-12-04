@@ -20,9 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -53,11 +51,23 @@ public class AddQuestionFormController {
 
         // user도 모델에 보내기
         User user = userService.findById(question.getUserId()).get();
+        Long userId = user.getId();
 
         // 해당 질문 제외한 다른 응답 질문 리스트
         PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
-        Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(pageRequest);
+        Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(userId, pageRequest);
 //        questions.remove(question)
+        System.out.println("questions.getContent()="+questions.getContent());
+//        for(Question questionEach: questions){
+//            if(Objects.equals(questionId, questionEach.getId())){
+//                System.out.println("questionId = " + questionId);
+//                System.out.println("questionEach.getId() = " + questionEach.getId());
+//                System.out.println("remove here.");
+//                questions.getContent().remove(2);
+//                System.out.println("questions.getContent().new="+questions.getContent());
+//            }
+//        }
+
 //        questions.getContent().remove(question);
 //        System.out.println(questions.getContent());
 

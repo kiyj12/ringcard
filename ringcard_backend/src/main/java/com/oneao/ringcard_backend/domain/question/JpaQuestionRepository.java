@@ -1,11 +1,9 @@
 package com.oneao.ringcard_backend.domain.question;
 
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
-import com.oneao.ringcard_backend.web.paging.Criteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -70,9 +68,8 @@ public class JpaQuestionRepository implements QuestionRepository {
 //    }
 
     @Override
-    public Page<Question> findAllAnsweredNotInTrashNoAuth(Pageable pageable) {
-
-        return repository.findByAnsweredLikeAndInTrashLike(true, false, pageable);
+    public Page<Question> findAllAnsweredNotInTrashNoAuth(Long userId, Pageable pageable) {
+        return repository.findByUserIdLikeAndAnsweredLikeAndInTrashLike(userId, true, false, pageable);
     }
 
     @Override

@@ -10,14 +10,13 @@ import { IQuestion } from "./types";
 function SendQuestionFormQuestionAnony() {
 	const params = useParams();
 	const paramsQuestionId = params.questionId;
-	const page = params.page;
 
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
 		await axios
-			.post("/question/" + paramsQuestionId + "/anony/" + page, data)
+			.post("/question/" + paramsQuestionId + "/anony/", data)
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);

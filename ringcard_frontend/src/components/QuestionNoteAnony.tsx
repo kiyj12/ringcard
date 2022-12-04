@@ -3,6 +3,7 @@ import "../styles/question.css";
 import NowDate from "./NowDate";
 import React, { useEffect, useState } from "react";
 import HyperlinkBox from "./HyperlinkBox";
+import { Link } from "react-router-dom";
 
 export interface Props {
 	idx: number;
@@ -72,11 +73,14 @@ function QuestionNoteAnony(props: Props) {
 						</div>
 						<NowDate questionUploadTime={question.uploadTime} />
 					</div>
-					<div className="each-note-content-box">
-						<div className="each-note-content QuestionNoteAnony-line-limit">
-							{question.questionContents}
+					{/* <a href="/question/<%=question.id%>/anony" className="note-link"> */}
+					<a href={"/question/"+ qIdStr +"/anony"} className="note-link">
+						<div className="each-note-content-box">
+							<div className="each-note-content QuestionNoteAnony-line-limit">
+								{question.questionContents}
+							</div>
 						</div>
-					</div>
+					</a>
 					{question.questionHyperlink == null ||
 					question.questionHyperlink === "" ? undefined : (
 						<div className="QuestionNote-note-hyperlink-box">
