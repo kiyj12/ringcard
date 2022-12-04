@@ -20,45 +20,137 @@ import DeleteAccount from "./pages/mypage/DeleteAccount";
 import QuestionAnony from "./pages/anony/QuestionAnony";
 import Logout from "./pages/login/Logout";
 import Oauth from "./pages/login/Oauth";
-
+import PrivateRoute from "./components/auth/PrivateRoute";
+import isLogin from "./utils/isLogin";
 
 const AppRouter = () => {
 	return (
 		<>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<Navigation />} />
-					<Route path="/home/unanswered" element={<HomeUnanswered />} />
-					<Route path="/home/answered" element={<HomeAnswered />} />
-					<Route path="/home/trashcan" element={<HomeTrashcan />} />
-					<Route path="/home/collection" element={<HomeCollection />} />
-					<Route
-						path="/question/:questionId/unanswered/user"
-						element={<QuestionUnanswered />}
-					/>
-					<Route
-						path="/question/:questionId/edit/user"
-						element={<QuestionAnswered />}
-					/>
-					<Route
-						path="/question/:questionId/completed/user"
-						element={<AnswerCompletedPage />}
-					/>
-					<Route
-						path="/question/:questionId/anony"
-						element={<QuestionAnony />}
-					/>
-					<Route path="/userHome/:userName" element={<UserHome />} />
-					<Route path="/mypage/info" element={<UserInfo />} />
-					<Route path="/mypage/info/edit" element={<EditUserInfo />} />
-
 					<Route path="" element={<Login />} />
 					<Route path="/" element={<Login />} />
 					<Route path="/loginForm" element={<Login />} />
 					<Route path="/logout" element={<Logout />} />
 					<Route path="/joinForm" element={<Join />} />
-					<Route path="/mypage/edit/password" element={<EditPassword />} />
-					<Route path="/mypage/delete/account" element={<DeleteAccount />} />
+					<Route path="/userHome/:userName" element={<UserHome />} />
+					<Route
+						path="/question/:questionId/anony"
+						element={<QuestionAnony />}
+					/>
+
+					<Route
+						path="/home/unanswered"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<HomeUnanswered />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/home/answered"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<HomeAnswered />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/home/trashcan"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<HomeTrashcan />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/home/collection"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<HomeCollection />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/question/:questionId/unanswered/user"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<QuestionUnanswered />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/question/:questionId/edit/user"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<QuestionAnswered />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/question/:questionId/completed/user"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<AnswerCompletedPage />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+
+					<Route
+						path="/mypage/info"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<UserInfo />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/mypage/info/edit"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<EditUserInfo />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/mypage/edit/password"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<EditPassword />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/mypage/delete/account"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<DeleteAccount />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+
 					<Route path="/oauth" element={<Oauth />} />
 				</Routes>
 			</BrowserRouter>
