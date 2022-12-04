@@ -1,9 +1,7 @@
 package com.oneao.ringcard_backend.domain.question;
 
-import com.oneao.ringcard_backend.web.paging.Criteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +18,7 @@ public interface QuestionRepository {
     Page<Question> findAll(Long userId, QuestionSearchCond cond, Pageable pageable);
 //    List<Question> findAll1(Long userId, QuestionSearchCond cond);
 //    List<Question> findAllAnsweredNotInTrash(Long userId);
-    Page<Question> findAllAnsweredNotInTrashNoAuth(Pageable pageable);
+    Page<Question> findAllAnsweredNotInTrashNoAuth(Long userId, Pageable pageable);
 //    List<Question> findAllUnansweredInTrash(Long userId);
 //    List<Question> findAllUnansweredNotInTrash(Long userId);
 
