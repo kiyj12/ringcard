@@ -52,7 +52,7 @@ function HomeUnanswered() {
 		if(deleted) {
 			// 위 조건 만족할 때만 loginForm으로 새로고침
 			localStorage.setItem("toastShow", "1");
-			localStorage.setItem("toastText", "휴지통이 .");
+			localStorage.setItem("toastText", "휴지통이 비워졌습니다.");
 			// window.location.href = "home/trashcan"
 			return (null);
 		}
