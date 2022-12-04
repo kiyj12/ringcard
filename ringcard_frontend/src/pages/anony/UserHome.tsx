@@ -20,6 +20,7 @@ function UserHome() {
 
 	const [totalPages, setTotalPages] = useState<Number>(0);
 	const [pageNumber, setPageNumber] = useState<Number>(0);
+	const questionId='dummy';
 	// const { page } = useParams();
 
 	useEffect(() => {
@@ -77,17 +78,26 @@ function UserHome() {
 			}
 		}
 		return (
-			<div>
-				{totalPages === pageNumber ? undefined : (
-					<div className="UserHome-viewMore-btn-container">
-						<div className="UserHome-viewMore-btn-section">
-							<button className="UserHome-viewMore-btn" onClick={handleClick}>
-								+ 더보기
-							</button>
-						</div>
+		<div>
+			{map? 
+				<div>
+				{map.length>0
+					? (
+					<div>
+						{totalPages === pageNumber ? undefined : (
+							<div className="UserHome-viewMore-btn-container">
+								<div className="UserHome-viewMore-btn-section">
+									<button className="UserHome-viewMore-btn" onClick={handleClick}>
+										+ 더보기
+									</button>
+								</div>
+							</div>
+						)}
 					</div>
-				)}
-			</div>
+					) 
+				: null}</div>
+			:null}
+		</div>
 		);
 	}
 
@@ -109,7 +119,7 @@ function UserHome() {
 				<div className="UserHome-questionlist-box">
 					<div className="UserHome-down-background-img">
 						<div style={{ height: "30px" }}></div>
-						<div>{map ? <QuestionNoteListAnony map={map} /> : undefined}</div>
+						<div>{map ? <QuestionNoteListAnony questionId={questionId} map={map} /> : undefined}</div>
 						<BtnToViewMore />
 					</div>
 				</div>
