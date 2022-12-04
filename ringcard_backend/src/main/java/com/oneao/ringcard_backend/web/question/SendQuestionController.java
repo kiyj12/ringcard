@@ -75,8 +75,8 @@ public class SendQuestionController {
 //        return "redirect:/question/{questionId}/anony/{page}";
     }
 
-    @PostMapping({"userHome/{username}/{page}"})
-    public void addQuestion2(@PathVariable String username, HttpServletRequest request, @RequestBody QuestionSendDto requestBody, @PathVariable int page) {
+    @PostMapping({"userHome/{username}"})
+    public void addQuestion2(@PathVariable String username, HttpServletRequest request, @RequestBody QuestionSendDto requestBody) {
         User user = userService.findByUsername(username).get();
 
         String questionContents = requestBody.getQuestionContents();

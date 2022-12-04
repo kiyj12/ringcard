@@ -6,6 +6,8 @@ import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import QuestionNoteList from "../../components/QuestionNoteList";
 import { useSearchParams } from "react-router-dom";
+import Toast from "../../components/Toast";
+
 
 function HomeUnanswered() {
 	const [searchParams] = useSearchParams();
@@ -13,6 +15,7 @@ function HomeUnanswered() {
 	const [questionList, setQuestionList] = useState<any[]>([]);
 	const [totalPages, setTotalPages] = useState<number>();
 	const [pageNumber, setPageNumber] = useState(0);
+	const [deleted, setDeleted] = useState(false);
 	const pageAddress = "trashcan";
 
 	useEffect(() => {
@@ -37,6 +40,7 @@ function HomeUnanswered() {
 					"Successfully enter handleClearTrashcanClick in HomeTrashcan :D"
 				);
 				console.log(res.data);
+				setDeleted(true);
 				window.history.go(0);
 			})
 			.catch((err) => {
@@ -44,9 +48,22 @@ function HomeUnanswered() {
 			});
 	};
 
+	function RedirectAndInputErrors(){
+		if(deleted) {
+			// 위 조건 만족할 때만 loginForm으로 새로고침
+			localStorage.setItem("toastShow", "1");
+			localStorage.setItem("toastText", "휴지통이 .");
+			// window.location.href = "home/trashcan"
+			return (null);
+		}
+		return (null);
+	}
+
 	return (
 		<div className="container">
 			<Header />
+			<Toast/>
+			<RedirectAndInputErrors/>
 			<Navigation page={page} pageAddress={pageAddress} totalPages={totalPages} pageNumber={pageNumber} />
 
 			<div className="container-body">
