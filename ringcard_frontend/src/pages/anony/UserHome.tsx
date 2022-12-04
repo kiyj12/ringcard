@@ -20,7 +20,7 @@ function UserHome() {
 
 	const [totalPages, setTotalPages] = useState<Number>(0);
 	const [pageNumber, setPageNumber] = useState<Number>(0);
-	const questionId='dummy';
+	const questionId = "dummy";
 	// const { page } = useParams();
 
 	useEffect(() => {
@@ -41,8 +41,8 @@ function UserHome() {
 	function BtnToViewMore() {
 		function handleClick(e: any) {
 			const newPage = pageNumber;
-			console.log("newPage="+newPage);
-			console.log("pageNumber="+pageNumber);
+			console.log("newPage=" + newPage);
+			console.log("pageNumber=" + pageNumber);
 			if (totalPages === undefined) {
 			} else if (newPage >= totalPages) {
 			} else {
@@ -78,26 +78,28 @@ function UserHome() {
 			}
 		}
 		return (
-		<div>
-			{map? 
-				<div>
-				{map.length>0
-					? (
+			<div>
+				{map ? (
 					<div>
-						{totalPages === pageNumber ? undefined : (
-							<div className="UserHome-viewMore-btn-container">
-								<div className="UserHome-viewMore-btn-section">
-									<button className="UserHome-viewMore-btn" onClick={handleClick}>
-										+ 더보기
-									</button>
-								</div>
+						{map.length > 0 ? (
+							<div>
+								{totalPages === pageNumber ? undefined : (
+									<div className="UserHome-viewMore-btn-container">
+										<div className="UserHome-viewMore-btn-section">
+											<button
+												className="UserHome-viewMore-btn"
+												onClick={handleClick}
+											>
+												+ 더보기
+											</button>
+										</div>
+									</div>
+								)}
 							</div>
-						)}
+						) : null}
 					</div>
-					) 
-				: null}</div>
-			:null}
-		</div>
+				) : null}
+			</div>
 		);
 	}
 
@@ -119,7 +121,11 @@ function UserHome() {
 				<div className="UserHome-questionlist-box">
 					<div className="UserHome-down-background-img">
 						<div style={{ height: "30px" }}></div>
-						<div>{map ? <QuestionNoteListAnony questionId={questionId} map={map} /> : undefined}</div>
+						<div>
+							{map ? (
+								<QuestionNoteListAnony questionId={questionId} map={map} />
+							) : undefined}
+						</div>
 						<BtnToViewMore />
 					</div>
 				</div>

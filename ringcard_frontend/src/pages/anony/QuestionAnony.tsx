@@ -83,28 +83,30 @@ function QuestionAnony() {
 			}
 		}
 		return (
-		<div>
-		{map? 
 			<div>
-			({map.length>0
-				? (
-					<div className="QuestionAnony-viewMore-btn-box">
-						{totalPages === pageNumber ? undefined : (
-							<div className="QuestionAnony-viewMore-btn-container">
-								<div className="QuestionAnony-viewMore-btn-section">
-									<button
-										className="QuestionAnony-viewMore-btn"
-										onClick={handleClick}
-									>
-										+ 더보기
-									</button>
-								</div>
+				{map ? (
+					<div>
+						(
+						{map.length > 0 ? (
+							<div className="QuestionAnony-viewMore-btn-box">
+								{totalPages === pageNumber ? undefined : (
+									<div className="QuestionAnony-viewMore-btn-container">
+										<div className="QuestionAnony-viewMore-btn-section">
+											<button
+												className="QuestionAnony-viewMore-btn"
+												onClick={handleClick}
+											>
+												+ 더보기
+											</button>
+										</div>
+									</div>
+								)}
 							</div>
-						)}
-					</div>)
-				:null})</div>
-			:null}
-		</div>
+						) : null}
+						)
+					</div>
+				) : null}
+			</div>
 		);
 	}
 
@@ -132,7 +134,11 @@ function QuestionAnony() {
 					<div className="QuestionAnony-hr-text">다른 응답된 질문들</div>
 					<hr className="QuestionAnony-hr" />
 				</div>
-				<div>{map&& questionId ? <QuestionNoteListAnony questionId={questionId} map={map} /> : undefined}</div>
+				<div>
+					{map && questionId ? (
+						<QuestionNoteListAnony questionId={questionId} map={map} />
+					) : undefined}
+				</div>
 
 				<BtnToViewMore />
 			</div>

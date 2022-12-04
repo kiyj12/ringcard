@@ -47,6 +47,7 @@ public class AddQuestionFormController {
     @GetMapping("question/{questionId}/anony/{page}")
     public ResponseEntity<Model> addFormV3(@PathVariable Long questionId, Model model, @PathVariable int page){
         Question question = questionService.findByIdNoAuth(questionId).get();
+        System.out.println("question = " + question);
         Answer answer = answerService.findByQuestionId(questionId).get();
 
         // user도 모델에 보내기
