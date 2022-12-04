@@ -79,10 +79,10 @@ function AnswerCompletedPage() {
 		<div>
 		{questionList? 
 			<div>
-			({questionList.length>0
-				? (
+			{questionList.length>0
+				? 
 					<div className="UserHome-viewMore-btn-box">
-						{totalPages === pageNumber ? undefined : (
+						{totalPages === pageNumber ? undefined : 
 							<div className="UserHome-viewMore-btn-container">
 								<div className="UserHome-viewMore-btn-section">
 									<button
@@ -93,9 +93,9 @@ function AnswerCompletedPage() {
 									</button>
 								</div>
 							</div>
-						)}
-					</div>)
-				:null})</div>
+						}
+					</div>
+				:null}</div>
 			:null}
 		</div>
 		);

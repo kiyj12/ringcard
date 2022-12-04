@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../styles/navigation.css";
 
 const Navigation = (props: any) => {
@@ -19,23 +19,6 @@ const Navigation = (props: any) => {
 			else if (showPageNumber>=totalPages){
 			}else{
 				page+=1;
-				// setShowPageNumber(page+2);
-			// axios
-			// 	.get("/home/" + pageAddress +"/?page="+ page)
-			// 	.then((res) => {
-			// 		console.log("before=");
-			// 		console.log(res.data);
-			// 		console.log(res.data.number+1);
-			// 		getQuestionList(res.data.content);
-			// 		getTotalPages(res.data.totalPages);
-			// 		// getPageNumber(res.data.number);
-			// 		getPage(page);
-			// 		setShowPageNumber(res.data.number+1);
-			// 		// setUpFlag(true);
-				// })
-				// .catch((err) => {
-				// 	console.log(err);
-				// });
 				window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
@@ -46,59 +29,12 @@ const Navigation = (props: any) => {
 		);
 	}
 
-
-	// function BtnToPageUp(){
-	// 	function handleClick(e: any){
-	// 		console.log("Up");
-	// 		if (totalPages === undefined){}
-	// 		else if (showPageNumber>=totalPages){
-	// 		}else{
-	// 			pageNumber+=1;
-	// 		axios
-	// 			.get("/home/" + pageAddress +"/"+ pageNumber)
-	// 			.then((res) => {
-	// 				console.log("before=");
-	// 				console.log(res.data);
-	// 				console.log(pageNumber);
-	// 				console.log(res.data.number+1);
-	// 				getQuestionList(res.data.content);
-	// 				getTotalPages(res.data.totalPages);
-	// 				getPageNumber(res.data.number);
-	// 				setShowPageNumber(res.data.number+1);
-	// 				// setUpFlag(true);
-	// 			})
-	// 			.catch((err) => {
-	// 				console.log(err);
-	// 			});
-	// 		}
-	// 	}
-	// 	return (<button className="page-btn" onClick={handleClick}>
-	// 		<img alt="" src="/buttons/move-next-page-btn.svg" />
-	// 	</button>);
-	// }
-
-
 	function BtnToPageDown(){
 		function handleClick(e: any){
 			console.log("Down");
 			if (showPageNumber<=1){}
 			else{
 			page-=1;
-			// setShowPageNumber(page);
-			// axios
-			// 	.get("/home/" + pageAddress +"/?page="+ page)
-			// 	.then((res) => {
-			// 		console.log(res.data);
-			// 		getQuestionList(res.data.content);
-			// 		getTotalPages(res.data.totalPages);
-			// 		// getPageNumber(res.data.number);
-			// 		getPage(page);
-			// 		setShowPageNumber(res.data.number+1);
-			// 		// setUpFlag(true);
-			// 	})
-			// 	.catch((err) => {
-			// 		console.log(err);
-			// 	});
 			window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
@@ -224,7 +160,9 @@ const Navigation = (props: any) => {
 				<div className="page-section">
 					<BtnToPageDown />
 					<div className="page-num-section">
-						<div className="page-num-current">{showPageNumber}</div>
+						{totalPages !== 0 
+						?<div className="page-num-current">{showPageNumber}</div> 
+						: <div className="page-num-current">0</div>}
 						<div className="page-num">/ {totalPages}</div>
 					</div>
 					<BtnToPageUp />

@@ -84,9 +84,9 @@ function QuestionAnony() {
 		}
 		return (
 			<div>
+
 				{map ? (
 					<div>
-						(
 						{map.length > 0 ? (
 							<div className="QuestionAnony-viewMore-btn-box">
 								{totalPages === pageNumber ? undefined : (
@@ -103,7 +103,6 @@ function QuestionAnony() {
 								)}
 							</div>
 						) : null}
-						)
 					</div>
 				) : null}
 			</div>
