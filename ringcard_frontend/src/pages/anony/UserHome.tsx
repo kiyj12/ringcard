@@ -82,9 +82,9 @@ function UserHome() {
 			{map? 
 				<div>
 				{map.length>0
-					? (
+					? 
 					<div>
-						{totalPages === pageNumber ? undefined : (
+						{totalPages === pageNumber ? undefined : 
 							<div className="UserHome-viewMore-btn-container">
 								<div className="UserHome-viewMore-btn-section">
 									<button className="UserHome-viewMore-btn" onClick={handleClick}>
@@ -92,9 +92,9 @@ function UserHome() {
 									</button>
 								</div>
 							</div>
-						)}
+						}
 					</div>
-					) 
+					
 				: null}</div>
 			:null}
 		</div>
