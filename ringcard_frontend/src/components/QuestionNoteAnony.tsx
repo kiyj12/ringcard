@@ -30,12 +30,11 @@ function QuestionNoteAnony(props: Props) {
 		"width: 100px; height: 28px; transform: rotate(36deg); margin: 10px -13px -10px auto;",
 	];
 
-	const chosenPosition = tapePositionList[question.tapePosition];
+	const chosenPosition = tapePositionList[question.tapePosition - 1];
 
 	const qIdStr = String(question.id);
 	const tapeTypeStr = String(question.tapeType);
 	const tapeUrl = String("/masking-tapes/tape" + tapeTypeStr + ".svg");
-
 
 	useEffect(() => {
 		const eachNote = document.getElementById(qIdStr);
@@ -45,7 +44,7 @@ function QuestionNoteAnony(props: Props) {
 	const qNoteType = question.noteType;
 
 	return (
-		<>
+		<div>
 			<div className="each-question-note-box">
 				<div className="QuestionNote-maskingTape-box">
 					<img
@@ -74,7 +73,7 @@ function QuestionNoteAnony(props: Props) {
 						<NowDate questionUploadTime={question.uploadTime} />
 					</div>
 					{/* <a href="/question/<%=question.id%>/anony" className="note-link"> */}
-					<a href={"/question/"+ qIdStr +"/anony"} className="note-link">
+					<a href={"/question/" + qIdStr + "/anony"} className="note-link">
 						<div className="each-note-content-box">
 							<div className="each-note-content QuestionNoteAnony-line-limit">
 								{question.questionContents}
@@ -121,7 +120,7 @@ function QuestionNoteAnony(props: Props) {
 					}}
 				></div>
 			</div>
-		</>
+		</div>
 	);
 }
 
