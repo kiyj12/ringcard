@@ -87,9 +87,9 @@
   background-repeat: no-repeat;
   background-position-y: -40px;
   background-size: 105% 100%;
-  min-height: 60%;
+  min-height: 600px;
   padding-top: 20px;
-  padding-bottom: 200px;
+  padding-bottom: 70px;
 }
 
 .block {
