@@ -23,6 +23,7 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import isLogin from "./utils/isLogin";
 import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
 import EditUserEmail from "./pages/mypage/EditUserEmail";
+import Oauth2 from "./pages/login/Oauth2";
 
 const AppRouter = () => {
 	return (
@@ -163,6 +164,7 @@ const AppRouter = () => {
 					/>
 
 					<Route path="/oauth" element={<Oauth />} />
+					<Route path="/oauth2" element={<Oauth2 />} />
 				</Routes>
 			</BrowserRouter>
 		</>

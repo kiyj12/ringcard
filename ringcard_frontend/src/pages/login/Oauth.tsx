@@ -9,6 +9,7 @@ const Oauth= ()=>{
   const CLIENT_ID=process.env.REACT_APP_CLIENT_ID;
 	const CLIENT_SECRET=process.env.REACT_APP_CLIENT_SECRET;
 	const CALLBACK_URL=process.env.REACT_APP_CALLBACK_URL;
+	const BEARER_TOKEN=process.env.REACT_APP_BEARER_TOKEN;
 	const navigate = useNavigate();
 
 
