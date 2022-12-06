@@ -32,6 +32,8 @@ dependencies {
 //	compileOnly('org.twitter4j:twitter4j-core:4.1.1')
 //	implementation "com.twitter:twitter-api-java-sdk:2.0.3"
 
+//	implementation 'org.springframework.boot:bootspring-boot-starter-oauth2-client'
+	implementation "com.twitter:twitter-api-java-sdk:2.0.3"
 
 	runtimeOnly 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
