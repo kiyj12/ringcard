@@ -118,6 +118,8 @@
   border-radius: 9px;
   /* box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16); */
   border: none;
+  font-family: NanumBarunGothic;
+  font-size: 20px;
   /* font-size: 20px; */
   /* margin-right: 3%; */
   /* background-repeat: no-repeat; */
@@ -175,3 +177,11 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   margin-left: auto;
   margin-right: auto;
 }
+
+input.user-inner-transparent::value {
+        /* color: rgb(94, 94, 94); */
+        color: #585c74;
+        font-size: ;
+        /* font-style: italic; */
+        /* opacity: 1; */
+      }

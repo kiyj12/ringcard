@@ -8,6 +8,7 @@ import "../../styles/user/userIcon.css";
 import "../../styles/userInfo.css";
 import HeaderNoProfile from "../../components/HeaderNoProfile";
 import UserProfile from "../../components/UserProfile";
+import Toastify from "../../components/Toast";
 
 const UserInfo = () => {
 	const [user, setUser] = useState<any>([]);
@@ -22,26 +23,68 @@ const UserInfo = () => {
 				console.log(err);
 			});
 	}, []);
-	function ButtonToUserInfoEdit() {
-		function handleClick(e: any) {
-			window.location.href = "/mypage/info/edit";
+	// function ButtonToUserInfoEdit() {
+	// 	function handleClick(e: any) {
+	// 		window.location.href = "/mypage/info/edit";
+	// 	}
+	// 	return (
+	// 		<button className="user-btn userInfo-btn" onClick={handleClick}>
+	// 			<div className="user-btn-text">프로필 변경하기</div>
+	// 		</button>
+	// 	);
+	// }
+
+	function BtnToEditUserRingcardName(){
+		function handleClick(e: any){
+				window.location.href="/mypage/info/edit/userRingcardName"
 		}
-		return (
-			<button className="user-btn userInfo-btn" onClick={handleClick}>
-				<div className="user-btn-text">프로필 변경하기</div>
-			</button>
-		);
+			return(
+				<button className="user-box-btn" onClick={handleClick}>변경</button>
+			)
+	}
+
+	function BtnToEditUserEmail(){
+		function handleClick(e: any){
+				window.location.href="/mypage/info/edit/userEmail"
+		}
+			return(
+				<button className="user-box-btn" onClick={handleClick}>변경</button>
+			)
+	}
+
+	function BtnToEditPw(){
+		function handleClick(e: any){
+				window.location.href="/mypage/edit/password"
+		}
+			return(
+				<button className="user-box-btn" onClick={handleClick}>변경</button>
+			)
 	}
 
 	return (
 		<div className="container">
 			<HeaderNoProfile />
+			<Toastify/>
       <div className="userInfo-profile-container">
 				<UserProfile/>
 				<div className="user-profile-name">{user.userRingcardName}</div>
 			</div>
 			<div>
 				<div className="user-box">
+				
+				<div className="user-box-in">
+						<div className="user-text">이름</div>
+						<div className="user-box-div user-icon-dark">
+							<input
+								className="user-inner-transparent"
+								value={user.userRingcardName}
+								readOnly
+							></input>
+							<BtnToEditUserRingcardName/>
+					</div>
+				</div>
+
+{/* 				
 					<div className="user-box-in">
 						<div className="user-text">이름</div>
 						<input
@@ -49,8 +92,8 @@ const UserInfo = () => {
 							placeholder={user.userRingcardName}
 							readOnly
 						></input>
-					</div>
-					{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
+					</div> */}
+
 
 					<div className="user-box-in">
 						<div className="user-text">아이디</div>
@@ -63,24 +106,49 @@ const UserInfo = () => {
 
 					<div className="user-box-in">
 						<div className="user-text">비밀번호</div>
-						<input
-							className="user-icon user-icon-pw-dark"
-							placeholder="●●●●●●●●●●"
-							readOnly
-						></input>
+						<div className="user-box-div user-icon-dark">
+							<input
+								className="user-inner-transparent"
+								defaultValue="●●●●●●●●●●"
+								// placeholder="●●●●●●●●●●"
+								readOnly
+							></input>
+							<BtnToEditPw/>
+						</div>
 					</div>
 
-					<div className="user-box-in">
+					{/* <div className="user-box-in">
 						<div className="user-text">이메일</div>
 						<input
 							className="user-icon user-icon-email-dark"
 							placeholder={user.userEmail}
 							readOnly
 						></input>
-					</div>
+					</div> */}
 
 					<div className="user-box-in">
-						<ButtonToUserInfoEdit />
+						<div className="user-text">이메일</div>
+						<div className="user-box-div user-icon-dark">
+							<input
+								className="user-inner-transparent"
+								value={user.userEmail}
+								readOnly
+							></input>
+							<BtnToEditUserEmail/>
+					</div>
+				</div>
+
+					{/* <div className="user-box-in">
+						<div className="user-text">아이디</div>
+						<input
+							className="user-icon user-icon-id-dark"
+							placeholder={user.username}
+							readOnly
+						></input>
+					</div> */}
+
+					<div className="user-box-in">
+						{/* <ButtonToUserInfoEdit /> */}
 					</div>
 				</div>
 				</div>
