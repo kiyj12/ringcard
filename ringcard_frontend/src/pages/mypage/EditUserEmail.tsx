@@ -10,37 +10,36 @@ import HeaderNoProfile from "../../components/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/UserProfile";
 import Toastify from "../../components/Toast";
+import { Link } from "react-router-dom";
 
 const EditUserEmail = () => {
-
 	type ResponseList = {
 		sameUserEmail: boolean;
 		overlappedUserEmail: boolean;
-	}
+	};
 	const [response, setResponse] = useState<ResponseList>({
 		sameUserEmail: false,
-		overlappedUserEmail: false
+		overlappedUserEmail: false,
 	});
 	// submitted==true여야 새로고침 되도록.
 	const [submitted, setSubmitted] = useState(false);
 
 	const [user, setUser] = useState<any>([]);
 	const [userEmail, setUserEmail] = useState();
-	
+
 	useEffect(() => {
 		axios
 			.get("/mypage/info/edit")
 			.then((res) => {
 				setUser(res.data);
 				setUserEmail(res.data.userEmail);
-				console.log(res.data)
+				console.log(res.data);
 			})
 			.catch((err) => {
 				console.log(err.config);
 				console.log(err.response.data);
 			});
 	}, []);
-
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
@@ -51,39 +50,34 @@ const EditUserEmail = () => {
 		await axios
 			.post("/mypage/info/edit/userEmail", data)
 			.then((res) => {
-				console.log("postHere");
-				console.log(data);
 				setResponse(res.data);
 				console.log(res.data);
 				setSubmitted(true);
 			})
 			.catch(function (error) {
 				console.log(error.config);
-			
 			});
 	};
 
-	function RedirectAndInputErrors(){
-		if(response.sameUserEmail){
+	function RedirectAndInputErrors() {
+		if (response.sameUserEmail) {
 			// console.log(response.sameUserEmail);
 			return (
-			<div className="user-text-error">변경할 이메일을 기존 이메일과 다르게 입력해 주세요.</div>
-			)
-		}
-		else if(response.overlappedUserEmail){
+				<div className="user-text-error">
+					변경할 이메일을 기존 이메일과 다르게 입력해 주세요.
+				</div>
+			);
+		} else if (response.overlappedUserEmail) {
 			// console.log(response.overlappedUserEmail);
-			return (
-			<div className="user-text-error">이미 존재하는 이메일입니다.</div>
-			)
-		}
-		else if(submitted) {
+			return <div className="user-text-error">이미 존재하는 이메일입니다.</div>;
+		} else if (submitted) {
 			// 위 조건 만족할 때만 loginForm으로 새로고침
 			localStorage.setItem("toastShow", "1");
 			localStorage.setItem("toastText", "개인 정보가 수정되었습니다.");
-			window.location.href = "/mypage/info"
-			return (null);
+			window.location.href = "/mypage/info";
+			return null;
 		}
-		return (null);
+		return null;
 	}
 
 	const {
@@ -93,18 +87,17 @@ const EditUserEmail = () => {
 	} = useForm();
 
 	return (
-	<form onSubmit={handleSubmit(onSubmit)}>
-		<div className="container">
-			<HeaderNoProfile />
-      <div className="userInfo-profile-container">
-				<UserProfile/>
-				<div className="user-profile-name">{user.userRingcardName}</div>
-			</div>
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<div className="container">
+				<HeaderNoProfile />
+				<div className="userInfo-profile-container">
+					<UserProfile />
+					<div className="user-profile-name">{user.userRingcardName}</div>
+				</div>
 
-			<div>
-				<div className="user-box">
-
-					{/* <div className="user-box-in">
+				<div>
+					<div className="user-box">
+						{/* <div className="user-box-in">
 						<div className="user-text">변경할 이름</div>
 						<input
 							type="userRingcardName"
@@ -116,7 +109,7 @@ const EditUserEmail = () => {
 						></input>
 					</div> */}
 
-					{/* <div className="user-box-in">
+						{/* <div className="user-box-in">
 						<div className="user-text">기존 이름</div>
 						<input
 							className="user-icon user-icon-user-dark"
@@ -138,28 +131,28 @@ const EditUserEmail = () => {
 						></input>
 					</div> */}
 
-				<div className="user-box-in">
-						<div className="user-text">기존 이메일</div>
-						<input
-							className="user-icon user-icon-user-dark"
-							value={userEmail}
-							readOnly
-						></input>
-					</div>	
+						<div className="user-box-in">
+							<div className="user-text">기존 이메일</div>
+							<input
+								className="user-icon user-icon-user-dark"
+								value={userEmail}
+								readOnly
+							></input>
+						</div>
 
-				<div className="user-box-in">
-						<div className="user-text">변경할 이메일</div>
-						<input
-							className="user-icon user-icon-user-light"
-							// defaultValue={user.userRingcardName}
-							// placeholder="이름을 입력해주세요"
-							{...register("userEmail", {
-							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
-					</div>
+						<div className="user-box-in">
+							<div className="user-text">변경할 이메일</div>
+							<input
+								className="user-icon user-icon-user-light"
+								// defaultValue={user.userRingcardName}
+								// placeholder="이름을 입력해주세요"
+								{...register("userEmail", {
+									required: "답변이 입력되지 않았습니다.",
+								})}
+							></input>
+						</div>
 
-				{/* <div className="user-box-in">
+						{/* <div className="user-box-in">
 					<div className="user-text">이메일</div>
 					<input className="user-icon user-icon-email-light" defaultValue={user.userEmail} placeholder="이메일을 입력해주세요"
 					type="email"
@@ -168,20 +161,24 @@ const EditUserEmail = () => {
 							})}></input>
 				</div> */}
 
+						<div className="user-box-in">
+							<RedirectAndInputErrors />
+						</div>
 
-				<div className="user-box-in">
-					<RedirectAndInputErrors/>
-				</div>
-
-				<div className="user-box-in">
-					<button type="submit" className="user-btn editUserInfo-btn">
-						<div className="user-btn-text">변경 사항 저장하기</div>
-					</button>
+						<div className="user-box-in flex-spacebetween">
+							<button type="button" className="cancel-btn">
+								<Link to="/mypage/info" style={{ textDecoration: "none" }}>
+									<div className="user-btn-text">취소하기</div>
+								</Link>
+							</button>
+							<button type="submit" className="editUserInfo-btn">
+								<div className="user-btn-text">저장하기</div>
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</form>
+		</form>
 	);
 };
 
