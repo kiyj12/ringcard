@@ -7,20 +7,20 @@ import Navigation from "../../components/Navigation";
 import QuestionNoteList from "../../components/QuestionNoteList";
 import { useSearchParams } from "react-router-dom";
 import Toast from "../../components/Toast";
-
+import ClearTrashcanModal from "../../components/ClearTrashcanModal";
 
 function HomeUnanswered() {
 	const [searchParams] = useSearchParams();
-	const page = searchParams.get('page');
+	const page = searchParams.get("page");
 	const [questionList, setQuestionList] = useState<any[]>([]);
 	const [totalPages, setTotalPages] = useState<number>();
 	const [pageNumber, setPageNumber] = useState(0);
-	const [deleted, setDeleted] = useState(false);
+
 	const pageAddress = "trashcan";
 
 	useEffect(() => {
 		axios
-			.get("/home/"+pageAddress+"?page="+page)
+			.get("/home/" + pageAddress + "?page=" + page)
 			.then((res) => {
 				console.log(res.data);
 				setQuestionList(res.data.content);
@@ -32,47 +32,35 @@ function HomeUnanswered() {
 			});
 	}, []);
 
-	const handleClearTrashcanClick = async () => {
-		await axios
-			.get("/home/trashcan/clearTrashcan")
-			.then((res) => {
-				console.log(
-					"Successfully enter handleClearTrashcanClick in HomeTrashcan :D"
-				);
-				console.log(res.data);
-				setDeleted(true);
-				window.history.go(0);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// 모달창 노출 여부 state
+	const [showReq, setShowReq] = useState<boolean>(false);
 
-	function RedirectAndInputErrors(){
-		if(deleted) {
-			// 위 조건 만족할 때만 loginForm으로 새로고침
-			localStorage.setItem("toastShow", "1");
-			localStorage.setItem("toastText", "휴지통이 비워졌습니다.");
-			// window.location.href = "home/trashcan"
-			return (null);
-		}
-		return (null);
+	function openReq() {
+		setShowReq(!showReq);
+	}
+
+	function closeReq() {
+		setShowReq(!showReq);
 	}
 
 	return (
 		<div className="container">
 			<Header />
-			<Toast/>
-			<RedirectAndInputErrors/>
-			<Navigation page={page} pageAddress={pageAddress} totalPages={totalPages} pageNumber={pageNumber} />
-
+			<Navigation
+				page={page}
+				pageAddress={pageAddress}
+				totalPages={totalPages}
+				pageNumber={pageNumber}
+			/>
+			<ClearTrashcanModal open={showReq} close={closeReq} />
 			<div className="container-body">
 				<QuestionNoteList questionList={questionList} />
 			</div>
+
 			<div className="clear-trashcan">
 				<img
 					src="/buttons/home-trashcan-tab-active-button.svg"
-					onClick={handleClearTrashcanClick}
+					onClick={openReq}
 					alt=""
 				/>
 				<div className="clear-trashcan-text">비우기</div>
