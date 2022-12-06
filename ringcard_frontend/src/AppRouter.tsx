@@ -22,6 +22,8 @@ import Logout from "./pages/login/Logout";
 import Oauth from "./pages/login/Oauth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import isLogin from "./utils/isLogin";
+import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
+import EditUserEmail from "./pages/mypage/EditUserEmail";
 
 const AppRouter = () => {
 	return (
@@ -131,11 +133,31 @@ const AppRouter = () => {
 						}
 					/>
 					<Route
+						path="/mypage/info/edit/userRingcardName"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<EditUserRingcardName />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
 						path="/mypage/edit/password"
 						element={
 							<PrivateRoute
 								authenticated={isLogin()}
 								component={<EditPassword />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
+						path="/mypage/info/edit/userEmail"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<EditUserEmail />}
 								noAuthComponent={<Navigate to="/loginForm" />}
 							/>
 						}

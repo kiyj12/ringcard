@@ -36,9 +36,9 @@ const EditUserInfo = () => {
 			});
 	}, []);
 
-	function BtnToEditPw() {
-		function handleClick(e: any) {
-			window.location.href = "/mypage/edit/password";
+  function BtnToEditPw(){
+		function handleClick(e: any){
+				window.location.href="/mypage/info/edit/password"
 		}
 		return (
 			<button className="user-box-btn" onClick={handleClick}>

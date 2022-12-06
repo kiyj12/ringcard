@@ -30,16 +30,32 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
+    public Optional<User> findByUserEmail(String userEmail) {
+        return repository.findByUserEmail(userEmail);
+    }
+
+    @Override
     public List<User> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public void updateUserInfo(Long userId, UserUpdateDto updateParam) {
+    public void updateUserRingcardName(Long userId, UserRingcardNameUpdateDto updateParam) {
         User findUser = repository.findById(userId).orElseThrow();
 //        findUser.setUsername(updateParam.getUsername());
 //        findUser.setPassword(updateParam.getPassword());
         findUser.setUserRingcardName(updateParam.getUserRingcardName());
+//        findUser.setUserEmail(updateParam.getUserEmail());
+//        findUser.setTwitterId(updateParam.getTwitterId());
+//        findUser.setUserPicture(updateParam.getUserPicture());
+    }
+
+    @Override
+    public void updateUserEmail(Long userId, UserEmailUpdateDto updateParam) {
+        User findUser = repository.findById(userId).orElseThrow();
+//        findUser.setUsername(updateParam.getUsername());
+//        findUser.setPassword(updateParam.getPassword());
+//        findUser.setUserRingcardName(updateParam.getUserRingcardName());
         findUser.setUserEmail(updateParam.getUserEmail());
 //        findUser.setTwitterId(updateParam.getTwitterId());
 //        findUser.setUserPicture(updateParam.getUserPicture());

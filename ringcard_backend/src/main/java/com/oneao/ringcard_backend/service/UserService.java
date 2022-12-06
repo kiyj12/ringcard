@@ -1,8 +1,9 @@
 package com.oneao.ringcard_backend.service;
 
 import com.oneao.ringcard_backend.domain.user.User;
+import com.oneao.ringcard_backend.domain.user.UserEmailUpdateDto;
 import com.oneao.ringcard_backend.domain.user.UserRepository;
-import com.oneao.ringcard_backend.domain.user.UserUpdateDto;
+import com.oneao.ringcard_backend.domain.user.UserRingcardNameUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,13 +27,24 @@ public class UserService {
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+    public Optional<User> findByUserEmail(String userEmail) {
+        return userRepository.findByUserEmail(userEmail);
+    }
+
+
 
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public void updateUserInfo(Long userId, UserUpdateDto updateParam) {
-        userRepository.updateUserInfo(userId, updateParam);
+//    public void updateUserInfo(Long userId, UserUpdateDto updateParam) {
+//        userRepository.updateUserInfo(userId, updateParam);
+//    }
+    public void updateUserRingcardName(Long userId, UserRingcardNameUpdateDto updateParam) {
+        userRepository.updateUserRingcardName(userId, updateParam);
+    }
+    public void updateUserEmail(Long userId, UserEmailUpdateDto updateParam) {
+        userRepository.updateUserEmail(userId, updateParam);
     }
 
     public void updateUserPassword(Long userId, String newPassword) {

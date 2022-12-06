@@ -14,9 +14,13 @@ public interface UserRepository {
 
     Optional<User> findByUsername(String username);
 
+    Optional<User> findByUserEmail(String userEmail);
+
     List<User> findAll();
 
-    void updateUserInfo(Long userId, UserUpdateDto updateParam);
+    void updateUserRingcardName(Long userId, UserRingcardNameUpdateDto updateParam);
+
+    void updateUserEmail(Long userId, UserEmailUpdateDto updateParam);
 
     void updateUserPassword(Long userId, String newPassword);
 
