@@ -54,10 +54,37 @@
   color: #c7cdeb;
 }
 
+.flex-spacebetween {
+  display: flex;
+  justify-content: space-between;
+
+}
 
 .editUserInfo-btn{
   background-color: #514b8b;
-  margin-top: 4%;
+  width: 48%;
+  height: var(--user-box-height);
+  margin: 13px 0 13px 0;
+  padding: 12px 19px 14px 15px;
+  border-radius: 9px;
+  border: none;
+  box-shadow: 0 3px 10px 0 rgba(126, 116, 116, 0.16);
+  /* 조절 */
+
+
+}
+
+.cancel-btn {
+  width: 48%; 
+  height: var(--user-box-height);
+  margin: 13px 0 13px 0;
+  padding: 12px 19px 14px 15px;
+  border-radius: 9px;
+  border: none;
+  box-shadow: 0 3px 10px 0 rgba(126, 116, 116, 0.16);
+  /* 조절 */
+  background-color: #5d5d5d;
+
 }
 
 /* 

@@ -133,6 +133,10 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   
 }
 
+.user-inner-transparent:focus {
+  outline: none;
+}
+
 .user-btn{
   width: 100%; 
   height: var(--user-box-height);
@@ -181,7 +185,8 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 input.user-inner-transparent::value {
         /* color: rgb(94, 94, 94); */
         color: #585c74;
-        font-size: ;
+        /* font-size: ; */
         /* font-style: italic; */
         /* opacity: 1; */
       }
+

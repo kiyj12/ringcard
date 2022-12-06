@@ -11,6 +11,7 @@ import HeaderNoProfile from "../../components/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/UserProfile";
 import Toastify from "../../components/Toast";
+import { Link } from "react-router-dom";
 
 const EditPassword = () => {
 	type ResponseList = {
@@ -220,9 +221,14 @@ const EditPassword = () => {
 							<RedirectAndInputErrors />
 						</div>
 
-						<div className="user-box-in">
-							<button type="submit" className="user-btn editPassword-btn">
-								<div className="user-btn-text">비밀번호 변경하기</div>
+						<div className="user-box-in flex-spacebetween">
+							<button type="button" className="cancel-btn">
+								<Link to="/mypage/info" style={{ textDecoration: "none" }}>
+									<div className="user-btn-text">취소하기</div>
+								</Link>
+							</button>
+							<button type="submit" className="editUserInfo-btn">
+								<div className="user-btn-text">저장하기</div>
 							</button>
 						</div>
 
