@@ -108,7 +108,7 @@ const EditPassword = () => {
 			// 위 조건 만족할 때만 loginForm으로 새로고침
 			localStorage.setItem("toastShow", "1");
 			localStorage.setItem("toastText", "비밀번호가 변경되었습니다.");
-			window.location.href = "/mypage/info/edit"
+			window.location.href = "/mypage/info"
 			return (null);
 		}
 		return (null);

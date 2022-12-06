@@ -80,7 +80,7 @@ const EditUserEmail = () => {
 			// 위 조건 만족할 때만 loginForm으로 새로고침
 			localStorage.setItem("toastShow", "1");
 			localStorage.setItem("toastText", "개인 정보가 수정되었습니다.");
-			// window.location.href = "/mypage/info"
+			window.location.href = "/mypage/info"
 			return (null);
 		}
 		return (null);
