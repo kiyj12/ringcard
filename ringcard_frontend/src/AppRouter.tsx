@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomeUnanswered from "./pages/home/HomeUnanswered";
 import UserInfo from "./pages/mypage/UserInfo";
-import EditUserInfo from "./pages/mypage/EditUserInfo";
 import HomeAnswered from "./pages/home/HomeAnswered";
 import HomeCollection from "./pages/home/HomeCollection";
 import HomeTrashcan from "./pages/home/HomeTrashcan";
@@ -118,16 +117,6 @@ const AppRouter = () => {
 							<PrivateRoute
 								authenticated={isLogin()}
 								component={<UserInfo />}
-								noAuthComponent={<Navigate to="/loginForm" />}
-							/>
-						}
-					/>
-					<Route
-						path="/mypage/info/edit"
-						element={
-							<PrivateRoute
-								authenticated={isLogin()}
-								component={<EditUserInfo />}
 								noAuthComponent={<Navigate to="/loginForm" />}
 							/>
 						}
