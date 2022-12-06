@@ -111,6 +111,10 @@
 
 }
 
+.QuestionForm-hyperlink-input:focus {
+  outline: none;
+}
+
 .SendQuestionForm-send-question-btn {
   border: none;
   background: none;
