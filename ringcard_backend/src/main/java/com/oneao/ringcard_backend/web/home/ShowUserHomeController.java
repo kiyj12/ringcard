@@ -54,10 +54,12 @@ public class ShowUserHomeController {
             put("number", questions.getNumber());
         }};
 
+
+        model.addAttribute("userRingcardName" , user.getUserRingcardName());
         model.addAttribute("map", map);
         model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("username", username);
-        model.addAttribute("user", user);
+
+
         return ResponseEntity.ok(model);
     }
 

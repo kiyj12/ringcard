@@ -45,8 +45,9 @@
 }
 
 .profile-pic img {
-  border: 2px solid #f7cec6;
+  border: 2px solid rgb(210, 210, 210);
   border-radius: 100%;
+
 }
 
 .menu-btn {

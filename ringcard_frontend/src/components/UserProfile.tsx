@@ -6,9 +6,9 @@ import "../styles/user/userIcon.css";
 
 function UserProfile() {
 	return (
-      <div className="user-profile-img">
-        <img alt="" src="/profile.png" width="77px" color="white" />
-      </div>
+		<div className="user-profile-img">
+			<img alt="" src="/profile-imgs/oring_1.png" width="77px" color="white" />
+		</div>
 	);
 }
 
@@ -24,7 +24,7 @@ function UserProfile() {
 //         <img alt="" src="/profile.png" width="77px" color="white" />
 //       </div>
 //     {props.user.map((userRingcardName) =>(<div className="user-profile-name" valu></div>))}>
-   
+
 // </>
 // 	);
 // }

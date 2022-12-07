@@ -15,6 +15,7 @@ function HomeUnanswered() {
 	const [questionList, setQuestionList] = useState<any[]>([]);
 	const [totalPages, setTotalPages] = useState<number>();
 	const [pageNumber, setPageNumber] = useState(0);
+	const [userName, setUserName] = useState<String>();
 
 	const pageAddress = "trashcan";
 
@@ -23,9 +24,10 @@ function HomeUnanswered() {
 			.get("/home/" + pageAddress + "?page=" + page)
 			.then((res) => {
 				console.log(res.data);
-				setQuestionList(res.data.content);
-				setTotalPages(res.data.totalPages);
-				setPageNumber(res.data.number);
+				setUserName(res.data.userName);
+				setQuestionList(res.data.questions.content);
+				setTotalPages(res.data.questions.totalPages);
+				setPageNumber(res.data.questions.number);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -45,7 +47,7 @@ function HomeUnanswered() {
 
 	return (
 		<div className="container">
-			<Header />
+			<Header userName={userName} />
 			<Navigation
 				page={page}
 				pageAddress={pageAddress}

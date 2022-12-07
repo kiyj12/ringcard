@@ -26,16 +26,16 @@ const Modal = (props: props): ReactElement => {
 	// 		});
 	// };
 
-	const onClickHandler = () => {
-		axios
-			.get("/logout")
-			.then((response) => {
-				window.location.replace("/loginForm");
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// const onClickHandler = () => {
+	// 	axios
+	// 		.get("/logout")
+	// 		.then((response) => {
+	// 			window.location.replace("/loginForm");
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
 	return (
 		<>

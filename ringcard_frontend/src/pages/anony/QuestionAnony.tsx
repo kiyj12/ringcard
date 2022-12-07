@@ -13,8 +13,8 @@ import "../../styles/questionAnony.css";
 function QuestionAnony() {
 	const params = useParams();
 	const questionId = params.questionId;
-	const userName = String(params.userName);
-	const [user, setUser] = useState<any>([]);
+	const [userName, setUserName] = useState<String>();
+
 	const [question, setQuestion] = useState<any>([]);
 	const [answer, setAnswer] = useState<any>([]);
 
@@ -29,12 +29,12 @@ function QuestionAnony() {
 			.get("/question/" + questionId + "/anony/0")
 			.then((res) => {
 				console.log(res.data);
-				setUser(res.data.user);
 				setQuestion(res.data.question);
 				setAnswer(res.data.answer);
 				setMap(res.data.map);
 				setTotalPages(res.data.pageInfo.totalPages);
 				setPageNumber(res.data.pageInfo.number + 1);
+				setUserName(res.data.userName);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -51,7 +51,6 @@ function QuestionAnony() {
 					.get("/question/" + questionId + "/anony/" + newPage)
 					.then((res) => {
 						console.log(res.data);
-						setUser(res.data.user);
 						// setQuestionList1(res.data.questions.content);
 						console.log("a");
 						const b: [[IQuestion, IAnswer]] = res.data.map;
@@ -84,7 +83,6 @@ function QuestionAnony() {
 		}
 		return (
 			<div>
-
 				{map ? (
 					<div>
 						{map.length > 0 ? (
@@ -112,7 +110,7 @@ function QuestionAnony() {
 	return (
 		<div className="container">
 			{/* <HeaderNoProfile /> */}
-			<Header />
+			<Header userName={userName} />
 			{/* <div className="QuestionAnony-profile-box">
 				<img src="/profile.png" alt="" />
 				<div className="UserHome-profile-username">{user.userRingcardName}</div>

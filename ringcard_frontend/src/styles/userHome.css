@@ -29,7 +29,7 @@
 .UserHome-profile-box img {
   width: 70px;
   border-radius: 100%;
-  border: solid 2px #f7cec6;
+  border: solid 2px rgb(210, 210, 210);
 }
 
 .UserHome-profile-username {
@@ -99,7 +99,7 @@
 .UserHome-viewMore-btn-container{
   width: 100%;
   height: 40px;
-  padding-bottom: 30px;
+  padding-bottom: 20%;
   /* background-color: #fff; */
 }
 .UserHome-viewMore-btn-section {

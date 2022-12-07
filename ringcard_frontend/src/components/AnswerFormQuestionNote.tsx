@@ -56,7 +56,7 @@ function AnswerFormQuestionNote(props: Props) {
 				>
 					<div className="each-note-header">
 						<div className="note-profile-pic">
-							<img src="/test-anony-profile-pic.jpg" alt="" />
+							<img src="/profile-imgs/oring_2.png" alt="" />
 						</div>
 						<NowDate questionUploadTime={question.uploadTime} />
 					</div>

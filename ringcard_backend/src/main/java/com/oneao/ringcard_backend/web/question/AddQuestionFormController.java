@@ -51,6 +51,7 @@ public class AddQuestionFormController {
         Answer answer = answerService.findByQuestionId(questionId).get();
 
         // user도 모델에 보내기
+        // 퀘스쳔 어나니에서의 user는 해당 퀘스쳔의 주인!
         User user = userService.findById(question.getUserId()).get();
         Long userId = user.getId();
 
@@ -87,11 +88,12 @@ public class AddQuestionFormController {
             put("number", questions.getNumber());
         }};
 
-        model.addAttribute("map", map);
-        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("userName" , user.getUsername());
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
-        model.addAttribute("user", user);
+        model.addAttribute("map", map);
+        model.addAttribute("pageInfo", pageInfo);
+
         return ResponseEntity.ok(model);
     }
 }

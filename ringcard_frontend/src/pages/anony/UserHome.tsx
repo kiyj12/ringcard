@@ -14,7 +14,7 @@ import { IAnswer, IQuestion } from "../../components/types";
 function UserHome() {
 	const params = useParams();
 	const userName = String(params.userName);
-	const [user, setUser] = useState<any>([]);
+	const [userRingcardName, setUseRingcardrName] = useState<String>();
 
 	const [map, setMap] = useState<[IQuestion, IAnswer][]>();
 
@@ -28,7 +28,7 @@ function UserHome() {
 			.get("/userHome/" + userName + "/0")
 			.then((res) => {
 				console.log(res.data);
-				setUser(res.data.user);
+				setUseRingcardrName(res.data.userRingcardName);
 				setMap(res.data.map);
 				setTotalPages(res.data.pageInfo.totalPages);
 				setPageNumber(res.data.pageInfo.number + 1);
@@ -109,9 +109,9 @@ function UserHome() {
 
 			<div className="contents-container block">
 				<div className="UserHome-profile-box">
-					<img src="/profile.png" alt="" />
+					<img src="/profile-imgs/oring_1.png" alt="" />
 					<div className="UserHome-profile-username">
-						{user.userRingcardName}
+						{userRingcardName}
 					</div>
 				</div>
 				<div className="UserHome-SendQuestionForm-container">
