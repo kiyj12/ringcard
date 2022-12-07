@@ -34,7 +34,7 @@ dependencies {
 
 //	implementation 'org.springframework.boot:bootspring-boot-starter-oauth2-client'
 	implementation "com.twitter:twitter-api-java-sdk:2.0.3"
-
+	implementation('io.github.redouane59.twitter:twittered:2.21')
 	runtimeOnly 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly "org.springframework.boot:spring-boot-devtools"
@@ -45,6 +45,9 @@ dependencies {
 	//테스트에서 lombok 사용
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+
+//	implementation 'org.slf4j:slf4j-api:1.7.30'
+//	implementation 'org.slf4j:slf4j-simple:1.7.30'
 }
 
 tasks.named('test') {
