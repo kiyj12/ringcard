@@ -25,9 +25,13 @@ public class ShowHomeCollectionController {
     private final QuestionService questionService;
 
     @GetMapping("/home/collection")
-    public ResponseEntity<Page<Question>> showHomeCollection(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<Model> showHomeCollection(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         Long userId = loginUser.getUser().getId();
+        String userName = loginUser.getUsername();
         Page<Question> questions = questionService.findAllInCollection(userId, pageable);
-        return ResponseEntity.ok(questions);
+        model.addAttribute("userName", userName);
+        model.addAttribute("questions", questions);
+
+        return ResponseEntity.ok(model);
     }
 }

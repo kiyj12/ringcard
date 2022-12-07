@@ -32,7 +32,8 @@ function QuestionUnanswered() {
 	const params = useParams();
 	const paramsQuestionId = params.questionId;
 
-	const [questionList, setQuestionList] = useState<any[]>([]);
+	const [userName, setUserName] = useState<String>();
+	// const [questionList, setQuestionList] = useState<any[]>([]);
 	const [question, setQuestion] = useState<any>([]);
 
 	useEffect(() => {
@@ -40,7 +41,8 @@ function QuestionUnanswered() {
 			.get("/question/" + paramsQuestionId + "/unanswered/user")
 			.then((res) => {
 				console.log(res.data);
-				setQuestionList(res.data.questions);
+				// setQuestionList(res.data.questions);
+				setUserName(res.data.userName);
 				setQuestion(res.data.question);
 			})
 			.catch((err) => {
@@ -51,7 +53,7 @@ function QuestionUnanswered() {
 	return (
 		
 		<div className="container">
-			<Header />
+			<Header userName={userName} />
 
 			<div className="contents-container">
 				<div className="questionPage-the-question-container">

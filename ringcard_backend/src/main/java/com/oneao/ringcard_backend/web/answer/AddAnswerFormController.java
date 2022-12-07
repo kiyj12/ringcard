@@ -34,8 +34,10 @@ public class AddAnswerFormController {
     @GetMapping("/unanswered/user")
     public ResponseEntity<Model> answerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
-
+        String userName = loginUser.getUsername();
         Question question = questionService.findById(questionId, userId).get();
+
+        model.addAttribute("userName",userName);
         model.addAttribute("question", question);
         
         System.out.println("model = " + model);
@@ -47,6 +49,7 @@ public class AddAnswerFormController {
     public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PathVariable int page) {
         System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
+        String userName = loginUser.getUsername();
         Question question = questionService.findById(questionId, userId).get();
 
         Long answerId = answerService.findByQuestionId(questionId).get().getId();
@@ -60,9 +63,10 @@ public class AddAnswerFormController {
 //        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
-        model.addAttribute("questions", questions);
+        model.addAttribute("userName", userName);
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        model.addAttribute("questions", questions);
 //        System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);

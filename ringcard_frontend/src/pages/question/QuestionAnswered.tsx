@@ -11,7 +11,8 @@ function QuestionAnswered() {
 	const params = useParams();
 	const paramsQuestionId = params.questionId;
 
-	const [questionList, setQuestionList] = useState<any[]>([]);
+	// const [questionList, setQuestionList] = useState<any[]>([]);
+	const [userName, setUserName] = useState<String>();
 	const [question, setQuestion] = useState<any>([]);
 	const [oldAnswer, setOldAnswer] = useState<any>([]);
 
@@ -20,9 +21,10 @@ function QuestionAnswered() {
 			.get("/question/" + paramsQuestionId + "/edit/user")
 			.then((res) => {
 				console.log(res.data);
-				setQuestionList(res.data.questions);
+				// setQuestionList(res.data.questions);
 				setQuestion(res.data.question);
 				setOldAnswer(res.data.oldAnswer);
+				setUserName(res.data.userName);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -31,7 +33,7 @@ function QuestionAnswered() {
 
 	return (
 		<div className="container">
-			<Header />
+			<Header userName={userName} />
 			<div className="contents-container">
 				<div className="questionPage-the-question-container">
 					<EditAnswerFormQuestionNote

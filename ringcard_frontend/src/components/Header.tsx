@@ -2,8 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import "../styles/layout/header.css";
 import Modal from "../components/Modal";
+import { Link } from "react-router-dom";
 
-function Header() {
+export interface Props {
+	userName: String | undefined;
+}
+
+function Header(props: Props) {
+	const userName = props.userName;
 	const handleHomeBtnClick = async () => {
 		window.location.href = "/home/unanswered";
 	};
@@ -28,8 +34,17 @@ function Header() {
 				</div>
 
 				<div className="profile-pic">
-					<img src="/profile.png" width="35px" color="white" alt="" />
+					<Link to={"/userHome/" + userName}>
+						<img
+							src="/profile-imgs/oring_1.png"
+							width="35px"
+							height="35px"
+							color="white"
+							alt=""
+						/>
+					</Link>
 				</div>
+
 				<div className="menu-btn" onClick={openReq}>
 					<img src="/buttons/menu-icon.svg" width="21px" color="white" alt="" />
 					<Modal open={showReq} close={closeReq} />
