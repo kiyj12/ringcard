@@ -27,7 +27,7 @@ const ClearTrashcanModal = (props: props): ReactElement => {
 			.get("/home/trashcan/clearTrashcan")
 			.then((res) => {
 				console.log(
-					"Successfully enter handleClearTrashcanClick in HomeTrashcan :D"
+					"Successfully enter handleClearTrashcanClick in ClearTrashcanModal in HomeTrashcan :D"
 				);
 				console.log(res.data);
 
@@ -45,19 +45,22 @@ const ClearTrashcanModal = (props: props): ReactElement => {
 				{open ? (
 					<div className="ClearTrashcanModal-area">
 						<div className="ClearTrashcanModal-container">
-							휴지통에 있는 모든 질문들이 삭제됩니다.
+							휴지통에 있는 모든 질문들이
+							<br />
+							영구적으로 삭제됩니다.
 							<br />
 							삭제하시겠습니까?
 						</div>
+						<hr className="ClearTrashcanModal-hr" />
 						<div className="ClearTrashcanModal-footer">
 							<button className="ClearTrashcanModal-close-btn" onClick={close}>
-								닫기
+								취소
 							</button>
 							<button
 								className="ClearTrashcanModal-delete-btn"
 								onClick={handleClearTrashcanClick}
 							>
-								삭제하기
+								휴지통 비우기
 							</button>
 						</div>
 					</div>

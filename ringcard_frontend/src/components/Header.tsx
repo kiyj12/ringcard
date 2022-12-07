@@ -34,7 +34,10 @@ function Header(props: Props) {
 				</div>
 
 				<div className="profile-pic">
-					<Link to={"/userHome/" + userName}>
+					<Link
+						to={"/userHome/" + userName}
+						style={{ width: "39px", height: "39px" }}
+					>
 						<img
 							src="/profile-imgs/oring_1.png"
 							width="35px"
