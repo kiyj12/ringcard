@@ -1,4 +1,4 @@
-import "../styles/layout/headerRingca.css";
+import "../../styles/layout/headerRingca.css";
 
 function HeaderRingca() {
 	return (

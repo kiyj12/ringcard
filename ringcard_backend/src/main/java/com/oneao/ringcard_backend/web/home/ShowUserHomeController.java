@@ -37,7 +37,7 @@ public class ShowUserHomeController {
         // https://minchul-son.tistory.com/472
         Long userId = user.getId();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        PageRequest pageRequest = PageRequest.of(page, 15, Sort.by("uploadTime").descending());
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
         List<Object> map = new ArrayList<>();

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, Component } from "react";
 import { useParams } from "react-router-dom";
 import EditAnswerFormQuestionNote from "../../components/EditAnswerFormQuestionNote";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import QuestionNoteList from "../../components/QuestionNoteList";
 import "../../styles/layout/layout.css";
 import "../../styles/question-page.css";

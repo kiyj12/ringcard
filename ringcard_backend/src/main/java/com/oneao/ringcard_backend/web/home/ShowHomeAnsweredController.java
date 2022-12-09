@@ -30,7 +30,7 @@ public class ShowHomeAnsweredController {
     private final AnswerService answerService;
 
     @GetMapping("/home/answered")
-    public ResponseEntity<Model> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=10, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+    public ResponseEntity<Model> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=7, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         Long userId = loginUser.getUser().getId();
         String userName = loginUser.getUsername();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(true, false);

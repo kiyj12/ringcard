@@ -56,7 +56,7 @@ public class AddQuestionFormController {
         Long userId = user.getId();
 
         // 해당 질문 제외한 다른 응답 질문 리스트
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        PageRequest pageRequest = PageRequest.of(page, 15, Sort.by("uploadTime").descending());
         Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(userId, pageRequest);
 //        questions.remove(question)
         System.out.println("questions.getContent()="+questions.getContent());

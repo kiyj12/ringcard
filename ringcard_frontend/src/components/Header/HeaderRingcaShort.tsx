@@ -1,4 +1,4 @@
-import "../styles/layout/headerRingcaShort.css";
+import "../../styles/layout/headerRingcaShort.css";
 
 function HeaderRingcaShort() {
 	return (

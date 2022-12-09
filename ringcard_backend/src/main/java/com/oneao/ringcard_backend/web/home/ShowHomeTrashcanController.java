@@ -25,7 +25,7 @@ public class ShowHomeTrashcanController {
     private final QuestionService questionService;
 
     @GetMapping("home/trashcan")
-    public ResponseEntity<Model> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+    public ResponseEntity<Model> showHomeAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=7, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         // list 합치기
         //CF: https://hianna.tistory.com/560 2.Collections.addAll()
 //        List<Question> questions = new ArrayList<>();         // list 합치기        Collections.addAll(mergedList, list1.toArray(new String[0]));        Collections.addAll(mergedList, list2.toArray(new String[0]));

@@ -1,15 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
-import "../styles/layout/header.css";
-import Modal from "../components/Modal";
-import { Link } from "react-router-dom";
+import "../../styles/layout/headerNoProfile.css";
+import Modal from "../Modal/MenuModal";
 
-export interface Props {
-	userName: String | undefined;
-}
-
-function Header(props: Props) {
-	const userName = props.userName;
+function HeaderNoProfile() {
 	const handleHomeBtnClick = async () => {
 		window.location.href = "/home/unanswered";
 	};
@@ -24,25 +17,14 @@ function Header(props: Props) {
 	function closeReq() {
 		setShowReq(!showReq);
 	}
+
 	return (
-		<header className="header">
+		<header className="header-noprofile">
 			<div className="header-blank"></div>
 
 			<div className="top-banner">
 				<div className="home-btn" onClick={handleHomeBtnClick}>
 					<img src="/buttons/home-icon.svg" width="21px" color="white" alt="" />
-				</div>
-
-				<div className="profile-pic">
-					<Link to={"/userHome/" + userName}>
-						<img
-							src="/profile-imgs/oring_1.png"
-							width="35px"
-							height="35px"
-							color="white"
-							alt=""
-						/>
-					</Link>
 				</div>
 
 				<div className="menu-btn" onClick={openReq}>
@@ -54,4 +36,4 @@ function Header(props: Props) {
 	);
 }
 
-export default Header;
+export default HeaderNoProfile;

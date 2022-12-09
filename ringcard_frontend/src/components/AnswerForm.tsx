@@ -61,6 +61,21 @@ function AnswerForm(props: Props) {
 		setCheckItemContent(event.target.value);
 	};
 
+	function checkLengthHandler(event: any) {
+		var text = event.target.value;
+		var test_length = text.length;
+
+		//최대 글자수
+		var max_length = 5000;
+
+		if (test_length > max_length) {
+			alert(max_length + "자 이상 작성할 수 없습니다.");
+			text = text.substr(0, max_length);
+			event.target.value = text;
+			event.target.focus();
+		}
+	}
+
 	return (
 		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
 			<div className="answerForm-text-box checkItem">
@@ -70,6 +85,7 @@ function AnswerForm(props: Props) {
 					className="answerForm-textarea"
 					value={checkItemContent}
 					onInput={checkItemChangeHandler}
+					onKeyUp={checkLengthHandler}
 					style={{
 						height: (textareaHeight + 1) * 27 + "px",
 						whiteSpace: "pre-wrap",

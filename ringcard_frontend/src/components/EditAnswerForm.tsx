@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/answerQuestionNote.css";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 
 export interface Props {
 	questionId: number;
@@ -71,21 +71,36 @@ function AnswerForm(props: Props) {
 	// 	reset(props.oldAnswer);
 	// }, [props.oldAnswer]);
 
-	// 유저 입력 값을 넣을 변수
-	const [checkItemContent, setCheckItemContent] = useState("");
-	// 줄 수를 계산해서 저장할 변수
-	const [textareaHeight, setTextareaHeight] = useState(0);
+	// // 유저 입력 값을 넣을 변수
+	// const [checkItemContent, setCheckItemContent] = useState("");
+	// // 줄 수를 계산해서 저장할 변수
+	// const [textareaHeight, setTextareaHeight] = useState(0);
 
-	// 사용자 입력 값이 변경될 때마다 checkItemContent에 저장하고
-	// 엔터('\n') 개수를 세서 textareaHeight에 저장
-	const checkItemChangeHandler = (event: any) => {
-		setTextareaHeight(event.target.value.split("\n").length - 1);
-		setCheckItemContent(event.target.value);
-	};
+	// // 사용자 입력 값이 변경될 때마다 checkItemContent에 저장하고
+	// // 엔터('\n') 개수를 세서 textareaHeight에 저장
 	// const checkItemChangeHandler = (event: any) => {
 	// 	setTextareaHeight(event.target.value.split("\n").length - 1);
 	// 	setCheckItemContent(event.target.value);
 	// };
+	// const checkItemChangeHandler = (event: any) => {
+	// 	setTextareaHeight(event.target.value.split("\n").length - 1);
+	// 	setCheckItemContent(event.target.value);
+	// };
+
+	function checkLengthHandler(event: any) {
+		var text = event.target.value;
+		var test_length = text.length;
+
+		//최대 글자수
+		var max_length = 5000;
+
+		if (test_length > max_length) {
+			alert(max_length + "자 이상 작성할 수 없습니다.");
+			text = text.substr(0, max_length);
+			event.target.value = text;
+			event.target.focus();
+		}
+	}
 
 	return (
 		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
@@ -104,19 +119,20 @@ function AnswerForm(props: Props) {
 					})}
 				></textarea> */}
 
-				<TextareaAutosize 
+				<TextareaAutosize
 					id="answerAdd"
 					className="answerForm-textarea"
 					// value={checkItemContent}
 					// onInput={checkItemChangeHandler}
 					defaultValue={oldAnswer}
 					// value={oldAnswer}
+					onKeyUp={checkLengthHandler}
 					rows={5}
 					maxRows={10}
 					// onChange={onChangeEvent}
 					// onHeightChange={onHeightChangeEvent}
 					{...register("answerContents", {
-					required: "답변이 입력되지 않았습니다.",
+						required: "답변이 입력되지 않았습니다.",
 					})}
 				/>
 			</div>

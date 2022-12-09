@@ -58,7 +58,7 @@ public class AddAnswerFormController {
         // 미응답 질문 리스트에서 본인 제외
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
 
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        PageRequest pageRequest = PageRequest.of(page, 7, Sort.by("uploadTime").descending());
 
 //        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
