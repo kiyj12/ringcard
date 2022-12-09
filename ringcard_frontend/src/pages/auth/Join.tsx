@@ -49,14 +49,16 @@ const Join = () => {
 			return (
 				<>
 					<div className="user-text-error">
-						올바르지 않은 데이터 형식입니다.
+						올바르지 않은 형식이 포함되어있습니다.
 					</div>
 					<div className="user-text-error">이미 존재하는 아이디입니다.</div>
 				</>
 			);
 		} else if (response.bindingResultHasErrors) {
 			return (
-				<div className="user-text-error">올바르지 않은 데이터 형식입니다.</div>
+				<div className="user-text-error">
+					올바르지 않은 형식이 포함되어있습니다.
+				</div>
 			);
 		} else if (response.overlappedUsername) {
 			return <div className="user-text-error">이미 존재하는 아이디입니다.</div>;

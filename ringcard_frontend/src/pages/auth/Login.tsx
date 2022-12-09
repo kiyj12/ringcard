@@ -124,16 +124,7 @@ const Login = () => {
 			});
 	}, []);
 
-	type ResponseList = {
-		bindingResultHasErrors: boolean;
-		overlappedUsername: boolean;
-	};
-	const [response, setResponse] = useState<ResponseList>({
-		bindingResultHasErrors: false,
-		overlappedUsername: false,
-	});
 	// submitted==true여야 새로고침 되도록.
-	const [submitted, setSubmitted] = useState(false);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
@@ -148,37 +139,15 @@ const Login = () => {
 				},
 			})
 			.then((res) => {
-				console.log("postHere");
-				console.log(data);
-				setResponse(res.data);
 				console.log(res.data);
-				setSubmitted(true);
+
 				window.location.replace("/home/unanswered");
 			})
 			.catch(function (error) {
+				alert("아이디나 비밀번호가 올바르지 않습니다.");
 				console.log(error.config);
 			});
 	};
-
-	function RedirectAndInputErrors() {
-		if (response.bindingResultHasErrors && response.overlappedUsername) {
-			return (
-				<>
-					<div className="user-text-error">bindingResultHasErrors</div>
-					<div className="user-text-error">overlappedUsername</div>
-				</>
-			);
-		} else if (response.bindingResultHasErrors) {
-			return <div className="user-text-error">bindingResultHasErrors</div>;
-		} else if (response.overlappedUsername) {
-			return <div className="user-text-error">overlappedUsername</div>;
-		} else if (submitted) {
-			// 위 조건 만족할 때만 loginForm으로 새로고침
-			window.location.href = "/loginForm";
-			return null;
-		}
-		return null;
-	}
 
 	const {
 		register,
@@ -271,15 +240,13 @@ const Login = () => {
 								style={{
 									textDecorationColor: "white",
 									textDecorationThickness: "0.5px",
+									color: "white",
 								}}
 							>
-								<div className="user-text user-text-right">
-									비밀번호를 잊으셨나요?
-								</div>
+								비밀번호를 잊으셨나요?
 							</Link>
 						</div>
 					</div>
-					<RedirectAndInputErrors />
 
 					{/* <form onSubmit={handleSubmit}>
 					<input

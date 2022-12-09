@@ -40,7 +40,7 @@ function FindPassword() {
 			return (
 				<>
 					<div className="FindPassword-user-text-error">
-						데이터에 에러가 발생하였습니다.
+						올바르지 않은 형식입니다.
 					</div>
 					<div className="FindPassword-user-text-error">
 						존재하지 않는 이메일입니다.

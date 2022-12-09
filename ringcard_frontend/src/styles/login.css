@@ -31,6 +31,13 @@
   margin-right: auto; */
 }
 
+.Login-findPwd-text-box {
+  width: 100%;
+
+  text-align: right;
+  
+}
+
 
 .FindPassword-info-text {
   /* background-color: aqua; */
