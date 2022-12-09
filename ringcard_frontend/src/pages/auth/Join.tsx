@@ -48,14 +48,18 @@ const Join = () => {
 		if (response.bindingResultHasErrors && response.overlappedUsername) {
 			return (
 				<>
-					<div className="user-text-error">bindingResultHasErrors</div>
-					<div className="user-text-error">overlappedUsername</div>
+					<div className="user-text-error">
+						올바르지 않은 데이터 형식입니다.
+					</div>
+					<div className="user-text-error">이미 존재하는 아이디입니다.</div>
 				</>
 			);
 		} else if (response.bindingResultHasErrors) {
-			return <div className="user-text-error">bindingResultHasErrors</div>;
+			return (
+				<div className="user-text-error">올바르지 않은 데이터 형식입니다.</div>
+			);
 		} else if (response.overlappedUsername) {
-			return <div className="user-text-error">overlappedUsername</div>;
+			return <div className="user-text-error">이미 존재하는 아이디입니다.</div>;
 		} else if (submitted) {
 			// 위 조건 만족할 때만 loginForm으로 새로고침
 			window.location.href = "/loginForm";
