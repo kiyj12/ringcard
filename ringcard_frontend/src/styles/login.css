@@ -22,9 +22,11 @@
 
 .login-join-text{
   color: #fff;
-  text-decoration: none;
+  text-decoration-line: underline;
+  text-decoration-color: white;
+  text-decoration-thickness: 0.5px;
+  /* text-decoration: none; */
   /* text-align: center;
   margin-left: auto;
   margin-right: auto; */
 }
-

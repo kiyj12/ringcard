@@ -19,6 +19,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Slf4j
 @Configuration
@@ -29,10 +33,22 @@ public class SpringDataJpaConfig {
     private final SpringDataJpaQuestionRepository springDataJpaQuestionRepository;
     private final SpringDataJpaAnswerRepository springDataJpaAnswerRepository;
 
+    private final JavaMailSender javaMailSender;
+
+
     @Bean
     public UserService userService() {
-        return new UserService(userRepository());
+        return new UserService(userRepository(), javaMailSender, bCryptPasswordEncoder());
     }
+
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+//    @Bean
+//    public JavaMailSender javaMailSender() {
+//        return new JavaMailSenderImpl();
+//    }
 
     @Bean
     public UserRepository userRepository() {

@@ -9,20 +9,21 @@ import HomeCollection from "./pages/home/HomeCollection";
 import HomeTrashcan from "./pages/home/HomeTrashcan";
 
 import QuestionUnanswered from "./pages/question/QuestionUnanswered";
-import Login from "./pages/login/Login";
-import Join from "./pages/login/Join";
+import Login from "./pages/auth/Login";
+import Join from "./pages/auth/Join";
 import EditPassword from "./pages/mypage/EditPassword";
 import AnswerCompletedPage from "./pages/question/AnswerCompletedPage";
 import QuestionAnswered from "./pages/question/QuestionAnswered";
 import UserHome from "./pages/anony/UserHome";
 import DeleteAccount from "./pages/mypage/DeleteAccount";
 import QuestionAnony from "./pages/anony/QuestionAnony";
-import Logout from "./pages/login/Logout";
-import Oauth from "./pages/login/Oauth";
+import Logout from "./pages/auth/Logout";
+import Oauth from "./pages/auth/Oauth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import isLogin from "./utils/isLogin";
 import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
 import EditUserEmail from "./pages/mypage/EditUserEmail";
+import FindPassword from "./pages/auth/FindPassword";
 
 const AppRouter = () => {
 	return (
@@ -34,6 +35,7 @@ const AppRouter = () => {
 					<Route path="/loginForm" element={<Login />} />
 					<Route path="/logout" element={<Logout />} />
 					<Route path="/joinForm" element={<Join />} />
+					<Route path="/findPassword" element={<FindPassword />} />
 					<Route path="/userHome/:userName" element={<UserHome />} />
 					<Route
 						path="/question/:questionId/anony"

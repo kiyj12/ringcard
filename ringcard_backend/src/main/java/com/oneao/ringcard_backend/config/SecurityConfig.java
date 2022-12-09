@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Preflight Request 허용해주기
 //                .antMatchers("/home/**", "/mypage/**", "/**/user")
-                .antMatchers( "/loginForm", "/login", "/logout", "/userHome/**", "/**/anony/**").permitAll()
+                .antMatchers( "/loginForm", "/login", "/logout", "/findPassword/**", "/userHome/**", "/**/anony/**").permitAll()
                 .anyRequest().authenticated();
         http.formLogin()
                 .successForwardUrl("/home/unanswered")

@@ -7,9 +7,10 @@ import "../../styles/user/userIcon.css";
 import "../../styles/user/userHeader.css";
 import "../../styles/layout/reactToast.css";
 import "../../styles/login.css";
-import HeaderNoProfile from "../../components/HeaderNoProfile";
+
 import HeaderRingca from "../../components/HeaderRingca";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 // import Toastify from "../../components/Toast";
 
 const Login = () => {
@@ -264,10 +265,21 @@ const Login = () => {
 								<HidePw onClick={toggleShowPw} />
 							)}
 						</div>
-						<div className="user-text user-text-right">
-							비밀번호를 잊으셨나요?
+						<div className="Login-findPwd-text-box">
+							<Link
+								to="/findPassword"
+								style={{
+									textDecorationColor: "white",
+									textDecorationThickness: "0.5px",
+								}}
+							>
+								<div className="user-text user-text-right">
+									비밀번호를 잊으셨나요?
+								</div>
+							</Link>
 						</div>
 					</div>
+					<RedirectAndInputErrors />
 
 					{/* <form onSubmit={handleSubmit}>
 					<input
