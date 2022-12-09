@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import HeaderRingcaShort from "../../components/HeaderRingcaShort";
+import HeaderRingcaShort from "../../components/Header/HeaderRingcaShort";
 import "../../styles/layout/layout.css";
 import "../../styles/login.css";
 

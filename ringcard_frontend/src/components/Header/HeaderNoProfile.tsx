@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "../styles/layout/headerNoProfile.css";
-import Modal from "./Modal";
+import "../../styles/layout/headerNoProfile.css";
+import Modal from "../Modal/MenuModal";
 
 function HeaderNoProfile() {
 	const handleHomeBtnClick = async () => {

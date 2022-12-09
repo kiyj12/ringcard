@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { ReactElement } from "react";
 import { Link } from "react-router-dom";
-import "../styles/layout/modal.css";
+import "../../styles/layout/modal.css";
 
 interface props {
 	open: boolean;

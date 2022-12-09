@@ -26,11 +26,11 @@
   z-index: 10;
 }
 
-.SendQuestionForm-questionForm-box {
-  display: flex;
 
+.SendQuestionForm-questionForm-contents-box {
+  display: flex;
   justify-content: center;
-  
+  /* background-color: aqua; */
 }
 
 .SendQuestionForm-cursur-bar {
@@ -76,6 +76,62 @@
 
 .questionForm-textarea:focus {
   outline: none;
+}
+
+.SendQuestionForm-customize-area-box {
+  /* background-color: chartreuse; */
+  width: 93%;
+  margin: 0 auto;
+  
+  display: flex;
+  justify-content: right;
+}
+
+.SendQuestionForm-customize-area {
+  width: fit-content;
+  border-radius: 3px;
+
+  display: inline-flex;
+}
+
+.SendQuestionForm-customize-area:active {
+  background-color: rgb(238, 238, 238);
+}
+
+.SendQuestionForm-customize-box {
+  /* background-color: pink ; */
+  width: 70px;
+  height: 30px;
+
+  display: inline-flex;
+  justify-content: space-between;
+
+  padding: 0 5px;
+}
+
+.SendQuestionForm-note-color {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin: auto 5px auto 0;
+}
+
+.SendQuestionForm-note-color-text {
+  /* background-color: aqua; */
+  font-family: AppleSDGothicNeo;
+  font-size: 7px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.14;
+  letter-spacing: normal;
+  text-align: center;
+  color: #a987a0;
+}
+
+.SendQuestionForm-open-modal-btn {
+  width: 10px;
+
 }
 
 .SendQuestionForm-hr {

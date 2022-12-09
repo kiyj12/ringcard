@@ -7,10 +7,11 @@ import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/user/userHeader.css";
 import "../../styles/join.css";
-import HeaderRingcaShort from "../../components/HeaderRingcaShort";
+
 import userEvent from "@testing-library/user-event";
 
 import { useNavigate } from "react-router-dom";
+import HeaderRingcaShort from "../../components/Header/HeaderRingcaShort";
 
 const Join = () => {
 	type ResponseList = {

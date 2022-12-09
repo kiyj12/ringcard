@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import HeaderNoProfile from "../../components/HeaderNoProfile";
 import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
 import SendQuestionForm from "../../components/SendQuestionFormUserHome";
 import "../../styles/layout/layout.css";
@@ -10,6 +9,7 @@ import "../../styles/userHome.css";
 import { toast, ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IAnswer, IQuestion } from "../../components/types";
+import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 
 function UserHome() {
 	const params = useParams();

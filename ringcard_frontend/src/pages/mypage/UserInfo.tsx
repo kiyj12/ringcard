@@ -6,7 +6,7 @@ import "../../styles/user/userHeader.css";
 import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/userInfo.css";
-import HeaderNoProfile from "../../components/HeaderNoProfile";
+import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import UserProfile from "../../components/UserProfile";
 import Toastify from "../../components/Toast";
 

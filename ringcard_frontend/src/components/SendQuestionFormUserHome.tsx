@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/sendQuestionForm.css";
+import SelectNoteModal from "./Modal/SelectNoteModal";
 import Toastify from "./Toast";
 
 export interface Props {
@@ -79,6 +80,17 @@ function SendQuestionFormUserHome(props: Props) {
 		}
 	}
 
+	function clickSelectNoteColorHandler(event: any) {}
+	// 모달창 노출 여부 state
+	const [showReq, setShowReq] = useState<boolean>(false);
+
+	function openReq() {
+		setShowReq(!showReq);
+	}
+	function closeReq() {
+		setShowReq(!showReq);
+	}
+
 	return (
 		<div className="SendQuestionForm-container">
 			<Toastify />
@@ -87,19 +99,40 @@ function SendQuestionFormUserHome(props: Props) {
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<div className="SendQuestionForm-questionForm-box">
-					<span className="SendQuestionForm-cursur-bar">|</span>
-					<textarea
-						id="questionAdd"
-						className="questionForm-textarea"
-						value={checkItemContent}
-						onInput={checkItemChangeHandler}
-						onKeyUp={checkLengthHandler}
-						style={{ height: (textareaHeight + 1) * 20 + "px" }}
-						placeholder="질문해 주세요"
-						{...register("questionContents", {
-							required: "답변이 입력되지 않았습니다.",
-						})}
-					></textarea>
+					<div className="SendQuestionForm-questionForm-contents-box">
+						<span className="SendQuestionForm-cursur-bar">|</span>
+						<textarea
+							id="questionAdd"
+							className="questionForm-textarea"
+							value={checkItemContent}
+							onInput={checkItemChangeHandler}
+							onKeyUp={checkLengthHandler}
+							style={{ height: (textareaHeight + 1) * 20 + "px" }}
+							placeholder="질문해 주세요"
+							{...register("questionContents", {
+								required: "답변이 입력되지 않았습니다.",
+							})}
+						/>
+					</div>
+
+					<div className="SendQuestionForm-customize-area-box">
+						<div className="SendQuestionForm-customize-area" onClick={openReq}>
+							<SelectNoteModal open={showReq} close={closeReq} />
+							<div className="SendQuestionForm-customize-box">
+								<div
+									className="SendQuestionForm-note-color"
+									style={{ backgroundColor: "#e9e1ec" }}
+								/>
+								<div className="SendQuestionForm-note-color-text">연보라</div>
+								<img
+									className="SendQuestionForm-open-modal-btn"
+									src="/buttons/chevron-note-select-btn.svg"
+									alt=""
+								/>
+							</div>
+							{/* <div className="SendQuestionForm-box">hi</div> */}
+						</div>
+					</div>
 				</div>
 				<hr className="SendQuestionForm-hr" />
 				<div className="SendQuestionForm-footer">

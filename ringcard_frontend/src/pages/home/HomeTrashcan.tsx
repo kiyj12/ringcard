@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/home.css";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import Navigation from "../../components/Navigation";
 import QuestionNoteList from "../../components/QuestionNoteList";
 import { useSearchParams } from "react-router-dom";
 import Toast from "../../components/Toast";
-import ClearTrashcanModal from "../../components/ClearTrashcanModal";
+import ClearTrashcanModal from "../../components/Modal/ClearTrashcanModal";
 
 function HomeUnanswered() {
 	const [searchParams] = useSearchParams();
