@@ -2,6 +2,7 @@ package com.oneao.ringcard_backend.config;
 
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.config.auth.PrincipalDetailsService;
+import com.oneao.ringcard_backend.config.auth.PrincipalOauth2UserService;
 import com.oneao.ringcard_backend.domain.answer.AnswerRepository;
 import com.oneao.ringcard_backend.domain.answer.JpaAnswerRepository;
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
@@ -68,6 +69,11 @@ public class SpringDataJpaConfig {
     @Bean
     public PrincipalDetails principalDetails() {
         return new PrincipalDetails(user);
+    }
+
+    @Bean
+    public PrincipalOauth2UserService principalOauth2UserService() {
+        return new PrincipalOauth2UserService();
     }
 
 }

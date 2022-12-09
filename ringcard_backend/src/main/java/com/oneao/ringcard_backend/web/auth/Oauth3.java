@@ -7,19 +7,27 @@ import com.twitter.clientlib.model.Get2TweetsIdResponse;
 import com.twitter.clientlib.model.ResourceUnauthorizedProblem;
 import io.github.redouane59.twitter.TwitterClient;
 import io.github.redouane59.twitter.dto.endpoints.AdditionalParameters;
+import io.github.redouane59.twitter.dto.tweet.Tweet;
 import io.github.redouane59.twitter.dto.tweet.TweetList;
 import io.github.redouane59.twitter.dto.tweet.TweetV2;
 import io.github.redouane59.twitter.dto.user.UserV2;
+import io.github.redouane59.twitter.signature.Scope;
 import io.github.redouane59.twitter.signature.TwitterCredentials;
 import lombok.RequiredArgsConstructor;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,98 +46,78 @@ public class Oauth3 {
     public void oauth2(@PathVariable String id) throws ApiException {
         // 트위터 등록정보
         TwitterClient twitterClient = new TwitterClient(TwitterCredentials.builder()
-                .accessToken("1516353113430851586-Qhjz3YpRRL1yFqSa5PYcyjf5gmJhU1")
-                .accessTokenSecret("dPvdajDmTYtMybqbj9mOMnTIvbE9SnOuJY8h9uRQjRxln")
-                .apiKey("S0FVySANFNnlISMw5D1vSE8P0")
-                .apiSecretKey("KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X")
-                .build());
+            .accessToken("1516353113430851586-Qhjz3YpRRL1yFqSa5PYcyjf5gmJhU1")
+            .accessTokenSecret("dPvdajDmTYtMybqbj9mOMnTIvbE9SnOuJY8h9uRQjRxln")
+            .apiKey("S0FVySANFNnlISMw5D1vSE8P0")
+            .apiSecretKey("KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X")
+            .build());
 
-            LocalDateTime endLocalDateTime = LocalDateTime.now();
-            LocalDateTime startLocalDateTime = endLocalDateTime.minusDays(7);
-            // 파라메터 설정
-            AdditionalParameters additionalParameters = AdditionalParameters.builder()
-                    .startTime(startLocalDateTime)
-                    .endTime(endLocalDateTime)
-                    .build();
+        LocalDateTime endLocalDateTime = LocalDateTime.now();
+        LocalDateTime startLocalDateTime = endLocalDateTime.minusDays(7);
+        // 파라메터 설정
+        AdditionalParameters additionalParameters = AdditionalParameters.builder()
+                .startTime(startLocalDateTime)
+                .endTime(endLocalDateTime)
+                .build();
 
-            UserV2 userV2 = twitterClient.getUserFromUserName(id);
-            System.out.println("아이디 로딩 체크");
-            System.out.println("아이디 : " + userV2.getId());
+        UserV2 userV2 = twitterClient.getUserFromUserName(id);
+        System.out.println("아이디 로딩 체크");
+        System.out.println("아이디 : " + userV2.getId());
 
-            TweetList tweetList =
-                    twitterClient.getUserTimeline(userV2.getId(), additionalParameters);
-            System.out.println("트윗 로딩 체크");
-            System.out.println("가져온 트윗 수 : " + tweetList.getData().size());
-            for(TweetV2.TweetData tweet : tweetList.getData()) {
-                System.out.println("Id : " + tweet.getId());
-                System.out.println("text : " + tweet.getText());
-                System.out.println("==============================");
-            }
-
-
-
-
-
-
-
-//        // http://localhost:8080/2/tweets/1460323737035677698
-//        // https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id
-//        // 성공
-//
-//        TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer("AAAAAAAAAAAAAAAAAAAAAOWsiwEAAAAADbR%2FLCPhXEE5vHgf%2BCli0CgKOjk%3DMjxq0SR9yVxDzuVCiN5sjmeiG26QYTSrIu6BM2sQozQY3ViVtd"));
-//
-//        Set<String> tweetFields = new HashSet<>();
-//        tweetFields.add("author_id");
-//        tweetFields.add("id");
-//        tweetFields.add("created_at");
-//
-//        try {
-//            // findTweetById
-//            Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(id)
-//                    .tweetFields(tweetFields)
-//                    .execute();
-//            if (result.getErrors() != null && result.getErrors().size() > 0) {
-//                System.out.println("Error:");
-//
-//                result.getErrors().forEach(e -> {
-//                    System.out.println(e.toString());
-//                    if (e instanceof ResourceUnauthorizedProblem) {
-//                        System.out.println(((ResourceUnauthorizedProblem) e).getTitle() + " " + ((ResourceUnauthorizedProblem) e).getDetail());
-//                    }
-//                });
-//            } else {
-//                System.out.println("findTweetById - Tweet Text: " + result.toString());
-//            }
-//        } catch (ApiException e) {
-//            System.err.println("Status code: " + e.getCode());
-//            System.err.println("Reason: " + e.getResponseBody());
-//            System.err.println("Response headers: " + e.getResponseHeaders());
-//            e.printStackTrace();
-//        }
-
-
-//    try {
-//        // findTweetById
-//        Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
-//                .tweetFields(tweetFields)
-//                .execute();
-//        if(result.getErrors() != null && result.getErrors().size() > 0) {
-//            System.out.println("Error:");
-//
-//            result.getErrors().forEach(e -> {
-//                System.out.println(e.toString());
-//                if (e instanceof ResourceUnauthorizedProblem) {
-//                    System.out.println(((ResourceUnauthorizedProblem) e).getTitle() + " " + ((ResourceUnauthorizedProblem) e).getDetail());
-//                }
-//            });
-//        } else {
-//            System.out.println("findTweetById - Tweet Text: " + result.toString());
-//        }
-//    } catch(ApiException e) {
-//        System.err.println("Status code: " + e.getCode());
-//        System.err.println("Reason: " + e.getResponseBody());
-//        System.err.println("Response headers: " + e.getResponseHeaders());
-//        e.printStackTrace();
-//    }
+        TweetList tweetList =
+                twitterClient.getUserTimeline(userV2.getId(), additionalParameters);
+        System.out.println("트윗 로딩 체크");
+        System.out.println("가져온 트윗 수 : " + tweetList.getData().size());
+        for(TweetV2.TweetData tweet : tweetList.getData()) {
+            System.out.println("Id : " + tweet.getId());
+            System.out.println("text : " + tweet.getText());
+            System.out.println("==============================");
+        }
     }
+
+    // 누구 트위터에 올린다는 걸 안했는데?
+//    @PostMapping("2/tweets")
+//    public void tweetPost() {
+//        TwitterClient twitterClient = new TwitterClient(TwitterCredentials.builder()
+//                .accessToken("1516353113430851586-Qhjz3YpRRL1yFqSa5PYcyjf5gmJhU1")
+//                .accessTokenSecret("dPvdajDmTYtMybqbj9mOMnTIvbE9SnOuJY8h9uRQjRxln")
+//                .apiKey("S0FVySANFNnlISMw5D1vSE8P0")
+//                .apiSecretKey("KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X")
+//                .build());
+//
+//       String text = "Test post Tweet V2 at " + LocalDateTime.now() + " #TwitterAPI";
+//        Tweet resultPost = twitterClient.postTweet(text);
+//        System.out.println("resultPost = " + resultPost);
+//    }
+
+    @GetMapping("")
+    public void Oauth2PKCETest() throws ApiException, URISyntaxException {
+
+        TwitterClient twitterClient;
+        twitterClient = new TwitterClient();
+        String clientId = "Um5DbVM3d2dhMXViNHduOER0a2c6MTpjaQ";
+
+        String expectedUrl =
+                "https://twitter.com/i/oauth2/authorize?response_type=code&client_id=Um5DbVM3d2dhMXViNHduOER0a2c6MTpjaQ&redirect_uri=https://twitter.com/RedouaneBali&scope=tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain";
+
+        List<NameValuePair> expectedParams = URLEncodedUtils.parse(new URI(expectedUrl), StandardCharsets.UTF_8);
+
+        String responseUrl = twitterClient.getRequestHelperV2().getAuthorizeUrl(clientId,
+                "https://twitter.com/RedouaneBali",
+                "state",
+                "challenge",
+                "plain",
+                Arrays.asList(Scope.TWEET_READ, Scope.USERS_READ, Scope.OFFLINE_ACCESS));
+        System.out.println("authorize url : " + responseUrl);
+        List<NameValuePair> responseParams = URLEncodedUtils.parse(new URI(responseUrl), StandardCharsets.UTF_8);
+
+        Map<String, String> responseParamsMap = responseParams.stream().collect(
+                Collectors.toMap(NameValuePair::getName, NameValuePair::getValue));
+
+        for (NameValuePair param : expectedParams) {
+            System.out.println("param.getValue() = " + param.getValue());
+            System.out.println("responseParamsMap.get(param.getName()) = " + responseParamsMap.get(param.getName()));
+        }
+    }
+
 }

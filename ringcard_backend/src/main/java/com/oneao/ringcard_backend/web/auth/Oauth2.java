@@ -3,16 +3,19 @@ package com.oneao.ringcard_backend.web.auth;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,6 +27,33 @@ public class Oauth2 {
 //            System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
 //            System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
 
+
+    @GetMapping("/2/users/me")
+    public void oauth54536(){
+
+//        try {
+//            SingleUserLookupResponse result = apiInstance.users().findMyUser(null, null, null);
+//            System.out.println(result);
+//        } catch (ApiException e) {
+//            System.err.println("Exception when calling UsersApi#findMyUser");
+//            System.err.println("Status code: " + e.getCode());
+//            System.err.println("Reason: " + e.getResponseBody());
+//            System.err.println("Response headers: " + e.getResponseHeaders());
+//            e.printStackTrace();
+//        }
+    }
+    @GetMapping("/lo")
+    public String oauth5456(){
+        return "oauth";
+    }
+
+    @GetMapping("/test/login")
+    public @ResponseBody String testLogin(Authentication authentication){
+        System.out.println("/test/login================");
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        System.out.println("authentication: " + principalDetails.getUser());
+        return "세션 정보 확인";
+    }
     @GetMapping("/2/tweets/{id}")
     public void oauth2(@PathVariable String id) throws ApiException {
         TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(
@@ -61,6 +91,7 @@ public class Oauth2 {
             e.printStackTrace();
         }
     }
+
 
 
 

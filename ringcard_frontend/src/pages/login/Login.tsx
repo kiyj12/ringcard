@@ -11,8 +11,36 @@ import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
 import { useForm } from "react-hook-form";
 // import Toastify from "../../components/Toast";
+import TwitterLogin from "react-twitter-login";
+import ReactTwitterLogin from "react-twitter-login";
+// import ReactGoogleLogin from "react-google-login";
+import { twitterOAuth2 } from 'twitter-oauth2';
+import { Client } from "twitter-api-sdk";
 
 const Login = () => {
+
+	// const client = new Client("AAAAAAAAAAAAAAAAAAAAAOWsiwEAAAAADbR%2FLCPhXEE5vHgf%2BCli0CgKOjk%3DMjxq0SR9yVxDzuVCiN5sjmeiG26QYTSrIu6BM2sQozQY3ViVtd");
+
+	// function BtnToPageUp(){
+	// 	function handleClick(e: any){
+			
+	// 		async function main() {
+	// 			const tweet = await client.tweets.findTweetById("20");
+	// 			if(tweet.data){
+	// 			console.log(tweet.data.text);
+	// 			}
+	// 		}
+	// 		main();
+	// 	}
+	// 	return (
+	// 		<button className="page-btn" onClick={handleClick}>
+	// 			<img alt="" src="/buttons/move-next-page-btn.svg" />
+	// 		</button>
+	// 	);
+	// }
+
+	
+	
 	// var Twitter = require('twitter');
 
 	// var client = new Twitter({
@@ -123,6 +151,13 @@ const Login = () => {
 			});
 	}, []);
 
+	// twitterOAuth2({
+  // client_id: 'YOUR-CLIENT-ID',
+  // client_secret: 'YOUR-CLIENT-SECRET',
+  // redirect_uri: 'YOUR-REDIRECT-URI',
+  // scope: 'tweet.read users.read offline.access'
+	// })	
+
 	type ResponseList = {
 		bindingResultHasErrors: boolean;
 		overlappedUsername: boolean;
@@ -179,6 +214,10 @@ const Login = () => {
 		return null;
 	}
 
+	const authHandler = (err:any, data:any) => {
+    console.log(err, data);
+  };
+
 	const {
 		register,
 		handleSubmit,
@@ -227,6 +266,18 @@ const Login = () => {
 		);
 	}
 
+	const responseErrorTwitter = async (response:any) => {
+        console.log(response);
+    };
+    const responseSuccessTwitter = async (response:any) => {
+        //do something
+        console.log(response.resources);
+    };
+
+	const onResponse = (resp:any) => {
+    console.log(resp);
+  };
+	
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="container">
@@ -284,6 +335,44 @@ const Login = () => {
 							<div className="user-btn-text">로그인</div>
 						</button>
 					</div>
+
+					{/* <TwitterLogin
+          authCallback={authHandler}
+          consumerKey={"S0FVySANFNnlISMw5D1vSE8P0"}
+          consumerSecret={"KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X"}
+          callbackUrl={"http://localhost:3000/login/oauth2/code/twitter"}
+          buttonTheme={"dark"}
+        	/> */}
+
+					{/* <TwitterLogin onFailure={responseErrorTwitter}
+                      onSuccess={responseSuccessTwitter}
+                      credentials="include"
+                      customHeaders={
+                          {
+                              "X-Requested-With": "XMLHttpRequest",
+                          }
+                      }
+                      authenticationUrl="https://example.com/auth/twitter"
+                      requestUrl="https://example.com/auth/twitter/url">
+            Login with Twitter
+        </TwitterLogin> */}
+
+				{/* <ReactTwitterLogin
+					authCallback={authHandler}
+					consumerKey="S0FVySANFNnlISMw5D1vSE8P0" // We created this, remember?
+					consumerSecret="KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X" // We created this, remember?
+					callbackUrl="http://localhost:3000/login/oauth2/code/twitter" // You set this up in the twitter app settings, remember?
+				/> */}
+
+				{/* <ReactGoogleLogin
+					clientId="229666542925-10vg43mj7b66bp06vkakne3spsr309pp.apps.googleusercontent.com" // We created this earlier, remember?
+					buttonText="Login with Google"
+					onSuccess={onResponse}
+					onFailure={onResponse}
+				/> */}
+				{/* <BtnToPageUp/> */}
+
+					<a href="/oauth2/authorization/twitter">트위터 로그인</a>
 
 					<div className="login-join-box">
 						<BtnToJoin />
