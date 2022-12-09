@@ -11,7 +11,6 @@ import HeaderNoProfile from "../../components/HeaderNoProfile";
 import HeaderRingca from "../../components/HeaderRingca";
 import { useForm } from "react-hook-form";
 // import Toastify from "../../components/Toast";
-import TwitterLogin from "react-twitter-login";
 import ReactTwitterLogin from "react-twitter-login";
 // import ReactGoogleLogin from "react-google-login";
 import { twitterOAuth2 } from 'twitter-oauth2';
@@ -336,13 +335,7 @@ const Login = () => {
 						</button>
 					</div>
 
-					{/* <TwitterLogin
-          authCallback={authHandler}
-          consumerKey={"S0FVySANFNnlISMw5D1vSE8P0"}
-          consumerSecret={"KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X"}
-          callbackUrl={"http://localhost:3000/login/oauth2/code/twitter"}
-          buttonTheme={"dark"}
-        	/> */}
+					
 
 					{/* <TwitterLogin onFailure={responseErrorTwitter}
                       onSuccess={responseSuccessTwitter}

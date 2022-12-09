@@ -3587,6 +3587,11 @@
     "randombytes" "^2.0.0"
     "randomfill" "^1.0.3"
 
+"crypto-js@^3.1.9-1":
+  "integrity" "sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q=="
+  "resolved" "https://registry.npmjs.org/crypto-js/-/crypto-js-3.3.0.tgz"
+  "version" "3.3.0"
+
 "crypto-random-string@^2.0.0":
   "integrity" "sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA=="
   "resolved" "https://registry.npmjs.org/crypto-random-string/-/crypto-random-string-2.0.0.tgz"
@@ -8113,6 +8118,13 @@
   "version" "9.1.1"
   dependencies:
     "clsx" "^1.1.1"
+
+"react-twitter-login@^1.5.0":
+  "integrity" "sha512-onS9dwZ+07+4mMi+2xh6w0KPgY6jkWEfVVom5RCzAolGkDKWTvEMIutkAm1s6O7QtFmam+mpKoMBF8Lwam5iKA=="
+  "resolved" "https://registry.npmjs.org/react-twitter-login/-/react-twitter-login-1.5.0.tgz"
+  "version" "1.5.0"
+  dependencies:
+    "crypto-js" "^3.1.9-1"
 
 "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>=16", "react@>=16.8":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="

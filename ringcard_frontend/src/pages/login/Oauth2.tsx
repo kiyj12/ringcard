@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import TwitterLogin from "react-twitter-login";
 import { Client } from "twitter-api-sdk";
 import { TwitterApi } from 'twitter-api-v2';
-
+import { createHmac } from "crypto";
 const Oauth2=()=>{
 
 
@@ -151,9 +151,20 @@ const Oauth2=()=>{
   //   }
   // }
   // return (<p>1<GettingATweet/></p>)
+
+  const authHandler = (err:any, data:any) => {
+    console.log(err, data);
+  };
+
   return (
     // <TestOauth/>
-    <div>hello</div>
+    <TwitterLogin
+          authCallback={authHandler}
+          consumerKey={"S0FVySANFNnlISMw5D1vSE8P0"}
+          consumerSecret={"KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X"}
+          callbackUrl={"https://alexandrtovmach.github.io/react-twitter-login/"}
+          buttonTheme={"dark"}
+        	/>
   );
 }
 
