@@ -36,6 +36,7 @@
 .SendQuestionForm-cursur-bar {
   width: fit-content;
 
+
   color: rgba(80, 8, 54, 0.78);
   margin: 24px 0 0 0;
   font-size: 21px;
@@ -88,8 +89,9 @@
 }
 
 .SendQuestionForm-customize-area {
-  width: fit-content;
+  width: 80px;
   border-radius: 3px;
+  
 
   display: inline-flex;
 }

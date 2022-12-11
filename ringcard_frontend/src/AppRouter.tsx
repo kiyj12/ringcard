@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
-import Navigation from "./components/Navigation";
 import HomeUnanswered from "./pages/home/HomeUnanswered";
 import UserInfo from "./pages/mypage/UserInfo";
 import HomeAnswered from "./pages/home/HomeAnswered";

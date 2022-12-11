@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/sendQuestionForm.css";
 import SelectNoteModal from "./Modal/SelectNoteModal";
+import SelectTapeModal from "./Modal/SelectTapeModal";
 import Toastify from "./Toast";
 
 export interface Props {
@@ -80,15 +81,25 @@ function SendQuestionFormUserHome(props: Props) {
 		}
 	}
 
-	function clickSelectNoteColorHandler(event: any) {}
-	// 모달창 노출 여부 state
-	const [showReq, setShowReq] = useState<boolean>(false);
+	// SelectNote모달창 노출 여부 state
+	const [showSelectNoteModalReq, setShowSelectNoteModalReq] =
+		useState<boolean>(false);
 
-	function openReq() {
-		setShowReq(!showReq);
+	function openShowSelectNoteModalReq() {
+		setShowSelectNoteModalReq(!showSelectNoteModalReq);
 	}
-	function closeReq() {
-		setShowReq(!showReq);
+	function closeShowSelectNoteModalReq() {
+		setShowSelectNoteModalReq(!showSelectNoteModalReq);
+	}
+	// SelectTape모달창 노출 여부 state
+	const [showSelectTapeModalReq, setShowSelectTapeModalReq] =
+		useState<boolean>(false);
+
+	function openShowSelectTapeModalReq() {
+		setShowSelectTapeModalReq(!showSelectTapeModalReq);
+	}
+	function closeShowSelectTapeModalReq() {
+		setShowSelectTapeModalReq(!showSelectTapeModalReq);
 	}
 
 	return (
@@ -116,8 +127,37 @@ function SendQuestionFormUserHome(props: Props) {
 					</div>
 
 					<div className="SendQuestionForm-customize-area-box">
-						<div className="SendQuestionForm-customize-area" onClick={openReq}>
-							<SelectNoteModal open={showReq} close={closeReq} />
+						<div
+							className="SendQuestionForm-customize-area"
+							onClick={openShowSelectTapeModalReq}
+							style={{ marginRight: "5px" }}
+						>
+							<SelectTapeModal
+								open={showSelectTapeModalReq}
+								close={closeShowSelectTapeModalReq}
+							/>
+							<div className="SendQuestionForm-customize-box">
+								<div
+									className="SendQuestionForm-note-color"
+									style={{ backgroundColor: "#e9e1ec" }}
+								/>
+								<div className="SendQuestionForm-note-color-text">연보라</div>
+								<img
+									className="SendQuestionForm-open-modal-btn"
+									src="/buttons/chevron-note-select-btn.svg"
+									alt=""
+								/>
+							</div>
+							{/* <div className="SendQuestionForm-box">hi</div> */}
+						</div>
+						<div
+							className="SendQuestionForm-customize-area"
+							onClick={openShowSelectNoteModalReq}
+						>
+							<SelectNoteModal
+								open={showSelectNoteModalReq}
+								close={closeShowSelectNoteModalReq}
+							/>
 							<div className="SendQuestionForm-customize-box">
 								<div
 									className="SendQuestionForm-note-color"
