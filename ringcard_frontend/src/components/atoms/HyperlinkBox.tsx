@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/hyperlinkBox.css";
+import "../../styles/hyperlinkBox.css";
 
 export interface Props {
 	hyperlinkContent: String;

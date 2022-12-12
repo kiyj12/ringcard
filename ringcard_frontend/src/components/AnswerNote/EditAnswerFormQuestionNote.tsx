@@ -1,16 +1,18 @@
-import AnswerForm from "./AnswerForm";
-import { IQuestion } from "./types";
-import "../styles/question.css";
-import "../styles/answerQuestionNote.css";
-import NowDate from "./NowDate";
-import HyperlinkBox from "./HyperlinkBox";
+import { IQuestion } from "../types";
+import "../../styles/question.css";
+import "../../styles/answerQuestionNote.css";
+import EditAnswerForm from "./EditAnswerForm";
+import NowDate from "../utils/NowDate";
+import HyperlinkBox from "../atoms/HyperlinkBox";
 
 export interface Props {
 	question: IQuestion;
+	oldAnswer: String;
 }
 
-function AnswerFormQuestionNote(props: Props) {
+function EditAnswerFormQuestionNote(props: Props) {
 	const question = props.question;
+	const oldAnswer = props.oldAnswer;
 
 	const tapePositionList = [
 		"width: 130px; height: 28px; margin: 0 auto; margin-top: -8px;",
@@ -56,7 +58,7 @@ function AnswerFormQuestionNote(props: Props) {
 				>
 					<div className="each-note-header">
 						<div className="note-profile-pic">
-							<img src="/profile-imgs/oring_2.png" alt="" />
+							<img src="/test-anony-profile-pic.jpg" alt="" />
 						</div>
 						<NowDate questionUploadTime={question.uploadTime} />
 					</div>
@@ -72,7 +74,7 @@ function AnswerFormQuestionNote(props: Props) {
 
 					<hr className="note-hr" />
 					<div className="each-note-answer-form-box">
-						<AnswerForm questionId={question.id} />
+						<EditAnswerForm questionId={question.id} oldAnswer={oldAnswer} />
 					</div>
 				</div>
 				<div
@@ -86,4 +88,4 @@ function AnswerFormQuestionNote(props: Props) {
 	);
 }
 
-export default AnswerFormQuestionNote;
+export default EditAnswerFormQuestionNote;

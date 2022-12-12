@@ -1,24 +1,24 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import "../styles/navigation.css";
+import "../../styles/navigation.css";
 
 const Navigation = (props: any) => {
 	// const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
-	const totalPages=props.totalPages;
+	const totalPages = props.totalPages;
 	let page = Number(props.page);
 
 	const pageAddress = props.pageAddress;
-	const showPageNumber = page+1;
-	
-	function BtnToPageUp(){
-		function handleClick(e: any){
+	const showPageNumber = page + 1;
+
+	function BtnToPageUp() {
+		function handleClick(e: any) {
 			console.log("Up");
-			if (totalPages === undefined){}
-			else if (showPageNumber>=totalPages){
-			}else{
-				page+=1;
+			if (totalPages === undefined) {
+			} else if (showPageNumber >= totalPages) {
+			} else {
+				page += 1;
 				window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
@@ -29,13 +29,13 @@ const Navigation = (props: any) => {
 		);
 	}
 
-	function BtnToPageDown(){
-		function handleClick(e: any){
+	function BtnToPageDown() {
+		function handleClick(e: any) {
 			console.log("Down");
-			if (showPageNumber<=1){}
-			else{
-			page-=1;
-			window.location.href = "/home/" + pageAddress + "?page=" + page;
+			if (showPageNumber <= 1) {
+			} else {
+				page -= 1;
+				window.location.href = "/home/" + pageAddress + "?page=" + page;
 			}
 		}
 		return (
@@ -160,9 +160,11 @@ const Navigation = (props: any) => {
 				<div className="page-section">
 					<BtnToPageDown />
 					<div className="page-num-section">
-						{totalPages !== 0 
-						?<div className="page-num-current">{showPageNumber}</div> 
-						: <div className="page-num-current">0</div>}
+						{totalPages !== 0 ? (
+							<div className="page-num-current">{showPageNumber}</div>
+						) : (
+							<div className="page-num-current">0</div>
+						)}
 						<div className="page-num">/ {totalPages}</div>
 					</div>
 					<BtnToPageUp />

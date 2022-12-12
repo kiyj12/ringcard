@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "../styles/sendQuestionFormUserHome.css";
-import SelectNoteModal from "./Modal/SelectNoteModal";
-import SelectTapeModal from "./Modal/SelectTapeModal";
-import Toastify from "./Toast";
+import "../../styles/sendQuestionFormUserHome.css";
+import SelectNoteModal from "../Modal/SelectNoteModal";
+import SelectTapeModal from "../Modal/SelectTapeModal";
+import Toastify from "../utils/Toast";
 
 export interface Props {
 	userName: String;

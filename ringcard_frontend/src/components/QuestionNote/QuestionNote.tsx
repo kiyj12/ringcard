@@ -1,8 +1,8 @@
-import { IQuestion } from "./types";
+import { IQuestion } from "../types";
 import QuestionFooter from "./QuestionNoteFooter";
-import "../styles/question.css";
-import NowDate from "./NowDate";
-import HyperlinkBox from "./HyperlinkBox";
+import "../../styles/question.css";
+import NowDate from "../utils/NowDate";
+import HyperlinkBox from "../atoms/HyperlinkBox";
 
 import { useEffect } from "react";
 import { forEachChild } from "typescript";

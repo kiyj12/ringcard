@@ -33,6 +33,9 @@ public class User implements Serializable {
 
     private String roles;
 
+    @NotNull
+    private boolean emailAlert;
+
     public List<String> getRoleList() {
         if (this.roles.length() > 0) {
             return Arrays.asList(this.roles.split(","));

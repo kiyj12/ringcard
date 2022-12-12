@@ -8,8 +8,8 @@ import "../../styles/user/userIcon.css";
 import "../../styles/editUserInfo.css";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import { useForm } from "react-hook-form";
-import UserProfile from "../../components/UserProfile";
-import Toastify from "../../components/Toast";
+import UserProfile from "../../components/atoms/UserProfile";
+import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
 const EditUserEmail = () => {

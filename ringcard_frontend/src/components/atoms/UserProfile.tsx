@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../styles/user/userHeader.css";
-import "../styles/user/userBox.css";
-import "../styles/user/userIcon.css";
+import "../../styles/user/userHeader.css";
+import "../../styles/user/userBox.css";
+import "../../styles/user/userIcon.css";
 
 function UserProfile() {
 	return (

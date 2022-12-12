@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect, Component } from "react";
 // import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import AnswerFormQuestionNote from "../../components/AnswerFormQuestionNote";
+import AnswerFormQuestionNote from "../../components/AnswerNote/AnswerFormQuestionNote";
 import Header from "../../components/Header/Header";
-import QuestionList from "../../components/QuestionNoteList";
+import QuestionList from "../../components/QuestionNote/QuestionNoteList";
 import "../../styles/layout/layout.css";
 import "../../styles/question-page.css";
 

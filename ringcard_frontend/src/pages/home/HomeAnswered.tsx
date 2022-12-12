@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import Header from "../../components/Header/Header";
-import Navigation from "../../components/Navigation";
-import QuestionNoteList from "../../components/QuestionNoteList";
+import Navigation from "../../components/atoms/Navigation";
+import QuestionNoteList from "../../components/QuestionNote/QuestionNoteList";
 import { useSearchParams } from "react-router-dom";
 
 function HomeAnswered() {

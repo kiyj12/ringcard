@@ -2,7 +2,7 @@ import axios from "axios";
 import { url } from "inspector";
 import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
-import { IAnswer, IQuestion } from "./types";
+import { IAnswer, IQuestion } from "../types";
 
 import QuestionNoteAnony from "./QuestionNoteAnony";
 import React from "react";

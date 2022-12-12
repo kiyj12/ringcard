@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import "../styles/sendQuestionFormQuestionAnony.css";
-import SelectNoteModal from "./Modal/SelectNoteModal";
-import SelectTapeModal from "./Modal/SelectTapeModal";
-import Toastify from "./Toast";
-import { IQuestion } from "./types";
+import "../../styles/sendQuestionFormQuestionAnony.css";
+import SelectNoteModal from "../Modal/SelectNoteModal";
+import SelectTapeModal from "../Modal/SelectTapeModal";
+import Toastify from "../utils/Toast";
+import { IQuestion } from "../types";
 
 function SendQuestionFormQuestionAnony() {
 	const params = useParams();

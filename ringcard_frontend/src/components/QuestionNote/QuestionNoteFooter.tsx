@@ -1,9 +1,9 @@
 import React from "react";
-import { IQuestion } from "./types";
-import "../styles/question.css";
+import { IQuestion } from "../types";
+import "../../styles/question.css";
 import axios from "axios";
 import { Link, Route, Routes } from "react-router-dom";
-import QuestionUnanswered from "../pages/question/QuestionUnanswered";
+import QuestionUnanswered from "../../pages/question/QuestionUnanswered";
 
 export interface FooterProps {
 	question: IQuestion;

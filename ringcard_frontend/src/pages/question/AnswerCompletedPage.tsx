@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
+import AnsweredQuestionNote from "../../components/QuestionNote/AnsweredQuestionNote";
 import Header from "../../components/Header/Header";
-import QuestionNoteList from "../../components/QuestionNoteList";
+import QuestionNoteList from "../../components/QuestionNote/QuestionNoteList";
 import "../../styles/answerCompletedPage.css";
 
 function AnswerCompletedPage() {

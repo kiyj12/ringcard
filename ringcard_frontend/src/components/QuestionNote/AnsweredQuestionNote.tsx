@@ -1,6 +1,6 @@
-import HyperlinkBox from "./HyperlinkBox";
-import NowDate from "./NowDate";
-import { IAnswer, IQuestion } from "./types";
+import HyperlinkBox from "../atoms/HyperlinkBox";
+import NowDate from "../utils/NowDate";
+import { IAnswer, IQuestion } from "../types";
 
 export interface Props {
 	question: IQuestion;

@@ -1,14 +1,23 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "../styles/answerQuestionNote.css";
+import "../../styles/answerQuestionNote.css";
+import TextareaAutosize from "react-textarea-autosize";
 
 export interface Props {
 	questionId: number;
+	oldAnswer: String;
 }
 
 function AnswerForm(props: Props) {
 	const questionId = String(props.questionId);
+
+	// place holder로 넣음.
+	const PropsOldAnswer = String(props.oldAnswer);
+	const [oldAnswer, setOldAnswer] = useState<any>();
+	useEffect(() => {
+		setOldAnswer(PropsOldAnswer);
+	}, [PropsOldAnswer]);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
@@ -17,11 +26,11 @@ function AnswerForm(props: Props) {
 		console.log(data);
 
 		await axios
-			.post("/question/" + questionId + "/unanswered/user", data)
+			.post("/question/" + questionId + "/edit/user", data)
 			.then((res) => {
 				console.log("posthere");
 				console.log(data);
-				window.location.href = "/question/" + questionId + "/completed/user";
+				window.location.replace("/question/" + questionId + "/completed/user");
 			})
 			.catch(function (error) {
 				if (error.response) {
@@ -49,17 +58,34 @@ function AnswerForm(props: Props) {
 		// formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
-	// 유저 입력 값을 넣을 변수
-	const [checkItemContent, setCheckItemContent] = useState("");
-	// 줄 수를 계산해서 저장할 변수
-	const [textareaHeight, setTextareaHeight] = useState(0);
+	// 디폴트 밸류로 예전 값 넣는 방법.
+	// TODO: 근데 디폴트값이랑 현재값 연동이 안 돼서 보류
+	// const {
+	// 	register,
+	// 	handleSubmit,
+	// 	reset,
+	// 	formState: { isSubmitting, isDirty, errors },
+	// } = useForm({ defaultValues: oldAnswer });
+	// useEffect(() => {
+	// 	setOldAnswer(props.oldAnswer);
+	// 	reset(props.oldAnswer);
+	// }, [props.oldAnswer]);
 
-	// 사용자 입력 값이 변경될 때마다 checkItemContent에 저장하고
-	// 엔터('\n') 개수를 세서 textareaHeight에 저장
-	const checkItemChangeHandler = (event: any) => {
-		setTextareaHeight(event.target.value.split("\n").length - 1);
-		setCheckItemContent(event.target.value);
-	};
+	// // 유저 입력 값을 넣을 변수
+	// const [checkItemContent, setCheckItemContent] = useState("");
+	// // 줄 수를 계산해서 저장할 변수
+	// const [textareaHeight, setTextareaHeight] = useState(0);
+
+	// // 사용자 입력 값이 변경될 때마다 checkItemContent에 저장하고
+	// // 엔터('\n') 개수를 세서 textareaHeight에 저장
+	// const checkItemChangeHandler = (event: any) => {
+	// 	setTextareaHeight(event.target.value.split("\n").length - 1);
+	// 	setCheckItemContent(event.target.value);
+	// };
+	// const checkItemChangeHandler = (event: any) => {
+	// 	setTextareaHeight(event.target.value.split("\n").length - 1);
+	// 	setCheckItemContent(event.target.value);
+	// };
 
 	function checkLengthHandler(event: any) {
 		var text = event.target.value;
@@ -80,21 +106,35 @@ function AnswerForm(props: Props) {
 		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
 			<div className="answerForm-text-box checkItem">
 				<span className="cursur-bar">|</span>
-				<textarea
+				{/* <textarea
 					id="answerAdd"
 					className="answerForm-textarea"
-					value={checkItemContent}
+					// value={checkItemContent}
 					onInput={checkItemChangeHandler}
-					onKeyUp={checkLengthHandler}
-					style={{
-						height: (textareaHeight + 1) * 27 + "px",
-						whiteSpace: "pre-wrap",
-					}}
-					placeholder="답변을 적어주세요"
+					style={{ height: (textareaHeight + 1) * 27 + "px" }}
+					// placeholder={oldAnswer}
+					defaultValue={oldAnswer} 
 					{...register("answerContents", {
 						required: "답변이 입력되지 않았습니다.",
 					})}
-				></textarea>
+				></textarea> */}
+
+				<TextareaAutosize
+					id="answerAdd"
+					className="answerForm-textarea"
+					// value={checkItemContent}
+					// onInput={checkItemChangeHandler}
+					defaultValue={oldAnswer}
+					// value={oldAnswer}
+					onKeyUp={checkLengthHandler}
+					rows={5}
+					maxRows={10}
+					// onChange={onChangeEvent}
+					// onHeightChange={onHeightChangeEvent}
+					{...register("answerContents", {
+						required: "답변이 입력되지 않았습니다.",
+					})}
+				/>
 			</div>
 			<div className="answerForm-btn-box">
 				<button type="submit">
