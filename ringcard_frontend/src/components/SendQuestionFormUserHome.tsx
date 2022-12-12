@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/sendQuestionForm.css";
 import SelectNoteModal from "./Modal/SelectNoteModal";
@@ -22,11 +22,11 @@ function SendQuestionFormUserHome(props: Props) {
 		await axios
 			.post("/userHome/" + userName + "/", data)
 			.then((res) => {
-				console.log("posthere");
 				console.log(data);
+
 				localStorage.setItem("toastShow", "1");
 				localStorage.setItem("toastText", "질문이 안전하게 전달되었습니다.");
-				window.location.reload();
+				// window.location.reload();
 			})
 			.catch(function (error) {
 				if (error.response) {
@@ -51,6 +51,7 @@ function SendQuestionFormUserHome(props: Props) {
 	const {
 		register,
 		handleSubmit,
+		setValue,
 		// formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
@@ -102,6 +103,73 @@ function SendQuestionFormUserHome(props: Props) {
 		setShowSelectTapeModalReq(!showSelectTapeModalReq);
 	}
 
+	const [noteColorData, setNoteColorData] = useState<any>(0);
+	const getNoteColorData = (propsNoteColorData: any) => {
+		setNoteColorData(propsNoteColorData);
+	};
+
+	const NoteColorIdxDict: any = {};
+	NoteColorIdxDict["연보라"] = 1;
+	NoteColorIdxDict["복숭아"] = 2;
+	NoteColorIdxDict["파랑"] = 3;
+	NoteColorIdxDict["노랑"] = 4;
+
+	const [tapeColorData, setTapeColorData] = useState<any>(0);
+	const getTapeColorData = (propsTapeColorData: any) => {
+		setTapeColorData(propsTapeColorData);
+	};
+
+	const TapeColorIdxDict: any = {};
+	TapeColorIdxDict["하늘"] = 1;
+	TapeColorIdxDict["청록"] = 2;
+	TapeColorIdxDict["분홍"] = 3;
+	TapeColorIdxDict["보라"] = 4;
+	TapeColorIdxDict["노랑"] = 5;
+
+	useEffect(() => {
+		const noteColorText = document.getElementById(
+			"SendQuestionForm-note-color-text"
+		);
+		const noteColorCode = document.getElementById(
+			"SendQuestionForm-note-color-code"
+		);
+		if (!!noteColorText) {
+			if (noteColorData.colorName !== undefined) {
+				noteColorText.innerText = noteColorData.colorName;
+			} else {
+				noteColorText.innerText = "랜덤색";
+			}
+		}
+		if (!!noteColorCode) {
+			if (noteColorData.colorCode !== undefined) {
+				noteColorCode.style.backgroundColor = noteColorData.colorCode;
+			} else {
+				noteColorCode.style.backgroundColor = "#e9e1ec";
+			}
+		}
+		const tapeColorText = document.getElementById(
+			"SendQuestionForm-tape-color-text"
+		);
+		const tapeColorCode = document.getElementById(
+			"SendQuestionForm-tape-color-code"
+		);
+
+		if (!!tapeColorText) {
+			if (tapeColorData.colorName !== undefined) {
+				tapeColorText.innerText = tapeColorData.colorName;
+			} else {
+				tapeColorText.innerText = "랜덤색";
+			}
+		}
+		if (!!tapeColorCode) {
+			if (tapeColorData.colorCode !== undefined) {
+				tapeColorCode.style.backgroundColor = tapeColorData.colorCode;
+			} else {
+				tapeColorCode.style.backgroundColor = "#64B9DD";
+			}
+		}
+	}, [noteColorData, tapeColorData]);
+
 	return (
 		<div className="SendQuestionForm-container">
 			<Toastify />
@@ -133,44 +201,59 @@ function SendQuestionFormUserHome(props: Props) {
 							style={{ marginRight: "5px" }}
 						>
 							<SelectTapeModal
+								getTapeColorData={getTapeColorData}
 								open={showSelectTapeModalReq}
 								close={closeShowSelectTapeModalReq}
 							/>
 							<div className="SendQuestionForm-customize-box">
 								<div
 									className="SendQuestionForm-note-color"
+									id="SendQuestionForm-tape-color-code"
 									style={{ backgroundColor: "#e9e1ec" }}
 								/>
-								<div className="SendQuestionForm-note-color-text">연보라</div>
+								<div
+									className="SendQuestionForm-note-color-text"
+									id="SendQuestionForm-tape-color-text"
+								>
+									보라
+								</div>
 								<img
 									className="SendQuestionForm-open-modal-btn"
 									src="/buttons/chevron-note-select-btn.svg"
 									alt=""
 								/>
 							</div>
-							{/* <div className="SendQuestionForm-box">hi</div> */}
 						</div>
 						<div
 							className="SendQuestionForm-customize-area"
 							onClick={openShowSelectNoteModalReq}
 						>
 							<SelectNoteModal
+								getNoteColorData={getNoteColorData}
 								open={showSelectNoteModalReq}
 								close={closeShowSelectNoteModalReq}
 							/>
 							<div className="SendQuestionForm-customize-box">
 								<div
 									className="SendQuestionForm-note-color"
+									id="SendQuestionForm-note-color-code"
 									style={{ backgroundColor: "#e9e1ec" }}
 								/>
-								<div className="SendQuestionForm-note-color-text">연보라</div>
+								<div
+									className="SendQuestionForm-note-color-text"
+									id="SendQuestionForm-note-color-text"
+								>
+									{/* {noteColorData.colorName} */}
+									연보라
+								</div>
 								<img
 									className="SendQuestionForm-open-modal-btn"
 									src="/buttons/chevron-note-select-btn.svg"
 									alt=""
 								/>
+								<input {...register("noteType")} style={{ display: "none" }} />
+								<input {...register("tapeType")} style={{ display: "none" }} />
 							</div>
-							{/* <div className="SendQuestionForm-box">hi</div> */}
 						</div>
 					</div>
 				</div>
@@ -188,7 +271,14 @@ function SendQuestionFormUserHome(props: Props) {
 						onKeyUp={checkLengthHandler}
 						{...register("questionHyperlink")}
 					/>
-					<button className="SendQuestionForm-send-question-btn" type="submit">
+					<button
+						className="SendQuestionForm-send-question-btn"
+						type="submit"
+						onClick={() => {
+							setValue("noteType", NoteColorIdxDict[noteColorData.colorName]);
+							setValue("tapeType", TapeColorIdxDict[tapeColorData.colorName]);
+						}}
+					>
 						<img src="/buttons/send-question-btn.svg" alt="" />
 					</button>
 				</div>

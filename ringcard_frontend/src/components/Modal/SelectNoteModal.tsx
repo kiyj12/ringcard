@@ -1,38 +1,41 @@
 import axios from "axios";
 import React, { ReactElement, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { eventManager } from "react-toastify/dist/core";
 import "../../styles/selectNoteModal.css";
+import { colorDataType } from "../types";
 
 interface props {
 	open: boolean;
 	close: () => void; // 함수 타입 정의할 때
+	getNoteColorData: (noteColorName: any) => void;
 }
 
 const SelectNoteModal = (props: props): ReactElement => {
-	const { open, close } = props;
+	const { open, close, getNoteColorData } = props;
+	const [NoteColorName, setNoteColorName] = useState<"연보라">();
+	const [NoteColorCode, setNoteColorCode] = useState<"#e9e1ec">();
 
-	const [colorName, setColorName] = useState<any>();
-	const [colorCode, setColorCode] = useState<any>();
+	const NoteColorDict: any = {};
+	NoteColorDict["연보라"] = "#e9e1ec";
+	NoteColorDict["복숭아"] = "#f2d4d6";
+	NoteColorDict["파랑"] = "#d5d8f3";
+	NoteColorDict["노랑"] = "#f3ead5";
 
-	var colorDict: any = {};
-	colorDict["연보라"] = "#e9e1ec";
-	colorDict["복숭아"] = "#f2d4d6";
-	colorDict["파랑"] = "#d5d8f3";
-	colorDict["노랑"] = "#f3ead5";
-
-
-	
-
-	function handleNoteColorClick(event: any) {
-		// var selectedColorName = event.target.textContent;
-		document.addEventListener("click", function () {
-			setColorName(event.target.textContent);
-
-			setColorCode(colorDict[event.target.textContent]);
-			console.log(colorName);
-			console.log(colorCode);
-		});
+	function handleNoteColorClick(event: any): void {
+		setNoteColorName(event.target.textContent);
+		setNoteColorCode(NoteColorDict[event.target.textContent]);
 	}
+	useEffect(() => {
+		console.log(NoteColorName);
+		console.log(NoteColorCode);
+
+		const noteColorData: colorDataType = {
+			colorName: NoteColorName,
+			colorCode: NoteColorCode,
+		};
+		getNoteColorData(noteColorData);
+	}, [NoteColorName, NoteColorCode]);
 
 	return (
 		<>
@@ -45,10 +48,11 @@ const SelectNoteModal = (props: props): ReactElement => {
 							<div className="SelectNoteModal-selected-box">
 								<div
 									className="SendQuestionForm-note-color"
-									style={{ backgroundColor: "#e9e1ec" }}
+									id="SelectedNoteColor"
+									style={{ backgroundColor: `${NoteColorCode}` }}
 								/>
 								<div className="SendQuestionForm-note-color-text">
-									{colorName}
+									{NoteColorName}
 								</div>
 								<img
 									className="SendQuestionForm-open-modal-btn"

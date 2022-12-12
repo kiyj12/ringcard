@@ -1,15 +1,43 @@
 import axios from "axios";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/selectTapeModal.css";
+import { colorDataType } from "../types";
 
 interface props {
 	open: boolean;
 	close: () => void; // 함수 타입 정의할 때
+	getTapeColorData: (tapeColorName: any) => void;
 }
 
 const SelectTapeModal = (props: props): ReactElement => {
-	const { open, close } = props;
+	const { open, close, getTapeColorData } = props;
+	const [TapeColorName, setTapeColorName] = useState<"하늘">();
+	const [TapeColorCode, setTapeColorCode] = useState<"#64B9DD">();
+
+	const TapeColorDict: any = {};
+	TapeColorDict["하늘"] = "#64B9DD";
+	TapeColorDict["청록"] = "#4BACAC";
+	TapeColorDict["분홍"] = "#E7B0C8";
+	TapeColorDict["보라"] = "#BDACD4";
+	TapeColorDict["노랑"] = "#F6DB61";
+
+	function handleTapeColorClick(event: any): void {
+		setTapeColorName(event.target.textContent);
+		setTapeColorCode(TapeColorDict[event.target.textContent]);
+	}
+
+	useEffect(() => {
+		console.log(TapeColorName);
+		console.log(TapeColorCode);
+
+		const tapeColorData: colorDataType = {
+			colorName: TapeColorName,
+			colorCode: TapeColorCode,
+		};
+
+		getTapeColorData(tapeColorData);
+	}, [TapeColorName, TapeColorCode]);
 
 	return (
 		<>
@@ -22,9 +50,11 @@ const SelectTapeModal = (props: props): ReactElement => {
 							<div className="SelectTapeModal-selected-box">
 								<div
 									className="SendQuestionForm-note-color"
-									style={{ backgroundColor: "#e9e1ec" }}
+									style={{ backgroundColor: `${TapeColorCode}` }}
 								/>
-								<div className="SendQuestionForm-note-color-text">연보라</div>
+								<div className="SendQuestionForm-note-color-text">
+									{TapeColorName}
+								</div>
 								<img
 									className="SendQuestionForm-open-modal-btn"
 									src="/buttons/chevron-note-select-btn.svg"
@@ -39,25 +69,36 @@ const SelectTapeModal = (props: props): ReactElement => {
 						<div className="SelectTapemodal-colors-box">
 							<div
 								className="SelectTapemodal-color-option"
-								style={{ backgroundColor: "#e9e1ec" }}
+								style={{ backgroundColor: "#64B9DD" }}
+								onClick={handleTapeColorClick}
 							>
-								<div>연보라</div>
+								<div>하늘</div>
 							</div>
 							<div
 								className="SelectTapemodal-color-option"
-								style={{ backgroundColor: "#f2d4d6" }}
+								style={{ backgroundColor: "#4BACAC" }}
+								onClick={handleTapeColorClick}
 							>
-								<div>복숭아</div>
+								<div>청록</div>
 							</div>
 							<div
 								className="SelectTapemodal-color-option"
-								style={{ backgroundColor: "#d5d8f3" }}
+								style={{ backgroundColor: "#E7B0C8" }}
+								onClick={handleTapeColorClick}
 							>
-								<div>파랑</div>
+								<div>분홍</div>
 							</div>
 							<div
 								className="SelectTapemodal-color-option"
-								style={{ backgroundColor: "#f3ead5" }}
+								style={{ backgroundColor: "#BDACD4" }}
+								onClick={handleTapeColorClick}
+							>
+								<div>보라</div>
+							</div>
+							<div
+								className="SelectTapemodal-color-option"
+								style={{ backgroundColor: "#F6DB61" }}
+								onClick={handleTapeColorClick}
 							>
 								<div>노랑</div>
 							</div>
