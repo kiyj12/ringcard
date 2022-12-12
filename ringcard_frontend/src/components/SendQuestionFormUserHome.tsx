@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "../styles/sendQuestionForm.css";
+import "../styles/sendQuestionFormUserHome.css";
 import SelectNoteModal from "./Modal/SelectNoteModal";
 import SelectTapeModal from "./Modal/SelectTapeModal";
 import Toastify from "./Toast";
@@ -26,7 +26,7 @@ function SendQuestionFormUserHome(props: Props) {
 
 				localStorage.setItem("toastShow", "1");
 				localStorage.setItem("toastText", "질문이 안전하게 전달되었습니다.");
-				// window.location.reload();
+				window.location.reload();
 			})
 			.catch(function (error) {
 				if (error.response) {
@@ -128,10 +128,10 @@ function SendQuestionFormUserHome(props: Props) {
 
 	useEffect(() => {
 		const noteColorText = document.getElementById(
-			"SendQuestionForm-note-color-text"
+			"SendQuestionFormUserHome-note-color-text"
 		);
 		const noteColorCode = document.getElementById(
-			"SendQuestionForm-note-color-code"
+			"SendQuestionFormUserHome-note-color-code"
 		);
 		if (!!noteColorText) {
 			if (noteColorData.colorName !== undefined) {
@@ -148,10 +148,10 @@ function SendQuestionFormUserHome(props: Props) {
 			}
 		}
 		const tapeColorText = document.getElementById(
-			"SendQuestionForm-tape-color-text"
+			"SendQuestionFormUserHome-tape-color-text"
 		);
 		const tapeColorCode = document.getElementById(
-			"SendQuestionForm-tape-color-code"
+			"SendQuestionFormUserHome-tape-color-code"
 		);
 
 		if (!!tapeColorText) {
@@ -171,15 +171,15 @@ function SendQuestionFormUserHome(props: Props) {
 	}, [noteColorData, tapeColorData]);
 
 	return (
-		<div className="SendQuestionForm-container">
+		<div className="SendQuestionFormUserHome-container">
 			<Toastify />
 			<form
-				className="SendQuestionForm-question-form"
+				className="SendQuestionFormUserHome-question-form"
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<div className="SendQuestionForm-questionForm-box">
-					<div className="SendQuestionForm-questionForm-contents-box">
-						<span className="SendQuestionForm-cursur-bar">|</span>
+				<div className="SendQuestionFormUserHome-questionForm-box">
+					<div className="SendQuestionFormUserHome-questionForm-contents-box">
+						<span className="SendQuestionFormUserHome-cursur-bar">|</span>
 						<textarea
 							id="questionAdd"
 							className="questionForm-textarea"
@@ -194,9 +194,9 @@ function SendQuestionFormUserHome(props: Props) {
 						/>
 					</div>
 
-					<div className="SendQuestionForm-customize-area-box">
+					<div className="SendQuestionFormUserHome-customize-area-box">
 						<div
-							className="SendQuestionForm-customize-area"
+							className="SendQuestionFormUserHome-customize-area"
 							onClick={openShowSelectTapeModalReq}
 							style={{ marginRight: "5px" }}
 						>
@@ -205,27 +205,27 @@ function SendQuestionFormUserHome(props: Props) {
 								open={showSelectTapeModalReq}
 								close={closeShowSelectTapeModalReq}
 							/>
-							<div className="SendQuestionForm-customize-box">
+							<div className="SendQuestionFormUserHome-customize-box">
 								<div
-									className="SendQuestionForm-note-color"
-									id="SendQuestionForm-tape-color-code"
+									className="SendQuestionFormUserHome-note-color"
+									id="SendQuestionFormUserHome-tape-color-code"
 									style={{ backgroundColor: "#e9e1ec" }}
 								/>
 								<div
-									className="SendQuestionForm-note-color-text"
-									id="SendQuestionForm-tape-color-text"
+									className="SendQuestionFormUserHome-note-color-text"
+									id="SendQuestionFormUserHome-tape-color-text"
 								>
 									보라
 								</div>
 								<img
-									className="SendQuestionForm-open-modal-btn"
+									className="SendQuestionFormUserHome-open-modal-btn"
 									src="/buttons/chevron-note-select-btn.svg"
 									alt=""
 								/>
 							</div>
 						</div>
 						<div
-							className="SendQuestionForm-customize-area"
+							className="SendQuestionFormUserHome-customize-area"
 							onClick={openShowSelectNoteModalReq}
 						>
 							<SelectNoteModal
@@ -233,21 +233,21 @@ function SendQuestionFormUserHome(props: Props) {
 								open={showSelectNoteModalReq}
 								close={closeShowSelectNoteModalReq}
 							/>
-							<div className="SendQuestionForm-customize-box">
+							<div className="SendQuestionFormUserHome-customize-box">
 								<div
-									className="SendQuestionForm-note-color"
-									id="SendQuestionForm-note-color-code"
+									className="SendQuestionFormUserHome-note-color"
+									id="SendQuestionFormUserHome-note-color-code"
 									style={{ backgroundColor: "#e9e1ec" }}
 								/>
 								<div
-									className="SendQuestionForm-note-color-text"
-									id="SendQuestionForm-note-color-text"
+									className="SendQuestionFormUserHome-note-color-text"
+									id="SendQuestionFormUserHome-note-color-text"
 								>
 									{/* {noteColorData.colorName} */}
 									연보라
 								</div>
 								<img
-									className="SendQuestionForm-open-modal-btn"
+									className="SendQuestionFormUserHome-open-modal-btn"
 									src="/buttons/chevron-note-select-btn.svg"
 									alt=""
 								/>
@@ -257,10 +257,10 @@ function SendQuestionFormUserHome(props: Props) {
 						</div>
 					</div>
 				</div>
-				<hr className="SendQuestionForm-hr" />
-				<div className="SendQuestionForm-footer">
+				<hr className="SendQuestionFormUserHome-hr" />
+				<div className="SendQuestionFormUserHome-footer">
 					<img
-						className="SendQuestionForm-hyperlink-btn"
+						className="SendQuestionFormUserHome-hyperlink-btn"
 						src="/buttons/link-icn.svg"
 						alt=""
 					/>
@@ -272,7 +272,7 @@ function SendQuestionFormUserHome(props: Props) {
 						{...register("questionHyperlink")}
 					/>
 					<button
-						className="SendQuestionForm-send-question-btn"
+						className="SendQuestionFormUserHome-send-question-btn"
 						type="submit"
 						onClick={() => {
 							setValue("noteType", NoteColorIdxDict[noteColorData.colorName]);
