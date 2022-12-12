@@ -116,3 +116,29 @@
   text-align: center;
   color: #666;
 }
+
+
+.SendQuestionForm-note-color {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin: auto 5px auto 0;
+  /* background-color: #e9e1ec; */
+}
+
+.SendQuestionForm-note-color-text {
+  /* background-color: aqua; */
+  font-family: AppleSDGothicNeo;
+  font-size: 7px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.14;
+  letter-spacing: normal;
+  text-align: center;
+  color: #a987a0;
+}
+
+.SendQuestionForm-open-modal-btn {
+  width: 10px;
+}
