@@ -13,6 +13,7 @@ import com.oneao.ringcard_backend.domain.question.JpaQuestionRepository;
 import com.oneao.ringcard_backend.domain.question.QuestionRepository;
 import com.oneao.ringcard_backend.domain.question.SpringDataJpaQuestionRepository;
 import com.oneao.ringcard_backend.service.AnswerService;
+import com.oneao.ringcard_backend.service.MailService;
 import com.oneao.ringcard_backend.service.UserService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
@@ -35,10 +36,14 @@ public class SpringDataJpaConfig {
 
     private final JavaMailSender javaMailSender;
 
+    @Bean
+    public MailService mailService() {
+        return new MailService(javaMailSender);
+    }
 
     @Bean
     public UserService userService() {
-        return new UserService(userRepository(), javaMailSender, bCryptPasswordEncoder());
+        return new UserService(userRepository(), bCryptPasswordEncoder());
     }
 
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

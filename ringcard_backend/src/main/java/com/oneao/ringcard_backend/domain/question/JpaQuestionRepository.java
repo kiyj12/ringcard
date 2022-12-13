@@ -1,5 +1,6 @@
 package com.oneao.ringcard_backend.domain.question;
 
+import com.oneao.ringcard_backend.domain.DTO.SendMailDto;
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -133,6 +134,9 @@ public class JpaQuestionRepository implements QuestionRepository {
         // 질문 삭제
         repository.deleteByUserIdLikeAndInTrashLike(userId, true);
     }
+
+
+
 
     @Override
     public void clearStore() {

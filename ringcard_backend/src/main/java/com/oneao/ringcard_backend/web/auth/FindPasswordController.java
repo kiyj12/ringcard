@@ -1,7 +1,8 @@
 package com.oneao.ringcard_backend.web.auth;
 
-import com.oneao.ringcard_backend.domain.user.DTO.FindPasswordDto;
+import com.oneao.ringcard_backend.domain.DTO.SendMailDto;
 import com.oneao.ringcard_backend.domain.user.User;
+import com.oneao.ringcard_backend.service.MailService;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.Optional;
 public class FindPasswordController {
 
     private final UserService userService;
+    private final MailService mailService;
 
     @GetMapping("/findPassword")
     public ResponseEntity<Model> getFindPassword(Model model) {
@@ -58,8 +60,8 @@ public class FindPasswordController {
             System.out.println("memberEmail = " + userEmail);
             System.out.println("optionalUser = " + optionalUser);
             if (optionalUser.isPresent()) {
-                FindPasswordDto dto = userService.createMailAndChangePassword(userEmail);
-                userService.mailSend(dto);
+                SendMailDto dto = userService.createMailAndChangePassword(userEmail);
+                mailService.mailSend(dto);
             }
 
         } catch (Exception err) {
