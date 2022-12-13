@@ -171,6 +171,12 @@ const Join = () => {
 							></input>
 						</div>
 					</div>
+					<div className="user-box-in">
+						<label>
+							<input type="checkbox" {...register("emailAlert")} checked />
+							이메일로 새 질문 알림을 받겠습니다. (추후 변경 가능)
+						</label>
+					</div>
 				</div>
 
 				<div className="user-box-in">

@@ -1,9 +1,8 @@
 package com.oneao.ringcard_backend.web.user;
 
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
-import com.oneao.ringcard_backend.domain.question.QuestionRepository;
+import com.oneao.ringcard_backend.domain.user.DTO.RegisterUserDto;
 import com.oneao.ringcard_backend.domain.user.User;
-import com.oneao.ringcard_backend.service.QuestionService;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +27,11 @@ public class GetUserInfoController {
 //        return "mypage/userInfo";
 //    }
     @GetMapping()
-    public ResponseEntity<User> showUserInfo(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
+    public ResponseEntity<RegisterUserDto> showUserInfo(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         User user = loginUser.getUser();
+        RegisterUserDto registerUserDto = new RegisterUserDto(user.getUsername(), user.getUserRingcardName(), user.getUserEmail(), user.isEmailAlert());
     //        Long userId = user.getId();
     //        model.addAttribute("user", user);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(registerUserDto);
     }
 }

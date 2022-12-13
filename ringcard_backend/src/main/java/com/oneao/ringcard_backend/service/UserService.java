@@ -1,8 +1,11 @@
 package com.oneao.ringcard_backend.service;
 
 import com.oneao.ringcard_backend.domain.user.*;
+import com.oneao.ringcard_backend.domain.user.DTO.EditEmailAlertDto;
+import com.oneao.ringcard_backend.domain.user.DTO.FindPasswordDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserEmailUpdateDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserRingcardNameUpdateDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,8 +39,6 @@ public class UserService {
         return userRepository.findByUserEmail(userEmail);
     }
 
-
-
     public List<User> findAll() {
         return userRepository.findAll();
     }
@@ -54,6 +55,10 @@ public class UserService {
 
     public void updateUserPassword(Long userId, String newPassword) {
         userRepository.updateUserPassword(userId, newPassword);
+    }
+
+    public void updateUserEmailAlert(Long userId, EditEmailAlertDto emailAlertDto) {
+        userRepository.updateUserEmailAlert(userId, emailAlertDto);
     }
 
     public void deleteAccount(Long userId) {

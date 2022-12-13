@@ -1,7 +1,7 @@
 package com.oneao.ringcard_backend.web.user;
 
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
-import com.oneao.ringcard_backend.domain.user.EditPasswordDto;
+import com.oneao.ringcard_backend.domain.user.DTO.EditPasswordDto;
 import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;

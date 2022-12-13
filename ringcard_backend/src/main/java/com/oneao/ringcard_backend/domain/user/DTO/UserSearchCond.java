@@ -1,4 +1,4 @@
-package com.oneao.ringcard_backend.domain.user;
+package com.oneao.ringcard_backend.domain.user.DTO;
 
 import lombok.Data;
 

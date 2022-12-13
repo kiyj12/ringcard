@@ -23,6 +23,7 @@ import isLogin from "./utils/isLogin";
 import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
 import EditUserEmail from "./pages/mypage/EditUserEmail";
 import FindPassword from "./pages/auth/FindPassword";
+import EditEmailAlert from "./pages/mypage/EditEmailAlert";
 
 const AppRouter = () => {
 	return (
@@ -148,6 +149,16 @@ const AppRouter = () => {
 							<PrivateRoute
 								authenticated={isLogin()}
 								component={<EditUserEmail />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+										<Route
+						path="/mypage/info/edit/emailAlert"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<EditEmailAlert />}
 								noAuthComponent={<Navigate to="/loginForm" />}
 							/>
 						}
