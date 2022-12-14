@@ -24,6 +24,7 @@ import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
 import EditUserEmail from "./pages/mypage/EditUserEmail";
 import FindPassword from "./pages/auth/FindPassword";
 import EditEmailAlert from "./pages/mypage/EditEmailAlert";
+import SuggestionPage from "./pages/suggestion/SuggestionPage";
 
 const AppRouter = () => {
 	return (
@@ -153,7 +154,7 @@ const AppRouter = () => {
 							/>
 						}
 					/>
-										<Route
+					<Route
 						path="/mypage/info/edit/emailAlert"
 						element={
 							<PrivateRoute
@@ -169,6 +170,17 @@ const AppRouter = () => {
 							<PrivateRoute
 								authenticated={isLogin()}
 								component={<DeleteAccount />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+
+					<Route
+						path="/suggestion"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<SuggestionPage />}
 								noAuthComponent={<Navigate to="/loginForm" />}
 							/>
 						}

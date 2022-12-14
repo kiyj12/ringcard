@@ -126,6 +126,7 @@ const Join = () => {
 							<span className="user-icon-bar">|</span>
 							<input
 								className="user-inner-transparent"
+								placeholder="링카에서 쓸 닉네임을 입력해주세요."
 								{...register("userRingcardName", {
 									required: "링카이름은 필수 입력입니다.",
 									maxLength: {
