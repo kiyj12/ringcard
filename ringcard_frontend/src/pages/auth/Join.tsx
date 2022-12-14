@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/layout/header.css";
@@ -8,10 +8,15 @@ import "../../styles/user/userIcon.css";
 import "../../styles/user/userHeader.css";
 import "../../styles/join.css";
 
-import userEvent from "@testing-library/user-event";
-
-import { useNavigate } from "react-router-dom";
 import HeaderRingcaShort from "../../components/Header/HeaderRingcaShort";
+
+type FormValues = {
+	userRingcardName: string;
+	username: string;
+	password: string;
+	userEmail: string;
+	emailAlert: string;
+};
 
 const Join = () => {
 	type ResponseList = {
@@ -25,7 +30,7 @@ const Join = () => {
 	// submitted==true여야 새로고침 되도록.
 	const [submitted, setSubmitted] = useState(false);
 
-	const onSubmit = async (data: any) => {
+	const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
 		// alert(JSON.stringify(data));
@@ -71,12 +76,6 @@ const Join = () => {
 		return null;
 	}
 
-	const {
-		register,
-		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
-
 	// PW toggle start.
 	const [showPw, setShowPw] = useState<boolean>(false);
 	const toggleShowPw = () => {
@@ -108,21 +107,38 @@ const Join = () => {
 	}
 	// PW toggle fin.
 
+	const {
+		register,
+		handleSubmit,
+		watch,
+
+		formState: { isSubmitting, isDirty, errors },
+	} = useForm<FormValues>({ mode: "onChange" });
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="container">
 				<HeaderRingcaShort />
 				<div className="user-box">
 					<div className="user-box-in">
-						<div className="user-text">이름</div>
+						<div className="user-text">링카이름</div>
 						<div className="user-box-div-light user-icon-user-light">
 							<span className="user-icon-bar">|</span>
 							<input
 								className="user-inner-transparent"
 								{...register("userRingcardName", {
-									required: "답변이 입력되지 않았습니다.",
+									required: "링카이름은 필수 입력입니다.",
+									maxLength: {
+										value: 16,
+										message: "최대 16자 이하의 이름을 입력해주세요.",
+									},
 								})}
 							></input>
+						</div>
+						<div className="Join-input-error-message">
+							{errors?.userRingcardName && (
+								<p>{errors.userRingcardName.message}</p>
+							)}
 						</div>
 					</div>
 					<div className="user-box-in">
@@ -131,13 +147,29 @@ const Join = () => {
 							<span className="user-icon-bar">|</span>
 							<input
 								className="user-inner-transparent"
+								placeholder="아이디는 변경이 불가능합니다."
 								{...register("username", {
-									required: "답변이 입력되지 않았습니다.",
+									required: "아이디는 필수 입력입니다.",
+									pattern: {
+										// input의 정규식 패턴
+										value: /^[A-za-z0-9가-힣]{3,10}$/,
+										message: "가능한 문자: 영문 대소문자, 한글, 숫자", // 에러 메세지
+									},
+									minLength: {
+										value: 4,
+										message: "최소 4자 이상의 아이디를 입력해주세요.",
+									},
+									maxLength: {
+										value: 16,
+										message: "최대 16자 이하의 아이디를 입력해주세요.",
+									},
 								})}
 							></input>
 						</div>
+						<div className="Join-input-error-message">
+							{errors?.username && <p>{errors.username.message}</p>}
+						</div>
 					</div>
-
 					<div className="user-box-in">
 						<div className="user-text">비밀번호</div>
 						<div className="user-box-div user-icon-light">
@@ -145,9 +177,18 @@ const Join = () => {
 							<input
 								type={showPw ? "text" : "password"}
 								className="user-inner-transparent"
-								// placeholder="비밀번호를 입력해주세요"
+								placeholder="오른쪽 자물쇠를 클릭하면 확인 가능합니다."
 								{...register("password", {
-									required: "답변이 입력되지 않았습니다.",
+									required: "비밀번호는 필수 입력입니다.",
+									pattern: {
+										value: /^[A-za-z0-9@$!%*#?&]*$/,
+										message:
+											"가능한 문자: 영문 대소문자, 숫자, 특수문자 @$!%*#?&",
+									},
+									minLength: {
+										value: 8,
+										message: "최소 8자 이상의 비밀번호를 입력해주세요.",
+									},
 								})}
 							></input>
 							{showPw ? (
@@ -155,6 +196,9 @@ const Join = () => {
 							) : (
 								<HidePw onClick={toggleShowPw} />
 							)}
+						</div>
+						<div className="Join-input-error-message">
+							{errors?.password && <p>{errors.password.message}</p>}
 						</div>
 					</div>
 
@@ -165,12 +209,21 @@ const Join = () => {
 							<input
 								className="user-inner-transparent"
 								type="email"
+								placeholder="이메일은 비밀번호 찾을 때 사용됩니다."
 								{...register("userEmail", {
-									required: "비밀번호 찾을 때 사용됩니다.",
+									required: "이메일은 필수입력입니다.",
+									pattern: {
+										value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+										message: "이메일 형식이 아닙니다.",
+									},
 								})}
 							></input>
 						</div>
+						<div className="Join-input-error-message">
+							{errors?.userEmail && <p>{errors.userEmail.message}</p>}
+						</div>
 					</div>
+
 					<div className="user-box-in">
 						<label>
 							<input type="checkbox" {...register("emailAlert")} checked />
@@ -181,28 +234,10 @@ const Join = () => {
 
 				<div className="user-box-in">
 					<RedirectAndInputErrors />
-
-					{/* {
-					bindingResultHasErrors
-					? <div className="user-text">bindingResultHasErrors</div>
-					: null
-				}
-				{
-					overlappedUsername
-					? <div className="user-text">overlappedUsername</div>
-					: null
-				}
-				 */}
 					<button type="submit" className="user-btn join-btn">
 						<div className="user-btn-text">회원가입</div>
 					</button>
 				</div>
-
-				{/* <div className="join-delete-box">
-				<div className="join-delete">
-					<a className="join-delete-text" href="/">링카 계정을 완전히 지우고 싶어요</a>
-				</div>
-			</div> */}
 			</div>
 		</form>
 	);

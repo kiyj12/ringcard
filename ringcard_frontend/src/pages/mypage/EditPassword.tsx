@@ -12,6 +12,12 @@ import UserProfile from "../../components/atoms/UserProfile";
 import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
+type FormValues = {
+	pastPassword: string;
+	newPassword: string;
+	newPasswordConfirm: string;
+};
+
 const EditPassword = () => {
 	type ResponseList = {
 		// pastPasswordBlank: boolean;
@@ -102,7 +108,7 @@ const EditPassword = () => {
 		if (response.pastPasswordFalse) {
 			return (
 				<div className="user-text-error">
-					pastPasswordFalse 현재 비밀번호를 정확히 입력해 주세요
+					현재 비밀번호를 정확히 입력해 주세요.
 				</div>
 			);
 		}
@@ -112,13 +118,13 @@ const EditPassword = () => {
 		else if (response.passwordSame) {
 			return (
 				<div className="user-text-error">
-					passwordSame 새 비밀번호를 현재 비밀번호와 다르게 변경해 주세요.
+					새 비밀번호를 현재 비밀번호와 다르게 변경해 주세요.
 				</div>
 			);
 		} else if (response.newPasswordFalse) {
 			return (
 				<div className="user-text-error">
-					newPasswordFalse 새 비밀번호와 비밀번호 확인이 일치하지 않습니다.
+					새 비밀번호와 비밀번호 확인이 일치하지 않습니다.
 				</div>
 			);
 		} else if (response.passwordChanged && submitted) {
@@ -131,21 +137,11 @@ const EditPassword = () => {
 		return null;
 	}
 
-	// function ButtonToUserInfoEdit(){
-	// 	function handleClick(e: any){
-	// 			window.location.href="/mypage/info/edit"
-	// 	}
-	//   return(
-	//         <button className="user-btn editPassword-btn-cancel" onClick={handleClick}>
-	// 				  <div className="user-btn-text editPassword-btn-text-cancel">비밀번호 변경 취소하기</div>
-	// 				</button>)
-	// }
-
 	const {
 		register,
 		handleSubmit,
 		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
+	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -164,7 +160,7 @@ const EditPassword = () => {
 								<input
 									type={showPw ? "text" : "password"}
 									className="user-inner-transparent"
-									// placeholder="현재 비밀번호"
+									placeholder="현재 비밀번호를 입력해주세요."
 									{...register("pastPassword", {
 										required: "답변이 입력되지 않았습니다.",
 									})}
@@ -175,8 +171,10 @@ const EditPassword = () => {
 									<HidePw onClick={toggleShowPw} />
 								)}
 							</div>
+							<div className="Join-input-error-message">
+								{errors?.pastPassword && <p>{errors.pastPassword.message}</p>}
+							</div>
 						</div>
-						{/* <i if="${param.overlappedUsername}" text="'이미 존재하는 아이디입니다.'"></i> */}
 
 						<div className="user-box-in">
 							<div className="user-text">새 비밀번호</div>
@@ -184,9 +182,18 @@ const EditPassword = () => {
 								<input
 									type={showPw ? "text" : "password"}
 									className="user-inner-transparent"
-									// placeholder="새 비밀번호"
+									placeholder="새 비밀번호를 입력해주세요."
 									{...register("newPassword", {
 										required: "답변이 입력되지 않았습니다.",
+										pattern: {
+											value: /^[A-za-z0-9@$!%*#?&]*$/,
+											message:
+												"가능한 문자: 영문 대소문자, 숫자, 특수문자 @$!%*#?&",
+										},
+										minLength: {
+											value: 8,
+											message: "최소 8자 이상의 비밀번호를 입력해주세요.",
+										},
 									})}
 								></input>
 								{showPw ? (
@@ -194,6 +201,9 @@ const EditPassword = () => {
 								) : (
 									<HidePw onClick={toggleShowPw} />
 								)}
+							</div>
+							<div className="Join-input-error-message">
+								{errors?.newPassword && <p>{errors.newPassword.message}</p>}
 							</div>
 						</div>
 
@@ -203,15 +213,29 @@ const EditPassword = () => {
 								<input
 									type={showPw ? "text" : "password"}
 									className="user-inner-transparent"
-									// placeholder="새 비밀번호 확인"
+									placeholder="새 비밀번호를 다시 한 번 입력해주세요."
 									{...register("newPasswordConfirm", {
 										required: "답변이 입력되지 않았습니다.",
+										pattern: {
+											value: /^[A-za-z0-9@$!%*#?&]*$/,
+											message:
+												"가능한 문자: 영문 대소문자, 숫자, 특수문자 @$!%*#?&",
+										},
+										minLength: {
+											value: 8,
+											message: "최소 8자 이상의 비밀번호를 입력해주세요.",
+										},
 									})}
 								></input>
 								{showPw ? (
 									<ShowPw onClick={toggleShowPw} />
 								) : (
 									<HidePw onClick={toggleShowPw} />
+								)}
+							</div>
+							<div className="Join-input-error-message">
+								{errors?.newPasswordConfirm && (
+									<p>{errors.newPasswordConfirm.message}</p>
 								)}
 							</div>
 						</div>
@@ -230,20 +254,8 @@ const EditPassword = () => {
 								<div className="user-btn-text">저장하기</div>
 							</button>
 						</div>
-
-						{/* <div className="user-box-in">
-						<button className="user-btn editPassword-btn-cancel">
-					  	<div className="user-btn-text editPassword-btn-text-cancel">비밀번호 변경 취소하기</div>
-						</button>
-					</div> */}
 					</div>
 				</div>
-				{/* 여기에 비밀번호 찾기?? */}
-				{/* <div className="editPassword-delete-box">
-				<div className="editPassword-delete">
-					<a className="editPassword-delete-tag" href="/">링카 계정을 완전히 지우고 싶어요</a>
-				</div>
-			</div> */}
 			</div>
 		</form>
 	);

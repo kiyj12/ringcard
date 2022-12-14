@@ -12,6 +12,10 @@ import UserProfile from "../../components/atoms/UserProfile";
 import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
+type FormValues = {
+	userRingcardName: string;
+};
+
 const EditUserRingcardName = () => {
 	type ResponseList = {
 		overlappedUsername: boolean;
@@ -76,7 +80,7 @@ const EditUserRingcardName = () => {
 		register,
 		handleSubmit,
 		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
+	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -89,18 +93,6 @@ const EditUserRingcardName = () => {
 
 				<div>
 					<div className="user-box">
-						{/* <div className="user-box-in">
-						<div className="user-text">변경할 이름</div>
-						<input
-							type="userRingcardName"
-							className="user-icon user-icon-id-light"
-							// placeholder={user.userRingcardName}
-							{...register("userRingcardName", {
-							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
-					</div> */}
-
 						<div className="user-box-in">
 							<div className="user-text">기존 이름</div>
 							<input
@@ -116,11 +108,20 @@ const EditUserRingcardName = () => {
 							<input
 								className="user-icon user-icon-user-light"
 								// defaultValue={user.userRingcardName}
-								// placeholder="이름을 입력해주세요"
+								placeholder="변경할 이름을 입력해주세요"
 								{...register("userRingcardName", {
-									required: "답변이 입력되지 않았습니다.",
+									required: "변경할 이름이 입력되지 않았습니다.",
+									maxLength: {
+										value: 16,
+										message: "최대 16자 이하의 이름을 입력해주세요.",
+									},
 								})}
 							></input>
+							<div className="Join-input-error-message">
+								{errors?.userRingcardName && (
+									<p>{errors.userRingcardName.message}</p>
+								)}
+							</div>
 						</div>
 
 						<div className="user-box-in">

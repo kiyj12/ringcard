@@ -83,7 +83,7 @@ const DeleteAccount = () => {
 				onClick={handleClick}
 			>
 				<div className="user-btn-text deleteAccount-btn-text-cancel">
-					계속 링카를 사용하기
+					링카와 계속 함께 하기!
 				</div>
 			</button>
 		);
@@ -135,17 +135,9 @@ const DeleteAccount = () => {
 						<div className="user-box-in" style={{ height: "120px" }}>
 							<div className="user-text deleteAccount-text">
 								탈퇴하실 경우, 회원님의 링카 계정과 그동안 쌓인 질문과 답변들이
-								전부 즉시 사라집니다. 탈퇴하시겠습니까? 링카드는 울어요ㅠㅠ
+								전부 즉시 영구삭제됩니다. 탈퇴하시겠습니까? 링카는 울어요ㅠㅠ
 							</div>
 						</div>
-
-						{/* <div className="user-box-in">
-						<div className="user-text deleteAccount-text">탈퇴를 원하시면 비밀번호를 입력해주세요. </div>
-						<input className="user" placeholder="비밀번호를 입력해주세요" {...register("password", {
-							required: "답변이 입력되지 않았습니다.",
-							})}>
-						</input>
-					</div> */}
 
 						<div className="user-box-in">
 							<div className="user-text deleteAccount-text">
@@ -168,15 +160,6 @@ const DeleteAccount = () => {
 							</div>
 						</div>
 
-						{/* <div className="user-box-in">
-						<div className="user-text deleteAccount-text">새 비밀번호</div>
-						<input className="input deleteAccount-input" placeholder="새 비밀번호"></input>
-					</div>
-					<div className="user-box-in">
-						<div className="user-text deleteAccount-text">새 비밀번호 확인</div>
-						<input className="input deleteAccount-input" placeholder="새 비밀번호 확인"></input>
-					</div> */}
-
 						<div className="user-box-in">
 							<RedirectAndInputErrors />
 						</div>
@@ -192,12 +175,6 @@ const DeleteAccount = () => {
 						</div>
 					</div>
 				</div>
-				{/* 여기에 비밀번호 찾기?? */}
-				{/* <div className="deleteAccount-delete-box">
-				<div className="deleteAccount-delete">
-					<a className="deleteAccount-delete-text" href="/">링카 계정을 완전히 지우고 싶어요</a>
-				</div>
-			</div> */}
 			</div>
 		</form>
 	);

@@ -8,11 +8,15 @@ import "../../styles/user/userHeader.css";
 import "../../styles/layout/reactToast.css";
 import "../../styles/login.css";
 
-
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import HeaderRingca from "../../components/Header/HeaderRingca";
 // import Toastify from "../../components/Toast";
+
+type FormValues = {
+	username: string;
+	password: string;
+};
 
 const Login = () => {
 	// var Twitter = require('twitter');
@@ -154,7 +158,7 @@ const Login = () => {
 		register,
 		handleSubmit,
 		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
+	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	// PW toggle start.
 	const [showPw, setShowPw] = useState<boolean>(false);
@@ -210,10 +214,14 @@ const Login = () => {
 							<span className="user-icon-bar">|</span>
 							<input
 								className="user-inner-transparent"
+								placeholder="아이디를 입력해주세요."
 								{...register("username", {
-									required: "답변이 입력되지 않았습니다.",
+									required: "아이디가 입력되지 않았습니다.",
 								})}
 							></input>
+						</div>
+						<div className="Join-input-error-message">
+							{errors?.username && <p>{errors.username.message}</p>}
 						</div>
 					</div>
 
@@ -224,9 +232,9 @@ const Login = () => {
 							<input
 								type={showPw ? "text" : "password"}
 								className="user-inner-transparent"
-								// placeholder="비밀번호를 입력해주세요"
+								placeholder="비밀번호를 입력해주세요."
 								{...register("password", {
-									required: "답변이 입력되지 않았습니다.",
+									required: "비밀번호가 입력되지 않았습니다.",
 								})}
 							></input>
 							{showPw ? (
@@ -234,6 +242,9 @@ const Login = () => {
 							) : (
 								<HidePw onClick={toggleShowPw} />
 							)}
+						</div>
+						<div className="Join-input-error-message">
+							{errors?.password && <p>{errors.password.message}</p>}
 						</div>
 						<div className="Login-findPwd-text-box">
 							<Link
@@ -267,8 +278,6 @@ const Login = () => {
 
 					<div className="login-join-box">
 						<BtnToJoin />
-						{/* <button onClick={notify}/> */}
-						{/* <Toastify text="hello"/> */}
 					</div>
 				</div>
 			</div>

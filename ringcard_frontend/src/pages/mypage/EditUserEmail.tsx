@@ -12,6 +12,10 @@ import UserProfile from "../../components/atoms/UserProfile";
 import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
+type FormValues = {
+	userEmail: string;
+};
+
 const EditUserEmail = () => {
 	type ResponseList = {
 		sameUserEmail: boolean;
@@ -84,7 +88,7 @@ const EditUserEmail = () => {
 		register,
 		handleSubmit,
 		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
+	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -97,40 +101,6 @@ const EditUserEmail = () => {
 
 				<div>
 					<div className="user-box">
-						{/* <div className="user-box-in">
-						<div className="user-text">변경할 이름</div>
-						<input
-							type="userRingcardName"
-							className="user-icon user-icon-id-light"
-							// placeholder={user.userRingcardName}
-							{...register("userRingcardName", {
-							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
-					</div> */}
-
-						{/* <div className="user-box-in">
-						<div className="user-text">기존 이름</div>
-						<input
-							className="user-icon user-icon-user-dark"
-							value={userRingcardName}
-							// placeholder="이름을 입력해주세요"
-							readOnly
-						></input>
-					</div>
-
-					<div className="user-box-in">
-						<div className="user-text">변경할 이름</div>
-						<input
-							className="user-icon user-icon-user-light"
-							// defaultValue={user.userRingcardName}
-							// placeholder="이름을 입력해주세요"
-							{...register("userRingcardName", {
-							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
-					</div> */}
-
 						<div className="user-box-in">
 							<div className="user-text">기존 이메일</div>
 							<input
@@ -145,21 +115,21 @@ const EditUserEmail = () => {
 							<input
 								className="user-icon user-icon-user-light"
 								// defaultValue={user.userRingcardName}
-								// placeholder="이름을 입력해주세요"
+								type="email"
+								placeholder="변경할 이메일을 입력해주세요."
 								{...register("userEmail", {
-									required: "답변이 입력되지 않았습니다.",
+									required:
+										"이메일은 필수입력이며, 비밀번호 찾을 때 사용됩니다.",
+									pattern: {
+										value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+										message: "이메일 형식이 아닙니다.",
+									},
 								})}
 							></input>
+							<div className="Join-input-error-message">
+								{errors?.userEmail && <p>{errors.userEmail.message}</p>}
+							</div>
 						</div>
-
-						{/* <div className="user-box-in">
-					<div className="user-text">이메일</div>
-					<input className="user-icon user-icon-email-light" defaultValue={user.userEmail} placeholder="이메일을 입력해주세요"
-					type="email"
-					{...register("userEmail", {
-							required: "답변이 입력되지 않았습니다.",
-							})}></input>
-				</div> */}
 
 						<div className="user-box-in">
 							<RedirectAndInputErrors />
