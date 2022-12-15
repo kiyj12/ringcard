@@ -2,8 +2,7 @@ import React from "react";
 import { IQuestion } from "../types";
 import "../../styles/question.css";
 import axios from "axios";
-import { Link, Route, Routes } from "react-router-dom";
-import QuestionUnanswered from "../../pages/question/QuestionUnanswered";
+import { Link } from "react-router-dom";
 
 export interface FooterProps {
 	question: IQuestion;
@@ -17,14 +16,10 @@ function FooterUnansweredQuestion(props: FooterProps) {
 		await axios
 			.get("/question/" + questionId + "/delete/question")
 			.then((res) => {
-				console.log(
-					"Successfully enter handleTrashcanClick in QuestionNoteFooter :D"
-				);
-				console.log(res.data);
 				window.history.go(0); // referrer로 이전 페이지를 받아오면 안 된다. 현재 페이지를 해야됨!!!
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	};
 
@@ -33,15 +28,10 @@ function FooterUnansweredQuestion(props: FooterProps) {
 		await axios
 			.get("/question/" + questionId + "/restore/question")
 			.then((res) => {
-				console.log(
-					"Successfully enter handleRestoreClick in QuestionNoteFooter :D"
-				);
-				console.log(res.data);
-
 				window.history.go(0);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	};
 
@@ -50,44 +40,10 @@ function FooterUnansweredQuestion(props: FooterProps) {
 		await axios
 			.get("/question/" + questionId + "/inCollection")
 			.then((res) => {
-				console.log(
-					"Successfully enter handleCollectionClick in QuestionNoteFooter :D"
-				);
-				console.log(res.data);
 				window.history.go(0);
 			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-
-	const handleSendAnswerClick = async () => {
-		const questionId = String(question.id);
-		await axios
-			.get("/question/" + questionId + "/unanswered/user")
-			.then((res) => {
-				console.log(
-					"Successfully enter handleSendAnswerClick in QuestionNoteFooter :D"
-				);
-				console.log(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-
-	const handleEditAnswerClick = async () => {
-		const questionId = String(question.id);
-		await axios
-			.get("/question/" + questionId + "/edit/user")
-			.then((res) => {
-				console.log(
-					"Successfully enter handleEditAnswerClick in QuestionNoteFooter :D"
-				);
-				console.log(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	};
 
@@ -96,14 +52,10 @@ function FooterUnansweredQuestion(props: FooterProps) {
 		await axios
 			.get("/question/" + questionId + "/deleteAnswer")
 			.then((res) => {
-				console.log(
-					"Successfully enter handleDeleteAnswerClick in QuestionNoteFooter :D"
-				);
-				console.log(res.data);
 				window.history.go(0);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	};
 

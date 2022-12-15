@@ -9,7 +9,6 @@ import "../../styles/editUserInfo.css";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/atoms/UserProfile";
-import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
 type FormValues = {
@@ -25,7 +24,7 @@ const EditUserEmail = () => {
 		sameUserEmail: false,
 		overlappedUserEmail: false,
 	});
-	// submitted==true여야 새로고침 되도록.
+
 	const [submitted, setSubmitted] = useState(false);
 
 	const [user, setUser] = useState<any>([]);
@@ -37,25 +36,19 @@ const EditUserEmail = () => {
 			.then((res) => {
 				setUser(res.data);
 				setUserEmail(res.data.userEmail);
-				console.log(res.data);
 			})
-			.catch((err) => {
-				console.log(err.config);
-				console.log(err.response.data);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/mypage/info/edit/userEmail", data)
 			.then((res) => {
 				setResponse(res.data);
-				console.log(res.data);
 				setSubmitted(true);
 			})
 			.catch(function (error) {
@@ -65,17 +58,14 @@ const EditUserEmail = () => {
 
 	function RedirectAndInputErrors() {
 		if (response.sameUserEmail) {
-			// console.log(response.sameUserEmail);
 			return (
 				<div className="user-text-error">
 					변경할 이메일을 기존 이메일과 다르게 입력해 주세요.
 				</div>
 			);
 		} else if (response.overlappedUserEmail) {
-			// console.log(response.overlappedUserEmail);
 			return <div className="user-text-error">이미 존재하는 이메일입니다.</div>;
 		} else if (submitted) {
-			// 위 조건 만족할 때만 loginForm으로 새로고침
 			localStorage.setItem("toastShow", "1");
 			localStorage.setItem("toastText", "개인 정보가 수정되었습니다.");
 			window.location.href = "/mypage/info";
@@ -87,7 +77,7 @@ const EditUserEmail = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
+		formState: { errors },
 	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	return (
@@ -114,7 +104,6 @@ const EditUserEmail = () => {
 							<div className="user-text">변경할 이메일</div>
 							<input
 								className="user-icon user-icon-user-light"
-								// defaultValue={user.userRingcardName}
 								type="email"
 								placeholder="변경할 이메일을 입력해주세요."
 								{...register("userEmail", {

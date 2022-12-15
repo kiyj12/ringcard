@@ -1,7 +1,4 @@
-import axios from "axios";
 import React, { ReactElement, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { eventManager } from "react-toastify/dist/core";
 import "../../styles/selectNoteModal.css";
 import { colorDataType } from "../types";
 
@@ -27,8 +24,6 @@ const SelectNoteModal = (props: props): ReactElement => {
 		setNoteColorCode(NoteColorDict[event.target.textContent]);
 	}
 	useEffect(() => {
-		console.log(NoteColorName);
-		console.log(NoteColorCode);
 
 		const noteColorData: colorDataType = {
 			colorName: NoteColorName,

@@ -18,22 +18,11 @@ const UserInfo = () => {
 			.get("/mypage/info")
 			.then((res) => {
 				setUser(res.data);
-				console.log(res.data);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}, []);
-	// function ButtonToUserInfoEdit() {
-	// 	function handleClick(e: any) {
-	// 		window.location.href = "/mypage/info/edit";
-	// 	}
-	// 	return (
-	// 		<button className="user-btn userInfo-btn" onClick={handleClick}>
-	// 			<div className="user-btn-text">프로필 변경하기</div>
-	// 		</button>
-	// 	);
-	// }
 
 	function BtnToEditUserRingcardName() {
 		function handleClick(e: any) {

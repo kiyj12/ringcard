@@ -1,14 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import Toastify from "../../components/utils/Toast";
 import { useForm } from "react-hook-form";
 
 import "../../styles/suggestionPage.css";
 import "react-toastify/dist/ReactToastify.css";
-import { data } from "jquery";
-import { setConstantValue } from "typescript";
 
 type FormValues = {
 	senderUserId: any;
@@ -21,7 +18,6 @@ function SuggestionPage() {
 		useState<string>();
 	const [senderUserId, setSenderUserId] = useState<number>();
 	const [senderUsername, setSenderUsername] = useState<string>();
-	const [suggestionContents, setSuggestionContents] = useState<string>();
 
 	function setUserInfos() {
 		const senderUserIdBox = document.getElementById("senderUserId");
@@ -38,13 +34,12 @@ function SuggestionPage() {
 		axios
 			.get("/suggestion")
 			.then((res) => {
-				console.log(res.data);
 				setSenderUserRingcardName(res.data.senderUserRingcardName);
 				setSenderUserId(res.data.senderUserId);
 				setSenderUsername(res.data.senderUsername);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 
 		setUserInfos();
@@ -52,13 +47,9 @@ function SuggestionPage() {
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
-
-		console.log(data);
-
 		await axios
 			.post("/suggestion", data)
 			.then((res) => {
-				console.log(data);
 
 				localStorage.setItem("toastShow", "1");
 				localStorage.setItem(
@@ -68,21 +59,6 @@ function SuggestionPage() {
 				window.location.reload();
 			})
 			.catch(function (error) {
-				if (error.response) {
-					// The request was made and the server responded with a status code
-					// that falls out of the range of 2xx
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				} else if (error.request) {
-					// The request was made but no response was received
-					// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-					// http.ClientRequest in node.js
-					console.log(error.request);
-				} else {
-					// Something happened in setting up the request that triggered an Error
-					console.log("Error", error.message);
-				}
 				console.log(error.config);
 			});
 	};
@@ -118,7 +94,6 @@ function SuggestionPage() {
 		register,
 		handleSubmit,
 		setValue,
-		// formState: { isSubmitting, isDirty, errors },
 	} = useForm<FormValues>();
 
 	return (

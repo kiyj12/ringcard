@@ -5,7 +5,6 @@ import NowDate from "../utils/NowDate";
 import HyperlinkBox from "../atoms/HyperlinkBox";
 
 import { useEffect } from "react";
-import { forEachChild } from "typescript";
 import { Link } from "react-router-dom";
 
 export interface Props {

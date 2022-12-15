@@ -1,5 +1,4 @@
 import React from "react";
-import Pagination from "react-js-pagination";
 import { IQuestion } from "../types";
 
 import QuestionNote from "./QuestionNote";

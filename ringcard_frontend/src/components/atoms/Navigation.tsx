@@ -1,6 +1,5 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
+import {  NavLink } from "react-router-dom";
 import "../../styles/navigation.css";
 
 const Navigation = (props: any) => {
@@ -14,7 +13,6 @@ const Navigation = (props: any) => {
 
 	function BtnToPageUp() {
 		function handleClick(e: any) {
-			console.log("Up");
 			if (totalPages === undefined) {
 			} else if (showPageNumber >= totalPages) {
 			} else {
@@ -31,7 +29,6 @@ const Navigation = (props: any) => {
 
 	function BtnToPageDown() {
 		function handleClick(e: any) {
-			console.log("Down");
 			if (showPageNumber <= 1) {
 			} else {
 				page -= 1;

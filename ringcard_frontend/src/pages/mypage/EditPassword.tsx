@@ -9,7 +9,6 @@ import "../../styles/editPassword.css";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/atoms/UserProfile";
-import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
 type FormValues = {
@@ -20,17 +19,13 @@ type FormValues = {
 
 const EditPassword = () => {
 	type ResponseList = {
-		// pastPasswordBlank: boolean;
 		pastPasswordFalse: boolean;
-		// newPasswordBlank: boolean;
 		passwordSame: boolean;
 		newPasswordFalse: boolean;
 		passwordChanged: boolean;
 	};
 	const [response, setResponse] = useState<ResponseList>({
-		// pastPasswordBlank: false,
 		pastPasswordFalse: false,
-		// newPasswordBlank: false,
 		passwordSame: false,
 		newPasswordFalse: false,
 		passwordChanged: false,
@@ -75,25 +70,19 @@ const EditPassword = () => {
 			.get("/mypage/info")
 			.then((res) => {
 				setUser(res.data);
-				console.log(res.data);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/mypage/edit/password", data)
 			.then((res) => {
-				console.log(data);
 				setResponse(res.data);
-				console.log(res.data);
 				setSubmitted(true);
 			})
 			.catch(function (error) {
@@ -140,7 +129,7 @@ const EditPassword = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
+		formState: { errors },
 	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	return (

@@ -6,7 +6,6 @@ import SendQuestionForm from "../../components/SendQuestionForm/SendQuestionForm
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
 
-import { toast, ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IAnswer, IQuestion } from "../../components/types";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
@@ -21,38 +20,31 @@ function UserHome() {
 	const [totalPages, setTotalPages] = useState<Number>(0);
 	const [pageNumber, setPageNumber] = useState<Number>(0);
 	const questionId = "dummy";
-	// const { page } = useParams();
 
 	useEffect(() => {
 		axios
 			.get("/userHome/" + userName + "/0")
 			.then((res) => {
-				console.log(res.data);
 				setUseRingcardrName(res.data.userRingcardName);
 				setMap(res.data.map);
 				setTotalPages(res.data.pageInfo.totalPages);
 				setPageNumber(res.data.pageInfo.number + 1);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 
 	function BtnToViewMore() {
 		function handleClick(e: any) {
 			const newPage = pageNumber;
-			console.log("newPage=" + newPage);
-			console.log("pageNumber=" + pageNumber);
 			if (totalPages === undefined) {
 			} else if (newPage >= totalPages) {
 			} else {
 				axios
 					.get("/userHome/" + userName + "/" + newPage)
 					.then((res) => {
-						console.log(res.data);
 						const b: [[IQuestion, IAnswer]] = res.data.map;
-						// [IQuestion, IAnswer]
-						// 새로운 맵에 넣고, 그 맵을 다시 setMap 하자.
 						let mapTemp = [];
 						if (map) {
 							for (let idx = 0; idx < map.length; idx++) {
@@ -72,8 +64,8 @@ function UserHome() {
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
-					.catch((err) => {
-						console.log(err);
+					.catch(function (error) {
+						console.log(error.config);
 					});
 			}
 		}

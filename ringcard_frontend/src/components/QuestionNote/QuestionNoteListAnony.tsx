@@ -1,7 +1,3 @@
-import axios from "axios";
-import { url } from "inspector";
-import { useEffect, useState } from "react";
-import Pagination from "react-js-pagination";
 import { IAnswer, IQuestion } from "../types";
 
 import QuestionNoteAnony from "./QuestionNoteAnony";
@@ -29,17 +25,6 @@ function QuestionNoteList(props: Props) {
 				</div>
 			))}
 		</div>
-
-		// <div className="question-notes-container">
-		// 	{QandAmap.map((QA, idx) => (
-		// 		<QuestionNoteAnony
-		// 			key={idx}
-		// 			idx={idx}
-		// 			question={QA[0]}
-		// 			answer={QA[1]}
-		// 		/>
-		// 	))}
-		// </div>
 	);
 }
 
