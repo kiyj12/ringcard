@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
+import AnsweredQuestionNote from "../../components/QuestionNote/AnsweredQuestionNote";
 import Header from "../../components/Header/Header";
-import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
-import SendQuestionForm from "../../components/SendQuestionFormQuestionAnony";
+import QuestionNoteListAnony from "../../components/QuestionNote/QuestionNoteListAnony";
+import SendQuestionForm from "../../components/SendQuestionForm/SendQuestionFormQuestionAnony";
 import { IAnswer, IQuestion } from "../../components/types";
 
 import "../../styles/questionAnony.css";

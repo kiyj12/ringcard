@@ -7,8 +7,9 @@ import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/userInfo.css";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
-import UserProfile from "../../components/UserProfile";
-import Toastify from "../../components/Toast";
+import UserProfile from "../../components/atoms/UserProfile";
+import Toastify from "../../components/utils/Toast";
+import { Link } from "react-router-dom";
 
 const UserInfo = () => {
 	const [user, setUser] = useState<any>([]);
@@ -34,45 +35,61 @@ const UserInfo = () => {
 	// 	);
 	// }
 
-	function BtnToEditUserRingcardName(){
-		function handleClick(e: any){
-				window.location.href="/mypage/info/edit/userRingcardName"
+	function BtnToEditUserRingcardName() {
+		function handleClick(e: any) {
+			window.location.href = "/mypage/info/edit/userRingcardName";
 		}
-			return(
-				<button className="user-box-btn" onClick={handleClick}>변경</button>
-			)
+		return (
+			<button className="user-box-btn" onClick={handleClick}>
+				변경
+			</button>
+		);
 	}
 
-	function BtnToEditUserEmail(){
-		function handleClick(e: any){
-				window.location.href="/mypage/info/edit/userEmail"
+	function BtnToEditUserEmail() {
+		function handleClick(e: any) {
+			window.location.href = "/mypage/info/edit/userEmail";
 		}
-			return(
-				<button className="user-box-btn" onClick={handleClick}>변경</button>
-			)
+		return (
+			<button className="user-box-btn" onClick={handleClick}>
+				변경
+			</button>
+		);
 	}
 
-	function BtnToEditPw(){
-		function handleClick(e: any){
-				window.location.href="/mypage/edit/password"
+	function BtnToEditPw() {
+		function handleClick(e: any) {
+			window.location.href = "/mypage/edit/password";
 		}
-			return(
-				<button className="user-box-btn" onClick={handleClick}>변경</button>
-			)
+		return (
+			<button className="user-box-btn" onClick={handleClick}>
+				변경
+			</button>
+		);
+	}
+
+	function BtnToEditEmailAlert() {
+		function handleClick(e: any) {
+			window.location.href = "/mypage/info/edit/emailAlert";
+		}
+		return (
+			<button className="user-box-btn" onClick={handleClick}>
+				변경
+			</button>
+		);
 	}
 
 	return (
 		<div className="container">
 			<HeaderNoProfile />
-			<Toastify/>
-      <div className="userInfo-profile-container">
-				<UserProfile/>
+			<Toastify />
+			<div className="userInfo-profile-container">
+				<UserProfile />
 				<div className="user-profile-name">{user.userRingcardName}</div>
 			</div>
 			<div>
 				<div className="user-box">
-				
-				<div className="user-box-in">
+					<div className="user-box-in">
 						<div className="user-text">이름</div>
 						<div className="user-box-div user-icon-dark">
 							<input
@@ -80,11 +97,11 @@ const UserInfo = () => {
 								value={user.userRingcardName}
 								readOnly
 							></input>
-							<BtnToEditUserRingcardName/>
+							<BtnToEditUserRingcardName />
+						</div>
 					</div>
-				</div>
 
-{/* 				
+					{/* 				
 					<div className="user-box-in">
 						<div className="user-text">이름</div>
 						<input
@@ -93,7 +110,6 @@ const UserInfo = () => {
 							readOnly
 						></input>
 					</div> */}
-
 
 					<div className="user-box-in">
 						<div className="user-text">아이디</div>
@@ -113,7 +129,7 @@ const UserInfo = () => {
 								// placeholder="●●●●●●●●●●"
 								readOnly
 							></input>
-							<BtnToEditPw/>
+							<BtnToEditPw />
 						</div>
 					</div>
 
@@ -134,9 +150,21 @@ const UserInfo = () => {
 								value={user.userEmail}
 								readOnly
 							></input>
-							<BtnToEditUserEmail/>
+							<BtnToEditUserEmail />
+						</div>
 					</div>
-				</div>
+
+					<div className="user-box-in">
+						<div className="user-text">이메일 알림 수신 여부</div>
+						<div className="user-box-div user-icon-dark">
+							{user.emailAlert ? (
+								<div className="UserInfo-isEmailAlert-text">받기</div>
+							) : (
+								<div className="UserInfo-isEmailAlert-text">받지 않기</div>
+							)}
+							<BtnToEditEmailAlert />
+						</div>
+					</div>
 
 					{/* <div className="user-box-in">
 						<div className="user-text">아이디</div>
@@ -147,21 +175,27 @@ const UserInfo = () => {
 						></input>
 					</div> */}
 
-					<div className="user-box-in">
-						{/* <ButtonToUserInfoEdit /> */}
-					</div>
+					<div className="user-box-in">{/* <ButtonToUserInfoEdit /> */}</div>
 				</div>
-				</div>
+			</div>
 
 			<div className="userInfo-delete-box">
 				<div className="userInfo-delete">
-					<a className="userInfo-delete-text" href="/mypage/delete/account">
+					<Link
+						className="userInfo-delete-text"
+						to="/mypage/delete/account"
+						style={{
+							textDecorationLine: "underline",
+							textDecorationColor: "white",
+							textDecorationThickness: "0.5px",
+							color: "white",
+						}}
+					>
 						링카 계정을 완전히 지우고 싶어요
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>
-
 	);
 };
 

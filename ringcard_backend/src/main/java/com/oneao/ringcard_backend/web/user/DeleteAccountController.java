@@ -3,7 +3,7 @@ package com.oneao.ringcard_backend.web.user;
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.domain.answer.SpringDataJpaAnswerRepository;
 import com.oneao.ringcard_backend.domain.question.Question;
-import com.oneao.ringcard_backend.domain.user.DeleteAccountDto;
+import com.oneao.ringcard_backend.domain.user.DTO.DeleteAccountDto;
 import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.service.QuestionService;
 import com.oneao.ringcard_backend.service.UserService;

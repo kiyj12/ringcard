@@ -31,7 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthenticationFailureHandler customFailureHandler;
 
 
-
     // 해당 메소드는 리턴되는 오브젝트를 IoC로 등록해준다.
     @Bean
     public BCryptPasswordEncoder encodePwd() {

@@ -11,32 +11,6 @@ interface props {
 const Modal = (props: props): ReactElement => {
 	const { open, close } = props;
 
-	// const handleMyInfoClick = async () => {
-	// 	await axios
-	// 		.get("/mypage/info")
-	// 		.then((res) => {
-	// 			window.location.href = "/mypage/info";
-	// 			console.log(
-	// 				"Successfully enter handleMyInfoClick in QuestionNoteFooter :D"
-	// 			);
-	// 			console.log(res.data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
-
-	// const onClickHandler = () => {
-	// 	axios
-	// 		.get("/logout")
-	// 		.then((response) => {
-	// 			window.location.replace("/loginForm");
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
-
 	return (
 		<>
 			<div className={open ? "bg" : ""} />
@@ -52,6 +26,9 @@ const Modal = (props: props): ReactElement => {
 						<div className="menu-container">
 							<Link to={"/mypage/info"} style={{ textDecoration: "none" }}>
 								<div className="menu-element">마이 페이지</div>
+							</Link>
+							<Link to={"/suggestion"} style={{ textDecoration: "none" }}>
+								<div className="menu-element">건의사항</div>
 							</Link>
 
 							<Link to={"/logout"} style={{ textDecoration: "none" }}>

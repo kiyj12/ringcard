@@ -1,9 +1,11 @@
 package com.oneao.ringcard_backend.web.user;
 
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
+import com.oneao.ringcard_backend.domain.user.DTO.EditEmailAlertDto;
+import com.oneao.ringcard_backend.domain.user.DTO.RegisterUserDto;
 import com.oneao.ringcard_backend.domain.user.User;
-import com.oneao.ringcard_backend.domain.user.UserEmailUpdateDto;
-import com.oneao.ringcard_backend.domain.user.UserRingcardNameUpdateDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserEmailUpdateDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserRingcardNameUpdateDto;
 import com.oneao.ringcard_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,16 +31,12 @@ public class EditUserInfoController {
     private final UserService userService;
 
     @GetMapping("/edit")
-    public ResponseEntity<User> editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
-
+    public ResponseEntity<RegisterUserDto> editUserInfoForm(@AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         User user = loginUser.getUser();
-//        List<User> userList = Arrays.asList(user);
-
-//        List<User> userList = Collections.emptyList();
+        RegisterUserDto registerUserDto = new RegisterUserDto(user.getUsername(), user.getUserRingcardName(), user.getUserEmail(), user.isEmailAlert());
         //        Long userId = user.getId();
         //        model.addAttribute("user", user);
-        //        model.addAttribute("userId", userId);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(registerUserDto);
     }
 
     //username 수정하지 않는 버전
@@ -159,6 +157,21 @@ public class EditUserInfoController {
 //        userService.updateUserEmail(userId, requestBody);
 //        return ResponseEntity.ok(response);
     }
+    @PostMapping("/edit/emailAlert")
+    public ResponseEntity<RegisterUserDto> editEmailAlert(@AuthenticationPrincipal PrincipalDetails loginUser, @Valid @RequestBody EditEmailAlertDto requestBody) {
+        User user = loginUser.getUser();
+        Long userId = user.getId();
+
+        boolean isEmailAlert = requestBody.isEmailAlert();
+        System.out.println("isEmailAlert = " + isEmailAlert);
+
+        userService.updateUserEmailAlert(userId, requestBody);
+        RegisterUserDto response = new RegisterUserDto(user.getUsername(), user.getUserRingcardName(), user.getUserEmail(), user.isEmailAlert());
+        return ResponseEntity.ok(response);
+
+    }
+
+
 
 //    @PostMapping("/edit")
 //    public ResponseEntity<HashMap<String, Boolean>> editUserInfo(@AuthenticationPrincipal PrincipalDetails loginUser, @Valid @RequestBody UserUpdateDto requestBody) {

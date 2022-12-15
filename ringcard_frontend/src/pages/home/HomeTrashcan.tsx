@@ -3,10 +3,10 @@ import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/home.css";
 import Header from "../../components/Header/Header";
-import Navigation from "../../components/Navigation";
-import QuestionNoteList from "../../components/QuestionNoteList";
+import Navigation from "../../components/atoms/Navigation";
+import QuestionNoteList from "../../components/QuestionNote/QuestionNoteList";
 import { useSearchParams } from "react-router-dom";
-import Toast from "../../components/Toast";
+import Toast from "../../components/utils/Toast";
 import ClearTrashcanModal from "../../components/Modal/ClearTrashcanModal";
 
 function HomeUnanswered() {

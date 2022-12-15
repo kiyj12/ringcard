@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
-import SendQuestionForm from "../../components/SendQuestionFormUserHome";
+import QuestionNoteListAnony from "../../components/QuestionNote/QuestionNoteListAnony";
+import SendQuestionForm from "../../components/SendQuestionForm/SendQuestionFormUserHome";
 import "../../styles/layout/layout.css";
 import "../../styles/userHome.css";
 
@@ -110,9 +110,7 @@ function UserHome() {
 			<div className="contents-container block">
 				<div className="UserHome-profile-box">
 					<img src="/profile-imgs/oring_1.png" alt="" />
-					<div className="UserHome-profile-username">
-						{userRingcardName}
-					</div>
+					<div className="UserHome-profile-username">{userRingcardName}</div>
 				</div>
 				<div className="UserHome-SendQuestionForm-container">
 					<SendQuestionForm userName={userName} />
