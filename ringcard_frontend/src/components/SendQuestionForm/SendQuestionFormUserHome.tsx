@@ -16,7 +16,6 @@ function SendQuestionFormUserHome(props: Props) {
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
 		console.log(data);
 
 		await axios

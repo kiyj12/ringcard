@@ -9,6 +9,7 @@ import com.oneao.ringcard_backend.service.MailService;
 import com.oneao.ringcard_backend.service.UserService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import static java.sql.Types.NULL;
 
-
+@EnableAsync
 @Controller
 @RequiredArgsConstructor
 @RestController
@@ -120,7 +121,6 @@ public class SendQuestionController {
             String userEmail = user.getUserEmail();
             SendMailDto dto = mailService.sendNewQuestionMail(userEmail);
             mailService.mailSend(dto);
-
         }
 
 

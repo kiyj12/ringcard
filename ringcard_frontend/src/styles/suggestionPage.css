@@ -90,8 +90,9 @@
 .SendQuestionFormSuggestionpage-sender {
   /* background-color: rgb(214, 98, 98); */
 
-  padding: 18px 0 8px 15px;
-  margin: 10px auto 0 15px;
+  padding: 18px 15px 8px 15px;
+  margin: 10px 15px 0 15px;
+  text-align: left;
 
   border-radius: 10px;
 

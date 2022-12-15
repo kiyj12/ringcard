@@ -17,7 +17,6 @@ type FormValues = {
 };
 
 function SuggestionPage() {
-	const params = useParams();
 	const [senderUserRingcardName, setSenderUserRingcardName] =
 		useState<string>();
 	const [senderUserId, setSenderUserId] = useState<number>();
@@ -54,20 +53,19 @@ function SuggestionPage() {
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
 		console.log(data);
 
 		await axios
 			.post("/suggestion", data)
 			.then((res) => {
 				console.log(data);
-				setSuggestionContents(data.contents);
+
 				localStorage.setItem("toastShow", "1");
 				localStorage.setItem(
 					"toastText",
 					"건의사항이 안전하게 전달되었습니다."
 				);
-				// window.location.reload();
+				window.location.reload();
 			})
 			.catch(function (error) {
 				if (error.response) {
