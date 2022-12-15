@@ -40,14 +40,10 @@ public class AddAnswerFormController {
         model.addAttribute("userName",userName);
         model.addAttribute("question", question);
         
-        System.out.println("model = " + model);
-//        return "redirect:/{questionId}/completed";
-//        return "question/unanswered";
         return ResponseEntity.ok(model);
     }
     @GetMapping("/completed/user/{page}")
     public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PathVariable int page) {
-        System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
         String userName = loginUser.getUsername();
         Question question = questionService.findById(questionId, userId).get();
@@ -60,14 +56,12 @@ public class AddAnswerFormController {
 
         PageRequest pageRequest = PageRequest.of(page, 7, Sort.by("uploadTime").descending());
 
-//        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
         model.addAttribute("userName", userName);
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
         model.addAttribute("questions", questions);
-//        System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);
     }

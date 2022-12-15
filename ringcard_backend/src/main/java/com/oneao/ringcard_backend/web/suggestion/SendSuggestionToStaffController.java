@@ -45,18 +45,10 @@ public class SendSuggestionToStaffController {
         User sender = loginUser.getUser();
         Long senderUserId = sender.getId();
         String senderUsername = sender.getUsername();
-        System.out.println("SendSuggestionToStaffController.sendSuggestion");
-        System.out.println("requestBody = " + requestBody);
         if (Objects.equals(senderUserId, requestBody.getSenderUserId()) && Objects.equals(senderUsername, requestBody.getSenderUsername())) {
-            System.out.println("통과함");
             String suggestionContents = requestBody.getContents();
-            System.out.println("저장직전");
-            System.out.println("senderUserId = " + senderUserId);
-            System.out.println("senderUsername = " + senderUsername);
             Suggestion suggestion = new Suggestion(senderUserId, senderUsername, suggestionContents);
-            System.out.println("저장직전");
             suggestionService.save(suggestion);
-            System.out.println("저장됨");
         }
     }
 }

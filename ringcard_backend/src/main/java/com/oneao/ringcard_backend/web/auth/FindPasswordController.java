@@ -41,14 +41,12 @@ public class FindPasswordController {
             Boolean hasErrorFlag = false;
 
             if (bindingResult.hasErrors()) {
-                System.out.println("bindingResult.hasErrors()");
                 response.put("bindingResultHasErrors",true);
                 hasErrorFlag = true;
             }
             String userEmail = requestBody.get("userEmail");
             System.out.println("userEmail = " + userEmail);
             if (userService.findByUserEmail(userEmail).isEmpty()) {
-                System.out.println("noEmailLikeThat");
                 response.put("noEmailLikeThat",true);
                 hasErrorFlag = true;
             }
@@ -57,8 +55,6 @@ public class FindPasswordController {
             }
 
             Optional<User> optionalUser = userService.findByUserEmail(userEmail);
-            System.out.println("memberEmail = " + userEmail);
-            System.out.println("optionalUser = " + optionalUser);
             if (optionalUser.isPresent()) {
                 SendMailDto dto = userService.createMailAndChangePassword(userEmail);
                 mailService.mailSend(dto);
