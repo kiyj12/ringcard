@@ -16,10 +16,11 @@ spring:
 #            client-secret: dkHPKnXel9A99r2NU1SkHDF56Up-hWemOVe_aPmcjhSXxxyiKn
 #            scope: tweet.read,users.read
             scope:
+#              - profile
               - tweet.read
-#              - tweet.write
+              - tweet.write
 #              - offline.access
-              - users.read
+#              - users.read
 #            code_challenge: challenge
 #            code_challenge_method: plain
             client-name: Twitter

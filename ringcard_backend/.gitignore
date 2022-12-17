@@ -21,6 +21,7 @@ bin/
 ### IntelliJ IDEA ###
 application-aws.properties
 application-twitter.properties
+application-mail.properties
 .idea
 *.iws
 *.iml

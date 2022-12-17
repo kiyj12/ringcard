@@ -34,8 +34,10 @@ public class AddAnswerFormController {
     @GetMapping("/unanswered/user")
     public ResponseEntity<Model> answerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
-
+        String userName = loginUser.getUsername();
         Question question = questionService.findById(questionId, userId).get();
+
+        model.addAttribute("userName",userName);
         model.addAttribute("question", question);
         
         System.out.println("model = " + model);
@@ -47,6 +49,7 @@ public class AddAnswerFormController {
     public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PathVariable int page) {
         System.out.println("check complete user");
         Long userId = loginUser.getUser().getId();
+        String userName = loginUser.getUsername();
         Question question = questionService.findById(questionId, userId).get();
 
         Long answerId = answerService.findByQuestionId(questionId).get().getId();
@@ -55,14 +58,15 @@ public class AddAnswerFormController {
         // 미응답 질문 리스트에서 본인 제외
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
 
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        PageRequest pageRequest = PageRequest.of(page, 7, Sort.by("uploadTime").descending());
 
 //        Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageRequest);
 
-        model.addAttribute("questions", questions);
+        model.addAttribute("userName", userName);
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        model.addAttribute("questions", questions);
 //        System.out.println("model = " + model);
 
         return ResponseEntity.ok(model);

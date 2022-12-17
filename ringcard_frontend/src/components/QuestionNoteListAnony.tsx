@@ -16,6 +16,7 @@ function QuestionNoteList(props: Props) {
 	const QandAmap = props.map;
 	const questionId = Number(props.questionId);
 
+
 	return (
 		// questionId와 겹치는 질문 리스트에서 제거
 		<div>

@@ -2,12 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import AnsweredQuestionNote from "../../components/AnsweredQuestionNote";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import QuestionNoteList from "../../components/QuestionNoteList";
 import "../../styles/answerCompletedPage.css";
 
 function AnswerCompletedPage() {
-	const {questionId} = useParams();
+	const [userName, setUserName] = useState<String>();
+
+	const { questionId } = useParams();
 	// const {params} = useParams();
 	// const questionId = params.questionId;
 	const [question, setQuestion] = useState<any>([]);
@@ -38,9 +40,9 @@ function AnswerCompletedPage() {
 	function BtnToViewMore() {
 		function handleClick(e: any) {
 			let newPage = pageNumber;
-			console.log("newPage="+newPage);
-			console.log("pageNumber="+pageNumber);
-			console.log("totalPages="+totalPages);
+			console.log("newPage=" + newPage);
+			console.log("pageNumber=" + pageNumber);
+			console.log("totalPages=" + totalPages);
 			if (totalPages === undefined) {
 			} else if (newPage >= totalPages) {
 			} else {
@@ -50,8 +52,8 @@ function AnswerCompletedPage() {
 						console.log(res.data);
 						// setQuestionList1(res.data.questions.content);
 
-						const a:any[]=res.data.questions.content;
-						console.log("a="+res.data.questions.content);
+						const a: any[] = res.data.questions.content;
+						console.log("a=" + res.data.questions.content);
 						let mapTemp = [];
 						if (questionList) {
 							for (let idx = 0; idx < questionList.length; idx++) {
@@ -68,7 +70,6 @@ function AnswerCompletedPage() {
 						}
 						setTotalPages(res.data.questions.totalPages);
 						setPageNumber(res.data.questions.number + 1);
-
 					})
 					.catch((err) => {
 						console.log(err);
@@ -76,31 +77,30 @@ function AnswerCompletedPage() {
 			}
 		}
 		return (
-		<div>
-		{questionList? 
 			<div>
-			{questionList.length>0
-				? 
-					<div className="UserHome-viewMore-btn-box">
-						{totalPages === pageNumber ? undefined : 
-							<div className="UserHome-viewMore-btn-container">
-								<div className="UserHome-viewMore-btn-section">
-									<button
-										className="UserHome-viewMore-btn"
-										onClick={handleClick}
-									>
-										+ 더보기
-									</button>
-								</div>
+				{questionList ? (
+					<div>
+						{questionList.length > 0 ? (
+							<div className="UserHome-viewMore-btn-box">
+								{totalPages === pageNumber ? undefined : (
+									<div className="UserHome-viewMore-btn-container">
+										<div className="UserHome-viewMore-btn-section">
+											<button
+												className="UserHome-viewMore-btn"
+												onClick={handleClick}
+											>
+												+ 더보기
+											</button>
+										</div>
+									</div>
+								)}
 							</div>
-						}
+						) : null}
 					</div>
-				:null}</div>
-			:null}
-		</div>
+				) : null}
+			</div>
 		);
 	}
-
 
 	// function BtnToViewMore() {
 	// 	function handleClick(e: any) {
@@ -154,7 +154,7 @@ function AnswerCompletedPage() {
 
 	return (
 		<div className="container">
-			<Header />
+			<Header userName={userName} />
 			<div className="contents-container">
 				<div className="questionPage-the-question-container">
 					<AnsweredQuestionNote question={question} answer={answer} />
@@ -172,7 +172,6 @@ function AnswerCompletedPage() {
 
 					<BtnToViewMore />
 				</div>
-
 			</div>
 		</div>
 	);

@@ -31,12 +31,10 @@ function QuestionNote(props: Props) {
 	const tapeTypeStr = String(question.tapeType);
 	const tapeUrl = String("/masking-tapes/tape" + tapeTypeStr + ".svg");
 
-
 	useEffect(() => {
 		const eachNote = document.getElementById(qIdStr);
 		eachNote?.setAttribute("style", chosenPosition);
 	});
-
 
 	const qNoteType = String(question.noteType);
 
@@ -58,7 +56,7 @@ function QuestionNote(props: Props) {
 			</div>
 			<div className="note-header">
 				<div className="note-profile-pic">
-					<img src="/test-anony-profile-pic.jpg" alt="" />
+					<img src="/profile-imgs/oring_2.png" alt="" />
 				</div>
 				{/* <div className="note-time">{nowDate}</div> */}
 				<NowDate questionUploadTime={question.uploadTime} />

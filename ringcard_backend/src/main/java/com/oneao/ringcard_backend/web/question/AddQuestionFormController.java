@@ -51,11 +51,12 @@ public class AddQuestionFormController {
         Answer answer = answerService.findByQuestionId(questionId).get();
 
         // user도 모델에 보내기
+        // 퀘스쳔 어나니에서의 user는 해당 퀘스쳔의 주인!
         User user = userService.findById(question.getUserId()).get();
         Long userId = user.getId();
 
         // 해당 질문 제외한 다른 응답 질문 리스트
-        PageRequest pageRequest = PageRequest.of(page, 5, Sort.by("uploadTime").descending());
+        PageRequest pageRequest = PageRequest.of(page, 15, Sort.by("uploadTime").descending());
         Page<Question> questions = questionService.findAllAnsweredNotInTrashNoAuth(userId, pageRequest);
 //        questions.remove(question)
         System.out.println("questions.getContent()="+questions.getContent());
@@ -87,11 +88,12 @@ public class AddQuestionFormController {
             put("number", questions.getNumber());
         }};
 
-        model.addAttribute("map", map);
-        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("userName" , user.getUsername());
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
-        model.addAttribute("user", user);
+        model.addAttribute("map", map);
+        model.addAttribute("pageInfo", pageInfo);
+
         return ResponseEntity.ok(model);
     }
 }

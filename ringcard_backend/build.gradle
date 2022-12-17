@@ -32,6 +32,9 @@ dependencies {
 //	implementation "com.twitter:twitter-api-java-sdk:1.1.4"
 //	compileOnly('org.twitter4j:twitter4j-core:4.1.1')
 //	implementation "com.twitter:twitter-api-java-sdk:2.0.3"
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+// https://mvnrepository.com/artifact/javax.mail/mail
+	implementation 'javax.mail:mail:1.4.7'
 
 //	implementation 'org.springframework.boot:bootspring-boot-starter-oauth2-client'
 	implementation "com.twitter:twitter-api-java-sdk:2.0.3"

@@ -19,7 +19,7 @@ function AnsweredQuestionNote(props: Props) {
 		"width: 130px; height: 28px; transform: rotate(20deg); margin: 6px -9px -10px auto;",
 		"width: 100px; height: 28px; transform: rotate(36deg); margin: 8px -11px -10px auto;",
 	];
-	const chosenPosition = tapePositionList[question.tapePosition];
+	const chosenPosition = tapePositionList[question.tapePosition - 1];
 
 	const qIdStr = String(question.id);
 	const tapeTypeStr = String(question.tapeType);
@@ -54,7 +54,7 @@ function AnsweredQuestionNote(props: Props) {
 			>
 				<div className="each-note-header">
 					<div className="note-profile-pic">
-						<img src="/test-anony-profile-pic.jpg" alt="" />
+						<img src="/profile-imgs/oring_2.png" alt="" />
 					</div>
 					<NowDate questionUploadTime={question.uploadTime} />
 				</div>
