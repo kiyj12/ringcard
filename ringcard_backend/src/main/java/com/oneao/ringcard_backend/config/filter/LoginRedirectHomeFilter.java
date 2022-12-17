@@ -24,7 +24,6 @@ public class LoginRedirectHomeFilter implements Filter {
             chain.doFilter(request, res);
 
         } else{
-            System.out.println("LoginRedirectHomeFilter.doFilter");
             chain.doFilter(request, response);
         }
 

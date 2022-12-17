@@ -1,12 +1,15 @@
 package com.oneao.ringcard_backend.web.question;
 
+import com.oneao.ringcard_backend.domain.DTO.SendMailDto;
 import com.oneao.ringcard_backend.domain.question.QuestionSendDto;
 import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.service.AnswerService;
+import com.oneao.ringcard_backend.service.MailService;
 import com.oneao.ringcard_backend.service.UserService;
 import com.oneao.ringcard_backend.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +25,7 @@ import java.util.List;
 
 import static java.sql.Types.NULL;
 
-
+@EnableAsync
 @Controller
 @RequiredArgsConstructor
 @RestController
@@ -31,9 +34,10 @@ public class SendQuestionController {
     private final QuestionService questionService;
     private final AnswerService answerService;
     private final UserService userService;
+    private final MailService mailService;
 
     @PostMapping({"question/{questionId}/anony"})
-    public void addQuestion(@PathVariable Long questionId, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestBody QuestionSendDto requestBody) {
+    public void addQuestionQuestionAnony(@PathVariable Long questionId, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestBody QuestionSendDto requestBody) {
 
         // 이미 띄워져있는 question의 정보
         Question beforeQuestion= questionService.findByIdNoAuth(questionId).get();
@@ -66,17 +70,21 @@ public class SendQuestionController {
 
         Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType, questionTapePosition);
 
-        System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
 
-//        redirectAttributes.addAttribute("questionId", beforeQuestion.getId());
-//        redirectAttributes.addAttribute("status",true);
-//
-//        return "redirect:/question/{questionId}/anony/{page}";
+        User user = userService.findById(userId).get();
+
+        if(user.isEmailAlert()) {
+            String userEmail = user.getUserEmail();
+            SendMailDto dto = mailService.sendNewQuestionMail(userEmail);
+            mailService.mailSend(dto);
+
+        }
+
     }
 
     @PostMapping({"userHome/{username}"})
-    public void addQuestion2(@PathVariable String username, HttpServletRequest request, @RequestBody QuestionSendDto requestBody) {
+    public void addQuestionUserHome(@PathVariable String username, HttpServletRequest request, @RequestBody QuestionSendDto requestBody) {
         User user = userService.findByUsername(username).get();
 
         String questionContents = requestBody.getQuestionContents();
@@ -105,8 +113,13 @@ public class SendQuestionController {
         Long userId = user.getId();
         Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType, questionTapePosition);
 
-        System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
+
+        if(user.isEmailAlert()) {
+            String userEmail = user.getUserEmail();
+            SendMailDto dto = mailService.sendNewQuestionMail(userEmail);
+            mailService.mailSend(dto);
+        }
 
 
     }

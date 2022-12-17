@@ -1,6 +1,9 @@
 package com.oneao.ringcard_backend.domain.user;
 
 
+import com.oneao.ringcard_backend.domain.user.DTO.EditEmailAlertDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserEmailUpdateDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserRingcardNameUpdateDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,6 +26,8 @@ public interface UserRepository {
     void updateUserEmail(Long userId, UserEmailUpdateDto updateParam);
 
     void updateUserPassword(Long userId, String newPassword);
+
+    void updateUserEmailAlert(Long userId, EditEmailAlertDto updateParam);
 
     @Transactional
     void deleteAccount(Long userId);

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
-import Navigation from "./components/Navigation";
 import HomeUnanswered from "./pages/home/HomeUnanswered";
 import UserInfo from "./pages/mypage/UserInfo";
 import HomeAnswered from "./pages/home/HomeAnswered";
@@ -26,6 +25,8 @@ import EditUserEmail from "./pages/mypage/EditUserEmail";
 import FindPassword from "./pages/auth/FindPassword";
 import Oauth2 from "./pages/auth/Oauth2";
 import Oauth2Step3 from "./pages/auth/Oauth2Step3";
+import EditEmailAlert from "./pages/mypage/EditEmailAlert";
+import SuggestionPage from "./pages/suggestion/SuggestionPage";
 
 const AppRouter = () => {
 	return (
@@ -158,6 +159,16 @@ const AppRouter = () => {
 						}
 					/>
 					<Route
+						path="/mypage/info/edit/emailAlert"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<EditEmailAlert />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+					<Route
 						path="/mypage/delete/account"
 						element={
 							<PrivateRoute
@@ -167,6 +178,19 @@ const AppRouter = () => {
 							/>
 						}
 					/>
+
+					<Route
+						path="/suggestion"
+						element={
+							<PrivateRoute
+								authenticated={isLogin()}
+								component={<SuggestionPage />}
+								noAuthComponent={<Navigate to="/loginForm" />}
+							/>
+						}
+					/>
+
+
 				</Routes>
 			</BrowserRouter>
 		</>

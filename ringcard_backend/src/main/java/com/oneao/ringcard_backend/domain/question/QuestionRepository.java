@@ -46,5 +46,6 @@ public interface QuestionRepository {
 
     void clearTrashcan(Long userId);
 
+
     void clearStore();
 }

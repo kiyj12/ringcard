@@ -69,20 +69,6 @@ const Oauth= ()=>{
 		oauthTest();
 	}, []);
 
-  // OAuth 1.0a (User context)
-  const userClient = new TwitterApi({
-    // appKey: 'consumerAppKey',
-    appKey: 'S0FVySANFNnlISMw5D1vSE8P0',
-    // appSecret: 'consumerAppSecret',
-    appSecret: 'KCu23eNrVftMqQeefWJTIei5Klju341e78BypImTVfw338Mm0X',
-    // Following access tokens are not required if you are
-    // at part 1 of user-auth process (ask for a request token)
-    // or if you want a app-only client (see below)
-    // accessToken: 'accessOAuthToken',
-    accessToken: '1516353113430851586-Qhjz3YpRRL1yFqSa5PYcyjf5gmJhU1',
-    // accessSecret: 'accessOAuthSecret',
-    accessSecret: 'accdPvdajDmTYtMybqbj9mOMnTIvbE9SnOuJY8h9uRQjRxlnessOAuthSecret',
-  });
   async function Oauth1a(){
     if(CONSUMER_KEY && CONSUMER_SECRET){
       const clientA = new TwitterApi({ appKey: CONSUMER_KEY, appSecret: CONSUMER_SECRET });

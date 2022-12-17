@@ -22,6 +22,7 @@ bin/
 application-aws.properties
 application-twitter.properties
 application-mail.properties
+application-twitter.yml
 .idea
 *.iws
 *.iml

@@ -33,6 +33,9 @@ public class User implements Serializable {
     private String userPicture;
     private String roles;
 
+    @NotNull
+    private boolean emailAlert;
+
     public List<String> getRoleList() {
         if (this.roles.length() > 0) {
             return Arrays.asList(this.roles.split(","));
@@ -53,6 +56,4 @@ public class User implements Serializable {
         this.userPicture = userPicture;
         this.roles = roles;
     }
-
-
 }

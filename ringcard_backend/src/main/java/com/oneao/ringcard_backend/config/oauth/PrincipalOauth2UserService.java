@@ -1,19 +1,14 @@
 package com.oneao.ringcard_backend.config.oauth;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

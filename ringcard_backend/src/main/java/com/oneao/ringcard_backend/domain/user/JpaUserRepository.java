@@ -1,5 +1,8 @@
 package com.oneao.ringcard_backend.domain.user;
 
+import com.oneao.ringcard_backend.domain.user.DTO.EditEmailAlertDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserEmailUpdateDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserRingcardNameUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -66,6 +69,13 @@ public class JpaUserRepository implements UserRepository {
         User findUser = findById(userId).get();
 
         findUser.setPassword(newPassword);
+    }
+
+    @Override
+    public void updateUserEmailAlert(Long userId, EditEmailAlertDto updateParam) {
+        User findUser = findById(userId).get();
+
+        findUser.setEmailAlert(updateParam.isEmailAlert());
     }
 
     @Override

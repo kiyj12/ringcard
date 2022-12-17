@@ -52,6 +52,7 @@
   height: 70px;
 
   position: fixed;
+  
   top: 180px;
 
   margin-top: 70px;
@@ -72,7 +73,11 @@
 
   /* sticky -> fixed로 바꾼 게 스크롤 문제 해결열쇠 */
   position: fixed;
+  /* 선택창 없을 때 */
   top: 257px;
+  /* 선택창 있을 때  */
+  top: calc(257px + 30px);
+
   /* bottom: 0px; */
   z-index: 0;
 
@@ -86,7 +91,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-position-y: -40px;
-  background-size: 105% 100%;
+  background-size: 105% 105%;
   min-height: 600px;
   padding-top: 20px;
   padding-bottom: 70px;

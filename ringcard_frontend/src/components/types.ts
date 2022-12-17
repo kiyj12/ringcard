@@ -1,4 +1,3 @@
-import {Request, Response} from "express";
 import { TimeLike } from "fs";
 
 export type IQuestion = {
@@ -24,4 +23,10 @@ export type IAnswer = {
 export type IMapQuestionAnswer = {
   Question: IQuestion;
   Answer: IAnswer;
+}
+
+
+export interface colorDataType {
+	colorName: string | undefined;
+	colorCode: string | undefined;
 }

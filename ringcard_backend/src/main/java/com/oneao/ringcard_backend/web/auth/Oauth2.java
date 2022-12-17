@@ -8,7 +8,7 @@ import com.oneao.ringcard_backend.config.auth.PrincipalDetails;
 import com.oneao.ringcard_backend.domain.user.TwitterLoginAutoDto;
 import com.oneao.ringcard_backend.domain.user.User;
 import com.oneao.ringcard_backend.domain.user.UserMeTwitterDto;
-import com.oneao.ringcard_backend.domain.user.UserRingcardNameUpdateDto;
+import com.oneao.ringcard_backend.domain.user.DTO.UserRingcardNameUpdateDto;
 import com.oneao.ringcard_backend.service.UserService;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;

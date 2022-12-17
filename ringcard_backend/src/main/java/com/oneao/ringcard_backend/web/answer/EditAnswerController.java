@@ -92,21 +92,12 @@ public class EditAnswerController {
     @PostMapping("/edit/user")
     public void editAnswer (@PathVariable Long questionId, RedirectAttributes redirectAttributes, @RequestBody HashMap<String, String> requestBody, HttpServletRequest request) throws IOException {
         Long answerId = answerService.findByQuestionId(questionId).get().getId();
-        System.out.println("requestBody = " + requestBody);
         String newAnswerContents = requestBody.get("answerContents");
-        if (requestBody != null) {
-            if (newAnswerContents != null && newAnswerContents != "") {
-                AnswerEditDto answerEditDto = new AnswerEditDto(newAnswerContents);
-                answerService.editAnswer(answerId, answerEditDto);
-//                redirectAttributes.addAttribute("questionId", questionId);
-//                redirectAttributes.addAttribute("answerId", answerId);
-//                redirectAttributes.addAttribute("status", true);
-//
-//                return "redirect:/question/{questionId}/completed/user";
-            }
-//                return "redirect:" + request.getHeader("Referer");
+        if (newAnswerContents != null && !newAnswerContents.equals("")) {
+            AnswerEditDto answerEditDto = new AnswerEditDto(newAnswerContents);
+            answerService.editAnswer(answerId, answerEditDto);
+
         }
-        // TODO: else로 에러 던지기 얘는 지금 임시방편
 
     }
 }

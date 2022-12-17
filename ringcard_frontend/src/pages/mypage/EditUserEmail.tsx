@@ -8,9 +8,12 @@ import "../../styles/user/userIcon.css";
 import "../../styles/editUserInfo.css";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import { useForm } from "react-hook-form";
-import UserProfile from "../../components/UserProfile";
-import Toastify from "../../components/Toast";
+import UserProfile from "../../components/atoms/UserProfile";
 import { Link } from "react-router-dom";
+
+type FormValues = {
+	userEmail: string;
+};
 
 const EditUserEmail = () => {
 	type ResponseList = {
@@ -21,7 +24,7 @@ const EditUserEmail = () => {
 		sameUserEmail: false,
 		overlappedUserEmail: false,
 	});
-	// submitted==true여야 새로고침 되도록.
+
 	const [submitted, setSubmitted] = useState(false);
 
 	const [user, setUser] = useState<any>([]);
@@ -33,25 +36,19 @@ const EditUserEmail = () => {
 			.then((res) => {
 				setUser(res.data);
 				setUserEmail(res.data.userEmail);
-				console.log(res.data);
 			})
-			.catch((err) => {
-				console.log(err.config);
-				console.log(err.response.data);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/mypage/info/edit/userEmail", data)
 			.then((res) => {
 				setResponse(res.data);
-				console.log(res.data);
 				setSubmitted(true);
 			})
 			.catch(function (error) {
@@ -61,17 +58,14 @@ const EditUserEmail = () => {
 
 	function RedirectAndInputErrors() {
 		if (response.sameUserEmail) {
-			// console.log(response.sameUserEmail);
 			return (
 				<div className="user-text-error">
 					변경할 이메일을 기존 이메일과 다르게 입력해 주세요.
 				</div>
 			);
 		} else if (response.overlappedUserEmail) {
-			// console.log(response.overlappedUserEmail);
 			return <div className="user-text-error">이미 존재하는 이메일입니다.</div>;
 		} else if (submitted) {
-			// 위 조건 만족할 때만 loginForm으로 새로고침
 			localStorage.setItem("toastShow", "1");
 			localStorage.setItem("toastText", "개인 정보가 수정되었습니다.");
 			window.location.href = "/mypage/info";
@@ -83,8 +77,8 @@ const EditUserEmail = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
+		formState: { errors },
+	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -97,40 +91,6 @@ const EditUserEmail = () => {
 
 				<div>
 					<div className="user-box">
-						{/* <div className="user-box-in">
-						<div className="user-text">변경할 이름</div>
-						<input
-							type="userRingcardName"
-							className="user-icon user-icon-id-light"
-							// placeholder={user.userRingcardName}
-							{...register("userRingcardName", {
-							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
-					</div> */}
-
-						{/* <div className="user-box-in">
-						<div className="user-text">기존 이름</div>
-						<input
-							className="user-icon user-icon-user-dark"
-							value={userRingcardName}
-							// placeholder="이름을 입력해주세요"
-							readOnly
-						></input>
-					</div>
-
-					<div className="user-box-in">
-						<div className="user-text">변경할 이름</div>
-						<input
-							className="user-icon user-icon-user-light"
-							// defaultValue={user.userRingcardName}
-							// placeholder="이름을 입력해주세요"
-							{...register("userRingcardName", {
-							required: "답변이 입력되지 않았습니다.",
-							})}
-						></input>
-					</div> */}
-
 						<div className="user-box-in">
 							<div className="user-text">기존 이메일</div>
 							<input
@@ -144,22 +104,21 @@ const EditUserEmail = () => {
 							<div className="user-text">변경할 이메일</div>
 							<input
 								className="user-icon user-icon-user-light"
-								// defaultValue={user.userRingcardName}
-								// placeholder="이름을 입력해주세요"
+								type="email"
+								placeholder="변경할 이메일을 입력해주세요."
 								{...register("userEmail", {
-									required: "답변이 입력되지 않았습니다.",
+									required:
+										"이메일은 필수입력이며, 비밀번호 찾을 때 사용됩니다.",
+									pattern: {
+										value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+										message: "이메일 형식이 아닙니다.",
+									},
 								})}
 							></input>
+							<div className="Join-input-error-message">
+								{errors?.userEmail && <p>{errors.userEmail.message}</p>}
+							</div>
 						</div>
-
-						{/* <div className="user-box-in">
-					<div className="user-text">이메일</div>
-					<input className="user-icon user-icon-email-light" defaultValue={user.userEmail} placeholder="이메일을 입력해주세요"
-					type="email"
-					{...register("userEmail", {
-							required: "답변이 입력되지 않았습니다.",
-							})}></input>
-				</div> */}
 
 						<div className="user-box-in">
 							<RedirectAndInputErrors />
