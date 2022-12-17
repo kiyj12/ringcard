@@ -17,7 +17,6 @@ import UserHome from "./pages/anony/UserHome";
 import DeleteAccount from "./pages/mypage/DeleteAccount";
 import QuestionAnony from "./pages/anony/QuestionAnony";
 import Logout from "./pages/auth/Logout";
-import Oauth from "./pages/auth/Oauth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import isLogin from "./utils/isLogin";
 import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
@@ -186,7 +185,7 @@ const AppRouter = () => {
 						}
 					/>
 
-					<Route path="/oauth" element={<Oauth />} />
+
 				</Routes>
 			</BrowserRouter>
 		</>
