@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import "../../styles/layout/layout.css";
@@ -27,22 +27,15 @@ const Join = () => {
 		bindingResultHasErrors: false,
 		overlappedUsername: false,
 	});
-	// submitted==true여야 새로고침 되도록.
 	const [submitted, setSubmitted] = useState(false);
 
 	const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/joinForm", data)
 			.then((res) => {
-				console.log("postHere");
-				console.log(data);
 				setResponse(res.data);
-				console.log(res.data);
 				setSubmitted(true);
 			})
 			.catch(function (error) {
@@ -69,7 +62,6 @@ const Join = () => {
 		} else if (response.overlappedUsername) {
 			return <div className="user-text-error">이미 존재하는 아이디입니다.</div>;
 		} else if (submitted) {
-			// 위 조건 만족할 때만 loginForm으로 새로고침
 			window.location.href = "/loginForm";
 			return null;
 		}
@@ -110,9 +102,7 @@ const Join = () => {
 	const {
 		register,
 		handleSubmit,
-		watch,
-
-		formState: { isSubmitting, isDirty, errors },
+		formState: { errors },
 	} = useForm<FormValues>({ mode: "onChange" });
 
 	return (

@@ -24,16 +24,10 @@ const DeleteAccount = () => {
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/mypage/delete/account", data)
 			.then((res) => {
-				console.log("postHere");
-				console.log(data);
 				setResponse(res.data);
-				console.log(res.data);
 				setSubmitted(true);
 			})
 			.catch(function (error) {
@@ -45,7 +39,6 @@ const DeleteAccount = () => {
 		if (response.passwordError) {
 			return <div className="user-text-error">passwordError</div>;
 		} else if (submitted) {
-			// 위 조건 만족할 때만 loginForm으로 새로고침
 			window.location.href = "/loginForm";
 			return null;
 		}
@@ -55,8 +48,6 @@ const DeleteAccount = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
-		// eslint-disable-next-line react-hooks/rules-of-hooks
 	} = useForm();
 
 	const [user, setUser] = useState<any>([]);
@@ -66,10 +57,9 @@ const DeleteAccount = () => {
 			.get("/mypage/info")
 			.then((res) => {
 				setUser(res.data);
-				console.log(res.data);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 

@@ -23,14 +23,12 @@ public class MailService {
     }
     @Async
     public void mailSend(SendMailDto mailDto) {
-        System.out.println("전송 완료!");
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(mailDto.getAddress());
         message.setSubject(mailDto.getTitle());
         message.setText(mailDto.getMessage());
         message.setFrom("RingcaOfficial@gmail.com");
         message.setReplyTo("RingcaOfficial@gmail.com");
-        System.out.println("message"+message);
         mailSender.send(message);
     }
 

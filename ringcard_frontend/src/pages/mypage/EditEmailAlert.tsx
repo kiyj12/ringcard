@@ -9,12 +9,9 @@ import "../../styles/editUserInfo.css";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/atoms/UserProfile";
-import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
 const EditEmailAlert = () => {
-	// submitted==true여야 새로고침 되도록.
-	const [submitted, setSubmitted] = useState(false);
 
 	const [user, setUser] = useState<any>([]);
 	const [emailAlert, setEmailAlert] = useState();
@@ -25,25 +22,17 @@ const EditEmailAlert = () => {
 			.then((res) => {
 				setUser(res.data);
 				setEmailAlert(res.data.emailAlert);
-				console.log(res.data);
 			})
-			.catch((err) => {
-				console.log(err.config);
-				console.log(err.response.data);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
-
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/mypage/info/edit/emailAlert", data)
 			.then((res) => {
-				console.log(res.data);
-				setSubmitted(true);
 				window.location.href = "/mypage/info";
 			})
 			.catch(function (error) {
@@ -54,8 +43,6 @@ const EditEmailAlert = () => {
 	const {
 		register,
 		handleSubmit,
-
-		formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
 	return (

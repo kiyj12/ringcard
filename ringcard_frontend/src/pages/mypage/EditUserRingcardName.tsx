@@ -9,7 +9,6 @@ import "../../styles/editUserInfo.css";
 import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/atoms/UserProfile";
-import Toastify from "../../components/utils/Toast";
 import { Link } from "react-router-dom";
 
 type FormValues = {
@@ -23,7 +22,6 @@ const EditUserRingcardName = () => {
 	const [response, setResponse] = useState<ResponseList>({
 		overlappedUsername: false,
 	});
-	// submitted==true여야 새로고침 되도록.
 	const [submitted, setSubmitted] = useState(false);
 
 	const [user, setUser] = useState<any>([]);
@@ -35,27 +33,19 @@ const EditUserRingcardName = () => {
 			.then((res) => {
 				setUser(res.data);
 				setUserRingcardName(res.data.userRingcardName);
-				console.log(res.data);
 			})
-			.catch((err) => {
-				console.log(err.config);
-				console.log(err.response.data);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/mypage/info/edit/userRingcardName", data)
 			.then((res) => {
-				console.log("postHere");
-				console.log(data);
 				setResponse(res.data);
-				console.log(res.data);
 				setSubmitted(true);
 			})
 			.catch(function (error) {
@@ -79,7 +69,7 @@ const EditUserRingcardName = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
+		formState: { errors },
 	} = useForm<FormValues>({ mode: "onSubmit" });
 
 	return (
@@ -98,7 +88,6 @@ const EditUserRingcardName = () => {
 							<input
 								className="user-icon user-icon-user-dark"
 								value={userRingcardName}
-								// placeholder="이름을 입력해주세요"
 								readOnly
 							></input>
 						</div>
@@ -107,7 +96,6 @@ const EditUserRingcardName = () => {
 							<div className="user-text">변경할 이름</div>
 							<input
 								className="user-icon user-icon-user-light"
-								// defaultValue={user.userRingcardName}
 								placeholder="변경할 이름을 입력해주세요"
 								{...register("userRingcardName", {
 									required: "변경할 이름이 입력되지 않았습니다.",

@@ -37,8 +37,6 @@ public class SendAnswerController {
 
         String answerContents = requestBody.getAnswerContents();
 
-        System.out.println("answerContents = " + answerContents);
-
         // answer한 후 뒤로가기 해서, answer이 이미 DB에 들어간 상황 : edit
         if (AnsweredQuestion.isPresent() && AnsweredQuestion.get().isAnswered()){
             Long answerId = answerService.findByQuestionId(questionId).get().getId();
@@ -52,7 +50,6 @@ public class SendAnswerController {
 
             Answer answer = new Answer(answerContents, questionId);
             Answer savedAnswer = answerService.save(answer);
-            System.out.println("savedAnswer = " + savedAnswer);
             questionService.updateToAnswered(questionId);
         }
     }

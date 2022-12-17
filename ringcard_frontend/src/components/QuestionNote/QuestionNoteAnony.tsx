@@ -3,7 +3,6 @@ import "../../styles/question.css";
 import NowDate from "../utils/NowDate";
 import React, { useEffect, useState } from "react";
 import HyperlinkBox from "../atoms/HyperlinkBox";
-import { Link } from "react-router-dom";
 
 export interface Props {
 	idx: number;

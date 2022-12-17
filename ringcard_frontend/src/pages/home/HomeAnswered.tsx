@@ -20,14 +20,13 @@ function HomeAnswered() {
 		axios
 			.get("/home/" + pageAddress + "?page=" + page)
 			.then((res) => {
-				console.log(res.data);
 				setUserName(res.data.userName);
 				setQuestionList(res.data.questions.content);
 				setTotalPages(res.data.questions.totalPages);
 				setPageNumber(res.data.questions.number);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 

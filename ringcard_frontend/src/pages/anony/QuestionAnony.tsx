@@ -27,7 +27,6 @@ function QuestionAnony() {
 		axios
 			.get("/question/" + questionId + "/anony/0")
 			.then((res) => {
-				console.log(res.data);
 				setQuestion(res.data.question);
 				setAnswer(res.data.answer);
 				setMap(res.data.map);
@@ -35,8 +34,8 @@ function QuestionAnony() {
 				setPageNumber(res.data.pageInfo.number + 1);
 				setUserName(res.data.userName);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 
@@ -49,12 +48,7 @@ function QuestionAnony() {
 				axios
 					.get("/question/" + questionId + "/anony/" + newPage)
 					.then((res) => {
-						console.log(res.data);
-						// setQuestionList1(res.data.questions.content);
-						console.log("a");
 						const b: [[IQuestion, IAnswer]] = res.data.map;
-						// [IQuestion, IAnswer]
-						// 새로운 맵에 넣고, 그 맵을 다시 setMap 하자.
 						let mapTemp = [];
 						if (map) {
 							for (let idx = 0; idx < map.length; idx++) {
@@ -66,8 +60,6 @@ function QuestionAnony() {
 								mapTemp.push(b[idx]);
 							}
 						}
-
-						console.log(mapTemp);
 						if (mapTemp) {
 							setMap(mapTemp);
 						}
@@ -75,8 +67,8 @@ function QuestionAnony() {
 						setTotalPages(res.data.pageInfo.totalPages);
 						setPageNumber(res.data.pageInfo.number + 1);
 					})
-					.catch((err) => {
-						console.log(err);
+					.catch(function (error) {
+						console.log(error.config);
 					});
 			}
 		}
@@ -108,12 +100,7 @@ function QuestionAnony() {
 
 	return (
 		<div className="container">
-			{/* <HeaderNoProfile /> */}
 			<Header userName={userName} />
-			{/* <div className="QuestionAnony-profile-box">
-				<img src="/profile.png" alt="" />
-				<div className="UserHome-profile-username">{user.userRingcardName}</div>
-			</div> */}
 			<div className="QuestionAnony-for-not-overflowing">
 				<img src="/background-img/background.png" alt="" />
 			</div>

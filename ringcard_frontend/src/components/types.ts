@@ -1,4 +1,3 @@
-import {Request, Response} from "express";
 import { TimeLike } from "fs";
 
 export type IQuestion = {

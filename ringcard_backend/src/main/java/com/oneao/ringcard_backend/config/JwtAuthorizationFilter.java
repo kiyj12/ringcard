@@ -40,14 +40,11 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             return;
         }
         String jwtToken = null;
-        System.out.println("checka");
-        System.out.println(cookies);
         if (cookies == null) {
             chain.doFilter(request, response);
             return;}
 
         for (Cookie cookie : cookies) {
-            System.out.println(cookie);
             if (cookie.getName().equals(JwtProperties.COOKIE_NAME)) {
                 jwtToken = cookie.getValue();
             }

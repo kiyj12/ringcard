@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { ReactElement, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "../../styles/selectTapeModal.css";
 import { colorDataType } from "../types";
 
@@ -28,9 +26,6 @@ const SelectTapeModal = (props: props): ReactElement => {
 	}
 
 	useEffect(() => {
-		console.log(TapeColorName);
-		console.log(TapeColorCode);
-
 		const tapeColorData: colorDataType = {
 			colorName: TapeColorName,
 			colorCode: TapeColorCode,

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import HeaderRingcaShort from "../../components/Header/HeaderRingcaShort";
 import "../../styles/layout/layout.css";
@@ -20,18 +20,14 @@ function FindPassword() {
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
-		// alert(JSON.stringify(data));
-		console.log(data);
-
 		await axios
 			.post("/findPassword", data)
 			.then((res) => {
 				setResponse(res.data);
-				console.log(res.data);
 				setSubmitted(true);
 			})
-			.catch((err) => {
-				console.log(err.config);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	};
 
@@ -67,11 +63,7 @@ function FindPassword() {
 		return null;
 	}
 
-	const {
-		register,
-		handleSubmit,
-		formState: { isSubmitting, isDirty, errors },
-	} = useForm();
+	const { register, handleSubmit } = useForm();
 
 	return (
 		<div className="FindPassword-container">

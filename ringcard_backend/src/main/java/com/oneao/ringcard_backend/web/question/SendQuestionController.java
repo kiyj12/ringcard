@@ -37,7 +37,7 @@ public class SendQuestionController {
     private final MailService mailService;
 
     @PostMapping({"question/{questionId}/anony"})
-    public void addQuestion(@PathVariable Long questionId, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestBody QuestionSendDto requestBody) {
+    public void addQuestionQuestionAnony(@PathVariable Long questionId, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestBody QuestionSendDto requestBody) {
 
         // 이미 띄워져있는 question의 정보
         Question beforeQuestion= questionService.findByIdNoAuth(questionId).get();
@@ -70,7 +70,6 @@ public class SendQuestionController {
 
         Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType, questionTapePosition);
 
-        System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
 
         User user = userService.findById(userId).get();
@@ -85,7 +84,7 @@ public class SendQuestionController {
     }
 
     @PostMapping({"userHome/{username}"})
-    public void addQuestion2(@PathVariable String username, HttpServletRequest request, @RequestBody QuestionSendDto requestBody) {
+    public void addQuestionUserHome(@PathVariable String username, HttpServletRequest request, @RequestBody QuestionSendDto requestBody) {
         User user = userService.findByUsername(username).get();
 
         String questionContents = requestBody.getQuestionContents();
@@ -114,7 +113,6 @@ public class SendQuestionController {
         Long userId = user.getId();
         Question question = new Question(questionContents, questionHyperlink, userId, false, false, false, questionNoteType, questionTapeType, questionTapePosition);
 
-        System.out.println("question = " + question);
         Question savedQuestion = questionService.save(question);
 
         if(user.isEmailAlert()) {

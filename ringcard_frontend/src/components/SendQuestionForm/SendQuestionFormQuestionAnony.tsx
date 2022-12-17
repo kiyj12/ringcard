@@ -6,7 +6,6 @@ import "../../styles/sendQuestionFormQuestionAnony.css";
 import SelectNoteModal from "../Modal/SelectNoteModal";
 import SelectTapeModal from "../Modal/SelectTapeModal";
 import Toastify from "../utils/Toast";
-import { IQuestion } from "../types";
 
 function SendQuestionFormQuestionAnony() {
 	const params = useParams();
@@ -18,28 +17,11 @@ function SendQuestionFormQuestionAnony() {
 		await axios
 			.post("/question/" + paramsQuestionId + "/anony/", data)
 			.then((res) => {
-				console.log("posthere");
-				console.log(data);
 				localStorage.setItem("toastShow", "1");
 				localStorage.setItem("toastText", "질문이 안전하게 전달되었습니다.");
 				window.location.reload();
 			})
 			.catch(function (error) {
-				if (error.response) {
-					// The request was made and the server responded with a status code
-					// that falls out of the range of 2xx
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				} else if (error.request) {
-					// The request was made but no response was received
-					// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-					// http.ClientRequest in node.js
-					console.log(error.request);
-				} else {
-					// Something happened in setting up the request that triggered an Error
-					console.log("Error", error.message);
-				}
 				console.log(error.config);
 			});
 	};
@@ -48,7 +30,6 @@ function SendQuestionFormQuestionAnony() {
 		register,
 		handleSubmit,
 		setValue,
-		// formState: { isSubmitting, isDirty, errors },
 	} = useForm();
 
 	// 유저 입력 값을 넣을 변수
