@@ -161,6 +161,7 @@ function BtnToTwitterLogin(){
       await new Promise((r) => setTimeout(r, 100));
       await axios.post('/login/user/me', res.data.data)
       .then(async(res) => {
+        console.log(res.data);
         console.log(res.data.usernameTwitter);
         // console.log(userMe);
         // const data = qs.stringify({
