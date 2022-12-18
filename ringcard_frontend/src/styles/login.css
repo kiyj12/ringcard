@@ -39,6 +39,12 @@
 }
 
 
+.Login-twitter-login-btn {
+  width: 100%;
+  display: flex;
+}
+
+
 .FindPassword-info-text {
   /* background-color: aqua; */
   width: 100%;

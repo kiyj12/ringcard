@@ -11,6 +11,7 @@ import "../../styles/login.css";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import HeaderRingca from "../../components/Header/HeaderRingca";
+import BtnToTwitterLogin from "./Twitter/BtnToTwitterLogin";
 
 type FormValues = {
 	username: string;
@@ -18,14 +19,10 @@ type FormValues = {
 };
 
 const Login = () => {
-
 	useEffect(() => {
 		axios
 			.all([axios.get("/loginForm"), axios.get("/"), axios.get("")])
-			.then(
-				axios.spread((res1, res2, res3) => {
-				})
-			)
+			.then(axios.spread((res1, res2, res3) => {}))
 			.catch(function (error) {
 				console.log(error.config);
 			});
@@ -158,6 +155,9 @@ const Login = () => {
 						</button>
 					</div>
 
+					<div className="Login-twitter-login-btn">
+						<BtnToTwitterLogin />
+					</div>
 					<div className="login-join-box">
 						<BtnToJoin />
 					</div>

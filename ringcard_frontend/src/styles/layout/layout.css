@@ -71,3 +71,20 @@ body {
 input:focus {
   outline: none;
 }
+
+.loading-message-box{
+  height: 100%;
+  display: flex;
+
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loading-message-center {
+  margin: 0 auto;
+  color: white;
+
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}

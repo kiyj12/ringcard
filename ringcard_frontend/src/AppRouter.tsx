@@ -21,11 +21,10 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import isLogin from "./utils/isLogin";
 import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
 import EditUserEmail from "./pages/mypage/EditUserEmail";
-import Oauth2 from "./pages/auth/Oauth2";
-import Oauth2Step3 from "./pages/auth/Oauth2Step3";
 import FindPassword from "./pages/auth/FindPassword";
 import EditEmailAlert from "./pages/mypage/EditEmailAlert";
 import SuggestionPage from "./pages/suggestion/SuggestionPage";
+import TwitterLoginProcess from "./pages/auth/Twitter/TwitterLoginProcess";
 
 const AppRouter = () => {
 	return (
@@ -43,8 +42,11 @@ const AppRouter = () => {
 						path="/question/:questionId/anony"
 						element={<QuestionAnony />}
 					/>
-					<Route path="/oauth2"element={<Oauth2 />}/>
-					<Route path="/login/oauth2/code/twitter"element={<Oauth2Step3 />}/>
+					{/* <Route path="/oauth2" element={<BtnToTwitterLogin />}/> */}
+					<Route
+						path="/login/oauth2/code/twitter"
+						element={<TwitterLoginProcess />}
+					/>
 					<Route path="/userHome/:userName" element={<UserHome />} />
 					<Route
 						path="/home/unanswered"
@@ -188,8 +190,6 @@ const AppRouter = () => {
 							/>
 						}
 					/>
-
-
 				</Routes>
 			</BrowserRouter>
 		</>
