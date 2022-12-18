@@ -1,5 +1,0 @@
-type: object
-properties:
-  userPicture:
-    type: string
-    example: 'yule_muPicture.new.path.com'

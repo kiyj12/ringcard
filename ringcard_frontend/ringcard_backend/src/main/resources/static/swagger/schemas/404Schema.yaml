@@ -1,5 +1,0 @@
-type: object
-properties:
-  message:
-    type: string
-    example: "404 Error Occurred"
