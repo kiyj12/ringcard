@@ -17,11 +17,14 @@ import UserHome from "./pages/anony/UserHome";
 import DeleteAccount from "./pages/mypage/DeleteAccount";
 import QuestionAnony from "./pages/anony/QuestionAnony";
 import Logout from "./pages/auth/Logout";
+import Oauth from "./pages/auth/Oauth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import isLogin from "./utils/isLogin";
 import EditUserRingcardName from "./pages/mypage/EditUserRingcardName";
 import EditUserEmail from "./pages/mypage/EditUserEmail";
 import FindPassword from "./pages/auth/FindPassword";
+import Oauth2 from "./pages/auth/Oauth2";
+import Oauth2Step3 from "./pages/auth/Oauth2Step3";
 import EditEmailAlert from "./pages/mypage/EditEmailAlert";
 import SuggestionPage from "./pages/suggestion/SuggestionPage";
 
@@ -41,7 +44,9 @@ const AppRouter = () => {
 						path="/question/:questionId/anony"
 						element={<QuestionAnony />}
 					/>
-
+					<Route path="/oauth2"element={<Oauth2 />}/>
+					<Route path="/login/oauth2/code/twitter"element={<Oauth2Step3 />}/>
+					<Route path="/userHome/:userName" element={<UserHome />} />
 					<Route
 						path="/home/unanswered"
 						element={

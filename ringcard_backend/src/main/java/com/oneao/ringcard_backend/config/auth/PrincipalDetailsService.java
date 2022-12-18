@@ -29,7 +29,13 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("PrincipalDetailsService.loadUserByUsername");
         User userEntity = userService.findByUsername(username).get();
-        return new PrincipalDetails(userEntity);
+//        return new PrincipalDetails(userEntity);
+        if(userEntity == null) {
+            return null;
+        }else {
+            return new PrincipalDetails(userEntity);
+        }
     }
 }

@@ -4,6 +4,8 @@ import "../../styles/question.css";
 import "../../styles/answerQuestionNote.css";
 import NowDate from "../utils/NowDate";
 import HyperlinkBox from "../atoms/HyperlinkBox";
+import { useRef } from "react";
+import html2canvas from "html2canvas";
 
 export interface Props {
 	question: IQuestion;
@@ -31,6 +33,35 @@ function AnswerFormQuestionNote(props: Props) {
 
 	const qNoteType = String(question.noteType);
 
+
+	// capture img start2
+  const printRef = useRef<HTMLInputElement>(null);
+
+  const handleDownloadImage = async () => {
+    const element:any = printRef.current;
+    const canvas = await html2canvas(element, {
+      backgroundColor: "none",
+      logging: true,
+      useCORS: true //to enable cross origin perms
+    });
+
+    const data = canvas.toDataURL("image/jpg");
+    const link = document.createElement("a");
+
+    if (typeof link.download === "string") {
+      link.href = data;
+      console.log("");
+      link.download = "image.jpg";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      window.open(data);
+    }
+  };
+  // capture img fin 2
+	
 	return (
 		<>
 			<div className="each-question-note-box">
@@ -42,6 +73,7 @@ function AnswerFormQuestionNote(props: Props) {
 						alt=""
 					/>
 				</div>
+				<div ref={printRef}>
 				<div
 					className="each-question-note-header-edge-img-box"
 					style={{
@@ -72,8 +104,9 @@ function AnswerFormQuestionNote(props: Props) {
 
 					<hr className="note-hr" />
 					<div className="each-note-answer-form-box">
-						<AnswerForm questionId={question.id} />
+						<AnswerForm questionId={question.id} questionContents={question.questionContents} />
 					</div>
+				</div>
 				</div>
 				<div
 					className="each-question-note-footer-edge-img-box"
@@ -81,6 +114,9 @@ function AnswerFormQuestionNote(props: Props) {
 						backgroundImage: `url("/notes/note${qNoteType}-bottom-edge.png")`,
 					}}
 				></div>
+				<button type="button" onClick={handleDownloadImage}>
+					Download as Image
+				</button>
 			</div>
 		</>
 	);
