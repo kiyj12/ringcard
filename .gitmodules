@@ -1,0 +1,3 @@
+[submodule "ringcard_frontend/cors-anywhere"]
+	path = ringcard_frontend/cors-anywhere
+	url = https://github.com/kiyj12/ringcard.git
