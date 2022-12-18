@@ -51,7 +51,7 @@ public class User implements Serializable {
     public User(String username, String password, String userRingcardName, String userEmail, String twitterId, String userPicture, String roles) {
         this.username = username;
         this.password = password;
-        this.username = userRingcardName;
+        this.userRingcardName = userRingcardName;
         this.userEmail = userEmail;
         this.twitterId = twitterId;
         this.userPicture = userPicture;

@@ -12,11 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Function;
 
 
 @RestController
@@ -35,10 +41,8 @@ public class DeleteAccountController {
         return "mypage/deleteAccount";
     }
 
-
-
     @PostMapping()
-    public ResponseEntity<HashMap<String, Boolean>> deleteAccount(@Valid @RequestBody DeleteAccountDto requestBody, @AuthenticationPrincipal PrincipalDetails loginUser, HttpServletRequest request) {
+    public ResponseEntity<HashMap<String, Boolean>> deleteAccount(@Valid @RequestBody DeleteAccountDto requestBody, @AuthenticationPrincipal PrincipalDetails loginUser, HttpServletRequest request, HttpServletResponse httpServletResponse) {
         HashMap<String, Boolean> response=new HashMap<>(1){{
             put("passwordError",false);
         }};
@@ -55,11 +59,13 @@ public class DeleteAccountController {
                 questionService.delete(questionId);
             }
             userService.deleteAccount(userId);
-//            System.out.println("password = " + password);
-//            System.out.println("password = " + user.getPassword());
+            Cookie cookie = new Cookie("Ringcard", null); // Not necessary, but saves bandwidth.
+            cookie.setPath("/");
+            cookie.setHttpOnly(true);
+            cookie.setMaxAge(0); // Don't set to -1 or it will become a session cookie!
+            httpServletResponse.addCookie(cookie);
+
         } else {
-//            System.out.println("password = " + password);
-//            System.out.println("password = " + user.getPassword());
             response.put("passwordError", true);
         }
         return ResponseEntity.ok(response);

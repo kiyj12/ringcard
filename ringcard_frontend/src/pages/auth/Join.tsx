@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import "../../styles/layout/layout.css";
@@ -29,9 +29,21 @@ const Join = () => {
 	});
 	const [submitted, setSubmitted] = useState(false);
 
-	const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+	useEffect(() => {
+		axios
+			.get("/joinForm")
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	});
+
+	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
 
+		console.log(data);
 		await axios
 			.post("/joinForm", data)
 			.then((res) => {

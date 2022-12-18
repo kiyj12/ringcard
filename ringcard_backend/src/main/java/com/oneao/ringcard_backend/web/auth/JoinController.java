@@ -28,8 +28,8 @@ public class JoinController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/joinForm")
-    public String addForm() {
-        return "users/joinForm";
+    public void addForm() {
+
     }
 
 //    @PostMapping("/joinForm")
@@ -61,6 +61,7 @@ public class JoinController {
     // return responseEntity
     @PostMapping("/joinForm")
     public ResponseEntity<HashMap<String, Boolean>> joinV4(@Valid @RequestBody User requestBody, BindingResult bindingResult) {
+        System.out.println("requestBody = " + requestBody);
         HashMap<String, Boolean> response=new HashMap<>(2){{
             put("bindingResultHasErrors",false);
             put("overlappedUsername",false);
@@ -77,13 +78,15 @@ public class JoinController {
             hasErrorFlag = true;
         }
         if(hasErrorFlag){
+            System.out.println("check1");
             return ResponseEntity.ok(response);
         }
-
+        System.out.println("check1");
         String rawPassword = requestBody.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         requestBody.setPassword(encPassword);
         requestBody.setRoles("ROLE_USER");
+        System.out.println("requestBody = " + requestBody);
         userService.save(requestBody);
         return ResponseEntity.ok(response);
     }

@@ -62,6 +62,7 @@ public class UserService {
     }
 
     public void deleteAccount(Long userId) {
+
         userRepository.deleteAccount(userId);
     }
 
