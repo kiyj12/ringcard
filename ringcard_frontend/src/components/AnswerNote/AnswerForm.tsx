@@ -191,19 +191,51 @@ function AnswerForm(props: Props) {
 	};
 	// checkBox Fin.
 
-	const printRef = useRef<HTMLInputElement>(null);
-	// const printRef = useRef();
+
+	// // capture img start
+  // const printRef = useRef<HTMLInputElement>(null);
+
+  // const handleDownloadImage = async () => {
+  //   const element:any = printRef.current;
+  //   // const canvas = await html2canvas(element);
+  //   const canvas = await html2canvas( element, { logging: true,  allowTaint: false, useCORS: true } )
+
+  //   const data = canvas.toDataURL('image/jpg');
+  //   const link = document.createElement('a');
+
+  //   if (typeof link.download === 'string') {
+  //     link.href = data;
+  //     link.download = 'image.jpg';
+  //     console.log("link.download1 : "+ link.download);
+
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   } else {
+  //     console.log("link.download2 : "+ link.download);
+  //     window.open(data);
+  //   }
+  // };
+  // // capture img fin
+
+	// capture img start2
+  const printRef = useRef<HTMLInputElement>(null);
 
   const handleDownloadImage = async () => {
     const element:any = printRef.current;
-    const canvas = await html2canvas(element);
+    const canvas = await html2canvas(element, {
+      backgroundColor: "none",
+      logging: true,
+      useCORS: true //to enable cross origin perms
+    });
 
-    const data = canvas.toDataURL('image/jpg');
-    const link = document.createElement('a');
+    const data = canvas.toDataURL("image/jpg");
+    const link = document.createElement("a");
 
-    if (typeof link.download === 'string') {
+    if (typeof link.download === "string") {
       link.href = data;
-      link.download = 'image.jpg';
+      console.log("");
+      link.download = "image.jpg";
 
       document.body.appendChild(link);
       link.click();
@@ -212,6 +244,7 @@ function AnswerForm(props: Props) {
       window.open(data);
     }
   };
+  // capture img fin 2
 
 	return (
 		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
@@ -233,6 +266,7 @@ function AnswerForm(props: Props) {
 					})}
 				></textarea>
 			</div>
+
 			<div className="answerForm-btn-box">
 				<button type="submit">
 					<img
@@ -247,7 +281,6 @@ function AnswerForm(props: Props) {
 				<p>Post Tweet?</p>
 				<CheckToSendTwitter/>
 			</div>
-			
 		</form>
 	);
 }
