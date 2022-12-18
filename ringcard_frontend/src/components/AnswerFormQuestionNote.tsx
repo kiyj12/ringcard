@@ -11,6 +11,7 @@ export interface Props {
 
 function AnswerFormQuestionNote(props: Props) {
 	const question = props.question;
+	const questionContents = String(question.questionContents);
 
 	const tapePositionList = [
 		"width: 130px; height: 28px; margin: 0 auto; margin-top: -8px;",
@@ -56,7 +57,7 @@ function AnswerFormQuestionNote(props: Props) {
 				>
 					<div className="each-note-header">
 						<div className="note-profile-pic">
-							<img src="/test-anony-profile-pic.jpg" alt="" />
+							<img src="/profile-imgs/oring_2.png" alt="" />
 						</div>
 						<NowDate questionUploadTime={question.uploadTime} />
 					</div>
@@ -72,7 +73,7 @@ function AnswerFormQuestionNote(props: Props) {
 
 					<hr className="note-hr" />
 					<div className="each-note-answer-form-box">
-						<AnswerForm questionId={question.id} />
+						<AnswerForm questionId={question.id} questionContents={questionContents}/>
 					</div>
 				</div>
 				<div

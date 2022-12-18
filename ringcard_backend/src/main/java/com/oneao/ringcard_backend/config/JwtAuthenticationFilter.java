@@ -18,10 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 
 // 스프링 시큐리티에서 UsernamePasswordAuthenticationFilter 가 있음.
@@ -47,6 +44,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String paramPwd = request.getParameter("password");
         System.out.println("paramUsername = " + paramUsername);
         System.out.println("paramPwd = " + paramPwd);
+        if(paramUsername.endsWith("_twitter") && Objects.equals(paramPwd, "twitterTemp")) {
+            System.out.println("exysexy hi");
+            paramPwd = "exySexyMeganFoxy!";
+        }
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(paramUsername, paramPwd);
 
         // 2. 정상인지 로그인 시도를 해보기. authenticationManager 로 로그인 시도를 하면

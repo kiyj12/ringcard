@@ -76,10 +76,13 @@ public class EditAnswerController {
     @GetMapping("/edit/user")
     public ResponseEntity<Model> editAnswerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
         Long userId = loginUser.getUser().getId();
+        String userName = loginUser.getUsername();
+
         Question question = questionService.findById(questionId, userId).get();
         Answer oldAnswer = answerService.findByQuestionId(questionId).get();
         String oldAnswerContents = oldAnswer.getAnswerContents();
 
+        model.addAttribute("userName", userName);
         model.addAttribute("question", question);
         model.addAttribute("oldAnswer", oldAnswerContents);
 

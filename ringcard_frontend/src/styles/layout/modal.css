@@ -5,12 +5,12 @@
   height: 100vh;
 
   /* 최상단 위치 */
-  z-index: 1100;
+  z-index: 10000000000;
   
   /* 중앙 배치 */
   /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
   /* translate는 본인의 크기 기준으로 작동한다. */
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   /* transform: translate(-50%, -50%); */

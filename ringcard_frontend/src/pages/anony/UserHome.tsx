@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import HeaderNoProfile from "../../components/HeaderNoProfile";
 import QuestionNoteListAnony from "../../components/QuestionNoteListAnony";
 import SendQuestionForm from "../../components/SendQuestionFormUserHome";
 import "../../styles/layout/layout.css";
@@ -10,11 +9,12 @@ import "../../styles/userHome.css";
 import { toast, ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IAnswer, IQuestion } from "../../components/types";
+import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 
 function UserHome() {
 	const params = useParams();
 	const userName = String(params.userName);
-	const [user, setUser] = useState<any>([]);
+	const [userRingcardName, setUseRingcardrName] = useState<String>();
 
 	const [map, setMap] = useState<[IQuestion, IAnswer][]>();
 
@@ -28,7 +28,7 @@ function UserHome() {
 			.get("/userHome/" + userName + "/0")
 			.then((res) => {
 				console.log(res.data);
-				setUser(res.data.user);
+				setUseRingcardrName(res.data.userRingcardName);
 				setMap(res.data.map);
 				setTotalPages(res.data.pageInfo.totalPages);
 				setPageNumber(res.data.pageInfo.number + 1);
@@ -109,9 +109,9 @@ function UserHome() {
 
 			<div className="contents-container block">
 				<div className="UserHome-profile-box">
-					<img src="/profile.png" alt="" />
+					<img src="/profile-imgs/oring_1.png" alt="" />
 					<div className="UserHome-profile-username">
-						{user.userRingcardName}
+						{userRingcardName}
 					</div>
 				</div>
 				<div className="UserHome-SendQuestionForm-container">

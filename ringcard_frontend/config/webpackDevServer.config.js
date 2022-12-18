@@ -13,6 +13,20 @@ const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
 const sockPort = process.env.WDS_SOCKET_PORT;
 
+// const createProxyMiddleware = require('http-proxy-middleware');
+
+// module.exports = function (app) {
+//     app.use(
+//         createProxyMiddleware('/api', {
+//             target: '',
+//             pathRewrite: {
+//                 '^/api': 'https://api.twitter.com/2/oauth2/token'
+//             },
+//             changeOrigin: true
+//         })
+//     )
+// };
+
 module.exports = function (proxy, allowedHost) {
   const disableFirewall =
     !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true';

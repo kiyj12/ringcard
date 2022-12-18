@@ -1,5 +1,6 @@
 package com.oneao.ringcard_backend.domain.user;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,7 +31,6 @@ public class User implements Serializable {
     private String userEmail;
     private String twitterId;
     private String userPicture;
-
     private String roles;
 
     public List<String> getRoleList() {
@@ -43,14 +43,16 @@ public class User implements Serializable {
     public User() {
 
     }
-
-
-    public User(String username, String password, String userRingcardName, String userEmail, String twitterId, String userPicture) {
+    @Builder
+    public User(String username, String password, String userRingcardName, String userEmail, String twitterId, String userPicture, String roles) {
         this.username = username;
         this.password = password;
         this.username = userRingcardName;
         this.userEmail = userEmail;
         this.twitterId = twitterId;
         this.userPicture = userPicture;
+        this.roles = roles;
     }
+
+
 }

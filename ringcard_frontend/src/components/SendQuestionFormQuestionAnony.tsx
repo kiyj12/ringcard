@@ -6,11 +6,9 @@ import "../styles/sendQuestionForm.css";
 import Toastify from "./Toast";
 import { IQuestion } from "./types";
 
-
 function SendQuestionFormQuestionAnony() {
 	const params = useParams();
 	const paramsQuestionId = params.questionId;
-
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
@@ -62,6 +60,21 @@ function SendQuestionFormQuestionAnony() {
 		setCheckItemContent(event.target.value);
 	};
 
+	function checkLengthHandler(event: any) {
+		var text = event.target.value;
+		var test_length = text.length;
+
+		//최대 글자수
+		var max_length = 5000;
+
+		if (test_length > max_length) {
+			alert(max_length + "자 이상 작성할 수 없습니다.");
+			text = text.substr(0, max_length);
+			event.target.value = text;
+			event.target.focus();
+		}
+	}
+
 	return (
 		<div className="SendQuestionForm-container">
 			<Toastify />
@@ -76,6 +89,7 @@ function SendQuestionFormQuestionAnony() {
 						className="questionForm-textarea"
 						value={checkItemContent}
 						onInput={checkItemChangeHandler}
+						onKeyUp={checkLengthHandler}
 						style={{ height: (textareaHeight + 1) * 20 + "px" }}
 						placeholder="질문해 주세요"
 						{...register("questionContents", {
@@ -94,6 +108,7 @@ function SendQuestionFormQuestionAnony() {
 						id="hyperLinkAdd"
 						className="QuestionForm-hyperlink-input"
 						placeholder="첨부할 사이트 주소를 넣어주세요 (최대 1개)"
+						onKeyUp={checkLengthHandler}
 						{...register("questionHyperlink")}
 					/>
 					<button className="SendQuestionForm-send-question-btn" type="submit">

@@ -179,18 +179,3 @@ input.user-icon-user-dark:focus {
 input:focus {
       outline: none;
   }
-
-input.user-icon-user-dark {
-  color: transparent;
-  text-shadow: 0 0 0 black;
-}
-
-input.user-inner-transparent {
-  color: transparent;
-  text-shadow: 0 0 0 black;
-}
-
-input.user-icon-id-dark {
-  color: transparent;
-  text-shadow: 0 0 0 black;
-}

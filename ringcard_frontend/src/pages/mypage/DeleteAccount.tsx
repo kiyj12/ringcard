@@ -6,9 +6,10 @@ import "../../styles/user/userBox.css";
 import "../../styles/user/userIcon.css";
 import "../../styles/user/userHeader.css";
 import "../../styles/deleteAccount.css";
-import HeaderNoProfile from "../../components/HeaderNoProfile";
+
 import { useForm } from "react-hook-form";
 import UserProfile from "../../components/UserProfile";
+import HeaderNoProfile from "../../components/Header/HeaderNoProfile";
 
 
 const DeleteAccount = () => {

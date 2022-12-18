@@ -40,13 +40,15 @@ public class ShowHomeUnansweredController {
 //        return ResponseEntity.ok(questions);
 //    }
     @GetMapping("home/unanswered")
-    public ResponseEntity<Page<Question>> showHomeUnAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=5, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<Model> showHomeUnAnswered(@AuthenticationPrincipal PrincipalDetails loginUser, @PageableDefault(size=7, sort="uploadTime", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         Long userId = loginUser.getUser().getId();
+        String userName = loginUser.getUsername();
         QuestionSearchCond questionSearchCond = new QuestionSearchCond(false, false);
         Page<Question> questions =questionService.findAll(userId, questionSearchCond, pageable);
+        model.addAttribute("userName", userName);
+        model.addAttribute("questions", questions);
 
-
-        return ResponseEntity.ok(questions);
+        return ResponseEntity.ok(model);
     }
 
 //    @GetMapping("home/unanswered")
