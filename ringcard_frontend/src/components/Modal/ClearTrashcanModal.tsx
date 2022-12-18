@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { ReactElement, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { ReactElement } from "react";
 import "../../styles/clearTrashcanModal.css";
 
 interface props {
@@ -11,30 +10,14 @@ interface props {
 const ClearTrashcanModal = (props: props): ReactElement => {
 	const { open, close } = props;
 
-	// const onClickHandler = () => {
-	// 	axios
-	// 		.get("/logout")
-	// 		.then((response) => {
-	// 			window.location.replace("/loginForm");
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
-
 	const handleClearTrashcanClick = async () => {
 		await axios
 			.get("/home/trashcan/clearTrashcan")
 			.then((res) => {
-				console.log(
-					"Successfully enter handleClearTrashcanClick in ClearTrashcanModal in HomeTrashcan :D"
-				);
-				console.log(res.data);
-
 				window.history.go(0);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	};
 

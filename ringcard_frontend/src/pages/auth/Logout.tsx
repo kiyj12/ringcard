@@ -6,11 +6,11 @@ function Logout() {
 		axios
 			.get("/logout")
 			.then((res) => {
-        console.log("Logout.tsx");
 				window.location.replace("/loginForm");
-        console.log("Logout.tsx, replace success");
 			})
-			.catch((err) => {});
+			.catch(function (error) {
+				console.log(error.config);
+			});
 	}, []);
 
 	return <></>;

@@ -3,10 +3,9 @@ import axios from "axios";
 import "../../styles/layout/layout.css";
 import "../../styles/home.css";
 import Header from "../../components/Header/Header";
-import Navigation from "../../components/Navigation";
-import QuestionNoteList from "../../components/QuestionNoteList";
+import Navigation from "../../components/atoms/Navigation";
+import QuestionNoteList from "../../components/QuestionNote/QuestionNoteList";
 import { useSearchParams } from "react-router-dom";
-import Toast from "../../components/Toast";
 import ClearTrashcanModal from "../../components/Modal/ClearTrashcanModal";
 
 function HomeUnanswered() {
@@ -23,14 +22,13 @@ function HomeUnanswered() {
 		axios
 			.get("/home/" + pageAddress + "?page=" + page)
 			.then((res) => {
-				console.log(res.data);
 				setUserName(res.data.userName);
 				setQuestionList(res.data.questions.content);
 				setTotalPages(res.data.questions.totalPages);
 				setPageNumber(res.data.questions.number);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error.config);
 			});
 	}, []);
 

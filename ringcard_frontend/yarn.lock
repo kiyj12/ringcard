@@ -17066,9 +17066,9 @@
     "node-fetch" "^2.6.1"
 
 "twitter-api-v2@^1.12.9":
-  "integrity" "sha512-nmKwcUiXgoEfcOtAH/hYojy0oSxbouWvvNsHVphiHSW9x9aus2Jdg9/NRB2Gzyq5G6xl+EkjUlEWwBQjp1FOfg=="
-  "resolved" "https://registry.npmjs.org/twitter-api-v2/-/twitter-api-v2-1.12.9.tgz"
-  "version" "1.12.9"
+  "integrity" "sha512-gLo4u3EZM8zt2CRZ5uJaWpGVoH1/xR0veF74E3K7WCQXUONoZVc0pbg6dGfoPBOmEXhS4QHGcgAMj1TRU+OSXA=="
+  "resolved" "https://registry.npmjs.org/twitter-api-v2/-/twitter-api-v2-1.12.10.tgz"
+  "version" "1.12.10"
 
 "twitter-oauth2@^1.0.7":
   "integrity" "sha512-KCUY9SpLUn7QXfaE96A73hbd5n/zS1dDT4Si83tSGXG5vJpNoK7fy7aCYRWNzTaiGJbA+SeHV34PSPt6y5XXnA=="

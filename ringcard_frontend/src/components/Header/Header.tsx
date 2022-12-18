@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import "../../styles/layout/header.css";
 import Modal from "../Modal/MenuModal";

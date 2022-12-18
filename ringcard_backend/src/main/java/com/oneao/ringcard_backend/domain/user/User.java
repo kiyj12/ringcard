@@ -31,7 +31,11 @@ public class User implements Serializable {
     private String userEmail;
     private String twitterId;
     private String userPicture;
+
     private String roles;
+
+    @NotNull
+    private boolean emailAlert;
 
     public List<String> getRoleList() {
         if (this.roles.length() > 0) {
@@ -53,6 +57,4 @@ public class User implements Serializable {
         this.userPicture = userPicture;
         this.roles = roles;
     }
-
-
 }

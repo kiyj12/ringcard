@@ -69,12 +69,10 @@ public class JoinController {
         Boolean hasErrorFlag = false;
 
         if (bindingResult.hasErrors()) {
-            System.out.println("bindingResult.hasErrors()");
             response.put("bindingResultHasErrors",true);
             hasErrorFlag = true;
         }
         if (userService.findByUsername(requestBody.getUsername()).isPresent()) {
-            System.out.println("overlappedUsername");
             response.put("overlappedUsername",true);
             hasErrorFlag = true;
         }
@@ -82,76 +80,16 @@ public class JoinController {
             return ResponseEntity.ok(response);
         }
 
-//        User user = new User();
-        System.out.println("user = " + requestBody);
-
-//        user.setUserRingcardName(requestBody.getUserRingcardName());
-//        user.setUserEmail(requestBody.getUserEmail());
-//        user.setUsername(requestBody.getUsername());
         String rawPassword = requestBody.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         requestBody.setPassword(encPassword);
         requestBody.setRoles("ROLE_USER");
-        System.out.println(requestBody);
         userService.save(requestBody);
         return ResponseEntity.ok(response);
     }
 
 
-// 성공한 버전
-//    @PostMapping("/joinForm")
-//    public void joinV3(@Valid @RequestBody User requestBody, BindingResult bindingResult) {
-//        String password = requestBody.getPassword();
-//        System.out.println(password);
-//        if (bindingResult.hasErrors()) {
-//            System.out.println("bindingResult.hasErrors()");
-//            return;
-//        }
-//        else if (userService.findByUsername(requestBody.getUsername()).isPresent()) {
-//            System.out.println("overlapped");
-//            return;
-//        }
-//
-////        User user = new User();
-//        System.out.println("user = " + requestBody);
-//
-////        user.setUserRingcardName(requestBody.getUserRingcardName());
-////        user.setUserEmail(requestBody.getUserEmail());
-////        user.setUsername(requestBody.getUsername());
-//        String rawPassword = requestBody.getPassword();
-//        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-//        requestBody.setPassword(encPassword);
-//        requestBody.setRoles("ROLE_USER");
-//        System.out.println(requestBody);
-//        userService.save(requestBody);
-//    }
 
 
-// 예전 버전 기록용. 221119 responseBody 적용 전.
-//    @PostMapping("/joinForm")
-//    public void joinV0(@Valid @RequestBody User requestBody, BindingResult bindingResult) {
-//        String password = requestBody.getPassword();
-//        System.out.println(password);
-//        if (bindingResult.hasErrors()) {
-//            System.out.println("bindingResult.hasErrors()");
-//            return;
-//        }
-//        else if (userService.findByUsername(requestBody.getUsername()).isPresent()) {
-//            redirectAttributes.addAttribute("overlappedUsername", true);
-//            System.out.println("overlapped");
-//            return;
-//        }
-//
-//        User user = new User();
-//        System.out.println("user = " + user);
-//        user.setUserRingcardName(requestBody.getUserRingcardName());
-//        user.setUserEmail(requestBody.getUserEmail());
-//        user.setUsername(requestBody.getUsername());
-//        String rawPassword = requestBody.getPassword();
-//        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-//        user.setPassword(encPassword);
-//        user.setRoles("ROLE_USER");
-//        System.out.println(user);
-//        userService.save(user);
-//    }
+
 }

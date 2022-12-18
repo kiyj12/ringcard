@@ -1,5 +1,6 @@
 package com.oneao.ringcard_backend.service;
 
+import com.oneao.ringcard_backend.domain.DTO.SendMailDto;
 import com.oneao.ringcard_backend.domain.question.Question;
 import com.oneao.ringcard_backend.domain.question.QuestionRepository;
 import com.oneao.ringcard_backend.domain.question.QuestionSearchCond;
@@ -85,6 +86,7 @@ public class QuestionService {
     public void clearTrashcan(Long userId) {
         questionRepository.clearTrashcan(userId);
     }
+
 
 
     

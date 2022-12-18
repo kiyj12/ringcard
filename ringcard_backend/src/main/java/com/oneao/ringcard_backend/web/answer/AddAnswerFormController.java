@@ -33,25 +33,26 @@ public class AddAnswerFormController {
 
     @GetMapping("/unanswered/user")
     public ResponseEntity<Model> answerForm(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model) {
-        Long userId = loginUser.getUser().getId();
         String userName = loginUser.getUsername();
-        Question question = questionService.findById(questionId, userId).get();
 
         model.addAttribute("userName",userName);
+        Long userId = loginUser.getUser().getId();
+
+        Question question = questionService.findById(questionId, userId).get();
         model.addAttribute("question", question);
-        
+
         System.out.println("model = " + model);
 //        return "redirect:/{questionId}/completed";
 //        return "question/unanswered";
-        return ResponseEntity.ok(model);
-    }
-    @GetMapping("/completed/user/{page}")
-    public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PathVariable int page) {
-        System.out.println("check complete user");
-        Long userId = loginUser.getUser().getId();
-        String userName = loginUser.getUsername();
-        Question question = questionService.findById(questionId, userId).get();
+            return ResponseEntity.ok(model);
+        }
+        @GetMapping("/completed/user/{page}")
+        public ResponseEntity<Model> answerCompleted(@PathVariable Long questionId, @AuthenticationPrincipal PrincipalDetails loginUser, Model model, @PathVariable int page) {
+            System.out.println("check complete user");
+            Long userId = loginUser.getUser().getId();
+            Question question = questionService.findById(questionId, userId).get();
 
+            String userName = loginUser.getUsername();
         Long answerId = answerService.findByQuestionId(questionId).get().getId();
         Answer answer = answerService.findById(answerId).get();
 

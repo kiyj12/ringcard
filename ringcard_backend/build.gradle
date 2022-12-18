@@ -49,16 +49,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
-
-
-
 	//테스트에서 lombok 사용
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
-
-//	implementation 'org.slf4j:slf4j-api:1.7.30'
-//	implementation 'org.slf4j:slf4j-simple:1.7.30'
-
 }
 
 tasks.named('test') {

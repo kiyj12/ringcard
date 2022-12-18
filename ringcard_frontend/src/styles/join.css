@@ -185,3 +185,21 @@
   margin-right: auto; */
 }
 
+.Join-input-error-message {
+
+  padding-left: 13px;
+  font-family: NanumBarunGothic;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #fff;
+  text-decoration: none;
+  text-align: left;
+}
+
+.Join-input-error-message p {
+  margin-top: -10px;
+}
