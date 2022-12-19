@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
 import "../../styles/answerQuestionNote.css";
-import html2canvas from 'html2canvas';
+import html2canvas from "html2canvas";
 
 export interface Props {
 	questionId: number;
@@ -16,9 +16,7 @@ function AnswerForm(props: Props) {
 	const questionContents = props.questionContents;
 	const [answerContents, setAnswerContents] = useState();
 
-	const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
-
-
+	const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
 
 	const onSubmit = async (data: any) => {
 		await new Promise((r) => setTimeout(r, 100));
@@ -26,20 +24,25 @@ function AnswerForm(props: Props) {
 		// alert(JSON.stringify(data));
 		console.log(data);
 		// 섭밋할 때의 data.answerContents : 트위터에 텍스트로 들어갈 답변 내용.
-		
+
 		console.log(questionContents);
 
 		await axios
 			.post("/question/" + questionId + "/unanswered/user", data)
-			.then(async(res) => {
+			.then(async (res) => {
 				console.log("posthere");
 				console.log(data.answerContents);
 				setAnswerContents(data.answerContents);
 				// window.location.href = "/question/" + questionId + "/completed/user";
 
-				if(checked){
+				if (checked) {
 					const tweetData = {
-						text: "질문 : " + questionContents + "\n답변 : " + data.answerContents + " https://m.place.naver.com/restaurant/1720673456/home?entry=ple"
+						text:
+							"질문 : " +
+							questionContents +
+							"\n답변 : " +
+							data.answerContents +
+							" https://m.place.naver.com/restaurant/1720673456/home?entry=ple",
 					};
 
 					// const tweetDataTest = {
@@ -51,8 +54,8 @@ function AnswerForm(props: Props) {
 					// 							]
 					// 					}
 					// 		};
-						
-					// const media = 
+
+					// const media =
 					// 				{
 					// 							"duration_ms": 46947,
 					// 							"type": "video",
@@ -65,29 +68,25 @@ function AnswerForm(props: Props) {
 					// 							"width": 1920
 					// 					};
 
-				await axios({
-						method: 'post',
-						// url: 'https://cors-anywhere.herokuapp.com/https://api.twitter.com/2/tweets?expansions=attachments.media_keys&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text',
+					await axios({
+						method: "post",
+						// url: 'https://ringca.herokuapp.com/https://api.twitter.com/2/tweets?expansions=attachments.media_keys&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text',
 
-						url: 'https://cors-anywhere.herokuapp.com/https://api.twitter.com/2/tweets',
+						url: "https://ringca.herokuapp.com/https://api.twitter.com/2/tweets",
 
 						// url: 'https://upload.twitter.com/1.1/media/upload.json?media_category=tweet_image',
-
-
 
 						data: tweetData,
 						// media: media,
 						headers: {
-							'Authorization': `Bearer ${cookies.accessToken.accessToken}`,
-						}
-
+							Authorization: `Bearer ${cookies.accessToken.accessToken}`,
+						},
 					}).then((res) => {
 						console.log(res);
 						// alert("생성이 완료되었습니다.");
-						});
+					});
 				}
 				window.location.href = "/question/" + questionId + "/completed/user";
-
 			})
 			.catch(function (error) {
 				if (error.response) {
@@ -112,27 +111,27 @@ function AnswerForm(props: Props) {
 	// function BtnToCreateTweet(){
 	// 	function handleClick(e: any){
 	// 		console.log(cookies.accessToken);
-  //     const data = {
-  //       text: "질문 : " + questionContents + "\n 답변 :" + answerContents
-  //     };
+	//     const data = {
+	//       text: "질문 : " + questionContents + "\n 답변 :" + answerContents
+	//     };
 
-  //     axios({
-  //       method: 'post',
-  //       url: 'https://cors-anywhere.herokuapp.com/https://api.twitter.com/2/tweets',
+	//     axios({
+	//       method: 'post',
+	//       url: 'https://ringca.herokuapp.com/https://api.twitter.com/2/tweets',
 
-  //       data: data,
-  //       headers: {
-  //         'Authorization': `Bearer ${cookies.accessToken.accessToken}`,
-  //       }
+	//       data: data,
+	//       headers: {
+	//         'Authorization': `Bearer ${cookies.accessToken.accessToken}`,
+	//       }
 
-  //     }).then((res) => {
-  //       console.log(res);
-  //       // alert("생성이 완료되었습니다.");
-  //       });
+	//     }).then((res) => {
+	//       console.log(res);
+	//       // alert("생성이 완료되었습니다.");
+	//       });
 	// 	}
 	// 	return (
 	// 		<button onClick={handleClick}>
-  //       CreateTweet
+	//       CreateTweet
 	// 		</button>
 	// 	);
 	// }
@@ -174,44 +173,48 @@ function AnswerForm(props: Props) {
 	// checkBox Start
 	const [checked, setChecked] = useState(false);
 
-	const checkHandler = (event:any) => {
-		if(checked){
+	const checkHandler = (event: any) => {
+		if (checked) {
 			setChecked(false);
-		}else if(checked === false){
+		} else if (checked === false) {
 			setChecked(true);
 		}
 	};
 
 	const CheckToSendTwitter = () => {
-  return (
-    <div>
-      <input type="checkbox" checked={checked} onChange={(e) => checkHandler(e)} />
-    </div>
-  	);
+		return (
+			<div>
+				<input
+					type="checkbox"
+					checked={checked}
+					onChange={(e) => checkHandler(e)}
+				/>
+			</div>
+		);
 	};
 	// checkBox Fin.
 
 	const printRef = useRef<HTMLInputElement>(null);
 	// const printRef = useRef();
 
-  const handleDownloadImage = async () => {
-    const element:any = printRef.current;
-    const canvas = await html2canvas(element);
+	const handleDownloadImage = async () => {
+		const element: any = printRef.current;
+		const canvas = await html2canvas(element);
 
-    const data = canvas.toDataURL('image/jpg');
-    const link = document.createElement('a');
+		const data = canvas.toDataURL("image/jpg");
+		const link = document.createElement("a");
 
-    if (typeof link.download === 'string') {
-      link.href = data;
-      link.download = 'image.jpg';
+		if (typeof link.download === "string") {
+			link.href = data;
+			link.download = "image.jpg";
 
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      window.open(data);
-    }
-  };
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		} else {
+			window.open(data);
+		}
+	};
 
 	return (
 		<form className="answerForm-answer-form" onSubmit={handleSubmit(onSubmit)}>
@@ -245,9 +248,8 @@ function AnswerForm(props: Props) {
 			<div>
 				{/* <BtnToCreateTweet/> */}
 				<p>Post Tweet?</p>
-				<CheckToSendTwitter/>
+				<CheckToSendTwitter />
 			</div>
-			
 		</form>
 	);
 }
