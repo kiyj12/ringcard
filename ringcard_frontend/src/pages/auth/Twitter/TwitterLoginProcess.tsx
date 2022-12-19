@@ -3,10 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import qs from "qs";
 import { useCookies } from "react-cookie";
+import QuestionAnony from "../../anony/QuestionAnony";
 
 function TwitterLoginProcess() {
 	useEffect(() => {
-		BtnToTwitterLoginToken();
+		async function hi() {
+			await BtnToTwitterLoginToken();
+			await BtnToUserMe();
+		}
+		hi();
 	});
 
 	const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
@@ -81,7 +86,7 @@ function TwitterLoginProcess() {
 
 			axios({
 				method: "post",
-				url: "https://cors-anywhere.herokuapp.com/https://api.twitter.com/2/oauth2/token",
+				url: "https://ringca.herokuapp.com/https://api.twitter.com/2/oauth2/token",
 
 				data: data,
 				headers: {
@@ -98,28 +103,30 @@ function TwitterLoginProcess() {
 					{ accessToken: res.data.access_token },
 					{ path: "/" }
 				);
-
-				BtnToUserMe();
 			});
 		}
 	}
 
 	function BtnToUserMe() {
+		console.log("BtnToUserMe start");
 		axios({
 			method: "get",
-			url: "https://cors-anywhere.herokuapp.com/https://api.twitter.com/2/users/me",
+			url: "https://ringca.herokuapp.com/https://api.twitter.com/2/users/me",
 
 			headers: {
 				Authorization: "Bearer " + accessToken,
 			},
 		}).then(async (res) => {
+			console.log("BtnToUserMe res start");
 			console.log(res);
 			console.log(res.data.data);
 			setUserMe(res.data.data);
 			await new Promise((r) => setTimeout(r, 100));
-			await axios
+			console.log("BtnToUserMe res after timeout");
+			axios
 				.post("/login/user/me", res.data.data)
 				.then(async (res) => {
+					console.log("BtnToUserMe res after timeout after post");
 					console.log(res.data.usernameTwitter);
 
 					const data = {
@@ -133,9 +140,9 @@ function TwitterLoginProcess() {
 							},
 						})
 						.then((res) => {
+							console.log("BtnToUserMe to login");
 							console.log(res.data);
-							console.log("hello there replace to unanswered");
-							window.location.replace("/home/unanswered");
+							// window.location.replace("/home/unanswered");
 						})
 						.catch(function (error) {
 							console.log(error.config);
