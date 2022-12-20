@@ -61,7 +61,11 @@ function BtnToTwitterLogin() {
 		window.location.href = authUrl;
 	}
 	return (
-		<button className="BtnToTwitterLogin-btn" onClick={handleClick}>
+		<button
+			type="button"
+			className="BtnToTwitterLogin-btn"
+			onClick={handleClick}
+		>
 			<img
 				className="BtnToTwitterLogin-btn-img"
 				src="/twitter_signin_btn.png"

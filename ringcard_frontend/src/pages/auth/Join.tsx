@@ -155,8 +155,8 @@ const Join = () => {
 									required: "아이디는 필수 입력입니다.",
 									pattern: {
 										// input의 정규식 패턴
-										value: /^[A-za-z0-9가-힣]{3,10}$/,
-										message: "가능한 문자: 영문 대소문자, 한글, 숫자", // 에러 메세지
+										value: /^[A-za-z0-9가-힣@_$!%*?&]{4,16}$/,
+										message: "가능한 문자: 영문 대소문자, 한글, 숫자, @_$!%*?&", // 에러 메세지
 									},
 									minLength: {
 										value: 4,
@@ -184,9 +184,9 @@ const Join = () => {
 								{...register("password", {
 									required: "비밀번호는 필수 입력입니다.",
 									pattern: {
-										value: /^[A-za-z0-9@$!%*#?&]*$/,
+										value: /^[A-za-z0-9@_$!%*#?&]*$/,
 										message:
-											"가능한 문자: 영문 대소문자, 숫자, 특수문자 @$!%*#?&",
+											"가능한 문자: 영문 대소문자, 숫자, 특수문자 @_$!%*#?&",
 									},
 									minLength: {
 										value: 8,

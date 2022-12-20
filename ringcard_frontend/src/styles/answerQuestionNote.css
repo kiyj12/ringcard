@@ -141,6 +141,77 @@
   background: none;
 }
 
+/* ######## AnswerAnswerFormQuestionNote */
+.answerForm-twitter-preview-box{
+  margin: auto auto;
+  display: absolute;
+  /* top: 50%; */
+  /* background-image: url( "../../public/background-img/twitter-share-note.png" ); */
+  width:400px;
+  height: 200px;
+  /* background-size: 100% 100%; */
+  text-align: center;
+  vertical-align: center;
+  /* line-height: 200px; */
+}
+
+.answerForm-twitter-preview-background-img{
+  z-index: -2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.answerForm-note-content-box {
+
+  /* background-color: darkgray; */
+  /* height: 54px; */
+  /* 이걸로 조절 */
+  /* 1안 */
+  /* padding: 80px 60px; */
+  /* padding: 55px 60px; */
+  width: 70%;
+  height: 100%;
+  padding: 0 15% 0 15%;
+  /* 2안 */
+  /* padding: 45px 90px; */
+  /* padding: 80px 60px; */
+
+  /* display: flex; */
+  /* display: -webkit-flex; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.answerForm-note-content {
+  /* background-color: aqua; */
+  /* overflow는 ...으로 대체하기 위함 */
+  display: -webkit-box;
+  /* 1안 */
+  -webkit-line-clamp: 5;
+  /* 2안 */
+  /* -webkit-line-clamp: 6; */
+  text-overflow: ellipsis; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  text-align: center;
+  font-family: NanumBarunGothic;
+  font-size: 10px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #333;
+  text-align: center;
+}
+
 
 /* ##################### AnsweredQuestionNote ####################### */
 

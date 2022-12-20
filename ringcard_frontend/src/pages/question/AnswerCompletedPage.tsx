@@ -7,7 +7,7 @@ import QuestionNoteList from "../../components/QuestionNote/QuestionNoteList";
 import "../../styles/answerCompletedPage.css";
 
 function AnswerCompletedPage() {
-	const [userName] = useState<String>();
+	const [userName, setUserName] = useState<String>();
 
 	const { questionId } = useParams();
 	const [question, setQuestion] = useState<any>([]);
@@ -21,6 +21,7 @@ function AnswerCompletedPage() {
 		axios
 			.get("/question/" + questionId + "/completed/user/0")
 			.then((res) => {
+				setUserName(res.data.userName);
 				setQuestionList(res.data.questions.content);
 				setQuestion(res.data.question);
 				setAnswer(res.data.answer);
