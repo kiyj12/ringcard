@@ -11,11 +11,7 @@ import org.springframework.context.annotation.Import;
 @Import({SpringDataJpaConfig.class, SecurityConfig.class, CorsConfig.class, EmailConfig.class})
 @SpringBootApplication(scanBasePackages = "com.oneao.ringcard_backend.web")
 public class RingcardApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(RingcardApplication.class, args);
 	}
-
-
-
 }

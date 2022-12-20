@@ -43,3 +43,5 @@ out/
 
 ### private ###
 JwtProperties.java
+.yml
+application-twitter.yml
