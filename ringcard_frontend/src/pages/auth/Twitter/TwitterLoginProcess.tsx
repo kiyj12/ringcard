@@ -107,9 +107,9 @@ function TwitterLoginProcess() {
 		}
 	}
 
-	function BtnToUserMe() {
+	async function BtnToUserMe() {
 		console.log("BtnToUserMe start");
-		axios({
+		await axios({
 			method: "get",
 			url: "https://ringca.herokuapp.com/https://api.twitter.com/2/users/me",
 
