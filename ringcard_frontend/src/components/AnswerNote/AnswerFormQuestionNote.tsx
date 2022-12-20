@@ -105,7 +105,7 @@ function AnswerFormQuestionNote(props: Props) {
 				// setSubmitted(false);
 
 				// capture img fin
-				// window.location.href = "/question/" + question.id + "/completed/user";
+				window.location.href = "/question/" + question.id + "/completed/user";
 
 			})
 			.catch(function (error) {
