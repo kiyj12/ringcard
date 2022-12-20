@@ -58,7 +58,7 @@ public class Oauth2 {
 
         System.out.println("/login/user/me/1");
         String username = requestBody.getUsername();
-        String usernameTwitter = username + "_twitter";
+        String usernameTwitter = username + "[twitter]";
         twitterLoginAutoDto.setUsernameTwitter(usernameTwitter);
         if(userService.findByUsername(usernameTwitter).isEmpty()) {
 //        System.out.println("Data : user/me=========");

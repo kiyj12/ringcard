@@ -44,7 +44,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String paramPwd = request.getParameter("password");
         System.out.println("paramUsername = " + paramUsername);
         System.out.println("paramPwd = " + paramPwd);
-        if(paramUsername.endsWith("_twitter") && Objects.equals(paramPwd, "twitterTemp")) {
+        if(paramUsername.endsWith("[twitter]") && Objects.equals(paramPwd, "twitterTemp")) {
             System.out.println("exysexy hi");
             paramPwd = "exySexyMeganFoxy!";
         }
