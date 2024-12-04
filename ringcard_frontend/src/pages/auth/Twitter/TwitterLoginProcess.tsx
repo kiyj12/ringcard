@@ -107,9 +107,9 @@ function TwitterLoginProcess() {
 		}
 	}
 
-	function BtnToUserMe() {
+	async function BtnToUserMe() {
 		console.log("BtnToUserMe start");
-		axios({
+		await axios({
 			method: "get",
 			url: "https://ringca.herokuapp.com/https://api.twitter.com/2/users/me",
 
@@ -142,7 +142,7 @@ function TwitterLoginProcess() {
 						.then((res) => {
 							console.log("BtnToUserMe to login");
 							console.log(res.data);
-							// window.location.replace("/home/unanswered");
+							window.location.replace("/home/unanswered");
 						})
 						.catch(function (error) {
 							console.log(error.config);
