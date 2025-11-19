@@ -12,6 +12,9 @@
 - **Key User Interfaces Examples:** Core screens such as the initial loading, login, registration, and the main question/answer feed page.
 
 Webpage UI UX Example
+
+
+
 <img width="400" height="2688" alt="Ringca" src="https://github.com/user-attachments/assets/6e8a8a3e-c266-489e-afad-d0b371af50b8" />
 <img width="400" height="2688" alt="Ringca1" src="https://github.com/user-attachments/assets/e2f36b10-46c2-4089-b55b-2009a5ce31da" />
 <img width="400" height="2688" alt="Ringca2" src="https://github.com/user-attachments/assets/48f032a2-b1d0-448e-8709-74c903bf5574" />
