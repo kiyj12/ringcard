@@ -1,3 +1,4 @@
+
 - **Market Opportunity & Vision:**
     - Identified a critical **service gap** in the Korean Twitter ecosystem for an intuitive, secure, and easily shareable anonymous Q&A platform, noting user dissatisfaction with abandoned (ask.fm) or poorly moderated (peing.net) existing solutions.
     - **Initiated development** of Ringca to meet this specific user need, leveraging deep insight into local platform requirements and user experience preferences.
